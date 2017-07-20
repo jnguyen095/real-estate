@@ -27,3 +27,4 @@ Technologies
 
 - PHP, CodeIgniter Web Framework
 - MySql
+- Bootstrap, JQuery
