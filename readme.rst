@@ -2,7 +2,7 @@
 Real Estate - Display Site
 ###################
 
-Display data from crawler
+Display data from crawler module: `Crawler module <https://github.com/jnguyen095/HomeLand>`_
 
 *******************
 Server Requirements
