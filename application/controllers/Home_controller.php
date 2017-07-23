@@ -11,6 +11,7 @@ class Home_controller extends CI_Controller
 	function __construct() {
 		parent::__construct();
 		$this->load->model('Category_Model');
+		$this->load->helper("seo_url");
 	}
 
 	public function index() {

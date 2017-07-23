@@ -53,8 +53,9 @@ $route['default_controller'] = 'home_controller';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['category/(\d+)'] = "Product_controller/listItem/$1";
-$route['product/(\d+)'] = "Product_controller/detailItem/$1/$2";
+$route['(:any)-c(:num)'] = "Product_controller/listItem/$2";
+$route['(:any)-c(:num).html/(:num)'] = "Product_controller/listItem/$2/$3";
+$route['(:any)-p(:num)'] = "Product_controller/detailItem/$2";
 
 $route['stud'] = "Stud_controller";
 $route['stud/add'] = 'Stud_controller/add_student';

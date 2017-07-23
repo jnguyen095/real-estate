@@ -33,4 +33,18 @@ class Category_Model extends CI_Model
 
 		return $data;
 	}
+
+	public function findById($catId){
+		$this->db->where("CategoryID = " . $catId);
+		$query = $this->db->get("category");
+
+		$data = $query->row();
+		if(isset($data->ParentID)){
+			$this->db->where("CategoryID = " . $data->ParentID);
+			$query = $this->db->get("category");
+
+			$data->Parent = $query->row();
+		}
+		return $data;
+	}
 }

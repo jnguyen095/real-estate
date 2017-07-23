@@ -116,7 +116,7 @@ class CI_Pagination {
 	 *
 	 * @var	string
 	 */
-	protected $first_link = '&lsaquo; First';
+	protected $first_link = '&lsaquo; Đầu';
 
 	/**
 	 * Next link
@@ -137,7 +137,7 @@ class CI_Pagination {
 	 *
 	 * @var	string
 	 */
-	protected $last_link = 'Last &rsaquo;';
+	protected $last_link = 'Cuối &rsaquo;';
 
 	/**
 	 * URI Segment
@@ -394,7 +394,7 @@ class CI_Pagination {
 	/**
 	 * Generate the pagination links
 	 *
-	 * @return	string
+	 * @return	string         Lá
 	 */
 	public function create_links()
 	{
