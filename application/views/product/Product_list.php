@@ -74,9 +74,7 @@
 		</div>
 	</div>
 	<div class="col-md-3 no-margin-right no-padding-right">
-		<div class="product-panel col-md-12 no-margin no-padding">
-			<input type="text" placeholder="Tìm kiếm">
-		</div>
+		<?php $this->load->view('/Search_filter') ?>
 	</div>
 
 

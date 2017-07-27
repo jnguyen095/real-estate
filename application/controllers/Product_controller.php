@@ -12,6 +12,7 @@ class Product_controller extends CI_Controller
 		parent::__construct();
 		$this->load->model('Category_Model');
 		$this->load->model('Product_Model');
+		$this->load->model('City_Model');
 		$this->load->helper("seo_url");
 		$this->load->helper("my_date");
 		$this->load->helper("bootstrap_pagination");
@@ -35,7 +36,7 @@ class Product_controller extends CI_Controller
 
 		$this->pagination->initialize($config);
 		$data['pagination'] = $this->pagination->create_links();
-
+		$data['cities'] = $this->City_Model->getAllActive();
 
 		$this->load->helper('url');
 		$this->load->view('product/Product_list', $data);
