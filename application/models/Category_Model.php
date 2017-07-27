@@ -47,4 +47,20 @@ class Category_Model extends CI_Model
 		}
 		return $data;
 	}
+
+	public function findByParentId($parentId=null, $currentId=null){
+		//$this->output->enable_profiler(TRUE);
+		if($parentId != null){
+			$sql = 'select c.*, (select count(*) from product p where p.categoryid = c.categoryid) as total from category c where c.ParentID = '. $parentId;
+			if($currentId != null){
+				$sql .= ' and c.CategoryID != '. $currentId;
+			}
+			$query = $this->db->query($sql);
+			return $query->result();
+		}else if($currentId != null){
+			$sql = 'select c.*, (select count(*) from product p where p.categoryid = c.categoryid) as total from category c where c.ParentID = '. $currentId;
+			$query = $this->db->query($sql);
+			return $query->result();
+		}
+	}
 }

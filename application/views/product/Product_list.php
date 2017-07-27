@@ -4,13 +4,7 @@
 <head>
 	<meta charset = "utf-8">
 	<title><?php echo $category->CatName?></title>
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.css">
-	<!-- jQuery library -->
-	<script src="<?php echo base_url()?>js/jquery.min.js"></script>
-	<!-- Latest compiled JavaScript -->
-	<script src="<?php echo base_url()?>js/bootstrap.min.js"></script>
+	<?php $this->load->view('common_header')?>
 </head>
 
 <body>
@@ -26,30 +20,57 @@
 	<li class="active"><?php echo $category->CatName?></li>
 </ul>
 <div class="row no-margin">
-	<div class="product-panel col-md-9  no-margin no-padding">
+	<div class="col-md-9  no-margin no-padding">
 	<?php
-		foreach ($products as $product){
-			echo '<div class="row product-list">';
-			echo '<div class="row product-title"><a href="'.base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html">'. $product->Title .'</a> </div>';
-			echo '<div class="row product-content">';
-			echo '<div class="col-md-2 col-xs-4 no-padding"><img src="'.$product->Thumb.'"/></div>';
-			echo '<div class="col-md-10 col-xs-8">';
-			echo '<div class="product-brief">'. $product->Brief . '</div>';
-			echo '<div class="price-info float-left"><span>Giá: <span class="color bold">'.$product->PriceString.'</span></span>';
-			echo '<span class="margin-left-10">Diện tích: <span class="color bold">'.$product->Area.'</span></span>';
-			echo '<span class="margin-left-10">Quận/Huyện: <span class="color bold">'.$product->Area.'</span></span>';
-			echo '</div>';
-			echo '<div class="float-right color bold">'.relative_time($product->PostDate).'</div>';
-			echo '<div class="clear-both"></div>';
-
-			echo '</div>';
-			echo '</div>';
-
-			echo '</div>';
-		}
+	 if(count($sameLevels) > 0){
+		 echo '<div class="category-panel col-md-12">';
+		 foreach ($sameLevels as $level){
+			 echo '<div class="col-md-4"><a href="'.base_url().seo_url($level->CatName).'-c'.$level->CategoryID.'.html">'.$level->CatName. ' ['.$level->total.'] </a></div>';
+		 }
+		 echo '</div>';
+	 }
 	?>
-		<div class="row text-center">
-			<?php echo $pagination ?>
+		<div class="product-panel col-md-12  no-margin no-padding">
+
+		<?php
+			foreach ($products as $product){
+				echo '<div class="row product-list">';
+				echo '<div class="row product-title"><a href="'.base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html">'. $product->Title .'</a> </div>';
+
+				echo '<div class="row product-content">';
+				echo '<div class="col-md-2 col-xs-4 no-padding"><img src="'.$product->Thumb.'"/></div>';
+
+				echo '<div class="col-md-10 col-xs-8">';
+				/*echo '<div class="product-brief">'. $product->Brief . '</div>';
+				echo '<div class="product-bottom">';
+				echo '<div class="price-info float-left"><span>Giá: <span class="color bold">'.$product->PriceString.'</span></span>';
+				echo '<span class="margin-left-10">Diện tích: <span class="color bold">'.$product->Area.'</span></span>';
+				echo '<span class="margin-left-10">Quận/Huyện: <span class="color bold">'.$product->district.', '.$product->city.'</span></span>';
+				echo '</div>';
+				echo '<div class="float-right color bold">'.relative_time($product->PostDate).'</div>';
+				echo '<div class="clear-both"></div>';
+				echo '</div>';*/
+
+				echo '<div class="row pos-relative">';
+				echo '<div class="col-md-12 col-xs-12 product-brief">';
+				echo '<div class="no-margin no-padding col-md-12 col-xs-12">'. $product->Brief . '</div>';
+				echo '</div>';
+
+				echo '<div class="productBottom">';
+				echo '<div class="col-md-10 col-xs-12"><span>Giá: <span class="color bold">'.$product->PriceString.'</span><span class="margin-left-10 mobile-hide">Diện tích: <span class="color bold">'.$product->Area.'</span></span><span class="margin-left-10 mobile-hide">Quận/Huyện: <span class="color bold">'.$product->district.', '.$product->city.'</span></div>';
+				echo '<div class="col-md-2 color bold mobile-hide">'.relative_time($product->PostDate).'</div>';
+				echo '</div>';
+				echo '</div>';
+
+				echo '</div>';
+				echo '</div>';
+
+				echo '</div>';
+			}
+		?>
+			<div class="row text-center">
+				<?php echo $pagination ?>
+			</div>
 		</div>
 	</div>
 	<div class="col-md-3 no-margin-right no-padding-right">

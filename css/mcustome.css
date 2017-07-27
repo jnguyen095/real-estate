@@ -6,7 +6,11 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 body{
-	background-color: #e9ebee;
+	/*background-color: #e9ebee;*/
+	background:  url('../img/background.jpg');
+	background-size:  100%;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
 }
 
 .container{
@@ -86,6 +90,14 @@ body{
 
 .product-panel{
 	border: solid 1px #365899;
+}
+
+.category-panel{
+	border: solid 1px #ccc;
+	margin-bottom: 10px;
+	background: #f9f7f7;
+	line-height: 20px;
+	border-radius: 6px;
 }
 
 .header{
@@ -198,3 +210,28 @@ a:focus, a{
 .post-btn a{
 	font-size: 18px;
 }
+
+.pagination>.disabled>a, .pagination>.disabled>a:focus, .pagination>.disabled>a:hover, .pagination>.disabled>span, .pagination>.disabled>span:focus, .pagination>.disabled>span:hover {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.productBottom {
+	position: absolute;
+	width: 100%;
+	bottom: -22px;
+}
+
+.product-brief{
+	padding-bottom: 20px;
+}
+
+.pos-relative{
+	position: relative;
+}
+
+@media (max-width: 767px) {
+	.mobile-hide{ display: none !important; }
+}
+
+

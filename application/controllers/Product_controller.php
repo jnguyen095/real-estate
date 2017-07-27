@@ -20,11 +20,13 @@ class Product_controller extends CI_Controller
 
 	public function listItem($catId, $offset=0) {
 		$data = $this->Category_Model->getCategories();
-		$search_data = $this->Product_Model->findByCatId($catId, $offset, MAX_PAGE_ITEM);
+		$search_data = $this->Product_Model->findByCatIdFetchAddress($catId, $offset, MAX_PAGE_ITEM);
+
 		$data = array_merge($data, $search_data);
-		$data['category'] = $this->Category_Model->findById($catId);
 
-
+		$thisCat = $this->Category_Model->findById($catId);
+		$data['category'] = $thisCat;
+		$data['sameLevels'] = $this->Category_Model->findByParentId($thisCat->ParentID, $catId);
 
 		$config = pagination();
 		$config['base_url'] = base_url(seo_url($data['category']->CatName).'-c'.$catId.'.html');
@@ -44,6 +46,8 @@ class Product_controller extends CI_Controller
 		$product = $this->Product_Model->findByIdFetchAll($productId);
 		$data['category'] = $this->Category_Model->findById($product->CategoryID);
 		$data['product'] = $product;
+
+		$this->Product_Model->updateViewForProductId($productId);
 		$this->load->helper('url');
 		$this->load->view('product/Product_detail', $data);
 	}
