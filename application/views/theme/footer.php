@@ -9,9 +9,12 @@
 ?>
 
 <div class="footer row no-margin">
-	<div class="row no-margin">
 		<?php
+		$index = 1;
 		foreach($categories as $r) {
+			if($index == 1){
+				echo '<div class="row no-margin">';
+			}
 			if(count($child[$r->CategoryID]) > 0){
 				echo '<div class="row col-md-3"><div class="catTitle">'.$r->CatName.'</div><ul>';
 				foreach ($child[$r->CategoryID] as $k){
@@ -21,8 +24,17 @@
 			}else{
 				echo '<div class="row col-md-3">'.$r->CatName.'</div>';
 			}
+
+			if($index == 4){
+				echo '</div>';
+				$index = 1;
+			}else{
+				$index++;
+			}
+		}
+		if($index != 1){
+			echo '</div>';
 		}
 		?>
 		</ul>
-	</div>
 </div>

@@ -56,6 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['(:any)-c(:num)'] = "Product_controller/listItem/$2";
 $route['(:any)-c(:num).html/(:num)'] = "Product_controller/listItem/$2/$3";
 $route['(:any)-p(:num)'] = "Product_controller/detailItem/$2";
+$route['login/dang-nhap.html'] = "Login_controller/index";
 
 $route['stud'] = "Stud_controller";
 $route['stud/add'] = 'Stud_controller/add_student';

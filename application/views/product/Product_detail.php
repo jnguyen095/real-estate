@@ -5,89 +5,57 @@
 	<meta charset = "utf-8">
 	<title><?php echo $product->Title?></title>
 	<?php $this->load->view('common_header')?>
+	<link rel="stylesheet" href="<?=base_url('/css/jquery.mCustomScrollbar.min.css')?>" />
+	<script src="<?=base_url('/js/jquery.mCustomScrollbar.min.js')?>"></script>
 </head>
 
 <body>
-<script type="text/javascript">
-	jssor_1_slider_init = function() {
 
-		var jssor_1_SlideshowTransitions = [
-			{$Duration:1200,x:0.3,$During:{$Left:[0.3,0.7]},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-			{$Duration:1200,x:-0.3,$SlideOut:true,$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-			{$Duration:1200,x:-0.3,$During:{$Left:[0.3,0.7]},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-			{$Duration:1200,x:0.3,$SlideOut:true,$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-			{$Duration:1200,y:0.3,$During:{$Top:[0.3,0.7]},$Easing:{$Top:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-			{$Duration:1200,y:-0.3,$SlideOut:true,$Easing:{$Top:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-			{$Duration:1200,y:-0.3,$During:{$Top:[0.3,0.7]},$Easing:{$Top:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-			{$Duration:1200,y:0.3,$SlideOut:true,$Easing:{$Top:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-			{$Duration:1200,x:0.3,$Cols:2,$During:{$Left:[0.3,0.7]},$ChessMode:{$Column:3},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-			{$Duration:1200,x:0.3,$Cols:2,$SlideOut:true,$ChessMode:{$Column:3},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-			{$Duration:1200,y:0.3,$Rows:2,$During:{$Top:[0.3,0.7]},$ChessMode:{$Row:12},$Easing:{$Top:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-			{$Duration:1200,y:0.3,$Rows:2,$SlideOut:true,$ChessMode:{$Row:12},$Easing:{$Top:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-			{$Duration:1200,y:0.3,$Cols:2,$During:{$Top:[0.3,0.7]},$ChessMode:{$Column:12},$Easing:{$Top:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-			{$Duration:1200,y:-0.3,$Cols:2,$SlideOut:true,$ChessMode:{$Column:12},$Easing:{$Top:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-			{$Duration:1200,x:0.3,$Rows:2,$During:{$Left:[0.3,0.7]},$ChessMode:{$Row:3},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-			{$Duration:1200,x:-0.3,$Rows:2,$SlideOut:true,$ChessMode:{$Row:3},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-			{$Duration:1200,x:0.3,y:0.3,$Cols:2,$Rows:2,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$ChessMode:{$Column:3,$Row:12},$Easing:{$Left:$Jease$.$InCubic,$Top:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-			{$Duration:1200,x:0.3,y:0.3,$Cols:2,$Rows:2,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$ChessMode:{$Column:3,$Row:12},$Easing:{$Left:$Jease$.$InCubic,$Top:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-			{$Duration:1200,$Delay:20,$Clip:3,$Assembly:260,$Easing:{$Clip:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-			{$Duration:1200,$Delay:20,$Clip:3,$SlideOut:true,$Assembly:260,$Easing:{$Clip:$Jease$.$OutCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-			{$Duration:1200,$Delay:20,$Clip:12,$Assembly:260,$Easing:{$Clip:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
-			{$Duration:1200,$Delay:20,$Clip:12,$SlideOut:true,$Assembly:260,$Easing:{$Clip:$Jease$.$OutCubic,$Opacity:$Jease$.$Linear},$Opacity:2}
-		];
-
-		var jssor_1_options = {
-			$AutoPlay: 1,
-			$SlideshowOptions: {
-				$Class: $JssorSlideshowRunner$,
-				$Transitions: jssor_1_SlideshowTransitions,
-				$TransitionsOrder: 1
-			},
-			$ArrowNavigatorOptions: {
-				$Class: $JssorArrowNavigator$
-			},
-			$ThumbnailNavigatorOptions: {
-				$Class: $JssorThumbnailNavigator$,
-				$Cols: 5,
-				$Align: 400
-			}
-		};
-
-		var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
-
-		/*#region responsive code begin*/
-		/*remove responsive code if you don't want the slider scales while window resizing*/
-		function ScaleSlider() {
-			var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
-			if (refSize) {
-				refSize = Math.min(refSize, 980);
-				jssor_1_slider.$ScaleWidth(refSize);
-			}
-			else {
-				window.setTimeout(ScaleSlider, 30);
-			}
-		}
-		ScaleSlider();
-		$Jssor$.$AddEvent(window, "load", ScaleSlider);
-		$Jssor$.$AddEvent(window, "resize", ScaleSlider);
-		$Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
-		/*#endregion responsive code end*/
-	};
-</script>
 <style>
-	.jssora106 {display:block;position:absolute;cursor:pointer;}
-	.jssora106 .c {fill:#fff;opacity:.3;}
-	.jssora106 .a {fill:none;stroke:#000;stroke-width:350;stroke-miterlimit:10;}
-	.jssora106:hover .c {opacity:.5;}
-	.jssora106:hover .a {opacity:.8;}
-	.jssora106.jssora106dn .c {opacity:.2;}
-	.jssora106.jssora106dn .a {opacity:1;}
-	.jssora106.jssora106ds {opacity:.3;pointer-events:none;}
+	#carousel-custom {
+		margin: 20px auto;
+		width: 700px;
+	}
+	#carousel-custom .carousel-indicators {
+		margin: 10px 0 0;
+		overflow: auto;
+		position: static;
+		text-align: left;
+		white-space: nowrap;
+		width: 100%;
+	}
+	#carousel-custom .carousel-indicators li {
+		background-color: transparent;
+		-webkit-border-radius: 0;
+		border-radius: 0;
+		display: inline-block;
+		height: 100px;
+		margin: 0 !important;
+		width: auto;
+	}
+	#carousel-custom .carousel-indicators li img {
+		display: block;
+		max-height: 99px;
+		opacity: 0.5;
+	}
+	#carousel-custom .carousel-indicators li.active img {
+		opacity: 1;
+	}
+	#carousel-custom .carousel-indicators li:hover img {
+		opacity: 0.75;
+	}
+	#carousel-custom .carousel-outer {
+		position: relative;
+	}
 
-	.jssort051 .p {position:absolute;top:0;left:0;background-color:#000;}
-	.jssort051 .t {position:absolute;top:0;left:0;width:100%;height:100%;border:none;opacity:.45;}
-	.jssort051 .p:hover .t{opacity:.8;}
-	.jssort051 .pav .t, .jssort051 .pdn .t, .jssort051 .p:hover.pdn .t{opacity:1;}
+	#carousel-custom .carousel-inner img {
+		max-height: 650px;
+		height: 550px;
+	}
+
+	.item{
+		text-align: center !important;
+	}
 </style>
 <div class="container">
 <?php $this->load->view('/theme/header')?>
@@ -102,10 +70,13 @@
 	<li class="active"><?php echo $product->Title?></li>
 </ul>
 <div class="row no-margin">
-	<div class="col-md-9  no-margin no-padding">
+	<div class="col-md-9 no-margin no-padding product-detail">
 		<div class="product-title"><?php echo $product->Title?></div>
-		<div>Khu vực: <span class="color bold">
-			<?php
+		<div class="row">
+			<div class="col-md-4">Giá: <span class="color bold"><?php echo $product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?php echo $product->Area?></span></span></div>
+			<div class="col-md-8 text-right">
+				<span class="color bold glyphicon glyphicon-map-marker"></span><span class="color bold">
+				<?php
 				if(isset($product->Street)){
 					echo $product->Street->StreetName;
 				}
@@ -121,63 +92,164 @@
 					echo ' - ';
 					echo $product->City->CityName;
 				}
-			?>
-		</span></div>
-		<div>Giá: <span class="color bold"><?php echo $product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?php echo $product->Area?></span></span></div>
-		<div class="product-detail"><?php echo $product->Detail?></div>
+				?>
+				</span>
+			</div>
+		</div>
 
 		<div class="product-assets">
-			<div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;width:743px;height:480px;overflow:hidden;visibility:hidden;">
-				<!-- Loading Screen -->
-				<div data-u="loading" style="position:absolute;top:0px;left:0px;background:url(<?php echo base_url('img/loading.gif')?> no-repeat 50% 50%;background-color:rgba(0, 0, 0, 0.7);"></div>
-				<div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;width:743px;height:380px;overflow:hidden;">
-					<?php
+			<div id='carousel-custom' class='carousel slide' data-interval="false" data-ride='carousel'>
+				<div class='carousel-outer'>
+					<!-- Wrapper for slides -->
+					<div class='carousel-inner'>
+						<?php
+						$isFirst = true;
 						foreach($product->Assets as $asset){
-							echo '<div>';
-							echo '<img data-u="image" src="'.str_replace('resize/200x200/','', $asset->OrgUrl).'" />';
-							echo '<img data-u="thumb" src="'.$asset->Url.'" />';
+							if($isFirst){
+								echo '<div class="item active">';
+								$isFirst = false;
+							}else{
+								echo '<div class="item">';
+							}
+							echo '<img src="'.str_replace('resize/200x200/','', $asset->OrgUrl).'" alt=\'\' />';
 							echo '</div>';
 						}
-					?>
-					<a data-u="any" href="https://www.jssor.com" style="display:none">bootstrap slider</a>
-				</div>
-				<!-- Thumbnail Navigator -->
-				<div data-u="thumbnavigator" class="jssort051" style="position:absolute;left:0px;bottom:0px;width:980px;height:100px;" data-autocenter="1" data-scale-bottom="0.75">
-					<div data-u="slides">
-						<div data-u="prototype" class="p" style="width:200px;height:100px;">
-							<div data-u="thumbnailtemplate" class="t"></div>
-						</div>
+						?>
 					</div>
+
+					<!-- Controls -->
+					<a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
+						<span class='glyphicon glyphicon-chevron-left'></span>
+					</a>
+					<a class='right carousel-control' href='#carousel-custom' data-slide='next'>
+						<span class='glyphicon glyphicon-chevron-right'></span>
+					</a>
 				</div>
-				<!-- Arrow Navigator -->
-				<div data-u="arrowleft" class="jssora106" style="width:55px;height:55px;top:162px;left:30px;" data-scale="0.75">
-					<svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
-						<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
-						<polyline class="a" points="7930.4,5495.7 5426.1,8000 7930.4,10504.3 "></polyline>
-						<line class="a" x1="10573.9" y1="8000" x2="5426.1" y2="8000"></line>
-					</svg>
-				</div>
-				<div data-u="arrowright" class="jssora106" style="width:55px;height:55px;top:162px;right:30px;" data-scale="0.75">
-					<svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
-						<circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
-						<polyline class="a" points="8069.6,5495.7 10573.9,8000 8069.6,10504.3 "></polyline>
-						<line class="a" x1="5426.1" y1="8000" x2="10573.9" y2="8000"></line>
-					</svg>
-				</div>
+
+				<!-- Indicators -->
+				<ol class='carousel-indicators mCustomScrollbar'>
+					<?php
+					$i = 0;
+					foreach($product->Assets as $asset){
+						if($i == 0){
+							echo '<li data-target="#carousel-custom" data-slide-to="'.$i.'" class="active"><img src="'.$asset->Url.'" /></li>';
+						}else{
+							echo '<li data-target="#carousel-custom" data-slide-to="'.$i.'"><img src="'.$asset->Url.'" /></li>';
+						}
+
+						$i++;
+					}
+					?>
+				</ol>
 			</div>
-			<script type="text/javascript">jssor_1_slider_init();</script>
 		</div>
+
+		<h2 class="h2title">Chi Tiết
+			<hr/>
+		</h2>
+
+		<div class="product-detail"><?php echo $product->Detail?></div>
+
+		<div class="row">
+			<div class="col-md-8">
+				<table class="table tableBorder">
+					<tr class="tbHeader">
+						<td colspan="2">Đặc Điểm</td>
+					</tr>
+					<tr>
+						<td>Chiều rộng</td>
+						<td><?=$product->WidthSize != null ? $product->WidthSize : '-'?></td>
+					</tr>
+					<tr>
+						<td>Chiều dài</td>
+						<td><?=$product->LongSize != null ? $product->LongSize : '-'?></td>
+					</tr>
+					<tr>
+						<td>Số tầng</td>
+						<td><?=$product->Floor != null ? $product->Floor : '-'?></td>
+					</tr>
+					<tr>
+						<td>Số phòng</td>
+						<td><?=$product->Room != null ? $product->Room : '-'?></td>
+					</tr>
+					<tr>
+						<td>Nhà vệ sinh</td>
+						<td><?=$product->Toilet != null ? $product->Toilet : '-'?></td>
+					</tr>
+					<tr>
+						<td>Hướng</td>
+						<td><?=(isset($product->Direction) && $product->Direction) ? $product->Direction->DirectionName : 'KXĐ'?></td>
+					</tr>
+					<?php
+						if(isset($product->Brand) && $product->Brand != null){
+							echo '<td>Thuộc dự án</td>';
+							echo '<td>'.$product->Brand->BrandName.'</td>';
+						}
+					?>
+				</table>
+			</div>
+			<div class="col-md-4">
+				<table class="table tableBorder">
+					<tr class="tbHeader">
+						<td colspan="2">Liên Hệ</td>
+					</tr>
+					<tr>
+						<td class="width100">Liên hệ</td>
+						<td><?=$product->ContactName != null ? $product->ContactName : '-'?></td>
+					</tr>
+					<tr>
+						<td class="width100">Số ĐT</td>
+						<td><?=$product->ContactPhone != null ? $product->ContactPhone : '-'?></td>
+					</tr>
+					<tr>
+						<td class="width100">Di động</td>
+						<td><?=$product->ContactMobile != null ? $product->ContactMobile : '-'?></td>
+					</tr>
+					<tr>
+						<td class="width100">Địa chỉ</td>
+						<td><?=$product->ContactAddress != null ? $product->ContactAddress : '-'?></td>
+					</tr>
+					<tr>
+						<td class="width100">Email</td>
+						<td><?=$product->ContactEmail != null ? $product->ContactEmail : '-'?></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+
+		<h2 class="h2title">Bản Đồ
+			<hr/>
+		</h2>
+		<?php $this->load->view('/Map_view')?>
+
+		<?php
+			if($product->Source != null && count($product->Source) > 0){
+				echo '<div class="copy-source row color-gray no-margin no-padding">Nguồn: '.$product->Source.'</div>';
+			}
+		?>
+
 	</div>
 	<div class="col-md-3 no-margin-right no-padding-right">
+		<?php $this->load->view('/SocialShare') ?>
+		<?php $this->load->view('/Subscrible') ?>
 		<?php $this->load->view('/Search_filter') ?>
 	</div>
-
 
 </div>
 
 
 <?php $this->load->view('/theme/footer')?>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".mCustomScrollbar").mCustomScrollbar({axis:"x"});
+	});
+</script>
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 </body>
 
 </html>

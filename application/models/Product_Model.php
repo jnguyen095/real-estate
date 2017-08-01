@@ -22,7 +22,7 @@ class Product_Model extends CI_Model
 	public function updateViewForProductId($productId){
 		$this->db->set('View', 'View + 1', false);
 		$this->db->where('ProductID', $productId);
-		$query = $this->db->update('product');
+		$this->db->update('product');
 	}
 
 	public function findByIdFetchAll($productId) {
@@ -38,7 +38,7 @@ class Product_Model extends CI_Model
 		}
 
 		// Fetch City
-		if($product->BrandID != null){
+		if($product->CityID != null){
 			$this->db->where("CityID", $product->CityID);
 			$query = $this->db->get("city");
 			$product->City = $query->row();
@@ -63,6 +63,13 @@ class Product_Model extends CI_Model
 			$this->db->where("StreetID", $product->StreetID);
 			$query = $this->db->get("street");
 			$product->Street = $query->row();
+		}
+
+		// Fetch Direction
+		if($product->DirectionID != null){
+			$this->db->where("DirectionID", $product->DirectionID);
+			$query = $this->db->get("direction");
+			$product->Direction = $query->row();
 		}
 
 		// Product Assets

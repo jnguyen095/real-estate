@@ -86,3 +86,8 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 // Custome
 defined('MAX_PAGE_ITEM')		OR define('MAX_PAGE_ITEM', 20); // max page item
+defined('CAT_TYPE_SALE')		OR define('CAT_TYPE_SALE', 1); // sale category
+defined('GOOGLE_MAP_KEY')		OR define('GOOGLE_MAP_KEY', 'AIzaSyBre7NMV7Wvgg2c37G5E9NMZnKHAHv8Qs4'); // google map key
+defined('ACTIVE')				OR define('ACTIVE', 1); // active
+defined('INACTIVE')				OR define('INACTIVE', 0); // inactive
+

@@ -8,10 +8,10 @@
 ?>
 <script src="<?php echo base_url()?>js/mcustome.js"></script>
 <div class="header">
-	<div>
+	<div class="banner">
 		<div class="header-logo float-left"><img src="<?php echo base_url('/img/logo.png')?>"/></div>
 		<div class="header-right float-right">
-			<div><a href="#">Đăng nhập</a>  | <a href="#">Đăng ký</a></div>
+			<div><a href="<?=base_url('/dang-nhap.html')?>">Đăng nhập</a>  | <a href="<?=base_url('/dang-ky.html')?>">Đăng ký</a></div>
 			<div class="post-btn"><a class="btn-sm btn-primary" href="#">Đăng tin miễn phí</a></div>
 		</div>
 		<div class="clear-both"></div>
