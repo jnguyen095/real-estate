@@ -11,7 +11,17 @@
 	<div class="banner">
 		<div class="header-logo float-left"><img src="<?php echo base_url('/img/logo.png')?>"/></div>
 		<div class="header-right float-right">
-			<div><a href="<?=base_url('/dang-nhap.html')?>">Đăng nhập</a>  | <a href="<?=base_url('/dang-ky.html')?>">Đăng ký</a></div>
+			<?php
+				if($this->session->userdata('username') != null){
+			?>
+				<div><a href="<?=base_url('/thong-tin-ca-nhan-u'.$this->session->userdata('id').'.html')?>"><?=$this->session->userdata('username')?></a>  | <a href="<?=base_url('/dang-xuat.html')?>">Đăng xuất</a></div>
+			<?php
+				}else{
+			?>
+				<div><a href="<?=base_url('/dang-nhap.html')?>">Đăng nhập</a>  | <a href="<?=base_url('/dang-ky.html')?>">Đăng ký</a></div>
+			<?php
+				}
+			?>
 			<div class="post-btn"><a class="btn-sm btn-primary" href="#">Đăng tin miễn phí</a></div>
 		</div>
 		<div class="clear-both"></div>

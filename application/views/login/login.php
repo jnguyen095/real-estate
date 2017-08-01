@@ -36,8 +36,9 @@
 	<div class="row">
 		<div class="col-lg-4 col-sm-4 well">
 			<?php
-			$attributes = array("class" => "form-horizontal", "id" => "loginform", "name" => "loginform");
-			echo form_open("login/index", $attributes);?>
+				$attributes = array("class" => "form-horizontal", "id" => "loginform", "name" => "loginform");
+				echo form_open("dang-nhap", $attributes);
+			?>
 			<fieldset>
 				<legend>Login</legend>
 				<div class="form-group">

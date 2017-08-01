@@ -50,13 +50,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'home_controller';
+$route['trang-chu'] = 'home_controller';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['dang-nhap'] = "Login_controller/index";
+$route['dang-xuat'] = "Login_controller/logout";
 
 $route['(:any)-c(:num)'] = "Product_controller/listItem/$2";
 $route['(:any)-c(:num).html/(:num)'] = "Product_controller/listItem/$2/$3";
 $route['(:any)-p(:num)'] = "Product_controller/detailItem/$2";
-$route['login/dang-nhap.html'] = "Login_controller/index";
+
 
 $route['stud'] = "Stud_controller";
 $route['stud/add'] = 'Stud_controller/add_student';

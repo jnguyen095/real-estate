@@ -10,14 +10,15 @@ class Home_controller extends CI_Controller
 {
 	function __construct() {
 		parent::__construct();
+		$this->load->library('session');
 		$this->load->model('Category_Model');
 		$this->load->helper("seo_url");
 	}
 
 	public function index() {
 		$data = $this->Category_Model->getCategories();
-
 		$this->load->helper('url');
 		$this->load->view('Home_view', $data);
 	}
+
 }
