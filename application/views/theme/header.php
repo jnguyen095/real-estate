@@ -6,7 +6,7 @@
  * Time: 11:17 AM
  */
 ?>
-<script src="<?php echo base_url()?>js/mcustome.js"></script>
+
 <div class="header">
 	<div class="banner">
 		<div class="header-logo float-left"><img src="<?php echo base_url('/img/logo.png')?>"/></div>
@@ -14,7 +14,7 @@
 			<?php
 				if($this->session->userdata('username') != null){
 			?>
-				<div><a href="<?=base_url('/thong-tin-ca-nhan-u'.$this->session->userdata('id').'.html')?>"><?=$this->session->userdata('username')?></a>  | <a href="<?=base_url('/dang-xuat.html')?>">Đăng xuất</a></div>
+				<div><a href="<?=base_url('/thong-tin-ca-nhan-u'.$this->session->userdata('loginid').'.html')?>"><?=$this->session->userdata('fullname')?></a>  | <a href="<?=base_url('/dang-xuat.html')?>">Đăng xuất</a></div>
 			<?php
 				}else{
 			?>
@@ -22,7 +22,7 @@
 			<?php
 				}
 			?>
-			<div class="post-btn"><a class="btn-sm btn-primary" href="#">Đăng tin miễn phí</a></div>
+			<div class="post-btn"><a class="btn-sm btn-primary" href="<?=base_url('/dang-tin.html')?>">Đăng tin miễn phí</a></div>
 		</div>
 		<div class="clear-both"></div>
 	</div>

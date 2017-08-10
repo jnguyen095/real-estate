@@ -224,7 +224,7 @@
 		<?php $this->load->view('/Map_view')?>
 
 		<?php
-			if($product->Source != null && count($product->Source) > 0){
+			if(isset($product->Source)){
 				echo '<div class="copy-source row color-gray no-margin no-padding">Nguồn: '.$product->Source.'</div>';
 			}
 		?>

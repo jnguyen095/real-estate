@@ -88,6 +88,9 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 defined('MAX_PAGE_ITEM')		OR define('MAX_PAGE_ITEM', 20); // max page item
 defined('CAT_TYPE_SALE')		OR define('CAT_TYPE_SALE', 1); // sale category
 defined('GOOGLE_MAP_KEY')		OR define('GOOGLE_MAP_KEY', 'AIzaSyBre7NMV7Wvgg2c37G5E9NMZnKHAHv8Qs4'); // google map key
+defined('FACEBOOK_ID')			OR define('FACEBOOK_ID', '263683937369914'); // facebook id
+defined('GOOGLE_ID')			OR define('GOOGLE_ID', '425783171151-utka0e2mvtbvjievajdgpkreat5162tq.apps.googleusercontent.com'); // google key
+
 defined('ACTIVE')				OR define('ACTIVE', 1); // active
 defined('INACTIVE')				OR define('INACTIVE', 0); // inactive
 

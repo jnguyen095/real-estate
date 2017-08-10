@@ -521,3 +521,10 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+/**
+ * Images type
+ */
+$config['thumb_width'] = 300;
+$config['thumb_height'] = 300;
+$config['allowed_img_types'] = 'gif|jpg|png|jpeg|JPG|PNG|JPEG';
