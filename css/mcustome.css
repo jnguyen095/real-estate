@@ -458,3 +458,22 @@ input.btn.btn-sm:focus {
 	padding: 5px;
 }
 
+.other-img {
+	display: inline-block;
+	position: relative;
+	margin-bottom: 2px;
+}
+
+.required, .text-danger{
+	color: #ff0000;
+}
+
+.tableBorder .form-control{
+	max-width: 200px;
+}
+
+.m-navbar li.dropdown:hover{
+	background-color: #3658DF;
+}
+
+

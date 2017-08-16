@@ -43,6 +43,7 @@
 		social_login_url: '<?=base_url('/login_controller/socialLogin')?>',
 		uploadOthersImages: '<?= base_url('/post_controller/do_upload_others_images') ?>',
 		loadOthersImages: '<?= base_url('/post_controller/loadOthersImages') ?>',
+		removeSecondaryImage: '<?= base_url('/post_controller/removeSecondaryImage') ?>',
 	};
 </script>
 <script src="<?php echo base_url()?>js/mcustome.js"></script>

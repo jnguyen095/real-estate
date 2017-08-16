@@ -6,57 +6,12 @@
 	<title><?php echo $product->Title?></title>
 	<?php $this->load->view('common_header')?>
 	<link rel="stylesheet" href="<?=base_url('/css/jquery.mCustomScrollbar.min.css')?>" />
+	<link rel="stylesheet" href="<?=base_url('/css/carousel-custom.css')?>" />
 	<script src="<?=base_url('/js/jquery.mCustomScrollbar.min.js')?>"></script>
 </head>
 
 <body>
 
-<style>
-	#carousel-custom {
-		margin: 20px auto;
-		width: 700px;
-	}
-	#carousel-custom .carousel-indicators {
-		margin: 10px 0 0;
-		overflow: auto;
-		position: static;
-		text-align: left;
-		white-space: nowrap;
-		width: 100%;
-	}
-	#carousel-custom .carousel-indicators li {
-		background-color: transparent;
-		-webkit-border-radius: 0;
-		border-radius: 0;
-		display: inline-block;
-		height: 100px;
-		margin: 0 !important;
-		width: auto;
-	}
-	#carousel-custom .carousel-indicators li img {
-		display: block;
-		max-height: 99px;
-		opacity: 0.5;
-	}
-	#carousel-custom .carousel-indicators li.active img {
-		opacity: 1;
-	}
-	#carousel-custom .carousel-indicators li:hover img {
-		opacity: 0.75;
-	}
-	#carousel-custom .carousel-outer {
-		position: relative;
-	}
-
-	#carousel-custom .carousel-inner img {
-		max-height: 650px;
-		height: 550px;
-	}
-
-	.item{
-		text-align: center !important;
-	}
-</style>
 <div class="container">
 <?php $this->load->view('/theme/header')?>
 

@@ -27,11 +27,20 @@ $(document).ready(function(){
 			processData: false,
 			success: function (data)
 			{
-				$('.finish-upload .finish-text').show();
-				$('.finish-upload .loadUploadOthers').hide();
-				reloadOthersImagesContainer();
-				$('#modalMoreImages').modal('hide');
-				document.getElementById("uploadImagesForm").reset();
+				var ok = true;
+				if(data != null && data.length > 0){
+					var json = $.parseJSON(data);
+					if(json.error != null && json.error.length > 0){
+						ok = false;
+					}
+				}
+				if(ok){
+					$('.finish-upload .finish-text').show();
+					$('.finish-upload .loadUploadOthers').hide();
+					reloadOthersImagesContainer();
+					$('#modalMoreImages').modal('hide');
+					document.getElementById("uploadImagesForm").reset();
+				}
 			}
 		});
 	});
@@ -41,5 +50,15 @@ $(document).ready(function(){
 
 function reloadOthersImagesContainer() {
 	$('.others-images-container').empty();
-	$('.others-images-container').load(urls.loadOthersImages, {"txt_folder": $('[name="folder"]').val()});
+	$('.others-images-container').load(urls.loadOthersImages, {"txt_folder": $('[name="txt_folder"]').val()});
+}
+
+function removeSecondaryProductImage(image, folder, container) {
+	$.ajax({
+		type: "POST",
+		url: urls.removeSecondaryImage,
+		data: {image: image, txt_folder: folder}
+	}).done(function (data) {
+		$('#image-container-' + container).remove();
+	});
 }
