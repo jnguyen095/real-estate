@@ -13,7 +13,8 @@ class City_Model extends CI_Model
 	}
 
 	public function getAllActive(){
-		$this->db->where("Status", 1);
+		$this->db->where("Status", ACTIVE);
+		$this->db->order_by("CityName","asc");
 		$query = $this->db->get("city");
 		return $query->result();
 	}

@@ -20,6 +20,8 @@ class Post_controller extends CI_Controller
 		$this->load->helper("seo_url");
 		$this->load->model('City_Model');
 		$this->load->model('User_Model');
+		$this->load->model('District_Model');
+		$this->load->model('Ward_Model');
 	}
 
 	public function index()
@@ -36,6 +38,7 @@ class Post_controller extends CI_Controller
 				$data['categoryID'] = $this->input->post("sl_category");
 				$data['price'] = $this->input->post("txt_price");
 				$data['area'] = $this->input->post("txt_area");
+				$data['city'] = $this->input->post("txt_city");
 				$data['district'] = $this->input->post("txt_district");
 				$data['ward'] = $this->input->post("txt_ward");
 				$data['street'] = $this->input->post("txt_street");
@@ -57,6 +60,12 @@ class Post_controller extends CI_Controller
 				$validateResult = $this->form_validation->run();
 				if ($validateResult == FALSE) {
 					//validation fails
+					if($data['city'] != null && $data['city'] > 0){
+						$data['districts'] = $this->District_Model->findByCityId($data['city']);
+					}
+					if($data['district'] != null && $data['district'] > 0){
+						$data['wards'] = $this->Ward_Model->findByDistrictId($data['district']);
+					}
 					$this->load->view('post/new', $data);
 				}
 			}catch (Exception $e){

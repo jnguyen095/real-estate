@@ -111,12 +111,12 @@
 			<div class="form-group">
 				<div class="col-lg-3 no-padding-left">
 					<label>Thành phố <span class="required">*</span></label>
-					<select class="form-control" name="txt_city">
-						<option>Chọn tỉnh/thành phố</option>
+					<select id="txtCity" class="form-control" name="txt_city">
+						<option value="-1">Chọn tỉnh/thành phố</option>
 						<?php
 						if($cities != null && count($cities) > 0){
 							foreach ($cities as $city){
-								echo '<option>'.$city->CityName.'</option>';
+								echo '<option value="'.$city->CityID.'">'.$city->CityName.'</option>';
 							}
 						}
 						?>
@@ -125,21 +125,25 @@
 				</div>
 				<div class="col-lg-2 no-padding-left">
 					<label>Quận/huyện <span class="required">*</span></label>
-					<select class="form-control" name="txt_district">
+					<?php
+						if(isset($districts)){
+							count($districts);}
+					?>
+					<select id="txtDistrict" class="form-control" name="txt_district">
 						<option>Chọn quận/huyện</option>
 					</select>
 					<span class="text-danger"><?php echo form_error('txt_district'); ?></span>
 				</div>
 				<div class="col-lg-2 no-padding-left">
 					<label>Phường/xã <span class="required">*</span></label>
-					<select class="form-control" name="txt_ward">
+					<select id="txtWard" class="form-control" name="txt_ward">
 						<option>Chọn phường/xã</option>
 					</select>
 					<span class="text-danger"><?php echo form_error('txt_ward'); ?></span>
 				</div>
 				<div class="col-lg-5 no-padding-right">
 					<label>Đường <span class="required">*</span></label>
-					<input type="text" id="txt_street" name="txt_street" class="form-control">
+					<input type="text" id="txt_street" name="txt_street" class="form-control typeahead">
 					<span class="text-danger"><?php echo form_error('txt_street'); ?></span>
 				</div>
 				<div class="clear-both"></div>
@@ -289,7 +293,7 @@
 
 		</div>
 	</div>
-
+	<script src="<?= base_url('/js/typeahead.bundle.min.js') ?>"></script>
 	<?php $this->load->view('/theme/footer')?>
 </div>
 

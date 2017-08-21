@@ -2,6 +2,76 @@
  * Created by Ban Vien on 8/1/2017.
  */
 
+$(document).ready(function(){
+	uploadMultipleImages();
+	loadDistrictByCityId();
+	loadWardByDistrictId();
+	autoComplete();
+});
+
+function autoComplete(){
+
+	$('.typeahead').typeahead({
+			hint: true,
+			highlight: true,
+			minLength: 1
+		},
+		{
+			name: 'states',
+			source: function (query, process) {
+				return $.get(urls.findStreetByNameUrl, { query: query }, function (data) {
+					if(data != null && data.length > 0){
+						var json = $.parseJSON(data);
+						console.log(json);
+						for(street in json){
+							console.log(json[street].StreetName);
+						}
+						return process(data);
+					}
+
+				});
+			}
+		});
+}
+
+function loadWardByDistrictId(){
+	$("#txtDistrict").change(function(){
+		var districtId = $(this).val();
+		jQuery.ajax({
+			type: "POST",
+			url: urls.loadWardByDistrictId,
+			dataType: 'json',
+			data: {districtId: districtId},
+			success: function(res){
+				document.getElementById("txtWard").options.length = 1;
+				for(key in res){
+					$("#txtWard").append("<option value='"+res[key].WardID+"'>"+res[key].WardName+"</option>");
+				}
+			}
+		});
+	});
+}
+
+function loadDistrictByCityId(){
+	$("#txtCity").change(function(){
+		var cityId = $(this).val();
+		document.getElementById("txtWard").options.length = 1;
+		jQuery.ajax({
+			type: "POST",
+			url: urls.loadDistrictByCityId,
+			dataType: 'json',
+			data: {cityId: cityId},
+			success: function(res){
+				document.getElementById("txtDistrict").options.length = 1;
+				for(key in res){
+					$("#txtDistrict").append("<option value='"+res[key].DistrictID+"'>"+res[key].DistrictName+"</option>");
+				}
+
+			}
+		});
+	});
+}
+
 function socialLogin(email, userID, fullName, callback){
 	jQuery.ajax({
 		type: "POST",
@@ -12,7 +82,7 @@ function socialLogin(email, userID, fullName, callback){
 	});
 }
 
-$(document).ready(function(){
+function uploadMultipleImages(){
 	$('.finish-upload').click(function () {
 		$('.finish-upload .finish-text').hide();
 		$('.finish-upload .loadUploadOthers').show();
@@ -44,9 +114,7 @@ $(document).ready(function(){
 			}
 		});
 	});
-});
-
-
+}
 
 function reloadOthersImagesContainer() {
 	$('.others-images-container').empty();

@@ -44,6 +44,10 @@
 		uploadOthersImages: '<?= base_url('/post_controller/do_upload_others_images') ?>',
 		loadOthersImages: '<?= base_url('/post_controller/loadOthersImages') ?>',
 		removeSecondaryImage: '<?= base_url('/post_controller/removeSecondaryImage') ?>',
+		loadDistrictByCityId: '<?= base_url('/ajax_controller/findDistrictByCityId') ?>',
+		loadWardByDistrictId: '<?= base_url('/ajax_controller/findWardByDistrictId') ?>',
+		findStreetByNameUrl: '<?= base_url('/ajax_controller/findStreetByName') ?>'
+
 	};
 </script>
 <script src="<?php echo base_url()?>js/mcustome.js"></script>
