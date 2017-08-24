@@ -166,7 +166,6 @@ class Product_Model extends CI_Model
 			'Street' => $data['street'],
 			'CategoryID' => $data['categoryID'],
 			'Status' => INACTIVE,
-			'View' => 0,
 			'UnitID' => $data['unit'],
 			'Address' => $data['address'],
 		);
