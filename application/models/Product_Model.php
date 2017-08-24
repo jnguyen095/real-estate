@@ -13,14 +13,32 @@ class Product_Model extends CI_Model
 	}
 
 	public function findById($productId) {
-		$this->db->where(array("ProductID" => $productId, 'Status' => 1));
+		$this->db->where(array("ProductID" => $productId));
 		$query = $this->db->get("product");
 		$product = $query->row();
 		return $product;
 	}
 
+	public function findByUserId($userId) {
+		$this->db->order_by('ModifiedDate', 'desc');
+		$this->db->where(array("CreatedByID" => $userId));
+		$query = $this->db->get("product");
+		$product = $query->result();
+		return $product;
+	}
+
 	public function updateViewForProductId($productId){
 		$this->db->set('View', 'View + 1', false);
+		$this->db->where('ProductID', $productId);
+		$this->db->update('product');
+	}
+
+	public function pushPostUp($productId){
+		$datestring = '%Y-%m-%d %h:%i:%s';
+		$time = time();
+		$now = mdate($datestring, $time);
+
+		$this->db->set('ModifiedDate', $now);
 		$this->db->where('ProductID', $productId);
 		$this->db->update('product');
 	}
@@ -137,12 +155,11 @@ class Product_Model extends CI_Model
 			'LongSize' => $data['long'],
 			'Longitude' => $data['longitude'],
 			'Latitude' => $data['latitude'],
+			'ContactName' => $data['contact_name'],
 			'ContactPhone' => $data['contact_phone'],
 			'ContactAddress' => $data['contact_address'],
 			'ContactEmail' => $data['txt_email'],
 			'ModifiedDate' => $now,
-			//'DirectionID' => $data['direction'],
-			//'BrandID' => $data['brand'],
 			'CityID' => $data['city'],
 			'DistrictID' => $data['district'],
 			'WardID' => $data['ward'],
@@ -153,9 +170,18 @@ class Product_Model extends CI_Model
 			'UnitID' => $data['unit'],
 			'Address' => $data['address'],
 		);
+		if($data['brand'] != null && $data['brand'] > 0){
+			$updateData['BrandID'] = $data['brand'];
+		}
+		if($data['direction'] != null && $data['direction'] > 0){
+			$updateData['DirectionID'] = $data['direction'];
+		}
 
 		$this->db->where('ProductID', $productId);
 		$this->db->update('product', $updateData);
+
+		$this->saveProductAssets($productId, $assets);
+		// update
 		return $productId;
 	}
 
@@ -188,9 +214,9 @@ class Product_Model extends CI_Model
 			'ContactPhone' => $data['contact_phone'],
 			'ContactAddress' => $data['contact_address'],
 			'ContactEmail' => $data['txt_email'],
+			'ContactName' => $data['contact_name'],
 			'PostDate' => $now,
-			//'DirectionID' => $data['direction'],
-			//'BrandID' => $data['brand'],
+			'ModifiedDate' => $now,
 			'CityID' => $data['city'],
 			'DistrictID' => $data['district'],
 			'WardID' => $data['ward'],
@@ -205,20 +231,19 @@ class Product_Model extends CI_Model
 		if($data['brand'] != null && $data['brand'] > 0){
 			$newdata['BrandID'] = $data['brand'];
 		}
+		if($data['direction'] != null && $data['direction'] > 0){
+			$newdata['DirectionID'] = $data['direction'];
+		}
 		$this->db->insert('product', $newdata);
 		$insert_id = $this->db->insert_id();
-		if($insert_id != null && $insert_id > 0 && $assets != null && count($assets) > 0){
-			// Save assets
-			foreach ($assets as $asset){
-				$newdata = array(
-					'ProductID' => $insert_id,
-					'Url' => trim($asset, "'"),
-					'OrgUrl' => trim($asset, "'")
-				);
-				$this->db->insert('productasset', $newdata);
-			}
-		}
+		$this->saveProductAssets($insert_id, $assets);
 		return $insert_id;
+	}
+
+	public function changeStatusPost($productId, $status){
+		$this->db->set('Status', $status);
+		$this->db->where('ProductID', $productId);
+		return $this->db->update('product');
 	}
 
 	public function updateCoordinator($productId, $longitude, $latitude){
@@ -226,5 +251,27 @@ class Product_Model extends CI_Model
 		$this->db->set('Latitude', $latitude);
 		$this->db->where('ProductID', $productId);
 		$this->db->update('product');
+	}
+
+	public function deleteById($productId){
+		$this->db->delete('productasset', array('ProductID' => $productId));
+		$this->db->delete('product', array('ProductID' => $productId));
+	}
+
+	private function saveProductAssets($productId, $assets){
+		if($productId != null && $productId > 0 && $assets != null && count($assets) > 0){
+			// delete old items
+			$this->db->delete('productasset', array('ProductID' => $productId));
+
+			// Save assets
+			foreach ($assets as $asset){
+				$newdata = array(
+					'ProductID' => $productId,
+					'Url' => trim($asset, "'"),
+					'OrgUrl' => trim($asset, "'")
+				);
+				$this->db->insert('productasset', $newdata);
+			}
+		}
 	}
 }

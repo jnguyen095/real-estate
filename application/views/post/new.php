@@ -203,6 +203,7 @@
 				?>
 				<label>Hình đại diện <span class="required">*</span></label>
 				<input type="file" id="txt_userfile" name="txt_userfile">
+				<input type="hidden" id="txt_image" name="image" value="<?=isset($image) ? $image : ''?>"/>
 				<input type="hidden" value="<?=$this->session->userdata('loginid')?>" name="txt_folder">
 				<span class="text-danger"><?php echo form_error('txt_userfile'); ?></span>
 			</div>
@@ -270,14 +271,13 @@
 								<td>
 									<select class="form-control" name="txt_direction">
 										<option value="-1">KXĐ</option>
-										<option value="B" <?=(isset($direction) && $direction == 'B') ? ' selected' : ''?>>Bắc</option>
-										<option value="N" <?=(isset($direction) && $direction == 'N') ? ' selected' : ''?>>Nam</option>
-										<option value="T" <?=(isset($direction) && $direction == 'T') ? ' selected' : ''?>>Tây</option>
-										<option value="D" <?=(isset($direction) && $direction == 'D') ? ' selected' : ''?>>Đông</option>
-										<option value="DB" <?=(isset($direction) && $direction == 'DB') ? ' selected' : ''?>>Đông-Bắc</option>
-										<option value="TB" <?=(isset($direction) && $direction == 'TB') ? ' selected' : ''?>>Tây-Bắc</option>
-										<option value="TN" <?=(isset($direction) && $direction == 'TN') ? ' selected' : ''?>>Tây-Nam</option>
-										<option value="DN" <?=(isset($direction) && $direction == 'DN') ? ' selected' : ''?>>Đông-Nam</option>
+										<?php
+										foreach ($directions as $dr){
+											?>
+											<option value="<?=$dr->DirectionID?>" <?=(isset($direction) && $direction == $dr->DirectionID) ? ' selected': ''?>><?=$dr->DirectionName?></option>
+											<?php
+										}
+										?>
 									</select>
 								</td>
 							</tr>
@@ -306,24 +306,28 @@
 								<td colspan="2">Liên Hệ</td>
 							</tr>
 							<tr>
-								<td class="width100">Liên hệ</td>
-								<td><?=$user->FullName?></td>
+								<td class="width100">Liên hệ <span class="required">*</span></td>
+								<td>
+									<input id="contactName" name="txt_fullname" class="form-control" value="<?=(isset($contact_name) ? $contact_name : '')?>">
+									<span class="text-danger"><?php echo form_error('contactName'); ?></span>
+								</td>
 							</tr>
 							<tr>
-								<td class="width100">Số ĐT</td>
+								<td class="width100">Số ĐT <span class="required">*</span></td>
 								<td>
-									<input name="txt_phone" class="form-control" value="<?=$user->Phone?>"/>
+									<input id="contactPhone" name="txt_phone" class="form-control" value="<?=(isset($contact_phone) ? $contact_phone : '')?>"/>
+									<span class="text-danger"><?php echo form_error('contactPhone'); ?></span>
 								</td>
 							</tr>
 							<tr>
 								<td class="width100">Địa chỉ</td>
 								<td>
-									<input name="txt_address" class="form-control" value="<?=$user->Address?>"/>
+									<input name="txt_address" class="form-control" value="<?=(isset($contact_address) ? $contact_address : '')?>"/>
 								</td>
 							</tr>
 							<tr>
 								<td class="width100">Email</td>
-								<td><input name="txt_email" class="form-control" value="<?=$user->Email?>"/></td>
+								<td><input name="txt_email" class="form-control" value="<?=(isset($txt_email) ? $txt_email : '')?>"/></td>
 							</tr>
 						</tbody>
 					</table>

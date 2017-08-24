@@ -89,6 +89,10 @@ defined('MAX_PAGE_ITEM')		OR define('MAX_PAGE_ITEM', 20); // max page item
 defined('CAT_TYPE_SALE')		OR define('CAT_TYPE_SALE', 1); // sale category
 defined('ACTIVE')				OR define('ACTIVE', 1); // active
 defined('INACTIVE')				OR define('INACTIVE', 0); // inactive
+defined('DELETE')				OR define('DELETE', 'delete'); // crudaction: delete
+defined('REFRESH')				OR define('REFRESH', 'refresh'); // crudaction: refresh
+defined('ACTIVE_POST')			OR define('ACTIVE_POST', 'active'); // crudaction: active post
+defined('INACTIVE_POST')		OR define('INACTIVE_POST', 'inactive'); // crudaction: inactive post
 
 // Social IDs
 defined('GOOGLE_MAP_KEY')		OR define('GOOGLE_MAP_KEY', 'AIzaSyBre7NMV7Wvgg2c37G5E9NMZnKHAHv8Qs4'); // google map key

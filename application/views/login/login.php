@@ -72,7 +72,7 @@
 				<legend class="text-center">Chưa có tài khoản?</legend>
 				<div class="form-group">
 					<div class="social-login-buttons">
-						Đăng ký tại đây: <a class="btn btn-primary"><i class="glyphicon glyphicon-registration-mark"></i> Đăng ký</a> để đăng tin miễn phí và theo dõi phản hồi từ khách hàng.
+						Đăng ký tại đây: <a href="<?=base_url('dang-ky.html')?>" class="btn btn-primary"><i class="glyphicon glyphicon-registration-mark"></i> Đăng ký</a> để đăng tin miễn phí và theo dõi phản hồi từ khách hàng.
 					</div>
 				</div>
 

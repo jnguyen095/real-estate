@@ -362,12 +362,26 @@ input.btn.btn-sm:focus {
 	line-height: 30px;
 }
 
+.active{
+	color: #008000;
+	font-weight: bold;
+}
+
 .postStatus .inactive{
 	color: #ff0000;
 	text-decoration: line-through;
 	font-size: 14px;
 	font-weight: bold;
 	line-height: 30px;
+}
+
+.inactive{
+	color: #ff0000;
+	text-decoration: line-through;
+}
+
+.table-icons{
+	font-size: 14px !important;
 }
 
 .width100{
@@ -542,4 +556,18 @@ input.btn.btn-sm:focus {
 .hint{
 	color: #ccc;
 }
+
+.post-success{
+	border: solid 1px #ccc;
+	border-radius: 8px;
+	padding: 10px;
+	font-size: 14px;
+}
+
+.post-success .title{
+	font-size: 18px !important;
+	color: #008000;
+	font-weight: bold;
+}
+
 

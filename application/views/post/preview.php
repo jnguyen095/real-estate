@@ -26,7 +26,7 @@
 
 	<ul class="breadcrumb">
 		<li><a href="<?=base_url('/trang-chu.html')?>">Trang chủ</a> </li>
-		<li>Đăng tin</li>
+		<li class="active">Đăng tin</li>
 		<li class="active">Xem trước</li>
 	</ul>
 
@@ -198,10 +198,6 @@
 								<td><?=$product->ContactPhone != null ? $product->ContactPhone : '-'?></td>
 							</tr>
 							<tr>
-								<td class="width100">Di động</td>
-								<td><?=$product->ContactMobile != null ? $product->ContactMobile : '-'?></td>
-							</tr>
-							<tr>
 								<td class="width100">Địa chỉ</td>
 								<td><?=$product->ContactAddress != null ? $product->ContactAddress : '-'?></td>
 							</tr>
@@ -226,28 +222,14 @@
 				<?php $this->load->view('/Search_filter') ?>
 			</div>
 			<!-- end content -->
-			<?php
-			// Address
-			$address = 'BTM 2nd Stage, Bengaluru, Karnataka 560076';
 
-			// Get JSON results from this request
-			$geo = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address).'&sensor=false');
-
-			// Convert the JSON to an array
-			$geo = json_decode($geo, true);
-
-			if ($geo['status'] == 'OK') {
-				// Get Lat & Long
-				$latitude = $geo['results'][0]['geometry']['location']['lat'];
-				$longitude = $geo['results'][0]['geometry']['location']['lng'];
-			}
-			?>
 
 			<div class="clear-both"></div>
 			<div class="row col-md-12 text-center margin-top-20">
 				<input type="hidden" name="crudaction" value="add_new">
-				<a href="<?=base_url('/chinh-sua-p'.$product->ProductID.'.html')?>" class="btn btn-danger">Chỉnh Sửa</a>
-				<button type="submit" class="btn btn-info">Đăng Bài</button>
+				<a href="<?=base_url('/chinh-sua-p'.$product->ProductID.'.html')?>" class="btn btn-danger">Quay Lại Chỉnh Sửa</a>
+				<a href="<?=base_url('/quan-ly-tin-rao.html')?>" class="btn btn-info">Chỉ Lưu Tạm</a>
+				<a href="<?=base_url('/dang-bai-thanh-cong-p'.$product->ProductID.'.html')?>" class="btn btn-info">Đăng Bài</a>
 			</div>
 		</div>
 	</div>

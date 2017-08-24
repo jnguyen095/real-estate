@@ -7,7 +7,56 @@ $(document).ready(function(){
 	loadDistrictByCityId();
 	loadWardByDistrictId();
 	autoComplete();
+	$('[data-toggle="tooltip"]').tooltip();
+	deletePostHandler();
+	refreshPostHandler();
+	activePostHandler();
+	inactivePostHandler();
 });
+
+function inactivePostHandler(){
+	$('.inactive-post').click(function(){
+		var prId = $(this).data('post');
+		bootbox.confirm("Bạn đã chắc chắn không hiễn thị tin rao này?", function(result){
+			if(result){
+				$("#productId").val(prId);
+				$("#crudaction").val("inactive");
+				$("#frmPost").submit();
+			}
+		});
+	});
+}
+
+function activePostHandler(){
+	$('.active-post').click(function(){
+		var prId = $(this).data('post');
+		$("#productId").val(prId);
+		$("#crudaction").val("active");
+		$("#frmPost").submit();
+	});
+}
+
+function deletePostHandler(){
+	$('.remove-post').click(function(){
+		var prId = $(this).data('post');
+		bootbox.confirm("Bạn đã chắc chắn xóa tin rao này chưa?", function(result){
+			if(result){
+				$("#productId").val(prId);
+				$("#crudaction").val("delete");
+				$("#frmPost").submit();
+			}
+		});
+	});
+}
+
+function refreshPostHandler(){
+	$('.refresh-post').click(function(){
+		var prId = $(this).data('post');
+		$("#productId").val(prId);
+		$("#crudaction").val("refresh");
+		$("#frmPost").submit();
+	});
+}
 
 function autoComplete(){
 

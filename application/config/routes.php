@@ -55,10 +55,13 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['dang-nhap'] = "Login_controller/index";
+$route['dang-ky'] = "Register_controller";
 $route['dang-xuat'] = "Login_controller/logout";
 $route['dang-tin'] = "Post_controller";
 $route['xem-truoc-p(:num)'] = "Post_controller/preview/$1";
 $route['chinh-sua-p(:num)'] = "Post_controller/edit/$1";
+$route['dang-bai-thanh-cong-p(:num)'] = "Post_controller/done/$1";
+$route['quan-ly-tin-rao'] = "ManagePost_controller";
 
 $route['(:any)-c(:num)'] = "Product_controller/listItem/$2";
 $route['(:any)-c(:num).html/(:num)'] = "Product_controller/listItem/$2/$3";

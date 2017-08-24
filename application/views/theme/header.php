@@ -14,7 +14,7 @@
 			<?php
 				if($this->session->userdata('username') != null){
 			?>
-				<div><a href="<?=base_url('/thong-tin-ca-nhan-u'.$this->session->userdata('loginid').'.html')?>"><?=$this->session->userdata('fullname')?></a>  | <a href="<?=base_url('/dang-xuat.html')?>">Đăng xuất</a></div>
+				<div><a href="<?=base_url('/thong-tin-ca-nhan-u'.$this->session->userdata('loginid').'.html')?>"><?=$this->session->userdata('fullname')?></a> | <a href="<?=base_url('/quan-ly-tin-rao.html')?>">Quản lý tin rao</a> | <a href="<?=base_url('/dang-xuat.html')?>">Đăng xuất</a></div>
 			<?php
 				}else{
 			?>
@@ -22,7 +22,11 @@
 			<?php
 				}
 			?>
-			<div class="post-btn"><a class="btn-sm btn-primary" href="<?=base_url('/dang-tin.html')?>">Đăng tin miễn phí</a></div>
+			<?php
+			if($this->session->userdata('username') != null){
+			?>
+				<div class="post-btn"><a class="btn-sm btn-primary" href="<?=base_url('/dang-tin.html')?>">Đăng tin miễn phí</a></div>
+			<?php }?>
 		</div>
 		<div class="clear-both"></div>
 	</div>

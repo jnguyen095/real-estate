@@ -20,4 +20,33 @@ class User_Model extends CI_Model
 		$query = $this->db->query($sql);
 		return $query->row();
 	}
+
+	function checkExistUserName($userName)
+	{
+		$this->db->where('UserName', $userName);
+		$query = $this->db->get('us3r');
+		return $query->num_rows();
+	}
+
+	function addNewUser($data)
+	{
+		$datestring = '%Y-%m-%d %h:%i:%s';
+		$time = time();
+		$now = mdate($datestring, $time);
+
+		$newdata = array(
+			'FullName' => $data['fullname'],
+			'UserName' => $data['username'],
+			'Password' => md5($data['password']),
+			'Email' => $data['email'],
+			'Phone' => $data['phone'],
+			'Address' => $data['address'],
+			'CreatedDate' => $now,
+			'UpdatedDate' => $now,
+			'Address' => $data['address'],
+			'Status' => ACTIVE,
+			'UserGroupID' => 2
+		);
+		$this->db->insert('us3r', $newdata);
+	}
 }

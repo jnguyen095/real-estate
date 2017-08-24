@@ -26,23 +26,28 @@ class Post_controller extends CI_Controller
 		$this->load->model('Unit_Model');
 		$this->load->model('Brand_Model');
 		$this->load->model('Product_Model');
-		if(empty($this->session->userdata('uuid'))){
-			$this->session->set_userdata("uuid", uniqid());
-		}
+		$this->load->model('Direction_Model');
 	}
 
 	public function index()
 	{
 		$data = $this->Category_Model->getCategories();
 		$data['cities'] = $this->City_Model->getAllActive();
-		$data['user'] = $this->User_Model->getUserById($this->session->userdata('loginid'));
+		$user = $this->User_Model->getUserById($this->session->userdata('loginid'));
+		$data['user'] = $user;
 		$data['units'] = $this->Unit_Model->findAll();
 		$data['brands'] = $this->Brand_Model->findAll();
+		$data['directions'] = $this->Direction_Model->findAll();
 		$this->allowed_img_types = $this->config->item('allowed_img_types');
 
 		if ($this->input->post('crudaction') == "add_new") {
 			$this->processSaveOrUpdatePost($data, 'add');
 		} else {
+			$this->session->set_userdata("uuid", uniqid());
+			$data['contact_name'] = $user->FullName;
+			$data['contact_phone'] = $user->Phone;
+			$data['txt_email'] = $user->Email;
+			$data['contact_address'] = $user->Address;
 			$this->load->view('post/new', $data);
 		}
 	}
@@ -54,6 +59,7 @@ class Post_controller extends CI_Controller
 		$data['user'] = $this->User_Model->getUserById($this->session->userdata('loginid'));
 		$data['units'] = $this->Unit_Model->findAll();
 		$data['brands'] = $this->Brand_Model->findAll();
+		$data['directions'] = $this->Direction_Model->findAll();
 
 		if ($this->input->post('crudaction') == "update_post") {
 			$this->processSaveOrUpdatePost($data, 'edit');
@@ -78,6 +84,7 @@ class Post_controller extends CI_Controller
 			$data['room'] = $product->Room;
 			$data['floor'] = $product->Floor;
 			$data['toilet'] = $product->Toilet;
+			$data['contact_name'] = $product->ContactName;
 			$data['contact_phone'] = $product->ContactPhone;
 			$data['contact_address'] = $product->ContactAddress;
 			$data['txt_email'] = $product->ContactEmail;
@@ -90,6 +97,15 @@ class Post_controller extends CI_Controller
 
 			$this->load->view('post/edit', $data);
 		}
+	}
+
+	public function done($productId){
+		$data = $this->Category_Model->getCategories();
+		$success = $this->Product_Model->changeStatusPost($productId, ACTIVE);
+		$product = $this->Product_Model->findByIdFetchAll($productId);
+		$data['product'] = $product;
+		$data['result'] = $success;
+		$this->load->view('post/done', $data);
 	}
 
 	public function preview($productId){
@@ -122,10 +138,12 @@ class Post_controller extends CI_Controller
 			$data['room'] = $this->input->post("txt_room");
 			$data['floor'] = $this->input->post("txt_floor");
 			$data['toilet'] = $this->input->post("txt_toilet");
-			$data['contact_phone'] = $this->input->post("txt_toilet");
-			$data['contact_address'] = $this->input->post("txt_address");
-			$data['txt_email'] = $this->input->post("txt_toilet");
 			$data['productId'] = $this->input->post("productId");
+			$data['image'] = $this->input->post("image");
+			$data['contact_name'] = $this->input->post("txt_fullname");
+			$data['contact_phone'] = $this->input->post("txt_phone");
+			$data['contact_address'] = $this->input->post("txt_address");
+			$data['txt_email'] = $this->input->post("txt_email");
 
 
 			//set validations
@@ -137,12 +155,15 @@ class Post_controller extends CI_Controller
 			$this->form_validation->set_rules("txt_district", "District", "required|numeric");
 			$this->form_validation->set_rules("txt_ward", "Ward", "required|numeric");
 			$this->form_validation->set_rules("txt_street", "Street", "required");
-//			$img = $this->uploadImage();
-//			if($img == null){
-//				//$this->form_validation->set_rules("txt_userfile", "Image", "required");
-//			}else{
-//				$data['image'] = $img;
-//			}
+			$this->form_validation->set_rules("txt_fullname", "Name", "required");
+			$this->form_validation->set_rules("txt_phone", "Phone", "required");
+			$img = $this->uploadImage();
+			if($img != null){
+				$data['image'] = $img;
+			}
+			if($data['image'] == null){
+				$this->form_validation->set_rules("txt_userfile", "Image", "required");
+			}
 
 			$this->form_validation->set_rules("description", "Des", "required");
 			$this->form_validation->set_rules("txt_width", "Width", "numeric");
@@ -185,7 +206,6 @@ class Post_controller extends CI_Controller
 
 				if($ok){
 					// Save successful
-					$this->session->set_userdata("uuid", uniqid());
 					redirect("xem-truoc-p".$ok);
 				}else{
 					// Save failure
@@ -256,7 +276,6 @@ class Post_controller extends CI_Controller
 	{
 		if ($this->input->is_ajax_request()) {
 			$upath = 'attachments' . DIRECTORY_SEPARATOR .'u'. $_POST['txt_folder'] . DIRECTORY_SEPARATOR. $this->session->userdata('uuid'). DIRECTORY_SEPARATOR;
-
 			if (!file_exists($upath)) {
 				mkdir($upath, 0777, true);
 			}
@@ -296,6 +315,7 @@ class Post_controller extends CI_Controller
 		$output = '';
 		if (isset($_POST['txt_folder']) && $_POST['txt_folder'] != null) {
 			$dir = 'attachments' . DIRECTORY_SEPARATOR .'u'. $_POST['txt_folder'] . DIRECTORY_SEPARATOR. $this->session->userdata('uuid'). DIRECTORY_SEPARATOR;
+			//$output = $dir;
 			if (is_dir($dir)) {
 				if ($dh = opendir($dir)) {
 					$i = 0;
@@ -318,8 +338,10 @@ class Post_controller extends CI_Controller
 					closedir($dh);
 				}
 			}else{
-				$output = '<h2>Not valid</h2>'.$dir;
+				//$output = '<h2>Not valid</h2>'.$dir;
 			}
+		}else{
+			//$output = '<h2>Not folder</h2>';
 		}
 		if ($this->input->is_ajax_request()) {
 			echo $output;
