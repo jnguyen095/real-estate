@@ -28,7 +28,19 @@
 
 	<div class="row no-margin">
 		<div class="col-lg-12 col-sm-12">
-			<h1 class="h2title">Quản lý tin rao</h1>
+			<div>
+				<div class="float-left h2title">Quản lý tin rao</div>
+				<div class="float-right">
+					<?php
+					if(count($products) > 0) {
+						?>
+						<a href="<?=base_url('/dang-tin.html')?>" class="btn btn-info">Đăng Tin Rao Bất Động Sản</a> </td>
+						<?php
+					}
+					?>
+				</div>
+				<div class="clear-both"></div>
+			</div>
 			<hr/>
 
 			<?php if(!empty($message_response)){
@@ -57,6 +69,15 @@
 						</tr>
 					</thead>
 					<tbody>
+					<?php
+					if(count($products) < 1) {
+						?>
+					<tr>
+						<td colspan="7">Chưa có tin rao nhà đất nào, vào đây <a href="<?=base_url('/dang-tin.html')?>" class="btn btn-info">Đăng Tin Rao Bất Động Sản</a> để tạo tin rao. </td>
+					</tr>
+						<?php
+					}
+					?>
 					<?php
 						$counter = 1;
 						foreach ($products as $product) {

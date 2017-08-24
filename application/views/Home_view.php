@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset = "utf-8">
-	<title>Tin Đất Đai - Trang Chủ</title>
+	<title>Tin Nhà Đất | Bất Động Sản | Mua Bán Chung Cư Nhà Đất</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.css">

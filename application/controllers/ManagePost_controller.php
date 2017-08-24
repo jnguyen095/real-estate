@@ -11,6 +11,9 @@ class ManagePost_controller extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		if (!$this->session->userdata('loginid')){
+			redirect('dang-nhap');
+		}
 		$this->load->model('Product_Model');
 		$this->load->model('Category_Model');
 		$this->load->helper("seo_url");

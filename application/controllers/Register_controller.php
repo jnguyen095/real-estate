@@ -40,7 +40,6 @@ class Register_controller extends CI_Controller
 			if ($this->form_validation->run() == FALSE)
 			{
 				//validation fails
-
 				$this->load->view('login/register', $data);
 			}else{
 				$fullname = $this->input->post('txt_fullname');

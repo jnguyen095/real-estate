@@ -43,10 +43,25 @@ class User_Model extends CI_Model
 			'Address' => $data['address'],
 			'CreatedDate' => $now,
 			'UpdatedDate' => $now,
-			'Address' => $data['address'],
 			'Status' => ACTIVE,
 			'UserGroupID' => 2
 		);
 		$this->db->insert('us3r', $newdata);
+	}
+
+	function updateUser($data)
+	{
+		$datestring = '%Y-%m-%d %h:%i:%s';
+		$time = time();
+		$now = mdate($datestring, $time);
+
+		$newdata = array(
+			'FullName' => $data['txt_fullname'],
+			'Email' => $data['txt_email'],
+			'Phone' => $data['txt_phone'],
+			'Address' => $data['txt_address'],
+			'UpdatedDate' => $now
+		);
+		$this->db->update('us3r', $newdata);
 	}
 }

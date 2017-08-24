@@ -12,6 +12,9 @@ class Post_controller extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		if (!$this->session->userdata('loginid')){
+			redirect('dang-nhap');
+		}
 		$this->load->helper('form');
 		$this->load->helper('url');
 		$this->load->helper('html');

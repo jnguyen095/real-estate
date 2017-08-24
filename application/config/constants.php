@@ -89,6 +89,7 @@ defined('MAX_PAGE_ITEM')		OR define('MAX_PAGE_ITEM', 20); // max page item
 defined('CAT_TYPE_SALE')		OR define('CAT_TYPE_SALE', 1); // sale category
 defined('ACTIVE')				OR define('ACTIVE', 1); // active
 defined('INACTIVE')				OR define('INACTIVE', 0); // inactive
+defined('UPDATE')				OR define('UPDATE', 'update'); // crudaction: update
 defined('DELETE')				OR define('DELETE', 'delete'); // crudaction: delete
 defined('REFRESH')				OR define('REFRESH', 'refresh'); // crudaction: refresh
 defined('ACTIVE_POST')			OR define('ACTIVE_POST', 'active'); // crudaction: active post

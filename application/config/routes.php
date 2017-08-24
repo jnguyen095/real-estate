@@ -62,6 +62,7 @@ $route['xem-truoc-p(:num)'] = "Post_controller/preview/$1";
 $route['chinh-sua-p(:num)'] = "Post_controller/edit/$1";
 $route['dang-bai-thanh-cong-p(:num)'] = "Post_controller/done/$1";
 $route['quan-ly-tin-rao'] = "ManagePost_controller";
+$route['thong-tin-ca-nhan'] = 'UserProfile_controller';
 
 $route['(:any)-c(:num)'] = "Product_controller/listItem/$2";
 $route['(:any)-c(:num).html/(:num)'] = "Product_controller/listItem/$2/$3";
