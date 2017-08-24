@@ -33,6 +33,11 @@
 			infoWindow.open(map, marker);
 		});
 
+		google.maps.event.addListener(map, 'click', function(event) {
+			updateCoordinators('<?=$product->ProductID?>', event.latLng.lng(), event.latLng.lat());
+			marker.setPosition(event.latLng);
+		});
+
 		// Open by default
 		infoWindow.setContent(infowincontent);
 		infoWindow.open(map, marker);

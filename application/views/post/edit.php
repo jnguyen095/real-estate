@@ -70,7 +70,7 @@
 
 			<?php
 				$attributes = array("enctype" => "multipart/form-data");
-				echo form_open("dang-tin", $attributes);
+				echo form_open("chinh-sua-p".$productId, $attributes);
 			?>
 			<div class="form-group">
 				<label>Tiêu đề <span class="required">*</span></label>
@@ -333,8 +333,8 @@
 			</div>
 
 			<div class="row text-center">
-				<input type="hidden" name="crudaction" value="add_new">
-				<a class="btn btn-danger">Hủy bài</a>
+				<input type="hidden" name="crudaction" value="update_post">
+				<input type="hidden" name="productId" value="<?=$productId?>">
 				<button type="submit" class="btn btn-info">Xem trước</button>
 			</div>
 			<?php echo form_close(); ?>

@@ -46,8 +46,8 @@
 		removeSecondaryImage: '<?= base_url('/post_controller/removeSecondaryImage') ?>',
 		loadDistrictByCityId: '<?= base_url('/ajax_controller/findDistrictByCityId') ?>',
 		loadWardByDistrictId: '<?= base_url('/ajax_controller/findWardByDistrictId') ?>',
-		findStreetByNameUrl: '<?= base_url('/ajax_controller/findStreetByName') ?>'
-
+		findStreetByNameUrl: '<?= base_url('/ajax_controller/findStreetByName') ?>',
+		updateCoordinatorMapUrl: '<?= base_url('/ajax_controller/updateCoordinator') ?>'
 	};
 </script>
 <script src="<?php echo base_url()?>js/mcustome.js"></script>

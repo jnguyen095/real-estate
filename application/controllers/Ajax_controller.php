@@ -14,10 +14,11 @@ class Ajax_controller extends CI_Controller
 		$this->load->model('Ward_Model');
 		$this->load->helper("seo_url");
 		$this->load->model('Street_Model');
+		$this->load->model('Product_Model');
 	}
 
 	public function findStreetByName(){
-		$streetName = $this->input->post('streetName');
+		$streetName = $this->input->get('query');
 		$streetNames = $this->Street_Model->findByName($streetName);
 		echo json_encode($streetNames);
 	}
@@ -32,5 +33,13 @@ class Ajax_controller extends CI_Controller
 		$districtId = $this->input->post('districtId');
 		$wards = $this->Ward_Model->findByDistrictId($districtId);
 		echo json_encode($wards);
+	}
+
+	public function updateCoordinator(){
+		$productId = $this->input->post('productId');
+		$longitude = $this->input->post('lng');
+		$latitude = $this->input->post('lat');
+		$this->Product_Model->updateCoordinator($productId, $longitude, $latitude);
+		echo json_encode('{success: true}');
 	}
 }

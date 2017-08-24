@@ -11,27 +11,26 @@ $(document).ready(function(){
 
 function autoComplete(){
 
-	$('.typeahead').typeahead({
-			hint: true,
-			highlight: true,
-			minLength: 1
-		},
-		{
-			name: 'states',
-			source: function (query, process) {
-				return $.get(urls.findStreetByNameUrl, { query: query }, function (data) {
-					if(data != null && data.length > 0){
-						var json = $.parseJSON(data);
-						console.log(json);
-						for(street in json){
-							console.log(json[street].StreetName);
+	if($('.typeahead').length > 0) {
+		$('.typeahead').typeahead({
+				hint: true,
+				highlight: true,
+				minLength: 2
+			},
+			{
+				name: 'states',
+				async: true,
+				displayKey: 'Street',
+				source: function (query, process) {
+					return $.get(urls.findStreetByNameUrl, {query: query}, function (data) {
+						if (data != null && data.length > 0) {
+							var json = $.parseJSON(data);
+							return process(json);
 						}
-						return process(data);
-					}
-
-				});
-			}
-		});
+					});
+				}
+			});
+	}
 }
 
 function loadWardByDistrictId(){
@@ -128,5 +127,14 @@ function removeSecondaryProductImage(image, folder, container) {
 		data: {image: image, txt_folder: folder}
 	}).done(function (data) {
 		$('#image-container-' + container).remove();
+	});
+}
+
+function updateCoordinators(productId, lng, lat) {
+	$.ajax({
+		type: "POST",
+		url: urls.updateCoordinatorMapUrl,
+		data: {productId: productId, lng: lng, lat: lat}
+	}).done(function (data) {
 	});
 }

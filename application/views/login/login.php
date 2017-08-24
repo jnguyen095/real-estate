@@ -3,7 +3,7 @@
 <head>
 	<head>
 		<meta charset = "utf-8">
-		<title>Login</title>
+		<title>Tin Đất Đai - Đăng Nhập</title>
 		<?php $this->load->view('common_header')?>
 	</head>
 </head>

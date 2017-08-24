@@ -58,11 +58,11 @@ class Product_Model extends CI_Model
 			$product->Ward = $query->row();
 		}
 
-		// Fetch Street
-		if($product->StreetID != null){
-			$this->db->where("StreetID", $product->StreetID);
-			$query = $this->db->get("street");
-			$product->Street = $query->row();
+		// Fetch Ward
+		if($product->UnitID != null){
+			$this->db->where("UnitID", $product->UnitID);
+			$query = $this->db->get("unit");
+			$product->Unit = $query->row();
 		}
 
 		// Fetch Direction
@@ -81,7 +81,7 @@ class Product_Model extends CI_Model
 	}
 
 	public function findByCatId($catId, $start=null, $limit=null){
-		$query = $this->db->get_where('product', array('CategoryID' => $catId, "Status" => 1), $limit, $start);
+		$query = $this->db->order_by('PostDate', 'desc')->get_where('product', array('CategoryID' => $catId, "Status" => 1), $limit, $start);
 		$products = $query->result();
 
 		$this->db->where('CategoryID', $catId);
@@ -98,6 +98,7 @@ class Product_Model extends CI_Model
 		$sql .= ' inner join city c on p.cityid = c.cityid';
 		$sql .= ' inner join district d on p.districtid = d.districtid';
 		$sql .= ' where p.categoryid = '.$catId.' and p.status = 1';
+		$sql .= ' order by p.postdate desc';
 		$sql .= ' limit '.$offset.','.$limit;
 
 		$countsql = 'select count(*) as total from product where CategoryID = '.$catId.' and Status = 1';
@@ -109,5 +110,121 @@ class Product_Model extends CI_Model
 		$total = $total->row();
 		$data['total'] = $total->total;
 		return $data;
+	}
+
+	public function updatePost($data, $assets){
+		$productId = $data['productId'];
+
+		$datestring = '%Y-%m-%d %h:%i:%s';
+		$time = time();
+		$now = mdate($datestring, $time);
+		// Get Unit
+		$this->db->where("UnitID", $data['unit']);
+		$query = $this->db->get("unit");
+		$unit = $query->row();
+
+		$updateData = array(
+			'Title' => $data['title'],
+			'Brief' => substr($data['description'], 0, 400).'...',
+			'Price' => $data['price'],
+			'PriceString' => $data['price'].' '.$unit->Title,
+			'Area' => $data['area'].' m²',
+			'Detail' => $data['description'],
+			'Floor' => $data['floor'],
+			'Room' => $data['room'],
+			'Toilet' => $data['toilet'],
+			'WidthSize' => $data['width'],
+			'LongSize' => $data['long'],
+			'Longitude' => $data['longitude'],
+			'Latitude' => $data['latitude'],
+			'ContactPhone' => $data['contact_phone'],
+			'ContactAddress' => $data['contact_address'],
+			'ContactEmail' => $data['txt_email'],
+			'ModifiedDate' => $now,
+			//'DirectionID' => $data['direction'],
+			//'BrandID' => $data['brand'],
+			'CityID' => $data['city'],
+			'DistrictID' => $data['district'],
+			'WardID' => $data['ward'],
+			'Street' => $data['street'],
+			'CategoryID' => $data['categoryID'],
+			'Status' => INACTIVE,
+			'View' => 0,
+			'UnitID' => $data['unit'],
+			'Address' => $data['address'],
+		);
+
+		$this->db->where('ProductID', $productId);
+		$this->db->update('product', $updateData);
+		return $productId;
+	}
+
+	public function saveNewPost($data, $assets){
+		$datestring = '%Y-%m-%d %h:%i:%s';
+		$time = time();
+		$now = mdate($datestring, $time);
+
+		// Get Unit
+		$this->db->where("UnitID", $data['unit']);
+		$query = $this->db->get("unit");
+		$unit = $query->row();
+
+		$newdata = array(
+			'code' => $data['code'],
+			'Title' => $data['title'],
+			'Brief' => substr($data['description'], 0, 400).'...',
+			'Price' => $data['price'],
+			'PriceString' => $data['price'].' '.$unit->Title,
+			'Area' => $data['area'].' m²',
+			'Detail' => $data['description'],
+			'Thumb' => $data['image'],
+			'Floor' => $data['floor'],
+			'Room' => $data['room'],
+			'Toilet' => $data['toilet'],
+			'WidthSize' => $data['width'],
+			'LongSize' => $data['long'],
+			'Longitude' => $data['longitude'],
+			'Latitude' => $data['latitude'],
+			'ContactPhone' => $data['contact_phone'],
+			'ContactAddress' => $data['contact_address'],
+			'ContactEmail' => $data['txt_email'],
+			'PostDate' => $now,
+			//'DirectionID' => $data['direction'],
+			//'BrandID' => $data['brand'],
+			'CityID' => $data['city'],
+			'DistrictID' => $data['district'],
+			'WardID' => $data['ward'],
+			'Street' => $data['street'],
+			'CategoryID' => $data['categoryID'],
+			'Status' => INACTIVE,
+			'View' => 0,
+			'CreatedByID' => $data['CreatedByID'],
+			'UnitID' => $data['unit'],
+			'Address' => $data['address'],
+		);
+		if($data['brand'] != null && $data['brand'] > 0){
+			$newdata['BrandID'] = $data['brand'];
+		}
+		$this->db->insert('product', $newdata);
+		$insert_id = $this->db->insert_id();
+		if($insert_id != null && $insert_id > 0 && $assets != null && count($assets) > 0){
+			// Save assets
+			foreach ($assets as $asset){
+				$newdata = array(
+					'ProductID' => $insert_id,
+					'Url' => trim($asset, "'"),
+					'OrgUrl' => trim($asset, "'")
+				);
+				$this->db->insert('productasset', $newdata);
+			}
+		}
+		return $insert_id;
+	}
+
+	public function updateCoordinator($productId, $longitude, $latitude){
+		$this->db->set('Longitude', $longitude);
+		$this->db->set('Latitude', $latitude);
+		$this->db->where('ProductID', $productId);
+		$this->db->update('product');
 	}
 }

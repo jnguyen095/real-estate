@@ -18,4 +18,10 @@ class City_Model extends CI_Model
 		$query = $this->db->get("city");
 		return $query->result();
 	}
+
+	public function findById($cityId){
+		$this->db->where("CityID", $cityId);
+		$query = $this->db->get("city");
+		return $query->row();
+	}
 }

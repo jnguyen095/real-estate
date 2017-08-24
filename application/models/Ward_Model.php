@@ -18,4 +18,10 @@ class Ward_Model extends CI_Model
 		$query = $this->db->get("ward");
 		return $query->result();
 	}
+
+	public function findById($wardId){
+		$this->db->where("WardID", $wardId);
+		$query = $this->db->get("ward");
+		return $query->row();
+	}
 }

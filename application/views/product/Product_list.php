@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset = "utf-8">
-	<title><?php echo $category->CatName?></title>
+	<title>Tin Đất Đai - <?php echo $category->CatName?></title>
 	<?php $this->load->view('common_header')?>
 </head>
 
@@ -38,13 +38,13 @@
 					echo '<div class="row product-title"><a href="'.base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html">'. $product->Title .'</a> </div>';
 
 					echo '<div class="row product-content">';
-					echo '<div class="col-md-2 col-xs-4 no-padding"><img src="'.$product->Thumb.'"/></div>';
+					echo '<div class="col-md-2 col-xs-4 no-padding"><a href="'.base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html"><img style="max-width: 120px" src="'.$product->Thumb.'"/></a></div>';
 					echo '<div class="col-md-10 col-xs-8">';
 					echo '<div class="row pos-relative">';
 
 					echo '<div class="productTop">';
 					echo '<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="color bold">'.$product->PriceString.'</span><span class="margin-left-10 mobile-hide">Diện tích: <span class="color bold">'.$product->Area.'</span></span><span class="margin-left-10 mobile-hide">Quận/Huyện: <span class="color bold">'.$product->district.', '.$product->city.'</span></div>';
-					echo '<div class="col-md-2 color bold mobile-hide relative-time">'.relative_time($product->PostDate).'</div>';
+					echo '<div class="col-md-2 color bold mobile-hide relative-time no-padding text-right">'.relative_time($product->PostDate).'</div>';
 					echo '<div class="clear-both"></div>';
 					echo '</div>';
 

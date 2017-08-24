@@ -18,4 +18,10 @@ class District_Model extends CI_Model
 		$query = $this->db->get("district");
 		return $query->result();
 	}
+
+	public function findById($districtId){
+		$this->db->where("DistrictID", $districtId);
+		$query = $this->db->get("district");
+		return $query->row();
+	}
 }

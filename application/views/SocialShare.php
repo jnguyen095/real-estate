@@ -6,7 +6,7 @@
 			if($product->Status == 1){
 				echo '<span class="active">Đang bán!</span>';
 			}else{
-				echo '<span class="inactive">Hết giao dịch</span>';
+				echo '<span class="inactive">Đang khóa.</span>';
 			}
 			?>
 		</div>

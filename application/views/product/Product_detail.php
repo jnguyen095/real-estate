@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset = "utf-8">
-	<title><?php echo $product->Title?></title>
+	<title>Tin Đất Đai - <?php echo $product->Title?></title>
 	<?php $this->load->view('common_header')?>
 	<link rel="stylesheet" href="<?=base_url('/css/jquery.mCustomScrollbar.min.css')?>" />
 	<link rel="stylesheet" href="<?=base_url('/css/carousel-custom.css')?>" />
@@ -33,7 +33,7 @@
 				<span class="color bold glyphicon glyphicon-map-marker"></span><span class="color bold">
 				<?php
 				if(isset($product->Street)){
-					echo $product->Street->StreetName;
+					echo $product->Street;
 				}
 				if(isset($product->Ward)){
 					echo ' - ';
@@ -103,7 +103,7 @@
 			<hr/>
 		</h2>
 
-		<div class="product-detail"><?php echo $product->Detail?></div>
+		<div class="product-detail content"><?php echo $product->Detail?></div>
 
 		<div class="row">
 			<div class="col-md-8">

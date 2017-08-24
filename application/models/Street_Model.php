@@ -13,9 +13,7 @@ class Street_Model extends CI_Model
 	}
 
 	public function findByName($keyword){
-		$this->db->like("StreetName", $keyword);
-		$this->db->limit(10);
-		$query = $this->db->get("street");
+		$query = $this->db->query("select Street from product where Street IS NOT NULL and Street like '%".$keyword."%' limit 10");
 		return $query->result();
 	}
 }
