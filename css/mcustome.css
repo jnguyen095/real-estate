@@ -39,7 +39,7 @@ body{
 }
 
 .banner{
-	background: url('../img/banner3.png');
+	/*background: url('../img/banner3.png');*/
 	background-position-y: -39px;
 	background-repeat: repeat-x;
 }
@@ -107,9 +107,7 @@ body{
 }
 
 .search-panel{
-	background: #f5f5f5;
 	line-height: 35px;
-	padding: 10px;
 	text-align: center;
 	border-radius: 4px;
 	border: 1px solid #e3e3e3;
@@ -146,6 +144,10 @@ body{
 
 .color{
 	color: #365899;
+}
+
+.fix-height-standard {
+	height: 313px;
 }
 
 a:focus, a{
@@ -592,7 +594,7 @@ input.btn.btn-sm:focus {
 .block-panel .block-header {
 	background: #f5f5f5;
 	width: 100%;
-	padding: 8px 6px;
+	padding: 6px;
 	font-weight: bold;
 	color: #365899;
 }

@@ -24,4 +24,13 @@ class City_Model extends CI_Model
 		$query = $this->db->get("city");
 		return $query->row();
 	}
+
+	public function findTopCityHasProduct($top){
+		$sql = 'select c.CityID, c.CityName, count(p.productid) as TotalProduct from city c left join product p on c.cityid = p.cityid';
+		$sql .= ' group by c.cityid';
+		$sql .= ' order by TotalProduct desc';
+		$sql .= ' limit '. $top;
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 }

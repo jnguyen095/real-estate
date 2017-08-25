@@ -27,6 +27,28 @@ class Product_Model extends CI_Model
 		return $product;
 	}
 
+	public function findByCategoryCode($catCode, $offset=0, $limit) {
+		$sql = 'select p.*, c.cityname as city, d.districtname as district from product p';
+		$sql .= ' inner join city c on p.cityid = c.cityid';
+		$sql .= ' inner join district d on p.districtid = d.districtid';
+		$sql .= ' inner join category ct on ct.categoryid = p.categoryid';
+		$sql .= ' where ct.code = \''.$catCode.'\' and p.status = 1';
+		$sql .= ' order by p.postdate desc';
+		$sql .= ' limit '.$offset.','.$limit;
+
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+
+	public function findByHotProduct(){
+		$sql = 'select p.ProductID as ProductID, p.Title as Title, p.Brief as Brief, p.Thumb as Thumb, p.PriceString as PriceString, p.Area as Area, c.CityName as CityName, d.DistrictName as DistrictName from product p';
+		$sql .= ' inner join City c on p.CityID = c.CityID';
+		$sql .= ' inner join District d on d.DistrictID = p.DistrictID';
+		$sql .= ' where p.HotProduct = ' . ACTIVE;
+		$products = $this->db->query($sql)->result();
+		return $products;
+	}
+
 	public function updateViewForProductId($productId){
 		$this->db->set('View', 'View + 1', false);
 		$this->db->where('ProductID', $productId);
@@ -44,9 +66,11 @@ class Product_Model extends CI_Model
 	}
 
 	public function findByIdFetchAll($productId) {
-		$this->db->where("ProductID", $productId);
-		$query = $this->db->get("product");
+		$sql = 'select * from product p inner join productdetail pd on p.productid = pd.productid';
+		$sql .= ' where p.ProductID = '. $productId;
+		$query = $this->db->query($sql);
 		$product = $query->row();
+
 
 		// Fetch Brand
 		if($product->BrandID != null){

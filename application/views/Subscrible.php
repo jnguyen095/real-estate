@@ -19,4 +19,5 @@
 			</div>
 		</form>
 	</div>
+	<div class="clear-both"></div>
 </div>

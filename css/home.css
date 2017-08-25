@@ -1,0 +1,69 @@
+.home-page{
+	margin-top: 15px;
+}
+
+.home-page .carousel-inner {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+}
+
+.carousel {
+	position: relative;
+}
+
+.carousel-item{
+	width: 100%;
+	height: 100%;
+	display: block!important;
+}
+
+.hotProduct{
+	color: #000;
+}
+
+.hotImg{
+	width: 50%;
+	float: left;
+}
+.hot-price{
+	width: 49%;
+	float: left;
+	font-weight:normal;
+	padding-left: 5px;
+}
+
+.hot-area{
+	margin-top: 10px;
+	color: #365899;
+	font-weight: bold;
+}
+
+.hot-title{
+	margin-bottom: 10px;
+}
+
+.hot-product {
+	border: solid 1px #e3e3e3;
+	padding: 8px 10px;
+	border-radius: 4px;
+	position: relative;
+}
+
+.post-star{
+	position: absolute;
+	top: -15px;
+	right: 0px;
+}
+
+.hot-brief{
+	font-weight: normal;
+	margin-top: 10px;
+	text-align: justify;
+	height: 116px;
+	overflow: hidden;
+}
+
+.orver-hidden{
+	overflow: hidden;
+}

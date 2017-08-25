@@ -12,11 +12,20 @@ class Home_controller extends CI_Controller
 		parent::__construct();
 		$this->load->library('session');
 		$this->load->model('Category_Model');
+		$this->load->model('Product_Model');
+		$this->load->model('City_Model');
 		$this->load->helper("seo_url");
+		$this->load->helper("seo_url");
+		$this->load->helper('text');
+		$this->load->helper("my_date");
 	}
 
 	public function index() {
 		$data = $this->Category_Model->getCategories();
+		$data['hotProducts'] = $this->Product_Model->findByHotProduct();
+		$data['nhadatban'] = $this->Product_Model->findByCategoryCode(NHADAT_BAN, 0, 10);
+		$data['nhadatchothue'] = $this->Product_Model->findByCategoryCode(NHADAT_CHOTHUE, 0, 10);
+		$data['topcityhasproduct'] = $this->City_Model->findTopCityHasProduct(10);
 		$this->load->helper('url');
 		$this->load->view('Home_view', $data);
 	}

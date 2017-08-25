@@ -28,3 +28,4 @@
 		<div class="clear-both"></div>
 	</div>
 </div>
+<div class="clear-both"></div>
