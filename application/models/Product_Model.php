@@ -134,6 +134,63 @@ class Product_Model extends CI_Model
 		return $data;
 	}
 
+	public function findByCityIdFetchAddress($cityId, $offset=0, $limit){
+		$sql = 'select p.*, c.cityname as city, d.districtname as district from product p';
+		$sql .= ' inner join city c on p.cityid = c.cityid';
+		$sql .= ' inner join district d on p.districtid = d.districtid';
+		$sql .= ' where p.CityID = '.$cityId.' and p.status = 1';
+		$sql .= ' order by p.postdate desc';
+		$sql .= ' limit '.$offset.','.$limit;
+
+		$countsql = 'select count(*) as total from product where CityID = '.$cityId.' and Status = 1';
+
+		$products = $this->db->query($sql);
+		$total = $this->db->query($countsql);
+
+		$data['products'] = $products->result();
+		$total = $total->row();
+		$data['total'] = $total->total;
+		return $data;
+	}
+
+	public function findByBranchIdFetchAddress($branchId, $offset=0, $limit){
+		$sql = 'select p.*, c.cityname as city, d.districtname as district from product p';
+		$sql .= ' inner join city c on p.cityid = c.cityid';
+		$sql .= ' inner join district d on p.districtid = d.districtid';
+		$sql .= ' where p.BrandID = '.$branchId.' and p.status = 1';
+		$sql .= ' order by p.postdate desc';
+		$sql .= ' limit '.$offset.','.$limit;
+
+		$countsql = 'select count(*) as total from product where BrandID = '.$branchId.' and Status = 1';
+
+		$products = $this->db->query($sql);
+		$total = $this->db->query($countsql);
+
+		$data['products'] = $products->result();
+		$total = $total->row();
+		$data['total'] = $total->total;
+		return $data;
+	}
+
+	public function findByCatIdAndCityIdFetchAddress($catId, $cityId, $offset=0, $limit){
+		$sql = 'select p.*, c.cityname as city, d.districtname as district from product p';
+		$sql .= ' inner join city c on p.cityid = c.cityid';
+		$sql .= ' inner join district d on p.districtid = d.districtid';
+		$sql .= ' where p.CategoryID = '.$catId.' and p.CityID = '.$cityId.' and p.status = 1';
+		$sql .= ' order by p.postdate desc';
+		$sql .= ' limit '.$offset.','.$limit;
+
+		$countsql = 'select count(*) as total from product where CategoryID = '.$catId.' and CityID = '.$cityId.' and Status = 1';
+
+		$products = $this->db->query($sql);
+		$total = $this->db->query($countsql);
+
+		$data['products'] = $products->result();
+		$total = $total->row();
+		$data['total'] = $total->total;
+		return $data;
+	}
+
 	public function findByCatIdFetchAddress($catId, $offset=0, $limit){
 		// $this->output->enable_profiler(TRUE);
 		$sql = 'select p.*, c.cityname as city, d.districtname as district from product p';

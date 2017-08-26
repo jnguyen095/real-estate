@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>404 Page Not Found</title>
+<title>Tin Đất Đai | 404 Page Not Found</title>
 <style type="text/css">
 
 ::selection { background-color: #E13300; color: white; }

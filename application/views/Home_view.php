@@ -145,20 +145,14 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- begin left side -->
 		<div class="col-md-3">
-			<div class="block-panel">
-				<div class="block-header text-left">NHÀ ĐẤT CHO THUÊ</div>
-				<div class="block-body">
-					<ul>
-					<?php
-					foreach ($topcityhasproduct as $ct){
-						echo '<li><a href="'.base_url().seo_url($ct->CityName).'-ct'.$ct->CityID.'.html">'.$ct->CityName.'</a></li>';
-					}
-					?>
-					</ul>
-				</div>
-			</div>
+			<?php $this->load->view('/common/city-left-link')?>
+			<?php $this->load->view('/common/branch-left-link')?>
 		</div>
+		<!-- end left side -->
+
 	</div>
 </div>
 

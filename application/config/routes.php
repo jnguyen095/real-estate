@@ -64,8 +64,22 @@ $route['dang-bai-thanh-cong-p(:num)'] = "Post_controller/done/$1";
 $route['quan-ly-tin-rao'] = "ManagePost_controller";
 $route['thong-tin-ca-nhan'] = 'UserProfile_controller';
 
+// Search by city
+$route['(:any)-ct(:num)'] = "Search_controller/searchByCity/$2";
+$route['(:any)-ct(:num).html/(:num)'] = "Search_controller/searchByCity/$2/$3";
+// Search by branch
+$route['(:any)-b(:num)'] = "Search_controller/searchByBranch/$2";
+$route['(:any)-b(:num).html/(:num)'] = "Search_controller/searchByBranch/$2/$3";
+// Search by category and city
+$route['(:any)-cc(:num)-(:num)'] = "Search_controller/searchByCategoryAndCity/$2/$3";
+$route['(:any)-cc(:num)-(:num).html/(:num)'] = "Search_controller/searchByCategoryAndCity/$2/$3/$4";
+
+
+// View by category
 $route['(:any)-c(:num)'] = "Product_controller/listItem/$2";
+// View by category with paging
 $route['(:any)-c(:num).html/(:num)'] = "Product_controller/listItem/$2/$3";
+// View product detail
 $route['(:any)-p(:num)'] = "Product_controller/detailItem/$2";
 
 

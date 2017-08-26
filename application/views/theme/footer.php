@@ -9,34 +9,34 @@
 ?>
 
 <div class="footer row no-margin">
+	<div class="quickLink">
 		<?php
-		$index = 1;
-		foreach($categories as $r) {
-			if($index == 1){
-				echo '<div class="row no-margin">';
+		//print_r($footerMenus);
+		foreach ($footerMenus as $key => $footerMenu){
+			echo '<div class="city-footer-block"><div class="fTitle">'.$footerMenu['CityName'].'</div><ul>';
+			foreach ($footerMenu['child'] as $ch){
+				echo '<li><a href="'.base_url().seo_url($ch->CatName).'-'.seo_url($ch->CityName).'-cc'.$ch->CategoryID.'-'.$ch->CityID.'.html">'.$ch->CatName.' '. $ch->CityName.'</a></li>';
 			}
-			if(count($child[$r->CategoryID]) > 0){
-				echo '<div class="row col-md-3"><div class="catTitle">'.$r->CatName.'</div><ul>';
-				foreach ($child[$r->CategoryID] as $k){
-					echo '<li><a href="'.base_url().seo_url($k->CatName).'-c'.$k->CategoryID. '.html">'.$k->CatName.'</a></li>';
-				}
-				echo '</ul></div>';
-			}else{
-				echo '<div class="row col-md-3">'.$r->CatName.'</div>';
-			}
-
-			if($index == 4){
-				echo '</div>';
-				$index = 1;
-			}else{
-				$index++;
-			}
-		}
-		if($index != 1){
-			echo '</div>';
+			echo '</ul></div>';
 		}
 		?>
+		<div class="clear-both"></div>
+	</div>
+	<div class="menu_bottom">
+		<ul>
+			<li><a href="#">Báo giá quảng cáo</a></li>
+			<li><a href="#">Điều khoản thỏa thuận</a></li>
+			<li><a href="#">Quy chế hoạt động</a></li>
+			<li><a href="#">Câu hỏi thường gặp</a></li>
+			<li><a href="#">Hỗ trợ - góp ý</a></li>
+			<li><a href="#">Tuyển dụng</a></li>
+			<li><a href="#">Rss</a></li>
 		</ul>
+	</div>
+	<div class="copyright text-center">
+		<div>Copyright © 2017 tindatdai.vn ® Ghi rõ nguồn "tindatdai.com" khi phát hành lại thông tin từ website này.</div>
+		<div>Hotline: 0982.647.619 | Email: tindatdai@gmail.com</div>
+	</div>
 </div>
 <script>
 	var urls = {

@@ -48,6 +48,13 @@ class Category_Model extends CI_Model
 		return $data;
 	}
 
+	public function findByNotChildId($catId){
+		$this->db->where("CategoryID = " . $catId);
+		$query = $this->db->get("category");
+		$data = $query->row();
+		return $data;
+	}
+
 	public function findByParentId($parentId=null, $currentId=null){
 		//$this->output->enable_profiler(TRUE);
 		if($parentId != null){
@@ -63,4 +70,5 @@ class Category_Model extends CI_Model
 			return $query->result();
 		}
 	}
+
 }

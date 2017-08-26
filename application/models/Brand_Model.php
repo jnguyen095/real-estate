@@ -16,4 +16,19 @@ class Brand_Model extends CI_Model
 		$query = $this->db->query("select * from brand order by BrandName ASC");
 		return $query->result();
 	}
+
+	public function findById($branchId){
+		$this->db->where("BrandID", $branchId);
+		$query = $this->db->get("brand");
+		return $query->row();
+	}
+
+	public function findTopBranchHasProduct($top){
+		$sql = 'select b.BrandID, b.BrandName from brand b left join product p on b.brandid = p.brandid';
+		$sql .= ' group by b.BrandID';
+		$sql .= ' order by count(p.productid) desc';
+		$sql .= ' limit '. $top;
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 }
