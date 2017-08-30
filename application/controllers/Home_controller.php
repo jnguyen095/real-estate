@@ -19,6 +19,7 @@ class Home_controller extends CI_Controller
 		$this->load->helper("seo_url");
 		$this->load->helper('text');
 		$this->load->helper("my_date");
+		$this->load->helper('form');
 	}
 
 	public function index() {
@@ -29,6 +30,7 @@ class Home_controller extends CI_Controller
 		$data['nhadatchothue'] = $this->Product_Model->findByCategoryCode(NHADAT_CHOTHUE, 0, 10);
 		$data['topcityhasproduct'] = $this->City_Model->findTopCityHasProduct(20);
 		$data['topbranchhasproduct'] = $this->Brand_Model->findTopBranchHasProduct(10);
+		$data['cities'] = $this->City_Model->getAllActive();
 		$this->load->helper('url');
 		$this->load->view('Home_view', $data);
 	}

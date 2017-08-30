@@ -54,14 +54,23 @@ $route['trang-chu'] = 'home_controller';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+// Dang nhap
 $route['dang-nhap'] = "Login_controller/index";
+// Dang ky thanh vien
 $route['dang-ky'] = "Register_controller";
+// Dang xuat
 $route['dang-xuat'] = "Login_controller/logout";
+// Dang tin rao
 $route['dang-tin'] = "Post_controller";
+// Xem truoc dang tin rao
 $route['xem-truoc-p(:num)'] = "Post_controller/preview/$1";
+// Chinh sua tin rao
 $route['chinh-sua-p(:num)'] = "Post_controller/edit/$1";
+// Dang bai thanh cong
 $route['dang-bai-thanh-cong-p(:num)'] = "Post_controller/done/$1";
+// Trang quan ly tin rao
 $route['quan-ly-tin-rao'] = "ManagePost_controller";
+// Trang thong tin ca nhan
 $route['thong-tin-ca-nhan'] = 'UserProfile_controller';
 
 // Search by city
@@ -73,6 +82,12 @@ $route['(:any)-b(:num).html/(:num)'] = "Search_controller/searchByBranch/$2/$3";
 // Search by category and city
 $route['(:any)-cc(:num)-(:num)'] = "Search_controller/searchByCategoryAndCity/$2/$3";
 $route['(:any)-cc(:num)-(:num).html/(:num)'] = "Search_controller/searchByCategoryAndCity/$2/$3/$4";
+// Global search
+$route['tim-kiem'] = "Search_controller";
+$route['tim-kiem.html/(:num)'] = "Search_controller/index/$1";
+
+// Sitemap
+$route['sitemap'] = "Sitemap_controller";
 
 
 // View by category
@@ -82,9 +97,3 @@ $route['(:any)-c(:num).html/(:num)'] = "Product_controller/listItem/$2/$3";
 // View product detail
 $route['(:any)-p(:num)'] = "Product_controller/detailItem/$2";
 
-
-$route['stud'] = "Stud_controller";
-$route['stud/add'] = 'Stud_controller/add_student';
-$route['stud/add_view'] = 'Stud_controller/add_student_view';
-$route['stud/edit/(\d+)'] = 'Stud_controller/update_student_view/$1';
-$route['stud/delete/(\d+)'] = 'Stud_controller/delete_student/$1';

@@ -20,6 +20,7 @@ class Login_controller extends CI_Controller
 		$this->load->library('form_validation');
 		//load the login model
 		$this->load->model('Login_Model');
+		$this->load->model('City_Model');
 		$this->load->model('Category_Model');
 		$this->load->helper("seo_url");
 	}
@@ -61,6 +62,8 @@ class Login_controller extends CI_Controller
 	public function index()
 	{
 		$data = $this->Category_Model->getCategories();
+		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+		$data['cities'] = $this->City_Model->getAllActive();
 		//get the posted values
 		$username = $this->input->post("txt_username");
 		$password = $this->input->post("txt_password");

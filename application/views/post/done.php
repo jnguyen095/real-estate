@@ -14,10 +14,11 @@
 		<title>Tin Đất Đai | Đăng Tin Rao | Đăng Bài Thành Công</title>
 		<?php $this->load->view('common_header')?>
 		<link rel="stylesheet" href="<?=base_url('/css/stepbar.css')?>">
+		<?php $this->load->view('/common/googleadsense')?>
 </head>
 </head>
 <body>
-
+<?php $this->load->view('/common/analyticstracking')?>
 <div class="container">
 	<?php $this->load->view('/theme/header')?>
 
@@ -49,7 +50,7 @@
 						<div class="progress-bar"></div>
 					</div>
 					<a class="smpl-step-icon"><i class="glyphicon glyphicon-eye-open" style="font-size: 35px; padding-left: 17px; padding-top: 17px; color: #fff;"></i></a>
-					<div class="smpl-step-info text-center">Xem trước</div>
+					<div class="smpl-step-info text-center">Bản đồ</div>
 				</div>
 				<div class="col-xs-4 smpl-step-step complete">
 					<div class="text-center smpl-step-num">Bước 3</div>

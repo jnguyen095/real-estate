@@ -13,11 +13,13 @@
 		<meta charset = "utf-8">
 		<title>Tin Đất Đai | Quản Lý Tin Rao</title>
 		<?php $this->load->view('common_header')?>
+		<script src="<?= base_url('/js/createPost.js') ?>"></script>
 		<script src="<?=base_url('/js/bootbox.min.js')?>"></script>
+		<?php $this->load->view('/common/googleadsense')?>
 </head>
 </head>
 <body>
-
+<?php $this->load->view('/common/analyticstracking')?>
 <div class="container">
 	<?php $this->load->view('/theme/header')?>
 

@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<head>
-		<meta charset = "utf-8">
-		<title>Tin Đất Đai | Thông Tin</title>
-		<?php $this->load->view('common_header')?>
-	</head>
+	<meta charset = "utf-8">
+	<title>Tin Đất Đai | Thông Tin</title>
+	<?php $this->load->view('common_header')?>
+	<?php $this->load->view('/common/googleadsense')?>
 </head>
 <body>
 

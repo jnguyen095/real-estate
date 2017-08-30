@@ -42,8 +42,8 @@ class Product_Model extends CI_Model
 
 	public function findByHotProduct(){
 		$sql = 'select p.ProductID as ProductID, p.Title as Title, p.Brief as Brief, p.Thumb as Thumb, p.PriceString as PriceString, p.Area as Area, c.CityName as CityName, d.DistrictName as DistrictName from product p';
-		$sql .= ' inner join City c on p.CityID = c.CityID';
-		$sql .= ' inner join District d on d.DistrictID = p.DistrictID';
+		$sql .= ' inner join city c on p.CityID = c.CityID';
+		$sql .= ' inner join district d on d.DistrictID = p.DistrictID';
 		$sql .= ' where p.HotProduct = ' . ACTIVE;
 		$products = $this->db->query($sql)->result();
 		return $products;
@@ -70,7 +70,6 @@ class Product_Model extends CI_Model
 		$sql .= ' where p.ProductID = '. $productId;
 		$query = $this->db->query($sql);
 		$product = $query->row();
-
 
 		// Fetch Brand
 		if($product->BrandID != null){
@@ -228,18 +227,6 @@ class Product_Model extends CI_Model
 			'Price' => $data['price'],
 			'PriceString' => $data['price'].' '.$unit->Title,
 			'Area' => $data['area'].' m²',
-			'Detail' => $data['description'],
-			'Floor' => $data['floor'],
-			'Room' => $data['room'],
-			'Toilet' => $data['toilet'],
-			'WidthSize' => $data['width'],
-			'LongSize' => $data['long'],
-			'Longitude' => $data['longitude'],
-			'Latitude' => $data['latitude'],
-			'ContactName' => $data['contact_name'],
-			'ContactPhone' => $data['contact_phone'],
-			'ContactAddress' => $data['contact_address'],
-			'ContactEmail' => $data['txt_email'],
 			'ModifiedDate' => $now,
 			'CityID' => $data['city'],
 			'DistrictID' => $data['district'],
@@ -250,17 +237,34 @@ class Product_Model extends CI_Model
 			'UnitID' => $data['unit'],
 			'Address' => $data['address'],
 		);
+
+		$newdatadetail = array(
+			'Detail' => $data['description'],
+			'Floor' => $data['floor'],
+			'Room' => $data['room'],
+			'Toilet' => $data['toilet'],
+			'WidthSize' => $data['width'],
+			'LongSize' => $data['long'],
+			'Longitude' => $data['longitude'],
+			'Latitude' => $data['latitude'],
+			'ContactPhone' => $data['contact_phone'],
+			'ContactAddress' => $data['contact_address'],
+			'ContactEmail' => $data['txt_email'],
+			'ContactName' => $data['contact_name']
+		);
+
 		if($data['brand'] != null && $data['brand'] > 0){
 			$updateData['BrandID'] = $data['brand'];
 		}
 		if($data['direction'] != null && $data['direction'] > 0){
-			$updateData['DirectionID'] = $data['direction'];
+			$newdatadetail['DirectionID'] = $data['direction'];
 		}
 
 		$this->db->where('ProductID', $productId);
 		$this->db->update('product', $updateData);
 
 		$this->saveProductAssets($productId, $assets);
+		$this->saveProductDetail($productId, $newdatadetail);
 		// update
 		return $productId;
 	}
@@ -282,19 +286,7 @@ class Product_Model extends CI_Model
 			'Price' => $data['price'],
 			'PriceString' => $data['price'].' '.$unit->Title,
 			'Area' => $data['area'].' m²',
-			'Detail' => $data['description'],
 			'Thumb' => $data['image'],
-			'Floor' => $data['floor'],
-			'Room' => $data['room'],
-			'Toilet' => $data['toilet'],
-			'WidthSize' => $data['width'],
-			'LongSize' => $data['long'],
-			'Longitude' => $data['longitude'],
-			'Latitude' => $data['latitude'],
-			'ContactPhone' => $data['contact_phone'],
-			'ContactAddress' => $data['contact_address'],
-			'ContactEmail' => $data['txt_email'],
-			'ContactName' => $data['contact_name'],
 			'PostDate' => $now,
 			'ModifiedDate' => $now,
 			'CityID' => $data['city'],
@@ -308,15 +300,30 @@ class Product_Model extends CI_Model
 			'UnitID' => $data['unit'],
 			'Address' => $data['address'],
 		);
+		$newdatadetail = array(
+			'Detail' => $data['description'],
+			'Floor' => $data['floor'],
+			'Room' => $data['room'],
+			'Toilet' => $data['toilet'],
+			'WidthSize' => $data['width'],
+			'LongSize' => $data['long'],
+			'Longitude' => $data['longitude'],
+			'Latitude' => $data['latitude'],
+			'ContactPhone' => $data['contact_phone'],
+			'ContactAddress' => $data['contact_address'],
+			'ContactEmail' => $data['txt_email'],
+			'ContactName' => $data['contact_name']
+		);
 		if($data['brand'] != null && $data['brand'] > 0){
 			$newdata['BrandID'] = $data['brand'];
 		}
 		if($data['direction'] != null && $data['direction'] > 0){
-			$newdata['DirectionID'] = $data['direction'];
+			$newdatadetail['DirectionID'] = $data['direction'];
 		}
 		$this->db->insert('product', $newdata);
 		$insert_id = $this->db->insert_id();
 		$this->saveProductAssets($insert_id, $assets);
+		$this->saveProductDetail($insert_id, $newdatadetail);
 		return $insert_id;
 	}
 
@@ -330,12 +337,22 @@ class Product_Model extends CI_Model
 		$this->db->set('Longitude', $longitude);
 		$this->db->set('Latitude', $latitude);
 		$this->db->where('ProductID', $productId);
-		$this->db->update('product');
+		$this->db->update('productdetail');
 	}
 
 	public function deleteById($productId){
 		$this->db->delete('productasset', array('ProductID' => $productId));
+		$this->db->delete('productdetail', array('ProductID' => $productId));
 		$this->db->delete('product', array('ProductID' => $productId));
+	}
+
+	private function saveProductDetail($productId, $data){
+		if($productId != null && $productId > 0 && $data != null && count($data) > 0){
+			// delete old items
+			$this->db->delete('productdetail', array('ProductID' => $productId));
+			$data['ProductID'] = $productId;
+			$this->db->insert('productdetail', $data);
+		}
 	}
 
 	private function saveProductAssets($productId, $assets){
@@ -353,5 +370,47 @@ class Product_Model extends CI_Model
 				$this->db->insert('productasset', $newdata);
 			}
 		}
+	}
+
+	public function searchByProperties($catId, $cityId, $districtId, $area, $price, $postDate, $offset, $limit){
+		$sql = 'select p.*, c.cityname as city, d.districtname as district from product p';
+		$sql .= ' inner join city c on p.cityid = c.cityid';
+		$sql .= ' inner join district d on p.districtid = d.districtid';
+		$sql .= ' where p.status = '.ACTIVE;
+		if(isset($catId) && $catId > -1) {
+			$sql .= ' and p.CategoryID = ' . $catId;
+		}
+		if(isset($cityId) && $cityId > -1) {
+			$sql .= ' and p.CityID = ' . $cityId;
+		}
+		if(isset($districtId) && $districtId > -1) {
+			$sql .= ' and p.DistrictID = ' . $districtId;
+		}
+
+		$sql .= ' order by p.postdate desc';
+		$sql .= ' limit '.$offset.','.$limit;
+
+		$countsql = 'select count(*) as total from product where Status = '.ACTIVE;
+		if(isset($catId) && $catId > -1) {
+			$countsql .= ' and CategoryID = ' . $catId;
+		}
+		if(isset($cityId) && $cityId > -1) {
+			$countsql .= ' and CityID = ' . $cityId;
+		}
+		if(isset($districtId) && $districtId > -1) {
+			$countsql .= ' and DistrictID = ' . $districtId;
+		}
+
+		$products = $this->db->query($sql);
+		$total = $this->db->query($countsql);
+
+		$data['products'] = $products->result();
+		$total = $total->row();
+		$data['total'] = $total->total;
+		return $data;
+	}
+
+	private function getAreaFromInt($areaInt){
+
 	}
 }

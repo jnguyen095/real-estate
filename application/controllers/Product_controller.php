@@ -17,10 +17,12 @@ class Product_controller extends CI_Controller
 		$this->load->helper("my_date");
 		$this->load->helper("bootstrap_pagination");
 		$this->load->library('pagination');
+		$this->load->helper('form');
 	}
 
 	public function listItem($catId, $offset=0) {
 		$data = $this->Category_Model->getCategories();
+		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
 		$search_data = $this->Product_Model->findByCatIdFetchAddress($catId, $offset, MAX_PAGE_ITEM);
 
 		$data = array_merge($data, $search_data);
@@ -44,6 +46,7 @@ class Product_controller extends CI_Controller
 
 	public function detailItem($productId) {
 		$data = $this->Category_Model->getCategories();
+		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
 		$product = $this->Product_Model->findByIdFetchAll($productId);
 		$data['category'] = $this->Category_Model->findById($product->CategoryID);
 		$data['product'] = $product;

@@ -16,6 +16,7 @@ class ManagePost_controller extends CI_Controller
 		}
 		$this->load->model('Product_Model');
 		$this->load->model('Category_Model');
+		$this->load->model('City_Model');
 		$this->load->helper("seo_url");
 		$this->load->helper('date');
 		$this->load->helper('form');
@@ -24,6 +25,7 @@ class ManagePost_controller extends CI_Controller
 	public function index()
 	{
 		$data = $this->Category_Model->getCategories();
+		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
 		$userId = $this->session->userdata('loginid');
 
 		$crudaction = $this->input->post("crudaction");

@@ -101,7 +101,9 @@ defined('NHADAT_CHOTHUE')		OR define('NHADAT_CHOTHUE', 'NHADAT_CHOTHUE');
 
 // Social IDs
 defined('GOOGLE_MAP_KEY')		OR define('GOOGLE_MAP_KEY', 'AIzaSyBre7NMV7Wvgg2c37G5E9NMZnKHAHv8Qs4'); // google map key
-defined('FACEBOOK_ID')			OR define('FACEBOOK_ID', '263683937369914'); // facebook id: login by facebook, share post
-defined('GOOGLE_ID')			OR define('GOOGLE_ID', '425783171151-utka0e2mvtbvjievajdgpkreat5162tq.apps.googleusercontent.com'); // google key: login by google
+// defined('FACEBOOK_ID')			OR define('FACEBOOK_ID', '263683937369914'); // facebook id: login by facebook, share post: local
+defined('FACEBOOK_ID')			OR define('FACEBOOK_ID', '339916999763026'); // facebook id: login by facebook, share post
+//defined('GOOGLE_ID')			OR define('GOOGLE_ID', '425783171151-utka0e2mvtbvjievajdgpkreat5162tq.apps.googleusercontent.com'); // google key: login by google: local
+defined('GOOGLE_ID')			OR define('GOOGLE_ID', '668102068187-t0edbdgdn957ahb2idfcvgccg9c8k3p0.apps.googleusercontent.com'); // google key: login by google
 
 

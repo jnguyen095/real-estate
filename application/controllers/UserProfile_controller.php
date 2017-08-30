@@ -25,6 +25,7 @@ class UserProfile_controller extends CI_Controller
 		//load the login model
 		$this->load->model('Login_Model');
 		$this->load->model('Category_Model');
+		$this->load->model('City_Model');
 		$this->load->helper("seo_url");
 	}
 
@@ -32,6 +33,7 @@ class UserProfile_controller extends CI_Controller
 	{
 		$userId = $this->session->userdata('loginid');
 		$data = $this->Category_Model->getCategories();
+		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
 		$user = $this->User_Model->getUserById($userId);
 		$crudaction = $this->input->post("crudaction");
 		if($crudaction == UPDATE){

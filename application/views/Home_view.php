@@ -3,7 +3,9 @@
 
 <head>
 	<meta charset = "utf-8">
-	<title>Tin Nhà Đất | Bất Động Sản | Mua Bán Chung Cư, Nhà Đất</title>
+	<meta name="description" content="Thông tin mua bán bất động sản, đăng tin miễn phí. Mua bán nhà đất, cho thuê nhà đất, văn phòng, căn hộ, biệt thự, chung cư.">
+	<meta name="keywords" content="Bất động sản, bán nhà, chung cư, mua đất, bán đất, real estate">
+	<title>Tin Đất Đai | Bất Động Sản | Mua Bán Chung Cư, Nhà Đất</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.css">
@@ -12,16 +14,19 @@
 	<script src="<?php echo base_url()?>js/jquery.min.js"></script>
 	<!-- Latest compiled JavaScript -->
 	<script src="<?php echo base_url()?>js/bootstrap.min.js"></script>
+	<?php $this->load->view('/common/googleadsense')?>
 </head>
 
 <body>
+<?php $this->load->view('/common/analyticstracking')?>
+
 <div class="container">
 <?php $this->load->view('/theme/header')?>
 
 <div class="home-page row">
 	<div class="home-first-row">
 		<div class="col-md-3">
-			<?php $this->load->view('/Search_filter') ?>
+			<?php $this->load->view('/common/Search_filter') ?>
 		</div>
 		<div class="col-md-6">
 			<div id='carousel-custom' class='carousel slide fix-height-standard orver-hidden' data-interval="5000" data-ride='carousel'>
@@ -156,7 +161,7 @@
 	</div>
 </div>
 
-
+<script src="<?php echo base_url()?>js/homeland.js"></script>
 <?php $this->load->view('/theme/footer')?>
 </div>
 </body>

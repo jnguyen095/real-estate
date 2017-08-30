@@ -5,10 +5,11 @@
 		<meta charset = "utf-8">
 		<title>Tin Đất Đai | Đăng Ký</title>
 		<?php $this->load->view('common_header')?>
+		<?php $this->load->view('/common/googleadsense')?>
 	</head>
 </head>
 <body>
-
+<?php $this->load->view('/common/analyticstracking')?>
 <div class="container">
 	<?php $this->load->view('/theme/header')?>
 

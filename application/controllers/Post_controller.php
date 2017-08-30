@@ -35,6 +35,7 @@ class Post_controller extends CI_Controller
 	public function index()
 	{
 		$data = $this->Category_Model->getCategories();
+		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
 		$data['cities'] = $this->City_Model->getAllActive();
 		$user = $this->User_Model->getUserById($this->session->userdata('loginid'));
 		$data['user'] = $user;
@@ -58,6 +59,7 @@ class Post_controller extends CI_Controller
 	public function edit($productId){
 
 		$data = $this->Category_Model->getCategories();
+		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
 		$data['cities'] = $this->City_Model->getAllActive();
 		$data['user'] = $this->User_Model->getUserById($this->session->userdata('loginid'));
 		$data['units'] = $this->Unit_Model->findAll();
@@ -104,6 +106,7 @@ class Post_controller extends CI_Controller
 
 	public function done($productId){
 		$data = $this->Category_Model->getCategories();
+		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
 		$success = $this->Product_Model->changeStatusPost($productId, ACTIVE);
 		$product = $this->Product_Model->findByIdFetchAll($productId);
 		$data['product'] = $product;
@@ -113,6 +116,7 @@ class Post_controller extends CI_Controller
 
 	public function preview($productId){
 		$data = $this->Category_Model->getCategories();
+		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
 		$product = $this->Product_Model->findByIdFetchAll($productId);
 		$data['category'] = $this->Category_Model->findById($product->CategoryID);
 		$data['product'] = $product;

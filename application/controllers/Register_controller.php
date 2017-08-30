@@ -21,6 +21,7 @@ class Register_controller extends CI_Controller
 		//load the login model
 		$this->load->model('Login_Model');
 		$this->load->model('User_Model');
+		$this->load->model('City_Model');
 		$this->load->model('Category_Model');
 		$this->load->helper("seo_url");
 	}
@@ -28,6 +29,7 @@ class Register_controller extends CI_Controller
 	public function index()
 	{
 		$data = $this->Category_Model->getCategories();
+		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
 		if($this->input->post('crudaction') == "register"){
 			$this->form_validation->set_message('txt_fullname', 'Họ tên không được để trống');
 

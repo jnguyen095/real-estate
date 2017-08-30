@@ -3,11 +3,15 @@
 
 <head>
 	<meta charset = "utf-8">
-	<title>Tin Đất Đai - <?php echo $category->CatName?></title>
+	<meta name="description" content="<?=$category->CatName?>">
+	<meta name="keywords" content="Bất động sản, bán nhà, chung cư, mua đất, bán đất, real estate">
+	<title>Tin Đất Đai | <?php echo $category->CatName?></title>
 	<?php $this->load->view('common_header')?>
+	<?php $this->load->view('/common/googleadsense')?>
 </head>
 
 <body>
+<?php $this->load->view('/common/analyticstracking')?>
 <div class="container">
 
 <?php $this->load->view('/theme/header')?>
@@ -26,7 +30,7 @@
 	 if(count($sameLevels) > 0){
 		 echo '<div class="category-panel col-md-12">';
 		 foreach ($sameLevels as $level){
-			 echo '<div class="col-md-4"><a href="'.base_url().seo_url($level->CatName).'-c'.$level->CategoryID.'.html">'.$level->CatName. ' ['.$level->total.'] </a></div>';
+			 echo '<div class="col-md-4"><a href="'.base_url().seo_url($level->CatName).'-c'.$level->CategoryID.'.html">'.$level->CatName. ' </a></div>';
 		 }
 		 echo '</div>';
 	 }
@@ -65,7 +69,8 @@
 	</div>
 	<div class="col-md-3 no-margin-right no-padding-right">
 		<?php $this->load->view('/Subscrible') ?>
-		<?php $this->load->view('/Search_filter') ?>
+		<div class="clear-both"></div>
+		<?php $this->load->view('/common/Search_filter') ?>
 	</div>
 </div>
 

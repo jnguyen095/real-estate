@@ -3,15 +3,18 @@
 
 <head>
 	<meta charset = "utf-8">
-	<title>Tin Đất Đai - <?php echo $product->Title?></title>
+	<meta name="description" content="<?=$product->Title?>">
+	<meta name="keywords" content="Bất động sản, bán nhà, chung cư, mua đất, bán đất, real estate">
+	<title>Tin Đất Đai | <?php echo $product->Title?></title>
 	<?php $this->load->view('common_header')?>
 	<link rel="stylesheet" href="<?=base_url('/css/jquery.mCustomScrollbar.min.css')?>" />
 	<link rel="stylesheet" href="<?=base_url('/css/carousel-custom.css')?>" />
 	<script src="<?=base_url('/js/jquery.mCustomScrollbar.min.js')?>"></script>
+	<?php $this->load->view('/common/googleadsense')?>
 </head>
 
 <body>
-
+<?php $this->load->view('/common/analyticstracking')?>
 <div class="container">
 <?php $this->load->view('/theme/header')?>
 
@@ -28,8 +31,8 @@
 	<div class="col-md-9 no-margin no-padding product-detail">
 		<div class="product-title"><?php echo $product->Title?></div>
 		<div class="row">
-			<div class="col-md-4">Giá: <span class="color bold"><?php echo $product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?php echo $product->Area?></span></span></div>
-			<div class="col-md-8 text-right">
+			<div class="col-md-5">Giá: <span class="color bold"><?php echo $product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?php echo $product->Area?></span></span></div>
+			<div class="col-md-7 text-right">
 				<span class="color bold glyphicon glyphicon-map-marker"></span><span class="color bold">
 				<?php
 				if(isset($product->Street)){
@@ -52,52 +55,58 @@
 			</div>
 		</div>
 
-		<div class="product-assets">
-			<div id='carousel-custom' class='carousel slide' data-interval="false" data-ride='carousel'>
-				<div class='carousel-outer'>
-					<!-- Wrapper for slides -->
-					<div class='carousel-inner'>
-						<?php
-						$isFirst = true;
-						foreach($product->Assets as $asset){
-							if($isFirst){
-								echo '<div class="item active">';
-								$isFirst = false;
-							}else{
-								echo '<div class="item">';
+		<?php
+		if($product->Assets != null && count($product->Assets) > 0) {
+			?>
+			<div class="product-assets">
+				<div id='carousel-custom' class='carousel slide' data-interval="false" data-ride='carousel'>
+					<div class='carousel-outer'>
+						<!-- Wrapper for slides -->
+						<div class='carousel-inner'>
+							<?php
+							$isFirst = true;
+							foreach ($product->Assets as $asset) {
+								if ($isFirst) {
+									echo '<div class="item active">';
+									$isFirst = false;
+								} else {
+									echo '<div class="item">';
+								}
+								echo '<img src="' . str_replace('resize/200x200/', '', $asset->OrgUrl) . '" alt=\'\' />';
+								echo '</div>';
 							}
-							echo '<img src="'.str_replace('resize/200x200/','', $asset->OrgUrl).'" alt=\'\' />';
-							echo '</div>';
-						}
-						?>
+							?>
+						</div>
+
+						<!-- Controls -->
+						<a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
+							<span class='glyphicon glyphicon-chevron-left'></span>
+						</a>
+						<a class='right carousel-control' href='#carousel-custom' data-slide='next'>
+							<span class='glyphicon glyphicon-chevron-right'></span>
+						</a>
 					</div>
 
-					<!-- Controls -->
-					<a class='left carousel-control' href='#carousel-custom' data-slide='prev'>
-						<span class='glyphicon glyphicon-chevron-left'></span>
-					</a>
-					<a class='right carousel-control' href='#carousel-custom' data-slide='next'>
-						<span class='glyphicon glyphicon-chevron-right'></span>
-					</a>
-				</div>
+					<!-- Indicators -->
+					<ol class='carousel-indicators mCustomScrollbar'>
+						<?php
+						$i = 0;
+						foreach ($product->Assets as $asset) {
+							if ($i == 0) {
+								echo '<li data-target="#carousel-custom" data-slide-to="' . $i . '" class="active"><img src="' . $asset->Url . '" /></li>';
+							} else {
+								echo '<li data-target="#carousel-custom" data-slide-to="' . $i . '"><img src="' . $asset->Url . '" /></li>';
+							}
 
-				<!-- Indicators -->
-				<ol class='carousel-indicators mCustomScrollbar'>
-					<?php
-					$i = 0;
-					foreach($product->Assets as $asset){
-						if($i == 0){
-							echo '<li data-target="#carousel-custom" data-slide-to="'.$i.'" class="active"><img src="'.$asset->Url.'" /></li>';
-						}else{
-							echo '<li data-target="#carousel-custom" data-slide-to="'.$i.'"><img src="'.$asset->Url.'" /></li>';
+							$i++;
 						}
-
-						$i++;
-					}
-					?>
-				</ol>
+						?>
+					</ol>
+				</div>
 			</div>
-		</div>
+			<?php
+		}
+		?>
 
 		<h2 class="h2title">Chi Tiết
 			<hr/>
@@ -188,7 +197,8 @@
 	<div class="col-md-3 no-margin-right no-padding-right">
 		<?php $this->load->view('/SocialShare') ?>
 		<?php $this->load->view('/Subscrible') ?>
-		<?php $this->load->view('/Search_filter') ?>
+		<div class="clear-both"></div>
+		<?php $this->load->view('/common/Search_filter') ?>
 	</div>
 
 </div>
