@@ -8,14 +8,14 @@
 ?>
 <div class="subscribe-panel col-md-12 no-padding">
 	<div class="well">
-		<form action="#">
+		<form id="subscribleForm" action="#">
 			<div class="row text-center panel-title">ĐĂNG KÝ NHẬN TIN</div>
 			<div class="input-group">
-				<input class="btn btn-sm" name="email" id="email" type="email" placeholder="Nhập email của bạn" required>
-				<button class="btn btn-info btn-sm" type="submit">Đăng ký</button>
+				<input class="btn btn-sm" name="email" id="sbEmail" type="email" placeholder="Nhập email của bạn" required>
+				<a class="btn btn-info btn-sm" id="btnSubscrible">Đăng ký</a>
 			</div>
 			<div class="input-group">
-				<small class="promise"><em>Cam kết không gửi tin rác.</em></small>
+				<small class="promise" id="subcribleMes"><em>Cam kết không gửi tin rác.</em></small>
 			</div>
 		</form>
 	</div>

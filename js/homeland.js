@@ -6,7 +6,43 @@ $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
 	loadSearchDistrictByCityId();
 	submitSearchForm();
+	subscribleHandler();
 });
+
+function subscribleHandler(){
+	$("#btnSubscrible").click(function(e){
+		var email = $("#sbEmail").val();
+		if(email != null && isValidEmail(email)){
+			ga('send', {
+				hitType: 'event',
+				eventCategory: 'Subscrible',
+				eventAction: 'Subscrible email',
+				eventLabel: 'Subscrible'
+			});
+
+			jQuery.ajax({
+				type: "POST",
+				url: urls.addSubscribleUrl,
+				dataType: 'json',
+				data: {email: email},
+				success: function(res){
+					if(res == 'success'){
+						$("#subcribleMes").html("<span class='subscrible-success'>Đăng ký theo dõi thành công.</span>");
+					}else{
+						$("#subcribleMes").html("<span class='subscrible-danger'>Email này đã tồn tại.</span>");
+					}
+				}
+			});
+		}else{
+			$("#subcribleMes").html("<span class='subscrible-danger'>Email không đúng định dạng.</span>");
+		}
+	});
+}
+
+function isValidEmail(email){
+	var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	return re.test(email);
+}
 
 function loadSearchDistrictByCityId(){
 	$("#cmCityId").change(function(){

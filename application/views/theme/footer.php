@@ -48,7 +48,8 @@
 		loadDistrictByCityId: '<?= base_url('/ajax_controller/findDistrictByCityId') ?>',
 		loadWardByDistrictId: '<?= base_url('/ajax_controller/findWardByDistrictId') ?>',
 		findStreetByNameUrl: '<?= base_url('/ajax_controller/findStreetByName') ?>',
-		updateCoordinatorMapUrl: '<?= base_url('/ajax_controller/updateCoordinator') ?>'
+		updateCoordinatorMapUrl: '<?= base_url('/ajax_controller/updateCoordinator') ?>',
+		addSubscribleUrl: '<?= base_url('/ajax_controller/addSubscrible') ?>',
 	};
 </script>
 <script src="<?php echo base_url()?>js/mcustome.js"></script>

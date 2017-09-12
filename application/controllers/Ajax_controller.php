@@ -15,6 +15,8 @@ class Ajax_controller extends CI_Controller
 		$this->load->helper("seo_url");
 		$this->load->model('Street_Model');
 		$this->load->model('Product_Model');
+		$this->load->model('Subscrible_Model');
+		$this->load->helper('date');
 	}
 
 	public function findStreetByName(){
@@ -41,5 +43,20 @@ class Ajax_controller extends CI_Controller
 		$latitude = $this->input->post('lat');
 		$this->Product_Model->updateCoordinator($productId, $longitude, $latitude);
 		echo json_encode('{success: true}');
+	}
+
+	public function addSubscrible(){
+		$email = $this->input->post('email');
+		if($this->Subscrible_Model->findByEmail($email) < 1){
+			$datestring = '%Y-%m-%d %h:%i:%s';
+			$time = time();
+			$now = mdate($datestring, $time);
+
+			$data = array("Email" => $email, "CreatedDate" => $now, "Status" => ACTIVE);
+			$this->Subscrible_Model->insert($data);
+			echo json_encode('success');
+		}else{
+			echo json_encode('failure');
+		}
 	}
 }

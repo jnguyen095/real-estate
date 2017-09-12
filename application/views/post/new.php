@@ -16,7 +16,6 @@
 		<script src="<?= base_url('/ckeditor/ckeditor.js') ?>"></script>
 		<?php $this->load->view('common_header')?>
 		<script src="<?= base_url('/js/createPost.js') ?>"></script>
-		<?php $this->load->view('/common/googleadsense')?>
 </head>
 </head>
 <body>

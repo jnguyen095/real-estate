@@ -339,6 +339,15 @@ input.btn.btn-sm:focus {
 	width: 70%;
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
+	text-align: left;
+}
+
+.subscrible-success{
+	color: #5EAB1F;
+}
+
+.subscrible-danger{
+	color: #ff0000;
 }
 
 .subscribe-panel button.btn {
