@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="<?=base_url('/css/carousel-custom.css')?>" />
 	<script src="<?=base_url('/js/jquery.mCustomScrollbar.min.js')?>"></script>
 	<?php $this->load->view('/common/googleadsense')?>
+	<?php $this->load->view('/common/facebook-pixel-tracking')?>
 </head>
 
 <body>
@@ -93,9 +94,9 @@
 						$i = 0;
 						foreach ($product->Assets as $asset) {
 							if ($i == 0) {
-								echo '<li data-target="#carousel-custom" data-slide-to="' . $i . '" class="active"><img src="' . $asset->Url . '" /></li>';
+								echo '<li data-target="#carousel-custom" data-slide-to="' . $i . '" class="active"><img onclick="ga(\'send\',{hitType: \'event\', eventCategory: \'Thumb Detail Page\',eventAction: \'List thumb detail page\',eventLabel: \'Xem: '.$asset->Url.'\'});" src="' . $asset->Url . '" /></li>';
 							} else {
-								echo '<li data-target="#carousel-custom" data-slide-to="' . $i . '"><img src="' . $asset->Url . '" /></li>';
+								echo '<li data-target="#carousel-custom" data-slide-to="' . $i . '"><img onclick="ga(\'send\',{hitType: \'event\', eventCategory: \'Thumb Detail Page\',eventAction: \'List thumb detail page\',eventLabel: \'Xem: '.$asset->Url.'\'});" src="' . $asset->Url . '" /></li>';
 							}
 
 							$i++;

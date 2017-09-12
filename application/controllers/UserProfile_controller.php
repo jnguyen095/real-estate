@@ -33,6 +33,7 @@ class UserProfile_controller extends CI_Controller
 	{
 		$userId = $this->session->userdata('loginid');
 		$data = $this->Category_Model->getCategories();
+		$data['UserId'] = $userId;
 		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
 		$user = $this->User_Model->getUserById($userId);
 		$crudaction = $this->input->post("crudaction");
@@ -49,6 +50,7 @@ class UserProfile_controller extends CI_Controller
 			{
 				$this->load->view('user/profile', $data);
 			}else{
+				
 				$this->User_Model->updateUser($data);
 				$data['message_response'] = 'Cập nhật thành công';
 			}

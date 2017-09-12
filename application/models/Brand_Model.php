@@ -31,4 +31,12 @@ class Brand_Model extends CI_Model
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
+
+	public function findHotBranch($top){
+		$this->db->where("Hot", ACTIVE);
+		$this->db->limit($top);
+		$query = $this->db->get("brand");
+		return $query->result();
+	}
+
 }

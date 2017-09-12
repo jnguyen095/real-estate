@@ -54,6 +54,7 @@ class User_Model extends CI_Model
 		$datestring = '%Y-%m-%d %h:%i:%s';
 		$time = time();
 		$now = mdate($datestring, $time);
+		$userId = $data['UserId'];
 
 		$newdata = array(
 			'FullName' => $data['txt_fullname'],
@@ -62,6 +63,7 @@ class User_Model extends CI_Model
 			'Address' => $data['txt_address'],
 			'UpdatedDate' => $now
 		);
+		$this->db->where('Us3rID', $userId);
 		$this->db->update('us3r', $newdata);
 	}
 }

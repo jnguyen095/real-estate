@@ -9,7 +9,7 @@
 ?>
 
 <div class="footer row no-margin">
-	<div class="quickLink">
+	<div class="quickLink mobile-hide">
 		<?php
 		//print_r($footerMenus);
 		foreach ($footerMenus as $key => $footerMenu){
@@ -37,6 +37,7 @@
 		<div>Copyright © 2017 tindatdai.vn ® Ghi rõ nguồn "tindatdai.com" khi phát hành lại thông tin từ website này.</div>
 		<div>Hotline: 0982.647.619 | Email: tindatdai@gmail.com</div>
 	</div>
+	<a style="display: none" href="http://backlinks.vn" target="_blank" title="free auto backlink, tao backlink, tao backlink chat luong cao mien phi" rel="dofollow"><img src="http://backlinks.vn/backlink.gif" alt="free auto backlink, tao backlink, tao backlink chat luong cao mien phi" width="80" height="15" border="0" /></a>
 </div>
 <script>
 	var urls = {

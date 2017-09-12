@@ -89,6 +89,11 @@ $route['tim-kiem.html/(:num)'] = "Search_controller/index/$1";
 // Sitemap
 $route['sitemap'] = "Sitemap_controller";
 
+// tin tuc
+$route['tin-tuc'] = "News_controller";
+$route['tin-tuc.html/(:num)'] = "News_controller/index/$1";
+$route['(:any)-n(:num)'] = "News_controller/detail/$2";
+
 
 // View by category
 $route['(:any)-c(:num)'] = "Product_controller/listItem/$2";

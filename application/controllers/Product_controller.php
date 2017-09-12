@@ -50,6 +50,7 @@ class Product_controller extends CI_Controller
 		$product = $this->Product_Model->findByIdFetchAll($productId);
 		$data['category'] = $this->Category_Model->findById($product->CategoryID);
 		$data['product'] = $product;
+		$data['cities'] = $this->City_Model->getAllActive();
 
 		$this->Product_Model->updateViewForProductId($productId);
 		$this->load->helper('url');

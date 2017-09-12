@@ -14,7 +14,7 @@
 	<?php $this->load->view('/theme/header')?>
 
 	<div class="row no-margin">
-		<div class="col-lg-6 col-lg-offset-3 col-sm-6 well login-panel">
+		<div class="col-lg-6 col-sm-6 well login-panel">
 			<?php if(!empty($error_response)){
 				echo '<div class="alert alert-danger">';
 				echo $error_response;
@@ -114,6 +114,8 @@
 
 			</fieldset>
 			<?php echo form_close(); ?>
+		</div>
+		<div class="col-lg-6 col-sm-6 login-panel search-panel block-panel">
 		</div>
 	</div>
 	<?php $this->load->view('/theme/footer')?>

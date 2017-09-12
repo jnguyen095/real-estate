@@ -67,3 +67,113 @@
 .orver-hidden{
 	overflow: hidden;
 }
+
+@media (max-width: 4019px) and (min-width: 980px) {
+	.home .box-featured-new-projects .listing-card .listing-img-a img {
+		height: 163px;
+	}
+}
+
+@media only screen and (min-width: 758px) {
+	.listing-card .listing-img-a img {
+		height: 165px;
+	}
+}
+.listing-card .listing-img-a img {
+	width: 100%;
+	height: 145px;
+	object-fit: cover;
+}
+.home .box-featured-new-projects img {
+	display: block;
+}
+img {
+	vertical-align: middle;
+}
+
+.home-second-row{
+	background: #f2f2f2;
+	border-top: 1px solid #e3e3e3;
+	border-bottom: 1px solid #e3e3e3;
+	padding: 10px 2px;
+	margin-bottom: 25px;
+}
+
+.home-second-row .listing-card {
+	line-height: 1.15em;
+	background: white;
+	margin-bottom: 20px 0px;
+}
+
+.home-second-row .item {
+	vertical-align: top;
+	white-space: normal;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+}
+
+.listing-card .listing-card-info {
+	-webkit--border-radius: 0 0 2px 2px;
+	-moz--border-radius: 0 0 2px 2px;
+	-ms--border-radius: 0 0 2px 2px;
+	border-radius: 0 0 2px 2px;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+	box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+	padding: 15px 20px;
+}
+
+.listing-card h3 {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	margin-bottom: 5px;
+	line-height: normal;
+}
+
+.listing-card h3 a {
+	font-weight: normal;
+	display: block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 14px;
+	color: #008000;
+}
+
+.app-sg.home .box-featured-new-projects .listing-card .listing-card-info .listing-location {
+	min-height: 43.2px;
+	max-height: 43.2px;
+}
+.app-sg .listing-card .listing-card-info .listing-location {
+	min-height: 21.6px;
+	max-height: 21.6px;
+}
+.listing-card .listing-card-info .listing-location {
+	display: block;
+	min-height: 43.2px;
+	max-height: 43.2px;
+	font-size: 12px;
+	line-height: 1.8;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.listing-card .listing-location {
+	color: #99999e;
+	font-size: 12px;
+}
+.listing-card p {
+	margin-bottom: 5px;
+}
+
+.listing-card:hover, .listing-card:focus {
+	-webkit-transform: translateY(-1px);
+	-moz-transform: translateY(-1px);
+	-ms-transform: translateY(-1px);
+	transform: translateY(-1px);
+	-webkit-box-shadow: 0 7px 14px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0 7px 14px rgba(0,0,0,0.1);
+	box-shadow: 0 7px 14px rgba(0,0,0,0.1);
+}
+
+

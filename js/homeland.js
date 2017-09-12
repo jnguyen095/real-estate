@@ -38,6 +38,12 @@ function socialLogin(email, userID, fullName, callback){
 
 function submitSearchForm(){
 	$("#btnSearch").click(function(){
+		ga('send', {
+			hitType: 'event',
+			eventCategory: 'Search',
+			eventAction: 'Tìm kiếm',
+			eventLabel: 'Tìm kiếm'
+		});
 		$("form#search_form").submit();
 	});
 }

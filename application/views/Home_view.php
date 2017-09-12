@@ -3,18 +3,21 @@
 
 <head>
 	<meta charset = "utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Thông tin mua bán bất động sản, đăng tin miễn phí. Mua bán nhà đất, cho thuê nhà đất, văn phòng, căn hộ, biệt thự, chung cư.">
 	<meta name="keywords" content="Bất động sản, bán nhà, chung cư, mua đất, bán đất, real estate">
 	<title>Tin Đất Đai | Bất Động Sản | Mua Bán Chung Cư, Nhà Đất</title>
+	<link rel="icon" sizes="48x48" href="<?=base_url('/img/ico.ico')?>">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/home.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v1.0.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min.css">
 	<!-- jQuery library -->
 	<script src="<?php echo base_url()?>js/jquery.min.js"></script>
 	<!-- Latest compiled JavaScript -->
 	<script src="<?php echo base_url()?>js/bootstrap.min.js"></script>
 	<?php $this->load->view('/common/googleadsense')?>
+	<?php $this->load->view('/common/facebook-pixel-tracking')?>
 </head>
 
 <body>
@@ -49,7 +52,7 @@
 				<div class='carousel-outer'>
 					<!-- Wrapper for slides -->
 					<div class='carousel-inner'>
-						<?php
+						<?php /*
 						$counter = 0;
 						foreach ($hotProducts as $hotProduct) {
 							?>
@@ -73,6 +76,28 @@
 								</div>
 							</div>
 							<?php
+						} */
+						?>
+
+						<?php
+						$counter = 0;
+						foreach ($topNews as $topNew) {
+							?>
+							<div class="item <?=$counter++ == 0 ? 'active' : ''?>">
+								<div class="hotProduct">
+									<div class="hot-title">
+										<a href="<?=seo_url($topNew->Title).'-n'.$topNew->NewsID.'.html'?>"><?=$topNew->Title?></a>
+									</div>
+									<div class="hot-img">
+										<div class="hotImg">
+											<img alt="<?=$topNew->Title?>" src="<?=$topNew->Thumb?>"/>
+										</div>
+										<div class="clear-both"></div>
+									</div>
+									<div class="hot-brief"><?=$topNew->Brief?></div>
+								</div>
+							</div>
+							<?php
 						}
 						?>
 					</div>
@@ -82,10 +107,41 @@
 	</div>
 	<div class="clear-both"></div>
 
+	<?php
+	if(isset($hotBranches) && count($hotBranches) > 0) {
+		?>
+		<div class="home-second-row">
+			<?php
+			foreach ($hotBranches as $branch) {
+				?>
+				<div class="col-md-3">
+					<div class="item">
+						<div class="listing-card ">
+							<a href="<?=base_url() . seo_url($branch->BrandName) . '-b' . $branch->BrandID ?>.html" title="<?=$branch->BrandName?>" class="listing-card-link listing-img-a">
+								<img alt="<?=$branch->BrandName?>" src="<?=$branch->Thumb?>">
+							</a>
+							<div class="listing-card-info">
+								<h3><a href="<?=base_url() . seo_url($branch->BrandName) . '-b' . $branch->BrandID ?>.html" title="<?=$branch->BrandName?>"
+									   class="listing-card-link"><?=$branch->BrandName?></a></h3>
+								<p class="listing-location"><?=$branch->Description?></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<?php
+			}
+			?>
+			<div class="clear-both"></div>
+		</div>
+		<div class="clear-both"></div>
+		<?php
+	}
+	?>
+
 	<div class="nha-dat-ban">
 		<div class="col-md-9">
 			<div class="block-panel">
-				<div class="block-header text-left">NHÀ ĐẤT BÁN</div>
+				<div class="block-header text-left"><h1 class="h1Class">NHÀ ĐẤT BÁN</h1></div>
 				<div class="block-body">
 					<?php
 					foreach ($nhadatban as $product){
@@ -93,8 +149,8 @@
 						echo '<div class="row product-title"><a href="'.base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html">'. $product->Title .'</a> </div>';
 
 						echo '<div class="row product-content">';
-						echo '<div class="col-md-2 col-xs-4 no-padding"><a href="'.base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html"><img style="max-width: 120px" src="'.$product->Thumb.'"/></a></div>';
-						echo '<div class="col-md-10 col-xs-8">';
+						echo '<div class="col-md-2 col-xs-5 no-padding"><a href="'.base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html"><img style="max-width: 120px" src="'.$product->Thumb.'" alt="'.$product->Title.'"/></a></div>';
+						echo '<div class="col-md-10 col-xs-7">';
 						echo '<div class="row pos-relative">';
 
 						echo '<div class="productTop">';
@@ -118,7 +174,7 @@
 			</div>
 
 			<div class="block-panel">
-				<div class="block-header text-left">NHÀ ĐẤT CHO THUÊ</div>
+				<div class="block-header text-left"><h1 class="h1Class">NHÀ ĐẤT CHO THUÊ</h1></div>
 				<div class="block-body">
 					<?php
 					foreach ($nhadatchothue as $product){
@@ -126,8 +182,8 @@
 						echo '<div class="row product-title"><a href="'.base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html">'. $product->Title .'</a> </div>';
 
 						echo '<div class="row product-content">';
-						echo '<div class="col-md-2 col-xs-4 no-padding"><a href="'.base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html"><img style="max-width: 120px" src="'.$product->Thumb.'"/></a></div>';
-						echo '<div class="col-md-10 col-xs-8">';
+						echo '<div class="col-md-2 col-xs-5 no-padding"><a href="'.base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html"><img style="max-width: 120px" src="'.$product->Thumb.'" alt="'.$product->Title.'"/></a></div>';
+						echo '<div class="col-md-10 col-xs-7">';
 						echo '<div class="row pos-relative">';
 
 						echo '<div class="productTop">';

@@ -112,7 +112,7 @@
 			</select>
 		</div>
 		<div class="row text-center">
-			<a id="btnSearch" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Tìm Kiếm</a>
+			<a id="btnSearch" class="btn btn-tindatdai btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Tìm Kiếm</a>
 		</div>
 	</div>
 	<?php echo form_close(); ?>

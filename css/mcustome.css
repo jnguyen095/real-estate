@@ -112,6 +112,10 @@ body{
 	border: 1px solid #e3e3e3;
 }
 
+.row.product-list:hover {
+	background: #f9f9f9;
+}
+
 .search-result-panel {
 	color: #055699;
 	font-size: 18px;
@@ -251,15 +255,29 @@ a:focus, a{
 	margin-bottom:5px;
 }
 
-.header-logo > img{
-	width: 115px;
-	margin-left:25px;
+.banner{
+	background: url('../img/top-banner.jpg');
+	background-repeat: no-repeat;
+	background-position-x: 332px;
 }
 
 .header-right{
 	margin-right: 20px;
 	margin-top: 5px;
 	text-align: center;
+}
+
+.btn-tindatdai{
+	color: #fff;
+	background-color: #FF891F;
+	border-color: #ff5d0e;
+}
+
+.btn-tindatdai:hover {
+	color: #fff !important;
+	background-color: #ff5d0e !important;
+	border-color: #ff5d0e;
+	text-decoration: none;
 }
 
 .post-btn{
@@ -290,9 +308,21 @@ a:focus, a{
 	margin-bottom: 5px !important;
 }
 
+.news .productTop{
+	background: none;
+}
+
+.news .news-related {
+	padding-top: 10px;
+	border-top: solid 1px #ccc;
+}
 
 .product-brief{
 	padding-bottom: 20px;
+}
+
+.news .news-sources{
+	margin-top: 20px;
 }
 
 .pos-relative{
@@ -666,4 +696,28 @@ ol, ul {
 
 ul.city-link {
 	padding: 0px;
+}
+
+.h1Class{
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.news{
+	font-size: 14px;
+	line-height: 22px;
+}
+
+.news .summary > h2{
+	font-weight: bold;
+	margin: 15px 0;
+}
+
+.news .news-source{
+	float: right;
+	color: #8f8f8f;
+}
+
+.news .news-date{
+	color: #8f8f8f;
 }

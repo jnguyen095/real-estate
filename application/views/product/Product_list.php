@@ -8,6 +8,7 @@
 	<title>Tin Đất Đai | <?php echo $category->CatName?></title>
 	<?php $this->load->view('common_header')?>
 	<?php $this->load->view('/common/googleadsense')?>
+	<?php $this->load->view('/common/facebook-pixel-tracking')?>
 </head>
 
 <body>
@@ -42,8 +43,8 @@
 					echo '<div class="row product-title"><a href="'.base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html">'. $product->Title .'</a> </div>';
 
 					echo '<div class="row product-content">';
-					echo '<div class="col-md-2 col-xs-4 no-padding"><a href="'.base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html"><img style="max-width: 120px" src="'.$product->Thumb.'"/></a></div>';
-					echo '<div class="col-md-10 col-xs-8">';
+					echo '<div class="col-md-2 col-xs-5 no-padding"><a href="'.base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html"><img style="max-width: 120px" src="'.$product->Thumb.'" alt="'.$product->Title.'"/></a></div>';
+					echo '<div class="col-md-10 col-xs-7">';
 					echo '<div class="row pos-relative">';
 
 					echo '<div class="productTop">';

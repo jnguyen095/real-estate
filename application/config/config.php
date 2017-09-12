@@ -529,3 +529,4 @@ $config['proxy_ips'] = '';
 $config['thumb_width'] = 300;
 $config['thumb_height'] = 300;
 $config['allowed_img_types'] = 'gif|jpg|png|jpeg|JPG|PNG|JPEG';
+
