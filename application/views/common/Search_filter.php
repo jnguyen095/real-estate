@@ -16,6 +16,9 @@
 	?>
 	<div class="block-body">
 		<div class="row">
+			<input id="keyword" type="text" placeholder="Từ khóa" value="<?=isset($keyword) ? $keyword : ''?>" name="keyword"/>
+		</div>
+		<div class="row">
 			<select id="cmCatId" name="cmCatId">
 				<option value="-1">Tất cả loại tin</option>
 				<?php
@@ -100,17 +103,7 @@
 				<option value="9">>= 500 m2</option>
 			</select>
 		</div>
-		<div class="row">
-			<select id="cmPostDate" name="cmPostDate">
-				<option value="-1">Ngày đăng tin</option>
-				<option value="0">Hôm nay</option>
-				<option value="1">Hôm qua</option>
-				<option value="2">2 ngày qua</option>
-				<option value="3">5 ngày qua</option>
-				<option value="4">7 ngày qua</option>
-				<option value="5">30 ngày qua</option>
-			</select>
-		</div>
+
 		<div class="row text-center">
 			<a id="btnSearch" class="btn btn-tindatdai btn-sm"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Tìm Kiếm</a>
 		</div>

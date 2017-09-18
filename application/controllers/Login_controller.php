@@ -52,6 +52,7 @@ class Login_controller extends CI_Controller
 				'fullname' => $fullname,
 				'loginuser' => TRUE
 			);
+			$this->Login_Model->updateLastLogin($usr_result->Us3rID);
 			$this->session->set_userdata($sessiondata);
 		}
 
@@ -94,6 +95,7 @@ class Login_controller extends CI_Controller
 						'loginuser' => TRUE
 					);
 					$this->session->set_userdata($sessiondata);
+					$this->Login_Model->updateLastLogin($usr_result->Us3rID);
 					redirect("trang-chu");
 				}
 				else

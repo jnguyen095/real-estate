@@ -29,6 +29,7 @@ class Search_controller extends CI_Controller
 		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
 		$data['cities'] = $this->City_Model->getAllActive();
 
+		$keyword = $this->input->post("keyword");
 		$catId = $this->input->post("cmCatId");
 		$cityId = $this->input->post("cmCityId");
 		$districtId = $this->input->post("cmDistrictId");
@@ -36,6 +37,7 @@ class Search_controller extends CI_Controller
 		$price = $this->input->post("cmPrice");
 		$postDate = $this->input->post("cmPostDate");
 
+		$data['keyword'] = $keyword;
 		$data['cmCatId'] = $catId;
 		$data['cmCityId'] = $cityId;
 		$data['cmDistrictId'] = $districtId;
@@ -43,7 +45,7 @@ class Search_controller extends CI_Controller
 		$data['cmPrice'] = $price;
 		$data['cmPostDate'] = $postDate;
 
-		$search_data = $this->Product_Model->searchByProperties($catId, $cityId, $districtId, $area, $price, $postDate, $offset, MAX_PAGE_ITEM);
+		$search_data = $this->Product_Model->searchByProperties($keyword, $catId, $cityId, $districtId, $area, $price, $postDate, $offset, MAX_PAGE_ITEM);
 		$data = array_merge($data, $search_data);
 		$config = pagination();
 		$config['base_url'] = base_url('tim-kiem.html');

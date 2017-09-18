@@ -13,7 +13,8 @@ class Post_controller extends CI_Controller
 	{
 		parent::__construct();
 		if (!$this->session->userdata('loginid')){
-			redirect('dang-nhap');
+			// redirect('dang-nhap');
+			$this->session->set_userdata('loginid', 0);
 		}
 		$this->load->helper('form');
 		$this->load->helper('url');
@@ -37,8 +38,10 @@ class Post_controller extends CI_Controller
 		$data = $this->Category_Model->getCategories();
 		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
 		$data['cities'] = $this->City_Model->getAllActive();
-		$user = $this->User_Model->getUserById($this->session->userdata('loginid'));
-		$data['user'] = $user;
+		if($this->session->userdata('loginid') != null) {
+			$user = $this->User_Model->getUserById($this->session->userdata('loginid'));
+			$data['user'] = $user;
+		}
 		$data['units'] = $this->Unit_Model->findAll();
 		$data['brands'] = $this->Brand_Model->findAll();
 		$data['directions'] = $this->Direction_Model->findAll();
@@ -48,10 +51,12 @@ class Post_controller extends CI_Controller
 			$this->processSaveOrUpdatePost($data, 'add');
 		} else {
 			$this->session->set_userdata("uuid", uniqid());
-			$data['contact_name'] = $user->FullName;
-			$data['contact_phone'] = $user->Phone;
-			$data['txt_email'] = $user->Email;
-			$data['contact_address'] = $user->Address;
+			if($this->session->userdata('loginid') != null && isset($user)) {
+				$data['contact_name'] = $user->FullName;
+				$data['contact_phone'] = $user->Phone;
+				$data['txt_email'] = $user->Email;
+				$data['contact_address'] = $user->Address;
+			}
 			$this->load->view('post/new', $data);
 		}
 	}
@@ -61,7 +66,9 @@ class Post_controller extends CI_Controller
 		$data = $this->Category_Model->getCategories();
 		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
 		$data['cities'] = $this->City_Model->getAllActive();
-		$data['user'] = $this->User_Model->getUserById($this->session->userdata('loginid'));
+		if($this->session->userdata('loginid') != null) {
+			$data['user'] = $this->User_Model->getUserById($this->session->userdata('loginid'));
+		}
 		$data['units'] = $this->Unit_Model->findAll();
 		$data['brands'] = $this->Brand_Model->findAll();
 		$data['directions'] = $this->Direction_Model->findAll();
@@ -160,7 +167,7 @@ class Post_controller extends CI_Controller
 			$this->form_validation->set_rules("txt_area", "Area", "numeric");
 			$this->form_validation->set_rules("txt_city", "City", "required|numeric");
 			$this->form_validation->set_rules("txt_district", "District", "required|numeric");
-			$this->form_validation->set_rules("txt_ward", "Ward", "required|numeric");
+			$this->form_validation->set_rules("txt_ward", "Ward", "numeric");
 			$this->form_validation->set_rules("txt_street", "Street", "required");
 			$this->form_validation->set_rules("txt_fullname", "Name", "required");
 			$this->form_validation->set_rules("txt_phone", "Phone", "required");
@@ -204,6 +211,9 @@ class Post_controller extends CI_Controller
 				$coordinators = $this->getLongitudeAndLatitudeFromAddress($address);
 				$data['longitude'] = $coordinators[0];
 				$data['latitude'] = $coordinators[1];
+				if($data['ward'] == -1){
+					$data['ward'] = null;
+				}
 
 				if($data['productId'] != null && $data['productId'] > 0){
 					$ok = $this->Product_Model->updatePost($data, $otherImgs);

@@ -33,7 +33,7 @@ class Home_controller extends CI_Controller
 		$data['topbranchhasproduct'] = $this->Brand_Model->findTopBranchHasProduct(10);
 		$data['hotBranches'] = $this->Brand_Model->findHotBranch(4);
 		$data['cities'] = $this->City_Model->getAllActive();
-		$data['topNews'] = $this->News_Model->findTopNewExceptCurrent(0, 3);
+		$data['topNews'] = $this->News_Model->findTopNewExceptCurrent(0, 5);
 		$this->load->helper('url');
 		$this->load->view('Home_view', $data);
 	}

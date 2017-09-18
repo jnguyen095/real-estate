@@ -94,6 +94,11 @@ $route['tin-tuc'] = "News_controller";
 $route['tin-tuc.html/(:num)'] = "News_controller/index/$1";
 $route['(:any)-n(:num)'] = "News_controller/detail/$2";
 
+// nha mau dep
+$route['nha-mau-dep'] = "SampleHouse_controller";
+$route['nha-mau-dep.html/(:num)'] = "SampleHouse_controller/index/$1";
+$route['(:any)-s(:num)'] = "SampleHouse_controller/detail/$2";
+
 
 // View by category
 $route['(:any)-c(:num)'] = "Product_controller/listItem/$2";

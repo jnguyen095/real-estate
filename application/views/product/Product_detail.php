@@ -196,10 +196,12 @@
 
 	</div>
 	<div class="col-md-3 no-margin-right no-padding-right">
+		<?php $this->load->view('/common/sample_house') ?>
+		<?php $this->load->view('/common/Search_filter') ?>
+		<div class="clear-both"></div>
 		<?php $this->load->view('/SocialShare') ?>
 		<?php $this->load->view('/Subscrible') ?>
 		<div class="clear-both"></div>
-		<?php $this->load->view('/common/Search_filter') ?>
 	</div>
 
 </div>

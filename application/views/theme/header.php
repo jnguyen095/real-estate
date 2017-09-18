@@ -10,25 +10,21 @@
 <div class="header">
 	<div class="banner">
 		<div class="header-logo float-left">
-			<img src="<?=base_url('/img/logo.jpg')?>" alt="Logo"/>
+			<a href="<?=base_url('/trang-chu.html')?>"><img src="<?=base_url('/img/logo.jpg')?>" alt="Logo"/></a>
 		</div>
 		<div class="header-right float-right">
 			<?php
 				if($this->session->userdata('username') != null){
 			?>
-				<div><a href="<?=base_url('/thong-tin-ca-nhan.html')?>"><?=$this->session->userdata('fullname')?></a> | <a href="<?=base_url('/quan-ly-tin-rao.html')?>">Quản lý tin rao</a> | <a href="<?=base_url('/dang-xuat.html')?>">Đăng xuất</a></div>
+				<div class="head-links"><a href="<?=base_url('/thong-tin-ca-nhan.html')?>"><?=$this->session->userdata('fullname')?></a> | <a href="<?=base_url('/quan-ly-tin-rao.html')?>">Quản lý tin rao</a> | <a href="<?=base_url('/dang-xuat.html')?>">Đăng xuất</a></div>
 			<?php
 				}else{
 			?>
-				<div><a href="<?=base_url('/dang-nhap.html')?>">Đăng nhập</a>  | <a href="<?=base_url('/dang-ky.html')?>">Đăng ký</a></div>
+				<div class="head-links"><a href="<?=base_url('/dang-nhap.html')?>">Đăng nhập</a>  | <a href="<?=base_url('/dang-ky.html')?>">Đăng ký</a></div>
 			<?php
 				}
 			?>
-			<?php
-			if($this->session->userdata('username') != null){
-			?>
-				<div class="post-btn"><a class="btn-sm btn-primary" href="<?=base_url('/dang-tin.html')?>">Đăng tin miễn phí</a></div>
-			<?php }?>
+			<div class="post-btn"><a class="btn-sm btn-tindatdai" href="<?=base_url('/dang-tin.html')?>">Đăng tin miễn phí</a></div>
 		</div>
 		<div class="clear-both"></div>
 	</div>
@@ -65,6 +61,7 @@
 						}
 					}
 					?>
+					<li role="presentation"><a href="<?=base_url('nha-mau-dep.html')?>">Nhà Mẫu Đẹp</a> </li>
 					<li role="presentation"><a href="<?=base_url('tin-tuc.html')?>">Tin Tức</a> </li>
 				</ul>
 			</div>

@@ -372,11 +372,14 @@ class Product_Model extends CI_Model
 		}
 	}
 
-	public function searchByProperties($catId, $cityId, $districtId, $area, $price, $postDate, $offset, $limit){
+	public function searchByProperties($keyword, $catId, $cityId, $districtId, $area, $price, $postDate, $offset, $limit){
 		$sql = 'select p.*, c.cityname as city, d.districtname as district from product p';
 		$sql .= ' inner join city c on p.cityid = c.cityid';
 		$sql .= ' inner join district d on p.districtid = d.districtid';
 		$sql .= ' where p.status = '.ACTIVE;
+		if(isset($keyword)){
+			$sql .= ' and p.Title like \'%' . $keyword .'%\'';
+		}
 		if(isset($catId) && $catId > -1) {
 			$sql .= ' and p.CategoryID = ' . $catId;
 		}

@@ -11,7 +11,9 @@
 <head>
 	<head>
 		<meta charset = "utf-8">
-		<title>Tin Đất Đai | Đăng Tin Rao | Xem Trước</title>
+		<meta name="description" content="Tin Bất động sản, Rao tin miễn phí, tin bất động sản miễn phí">
+		<meta name="keywords" content="Tin Bất động sản, Rao tin miễn phí, tin bất động sản miễn phí">
+		<title>Tin Đất Đai | Đăng Tin Rao Miễn Phí | Tạo Tin Bất Động Sản</title>
 		<?php $this->load->view('common_header')?>
 		<link rel="stylesheet" href="<?=base_url('/css/stepbar.css')?>">
 		<link rel="stylesheet" href="<?=base_url('/css/jquery.mCustomScrollbar.min.css')?>" />
@@ -225,10 +227,30 @@
 
 			</div>
 			<div class="col-md-3 no-margin-right no-padding-right">
-				<?php $this->load->view('/SocialShare') ?>
-				<?php $this->load->view('/Subscrible') ?>
-				<div class="clear-both"></div>
-				<?php $this->load->view('/common/Search_filter') ?>
+				<div class="subscribe-panel col-md-12 no-padding">
+					<div class="well">
+						<div class="row text-center panel-title">HƯỚNG DẪN ĐĂNG TIN</div>
+						<div class="guidline">
+							<ul>
+								<li><span class="pullet">Bài đăng vẫn đang khóa, bài sẻ hiễn thị ra bên ngoài sau khi click button "Đăng Bài"</span></li>
+								<li><span class="pullet">Muốn chỉnh sửa nội dung click "Quay Lại Chỉnh Sửa"</span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="subscribe-panel col-md-12 no-padding">
+					<div class="well">
+						<div class="row text-center panel-title">BẢN ĐỒ</div>
+						<div class="guidline">
+							<ul>
+								<li><span class="pullet">Chọn vị trí trên bản đồ nơi bất động sản đang có rồi click vào đó để thay đổi vị trí</span></li>
+								<li><span class="pullet">Cập nhật bản đồ sẻ tăng thêm tính xác thực và tiếp cận đúng người mua/bán</span></li>
+
+							</ul>
+						</div>
+					</div>
+				</div>
 			</div>
 			<!-- end content -->
 
@@ -237,7 +259,11 @@
 			<div class="row col-md-12 text-center margin-top-20">
 				<input type="hidden" name="crudaction" value="add_new">
 				<a href="<?=base_url('/chinh-sua-p'.$product->ProductID.'.html')?>" class="btn btn-danger">Quay Lại Chỉnh Sửa</a>
-				<a href="<?=base_url('/quan-ly-tin-rao.html')?>" class="btn btn-info">Chỉ Lưu Tạm</a>
+				<?php if($this->session->userdata('loginid') > 0) { ?>
+					<a href="<?= base_url('/quan-ly-tin-rao.html') ?>" class="btn btn-info">Chỉ Lưu Tạm</a>
+					<?php
+				}
+				?>
 				<a href="<?=base_url('/dang-bai-thanh-cong-p'.$product->ProductID.'.html')?>" class="btn btn-info">Đăng Bài</a>
 			</div>
 		</div>

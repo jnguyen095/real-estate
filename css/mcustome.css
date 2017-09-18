@@ -124,10 +124,12 @@ body{
 	font-weight: bold;
 }
 
-.search-panel select{
+.search-panel select,
+#keyword{
 	width: 80%;
 	font-size: 13px;
 	padding: 4px;
+	line-height: 20px;
 	border:solid 1px #ccc;
 }
 
@@ -259,8 +261,12 @@ a:focus, a{
 	background: url('../img/top-banner.jpg');
 	background-repeat: no-repeat;
 	background-position-x: 332px;
+
 }
 
+.head-links a{
+	color: #ff5d0e;
+}
 .header-right{
 	margin-right: 20px;
 	margin-top: 5px;
@@ -624,7 +630,8 @@ input.btn.btn-sm:focus {
 }
 
 .guidline ul{
-	margin-left: -15px;
+	margin-left: -45px;
+	line-height: 22px;
 }
 
 .block-panel{
@@ -729,4 +736,62 @@ ul.city-link {
 
 .news .news-date{
 	color: #8f8f8f;
+}
+
+.inews-l-title {
+	height: 23px;
+	padding: 3px 0 0 34px;
+	border-bottom: 1px solid #37a344;
+}
+
+.inews-l-content {
+	border: 1px solid #e3e3e3;
+	margin-top: 6px;
+	background: #fff;
+	margin-bottom: 15px;
+}
+
+.inews-l-content .inews-l-content-hot {
+	margin: 6px;
+	padding-bottom: 10px;
+	position: relative;
+	border-bottom: 1px solid #cee2e9;
+}
+
+.inews-l-content ul li {
+	margin-bottom: 6px;
+}
+
+.inews-l-content ul{
+	margin-left: -40px;
+}
+
+.inews-l-content img{
+	max-width: 250px;
+}
+
+.inews-l-content ul li a {
+	color: #424242;
+	background: url(../img/icon_butlet.png) no-repeat 8px 7px;
+	display: block;
+	padding-left: 23px;
+}
+
+.guidline .pullet{
+	padding-left:20px;
+	background: url(../img/icon_butlet.png) no-repeat 8px 5px;
+}
+
+.inews-l-content .inews-l-content-hot h3 a {
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.inews-l .inews-l-title a {
+	width: 100%;
+	font-family: 'Roboto Condensed';
+	font-size: 18px;
+	text-transform: uppercase;
+	float: left;
+	color: #016098;
 }

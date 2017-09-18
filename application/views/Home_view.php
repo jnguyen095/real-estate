@@ -10,7 +10,8 @@
 	<link rel="icon" sizes="48x48" href="<?=base_url('/img/ico.ico')?>">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v1.0.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v1.2.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min.css">
 	<!-- jQuery library -->
 	<script src="<?php echo base_url()?>js/jquery.min.js"></script>
@@ -169,7 +170,7 @@
 						echo '</div>';
 					}
 					?>
-					<div class="text-right">Xem thêm</div>
+					<div class="text-right"><a href="<?=base_url('/nha-dat-ban-c257.html')?>">Xem thêm</a></div>
 				</div>
 			</div>
 
@@ -202,13 +203,14 @@
 						echo '</div>';
 					}
 					?>
-					<div class="text-right">Xem thêm</div>
+					<div class="text-right"><a href="<?=base_url('/nha-dat-cho-thue-c267.html')?>">Xem thêm</a></div>
 				</div>
 			</div>
 		</div>
 
 		<!-- begin left side -->
 		<div class="col-md-3">
+			<?php $this->load->view('/common/news_plot')?>
 			<?php $this->load->view('/common/city-left-link')?>
 			<?php $this->load->view('/common/branch-left-link')?>
 		</div>

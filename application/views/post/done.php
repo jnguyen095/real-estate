@@ -11,7 +11,9 @@
 <head>
 	<head>
 		<meta charset = "utf-8">
-		<title>Tin Đất Đai | Đăng Tin Rao | Đăng Bài Thành Công</title>
+		<meta name="description" content="Tin Bất động sản, Rao tin miễn phí, tin bất động sản miễn phí">
+		<meta name="keywords" content="Tin Bất động sản, Rao tin miễn phí, tin bất động sản miễn phí">
+		<title>Tin Đất Đai | Đăng Tin Rao Miễn Phí | Tạo Tin Bất Động Sản</title>
 		<?php $this->load->view('common_header')?>
 		<link rel="stylesheet" href="<?=base_url('/css/stepbar.css')?>">
 		<?php $this->load->view('/common/googleadsense')?>
@@ -71,7 +73,14 @@
 					<div class="post-success">
 						<div class="title">Đăng tin thành công!</div>
 						<div>Link đến tin rao: <a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html'?>"><?=base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html'?></a></div>
-						<div class="margin-top-20"><a href="<?=base_url('/dang-tin.html')?>">&raquo;Đăng tin mới</a>&nbsp;&nbsp;<a href="<?=base_url('/quan-ly-tin-rao.html')?>">&raquo;Đến trang quản lý tin rao</a></div>
+						<div class="margin-top-20"><a href="<?=base_url('/dang-tin.html')?>">&raquo;Đăng tin mới</a>
+							<?php if($this->session->userdata('loginid') > 0) { ?>
+								&nbsp;&nbsp;<a href="<?= base_url('/quan-ly-tin-rao.html') ?>">&raquo;Đến trang quản lý
+									tin rao</a>
+								<?php
+							}
+							?>
+						</div>
 					</div>
 					<?php
 				}

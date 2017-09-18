@@ -69,9 +69,10 @@
 		</div>
 	</div>
 	<div class="col-md-3 no-margin-right no-padding-right">
+		<?php $this->load->view('/common/news_plot')?>
+		<?php $this->load->view('/common/Search_filter') ?>
 		<?php $this->load->view('/Subscrible') ?>
 		<div class="clear-both"></div>
-		<?php $this->load->view('/common/Search_filter') ?>
 	</div>
 </div>
 
