@@ -1,5 +1,5 @@
 /**
- * Created by Ban Vien on 8/1/2017.
+ * Created by Khang Nguyen(khang.nguyen@banvien.com) on 8/1/2017.
  */
 
 $(document).ready(function(){
