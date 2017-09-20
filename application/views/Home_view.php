@@ -10,7 +10,7 @@
 	<link rel="icon" sizes="48x48" href="<?=base_url('/img/ico.ico')?>">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v1.3.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v1.4.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min.css">
 	<!-- jQuery library -->
@@ -156,7 +156,7 @@
 
 						echo '<div class="productTop">';
 						echo '<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="color bold">'.$product->PriceString.'</span><span class="margin-left-10 mobile-hide">Diện tích: <span class="color bold">'.$product->Area.'</span></span><span class="margin-left-10 mobile-hide">Quận/Huyện: <span class="color bold">'.$product->district.', '.$product->city.'</span></div>';
-						echo '<div class="col-md-2 color bold mobile-hide relative-time no-padding text-right">'.relative_time($product->PostDate).'</div>';
+						echo '<div class="col-md-2 color bold mobile-hide relative-time no-padding text-right">'.date('d/m/Y', strtotime($product->PostDate)).'</div>';
 						echo '<div class="clear-both"></div>';
 						echo '</div>';
 
@@ -189,7 +189,7 @@
 
 						echo '<div class="productTop">';
 						echo '<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="color bold">'.$product->PriceString.'</span><span class="margin-left-10 mobile-hide">Diện tích: <span class="color bold">'.$product->Area.'</span></span><span class="margin-left-10 mobile-hide">Quận/Huyện: <span class="color bold">'.$product->district.', '.$product->city.'</span></div>';
-						echo '<div class="col-md-2 color bold mobile-hide relative-time no-padding text-right">'.relative_time($product->PostDate).'</div>';
+						echo '<div class="col-md-2 color bold mobile-hide relative-time no-padding text-right">'.date('d/m/Y', strtotime($product->PostDate)).'</div>';
 						echo '<div class="clear-both"></div>';
 						echo '</div>';
 
