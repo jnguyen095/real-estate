@@ -14,7 +14,7 @@
 	<?php $this->load->view('/theme/header')?>
 
 	<div class="row no-margin">
-		<div class="col-lg-6 col-lg-offset-3 col-sm-6 well login-panel">
+		<div class="col-lg-6 col-lg-offset-3 col-sm-6 no-background well login-panel">
 			<?php
 				$attributes = array("class" => "form-horizontal", "id" => "loginform", "name" => "loginform");
 				echo form_open("dang-nhap", $attributes);

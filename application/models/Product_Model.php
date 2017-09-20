@@ -190,6 +190,18 @@ class Product_Model extends CI_Model
 		return $data;
 	}
 
+	public function findByCatIdAndDistrictIdFetchAddressNotCurrent($catId, $districtId, $limit, $currentProductId){
+		$sql = 'select p.*, c.cityname as city, d.districtname as district from product p';
+		$sql .= ' inner join city c on p.cityid = c.cityid';
+		$sql .= ' inner join district d on p.districtid = d.districtid';
+		$sql .= ' where p.CategoryID = '.$catId.' and p.DistrictID = '.$districtId.' and p.status = '.ACTIVE;
+		$sql .= ' and p.ProductID not in('.$currentProductId.')';
+		$sql .= ' order by p.postdate desc';
+		$sql .= ' limit 0, '.$limit;
+		$products = $this->db->query($sql);
+		return $products->result();
+	}
+
 	public function findByCatIdFetchAddress($catId, $offset=0, $limit){
 		// $this->output->enable_profiler(TRUE);
 		$sql = 'select p.*, c.cityname as city, d.districtname as district from product p';

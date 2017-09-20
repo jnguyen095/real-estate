@@ -31,6 +31,7 @@
 <div class="row no-margin">
 	<div class="col-md-9 no-margin no-padding product-detail">
 		<div class="product-title"><?php echo $product->Title?></div>
+		<div class="date-time">Ngày đăng: <?=date('d/m/Y', strtotime($product->PostDate))?></div>
 		<div class="row">
 			<div class="col-md-5">Giá: <span class="color bold"><?php echo $product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?php echo $product->Area?></span></span></div>
 			<div class="col-md-7 text-right">
@@ -38,13 +39,13 @@
 				<?php
 				if(isset($product->Street)){
 					echo $product->Street;
+					echo ' - ';
 				}
 				if(isset($product->Ward)){
-					echo ' - ';
 					echo $product->Ward->WardName;
+					echo ' - ';
 				}
 				if(isset($product->District)){
-					echo ' - ';
 					echo $product->District->DistrictName;
 				}
 				if(isset($product->City)){
@@ -109,9 +110,7 @@
 		}
 		?>
 
-		<h2 class="h2title">Chi Tiết
-			<hr/>
-		</h2>
+		<h2 class="h2title">Chi Tiết</h2>
 
 		<div class="product-detail content"><?php echo $product->Detail?></div>
 
@@ -183,9 +182,6 @@
 		</div>
 
 
-		<h2 class="h2title">Bản Đồ
-			<hr/>
-		</h2>
 		<?php $this->load->view('/Map_view')?>
 
 		<?php
@@ -194,6 +190,37 @@
 			}
 		?>
 
+		<?php if(isset($similarProducts) && count($similarProducts) > 0){
+			?>
+			<hr/>
+			<h2 class="h2footer">Xem thêm <?=$category->CatName?> tại <?=$district->DistrictName?></h2>
+			<div class="row">
+			<?php
+			foreach ($similarProducts as $similarProduct){
+				?>
+				<div class="col-md-6 col-xs-12 brief-box">
+					<div class="brief-box-item">
+						<div class="product-title"><a href="<?=base_url().seo_url($similarProduct->Title).'-p'.$similarProduct->ProductID?>.html"><?=$similarProduct->Title?></a></div>
+						<div class="content">
+							<div class="image col-md-4">
+								<img style="max-width: 120px" src="<?=$similarProduct->Thumb?>" alt="<?=$product->Title?>"/>
+							</div>
+							<div class="brief-detail col-md-8">
+								<div class="price">Gía: <span class="color bold"><?=$similarProduct->PriceString?></span></div>
+								<div class="area">Diện tích: <span class="color bold"><?=$similarProduct->Area?></span></div>
+								<div class="location"><span class="color bold"><?=$similarProduct->district.', '.$similarProduct->city?></span></div>
+							</div>
+							<div class="clear-both"></div>
+						</div>
+					</div>
+				</div>
+				<?php
+			}
+			?>
+			</div>
+		<?php
+		}
+		?>
 	</div>
 	<div class="col-md-3 no-margin-right no-padding-right">
 		<?php $this->load->view('/common/sample_house') ?>

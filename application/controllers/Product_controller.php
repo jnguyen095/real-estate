@@ -13,6 +13,7 @@ class Product_controller extends CI_Controller
 		$this->load->model('Category_Model');
 		$this->load->model('Product_Model');
 		$this->load->model('City_Model');
+		$this->load->model('District_Model');
 		$this->load->model('News_Model');
 		$this->load->model('SampleHouse_Model');
 		$this->load->helper("seo_url");
@@ -54,9 +55,12 @@ class Product_controller extends CI_Controller
 		$product = $this->Product_Model->findByIdFetchAll($productId);
 		$data['category'] = $this->Category_Model->findById($product->CategoryID);
 		$data['product'] = $product;
+		$data['district'] = $this->District_Model->findById($product->DistrictID);
 		$data['cities'] = $this->City_Model->getAllActive();
 		$data['sampleHouses'] = $this->SampleHouse_Model->findTopNewExceptCurrent(0, 5);
-
+		if($product->DistrictID != null) {
+			$data['similarProducts'] = $this->Product_Model->findByCatIdAndDistrictIdFetchAddressNotCurrent($product->CategoryID, $product->DistrictID, 10, $productId);
+		}
 		$this->Product_Model->updateViewForProductId($productId);
 		$this->load->helper('url');
 		$this->load->view('product/Product_detail', $data);

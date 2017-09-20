@@ -10,7 +10,7 @@
 	<link rel="icon" sizes="48x48" href="<?=base_url('/img/ico.ico')?>">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v1.2.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v1.3.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min.css">
 	<!-- jQuery library -->

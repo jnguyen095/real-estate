@@ -11,7 +11,7 @@ if(isset($sampleHouses)) {
 
 	<div class="inews-l">
 		<div class="inews-l-title">
-			<h3><a href="/tin-tuc.html" title="Tin Bất Động Sản">Thiết kế đẹp</a></h3>
+			<h3><a href="/nha-mau-dep.html" title="Tin Bất Động Sản">Thiết kế đẹp</a></h3>
 		</div>
 		<div class="inews-l-content">
 			<div class="inews-l-content-hot">

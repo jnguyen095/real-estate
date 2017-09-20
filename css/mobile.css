@@ -2,4 +2,12 @@
 	.banner {
 		background: none !important;
 	}
+
+	#carousel-custom {
+		width: 100% !important;
+	}
+
+	#carousel-custom .carousel-inner img {
+		height: auto !important;
+	}
 }
