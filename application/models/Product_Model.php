@@ -405,7 +405,7 @@ class Product_Model extends CI_Model
 			$sql .= ' and p.DistrictID = ' . $districtId;
 		}
 
-		$sql .= ' order by p.postdate desc';
+		$sql .= ' order by date(p.postdate) desc, p.vip asc';
 		$sql .= ' limit '.$offset.','.$limit;
 
 		$countsql = 'select count(*) as total from product where Status = '.ACTIVE;

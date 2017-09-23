@@ -71,8 +71,8 @@
 			<?php
 				if(isset($products) && count($products) > 0){
 					foreach ($products as $product) {
-						echo '<div class="row product-list">';
-						echo '<div class="row product-title"><a href="' . base_url() . seo_url($product->Title) . '-p' . $product->ProductID . '.html">' . $product->Title . '</a> </div>';
+						echo '<div class="row product-list vip'.$product->Vip.'">';
+						echo '<div class="row product-title"><a href="' . base_url() . seo_url($product->Title) . '-p' . $product->ProductID . '.html">'. ($product->Vip < 5 ? '<span class="pvip">v'.$product->Vip.'</span>' :  '') . $product->Title . '</a> </div>';
 
 						echo '<div class="row product-content">';
 						echo '<div class="col-md-2 col-xs-5 no-padding"><a href="' . base_url() . seo_url($product->Title) . '-p' . $product->ProductID . '.html"><img style="max-width: 120px" src="' . $product->Thumb . '"/></a></div>';
@@ -81,7 +81,7 @@
 
 						echo '<div class="productTop">';
 						echo '<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="color bold">' . $product->PriceString . '</span><span class="margin-left-10 mobile-hide">Diện tích: <span class="color bold">' . $product->Area . '</span></span><span class="margin-left-10 mobile-hide">Quận/Huyện: <span class="color bold">' . $product->district . ', ' . $product->city . '</span></div>';
-						echo '<div class="col-md-2 color bold mobile-hide relative-time no-padding text-right">' . relative_time($product->PostDate) . '</div>';
+						echo '<div class="col-md-2 color bold mobile-hide relative-time no-padding text-right">' . date('d/m/Y', strtotime($product->PostDate)). '</div>';
 						echo '<div class="clear-both"></div>';
 						echo '</div>';
 
