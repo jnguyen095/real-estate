@@ -32,7 +32,7 @@ class Product_Model extends CI_Model
 		$sql .= ' inner join city c on p.cityid = c.cityid';
 		$sql .= ' inner join district d on p.districtid = d.districtid';
 		$sql .= ' inner join category ct on ct.categoryid = p.categoryid';
-		$sql .= ' where ct.code = \''.$catCode.'\' and p.status = 1';
+		$sql .= ' where ct.code = \''.$catCode.'\' and p.status = '.ACTIVE.' and p.View < 5';
 		$sql .= ' order by p.postdate desc';
 		$sql .= ' limit '.$offset.','.$limit;
 
@@ -203,12 +203,12 @@ class Product_Model extends CI_Model
 	}
 
 	public function findByCatIdFetchAddress($catId, $offset=0, $limit){
-		$this->output->enable_profiler(TRUE);
+		//$this->output->enable_profiler(TRUE);
 		$sql = 'select p.*, c.cityname as city, d.districtname as district from product p';
 		$sql .= ' inner join city c on p.cityid = c.cityid';
 		$sql .= ' inner join district d on p.districtid = d.districtid';
 		$sql .= ' where p.categoryid = '.$catId.' and p.status = 1';
-		$sql .= ' order by p.postdate desc';
+		$sql .= ' order by date(p.postdate) desc, p.vip asc';
 		$sql .= ' limit '.$offset.','.$limit;
 
 		$countsql = 'select count(*) as total from product where CategoryID = '.$catId.' and Status = 1';

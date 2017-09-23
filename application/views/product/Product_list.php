@@ -39,8 +39,8 @@
 		<div class="product-panel col-md-12  no-margin no-padding">
 			<?php
 				foreach ($products as $product){
-					echo '<div class="row product-list">';
-					echo '<div class="row product-title"><a href="'.base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html">'. $product->Title .'</a> </div>';
+					echo '<div class="row product-list vip'.$product->Vip.'">';
+					echo '<div class="row product-title"><a href="'.base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html">'. ($product->Vip < 5 ? '<span class="pvip">v'.$product->Vip.'</span>' :  '') . $product->Title .'</a> </div>';
 
 					echo '<div class="row product-content">';
 					echo '<div class="col-md-2 col-xs-5 no-padding"><a href="'.base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html"><img style="max-width: 120px" src="'.$product->Thumb.'" alt="'.$product->Title.'"/></a></div>';

@@ -927,3 +927,35 @@ ul.city-link a{
 .branch-detail.row {
 	margin-bottom: 20px;
 }
+span.pvip {
+	border: solid 1px #006621;
+	margin-right: 5px;
+	text-transform: lowercase;
+	color: #006621;
+	padding: 0px 2px 0px 2px;
+	border-radius: 4px;
+	font-size: 11px;
+	background: #fff;
+	vertical-align: baseline;
+	display: inline-block;
+}
+
+.vip1:hover{
+	border: solid 1px #e41b23;
+}
+.vip1 a{
+	color:#e41b23;
+}
+.vip2:hover{
+	border: solid 1px #ff6600;
+}
+.vip2 a{
+	color: #ff6600;
+}
+
+.vip3:hover{
+	border: solid 1px #ffaf03;
+}
+.vip3 a{
+	color: #ffaf03;
+}

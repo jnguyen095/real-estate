@@ -26,7 +26,7 @@ class Home_controller extends CI_Controller
 	public function index() {
 		$data = $this->Category_Model->getCategories();
 		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
-		$data['hotProducts'] = $this->Product_Model->findByHotProduct();
+		// $data['hotProducts'] = $this->Product_Model->findByHotProduct();
 		$data['nhadatban'] = $this->Product_Model->findByCategoryCode(NHADAT_BAN, 0, 10);
 		$data['nhadatchothue'] = $this->Product_Model->findByCategoryCode(NHADAT_CHOTHUE, 0, 10);
 		$data['topcityhasproduct'] = $this->City_Model->findTopCityHasProduct(20);
