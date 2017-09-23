@@ -368,10 +368,14 @@ a:focus, a{
 .subscribe-panel input.btn.btn-sm,
 input.btn.btn-sm:focus {
 	outline: none;
-	width: 70%;
+	width: 68%;
 	border-top-right-radius: 0;
 	border-bottom-right-radius: 0;
 	text-align: left;
+}
+
+a#btnSubscrible {
+	border-radius: 0 4px 4px 0;
 }
 
 .subscrible-success{
@@ -397,7 +401,7 @@ input.btn.btn-sm:focus {
 }
 .product-detail, .product-detail.content{
 	font-size: 14px !important;
-	padding: 10px;
+	padding: 10px 0px;
 }
 
 .product-detail .product-title{
@@ -415,22 +419,29 @@ input.btn.btn-sm:focus {
 
 .h2footer{
 	font-size: 14px;
-	margin-bottom: 4px;
+	width: auto;
+	background: #5EAB1F;
+	color: #fff;
+	padding: 5px;
 }
 
-.brief-detail.col-md-8 {
-	line-height: 30px;
+.border-right-gray{
+	border-right: solid 1px #ccc;
 }
 
 .brief-box {
 	padding: 0px !important;
 }
 
+.brief-detail a {
+	color: #3e3c3c;
+}
+
 .brief-box-item {
-	margin: 2px 0px 5px 10px;
-	border: solid 1px #ccc;
+	border-bottom: solid 1px #ccc;
+	border-left: solid 1px #ccc;
 	padding: 5px;
-	height: 170px;
+	height: 100px;
 	overflow: hidden;
 }
 
@@ -448,7 +459,7 @@ input.btn.btn-sm:focus {
 }
 
 .copy-source{
-	margin-top: 10px !important;
+	margin: 10px 0px !important;
 	color: #808080;
 }
 
@@ -874,4 +885,45 @@ ul.city-link a{
 	text-transform: uppercase;
 	float: left;
 	color: #016098;
+}
+.listing-card {
+	line-height: 1.15em;
+	background: #fff;
+	margin-bottom: 20px 0;
+}
+.listing-card .listing-card-info {
+	padding: 15px 20px;
+}
+.listing-card h3 a {
+	font-weight: 400;
+	display: block;
+	font-size: 14px;
+	color: green;
+}
+.listing-card .listing-card-info .listing-location {
+	display: block;
+	min-height: 43.2px;
+	max-height: 43.2px;
+	font-size: 12px;
+	line-height: 1.8;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.listing-card .listing-location {
+	color: #99999e;
+	font-size: 12px;
+}
+.listing-card h3, .listing-card p {
+	margin-bottom: 5px;
+}
+.branch-item{
+	border: solid 1px #e3e3e3;
+	padding: 2px;
+	margin-bottom: 20px;
+}
+.branch-item .listing-card img{
+	width: 100%;
+}
+.branch-detail.row {
+	margin-bottom: 20px;
 }

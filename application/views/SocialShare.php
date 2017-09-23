@@ -1,17 +1,6 @@
 
 <div class="subscribe-panel col-md-12 no-padding">
 	<div>
-		<?php if(isset($product)){?>
-			<div class="postStatus">
-				<?php
-				if($product->Status == 1){
-					echo '<span class="active">Đang bán!</span>';
-				}else{
-					echo '<span class="inactive">Đang khóa.</span>';
-				}
-				?>
-			</div>
-		<?php } ?>
 		<div class="facebookShare">
 			<div id="fb-root"></div>
 			<?php $this->load->view('/FacebookID'); ?>

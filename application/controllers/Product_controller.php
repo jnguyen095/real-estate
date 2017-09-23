@@ -16,6 +16,7 @@ class Product_controller extends CI_Controller
 		$this->load->model('District_Model');
 		$this->load->model('News_Model');
 		$this->load->model('SampleHouse_Model');
+		$this->load->model('Brand_Model');
 		$this->load->helper("seo_url");
 		$this->load->helper("my_date");
 		$this->load->helper("bootstrap_pagination");
@@ -59,7 +60,14 @@ class Product_controller extends CI_Controller
 		$data['cities'] = $this->City_Model->getAllActive();
 		$data['sampleHouses'] = $this->SampleHouse_Model->findTopNewExceptCurrent(0, 5);
 		if($product->DistrictID != null) {
-			$data['similarProducts'] = $this->Product_Model->findByCatIdAndDistrictIdFetchAddressNotCurrent($product->CategoryID, $product->DistrictID, 10, $productId);
+			$similarPros = $this->Product_Model->findByCatIdAndDistrictIdFetchAddressNotCurrent($product->CategoryID, $product->DistrictID, 10, $productId);
+			if(count($similarPros)%2 != 0){
+				unset($similarPros[0]);
+			}
+			$data['similarProducts'] = $similarPros;
+		}
+		if($product->BrandID != null){
+			$data['branch'] = $this->Brand_Model->findByIdHasImage($product->BrandID);
 		}
 		$this->Product_Model->updateViewForProductId($productId);
 		$this->load->helper('url');

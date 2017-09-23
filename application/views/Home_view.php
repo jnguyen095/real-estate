@@ -10,9 +10,9 @@
 	<link rel="icon" sizes="48x48" href="<?=base_url('/img/ico.ico')?>">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v1.5.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v1.6.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.0.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.1.css">
 	<!-- jQuery library -->
 	<script src="<?php echo base_url()?>js/jquery.min.js"></script>
 	<!-- Latest compiled JavaScript -->
@@ -176,7 +176,7 @@
 						echo '</div>';
 					}
 					?>
-					<div class="text-right"><a href="<?=base_url('/nha-dat-ban-c257.html')?>">Xem thêm</a></div>
+					<div class="text-right"><a href="<?=base_url('/nha-dat-ban-c257.html')?>">&#187; Xem thêm</a></div>
 				</div>
 			</div>
 
@@ -209,7 +209,7 @@
 						echo '</div>';
 					}
 					?>
-					<div class="text-right"><a href="<?=base_url('/nha-dat-cho-thue-c267.html')?>">Xem thêm</a></div>
+					<div class="text-right"><a href="<?=base_url('/nha-dat-cho-thue-c267.html')?>">&#187; Xem thêm</a></div>
 				</div>
 			</div>
 			<div class="text-center mobile-hide">

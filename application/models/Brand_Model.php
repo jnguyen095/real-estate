@@ -23,6 +23,13 @@ class Brand_Model extends CI_Model
 		return $query->row();
 	}
 
+	public function findByIdHasImage($branchId){
+		$sql = 'select * from brand where brandid = ' .$branchId;
+		$sql .= ' and Thumb is not null';
+		$query = $this->db->query($sql);
+		return $query->row();
+	}
+
 	public function findTopBranchHasProduct($top){
 		$sql = 'select b.BrandID, b.BrandName from brand b left join product p on b.brandid = p.brandid';
 		$sql .= ' group by b.BrandID';

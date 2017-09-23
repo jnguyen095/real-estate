@@ -115,30 +115,30 @@
 		<div class="product-detail content"><?php echo $product->Detail?></div>
 
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-md-6">
 				<table class="table tableBorder">
 					<tr class="tbHeader">
 						<td colspan="2">Đặc Điểm</td>
 					</tr>
 					<tr>
 						<td>Chiều rộng</td>
-						<td><?=$product->WidthSize != null ? $product->WidthSize : '-'?></td>
+						<td><?=$product->WidthSize != null ? $product->WidthSize : 'KXĐ'?></td>
 					</tr>
 					<tr>
 						<td>Chiều dài</td>
-						<td><?=$product->LongSize != null ? $product->LongSize : '-'?></td>
+						<td><?=$product->LongSize != null ? $product->LongSize : 'KXĐ'?></td>
 					</tr>
 					<tr>
 						<td>Số tầng</td>
-						<td><?=$product->Floor != null ? $product->Floor : '-'?></td>
+						<td><?=$product->Floor != null ? $product->Floor : 'KXĐ'?></td>
 					</tr>
 					<tr>
 						<td>Số phòng</td>
-						<td><?=$product->Room != null ? $product->Room : '-'?></td>
+						<td><?=$product->Room != null ? $product->Room : 'KXĐ'?></td>
 					</tr>
 					<tr>
 						<td>Nhà vệ sinh</td>
-						<td><?=$product->Toilet != null ? $product->Toilet : '-'?></td>
+						<td><?=$product->Toilet != null ? $product->Toilet : 'KXĐ'?></td>
 					</tr>
 					<tr>
 						<td>Hướng</td>
@@ -146,13 +146,15 @@
 					</tr>
 					<?php
 						if(isset($product->Brand) && $product->Brand != null){
-							echo '<td>Thuộc dự án</td>';
-							echo '<td>'.$product->Brand->BrandName.'</td>';
+							?>
+							<td>Thuộc dự án</td>
+							<td><a href="<?=base_url() . seo_url($product->Brand->BrandName) . '-b' . $product->Brand->BrandID ?>.html" title="<?=$product->Brand->BrandName?>" class="listing-card-link listing-img-a"><?=$product->Brand->BrandName?></a></td>
+						<?php
 						}
 					?>
 				</table>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-6">
 				<table class="table tableBorder">
 					<tr class="tbHeader">
 						<td colspan="2">Liên Hệ</td>
@@ -165,17 +167,23 @@
 						<td class="width100">Số ĐT</td>
 						<td><?=$product->ContactPhone != null ? $product->ContactPhone : '-'?></td>
 					</tr>
-					<tr>
-						<td class="width100">Di động</td>
-						<td><?=$product->ContactMobile != null ? $product->ContactMobile : '-'?></td>
-					</tr>
+					<?php
+					if($product->ContactMobile != null) {
+						?>
+						<tr>
+							<td class="width100">Di động</td>
+							<td><?= $product->ContactMobile != null ? $product->ContactMobile : 'KXĐ' ?></td>
+						</tr>
+						<?php
+					}
+					?>
 					<tr>
 						<td class="width100">Địa chỉ</td>
-						<td><?=$product->ContactAddress != null ? $product->ContactAddress : '-'?></td>
+						<td><?=$product->ContactAddress != null ? $product->ContactAddress : 'KXĐ'?></td>
 					</tr>
 					<tr>
 						<td class="width100">Email</td>
-						<td><?=$product->ContactEmail != null ? $product->ContactEmail : '-'?></td>
+						<td><?=$product->ContactEmail != null ? $product->ContactEmail : 'KXĐ'?></td>
 					</tr>
 				</table>
 			</div>
@@ -191,26 +199,25 @@
 				echo '<div class="copy-source row color-gray no-margin no-padding">Nguồn: '.$product->Source.'</div>';
 			}
 		?>
+		<?php $this->load->view('/SocialShare') ?>
 
 		<?php if(isset($similarProducts) && count($similarProducts) > 0){
 			?>
 			<hr/>
-			<h2 class="h2footer">Xem thêm <?=$category->CatName?> tại <?=$district->DistrictName?></h2>
-			<div class="row no-margin">
+			<h2 class="h2footer">&#187; Xem thêm <?=$category->CatName?> tại <?=$district->DistrictName?></h2>
+			<div class="row no-margin border-right-gray">
 			<?php
 			foreach ($similarProducts as $similarProduct){
 				?>
 				<div class="col-md-6 col-xs-12 brief-box">
 					<div class="brief-box-item">
-						<div class="product-title"><a href="<?=base_url().seo_url($similarProduct->Title).'-p'.$similarProduct->ProductID?>.html"><?=$similarProduct->Title?></a></div>
 						<div class="content">
 							<div class="image col-md-4">
 								<img style="max-width: 120px" src="<?=$similarProduct->Thumb?>" alt="<?=$product->Title?>"/>
 							</div>
 							<div class="brief-detail col-md-8">
-								<div class="price">Gía: <span class="color bold"><?=$similarProduct->PriceString?></span></div>
-								<div class="area">Diện tích: <span class="color bold"><?=$similarProduct->Area?></span></div>
-								<div class="location"><span class="color bold"><?=$similarProduct->district.', '.$similarProduct->city?></span></div>
+								<a href="<?=base_url().seo_url($similarProduct->Title).'-p'.$similarProduct->ProductID?>.html"><?=$similarProduct->Title?></a>
+								<div class="price"><span class="color bold"><?=$similarProduct->PriceString?></span>, <span class="color bold"><?=$similarProduct->Area?></span></div>
 							</div>
 							<div class="clear-both"></div>
 						</div>
@@ -226,6 +233,7 @@
 	</div>
 	<div class="col-md-3 no-margin-right no-padding-right">
 		<?php $this->load->view('/common/sample_house') ?>
+		<?php $this->load->view('/common/branch-left') ?>
 		<?php $this->load->view('/common/Search_filter') ?>
 		<div class="clear-both"></div>
 		<?php $this->load->view('/SocialShare') ?>

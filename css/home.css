@@ -23,8 +23,9 @@
 }
 
 .hotImg{
-	width: 50%;
 	float: left;
+	max-height: 125px;
+	overflow: hidden;
 }
 .hot-price{
 	width: 49%;
@@ -60,7 +61,7 @@
 	font-weight: normal;
 	margin-top: 10px;
 	text-align: justify;
-	height: 116px;
+	height: 124px;
 	overflow: hidden;
 }
 

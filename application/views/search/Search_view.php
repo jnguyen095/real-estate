@@ -112,6 +112,7 @@
 		</div>
 	</div>
 	<div class="col-md-3 no-margin-right no-padding-right">
+		<?php $this->load->view('/common/branch-left') ?>
 		<?php $this->load->view('/common/Search_filter') ?>
 	</div>
 </div>
