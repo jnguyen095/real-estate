@@ -32,6 +32,16 @@ class Brand_Model extends CI_Model
 		return $query->result();
 	}
 
+	public function findTopBranchHasProductAndData($top){
+		$sql = 'select b.BrandID, b.BrandName, b.Thumb, b.Description from brand b left join product p on b.brandid = p.brandid';
+		$sql .= ' where b.Thumb is not null';
+		$sql .= ' group by b.BrandID';
+		$sql .= ' order by count(p.productid) desc';
+		$sql .= ' limit '. $top;
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+
 	public function findHotBranch($top){
 		$this->db->where("Hot", ACTIVE);
 		$this->db->limit($top);

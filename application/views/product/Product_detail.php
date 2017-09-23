@@ -33,8 +33,8 @@
 		<div class="product-title"><?php echo $product->Title?></div>
 		<div class="date-time">Ngày đăng: <?=date('d/m/Y', strtotime($product->PostDate))?></div>
 		<div class="row">
-			<div class="col-md-5">Giá: <span class="color bold"><?php echo $product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?php echo $product->Area?></span></span></div>
-			<div class="col-md-7 text-right">
+			<div class="col-md-4">Giá: <span class="color bold"><?php echo $product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?php echo $product->Area?></span></span></div>
+			<div class="col-md-8 text-right">
 				<span class="color bold glyphicon glyphicon-map-marker"></span><span class="color bold">
 				<?php
 				if(isset($product->Street)){
