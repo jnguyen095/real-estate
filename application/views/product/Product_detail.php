@@ -182,7 +182,9 @@
 		</div>
 
 
+		<?php if($product->Latitude > 0 && $product->Longitude > 0){?>
 		<?php $this->load->view('/Map_view')?>
+		<?php }?>
 
 		<?php
 			if(isset($product->Source)){
@@ -194,7 +196,7 @@
 			?>
 			<hr/>
 			<h2 class="h2footer">Xem thêm <?=$category->CatName?> tại <?=$district->DistrictName?></h2>
-			<div class="row">
+			<div class="row no-margin">
 			<?php
 			foreach ($similarProducts as $similarProduct){
 				?>
@@ -229,6 +231,7 @@
 		<?php $this->load->view('/SocialShare') ?>
 		<?php $this->load->view('/Subscrible') ?>
 		<div class="clear-both"></div>
+		<img class="width100pc margin-bottom-20" src="<?=base_url('/img/hoatraotay.jpg')?>" alt="Hoa Trao Tay"/>
 	</div>
 
 </div>

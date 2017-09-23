@@ -203,7 +203,7 @@ class Product_Model extends CI_Model
 	}
 
 	public function findByCatIdFetchAddress($catId, $offset=0, $limit){
-		// $this->output->enable_profiler(TRUE);
+		$this->output->enable_profiler(TRUE);
 		$sql = 'select p.*, c.cityname as city, d.districtname as district from product p';
 		$sql .= ' inner join city c on p.cityid = c.cityid';
 		$sql .= ' inner join district d on p.districtid = d.districtid';
@@ -387,6 +387,7 @@ class Product_Model extends CI_Model
 	}
 
 	public function searchByProperties($keyword, $catId, $cityId, $districtId, $area, $price, $postDate, $offset, $limit){
+		// $this->output->enable_profiler(TRUE);
 		$sql = 'select p.*, c.cityname as city, d.districtname as district from product p';
 		$sql .= ' inner join city c on p.cityid = c.cityid';
 		$sql .= ' inner join district d on p.districtid = d.districtid';

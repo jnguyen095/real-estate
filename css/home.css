@@ -176,4 +176,9 @@ img {
 	box-shadow: 0 7px 14px rgba(0,0,0,0.1);
 }
 
+.carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+	display: block;
+	height: 314px;
+	width: 100%;
+}
 

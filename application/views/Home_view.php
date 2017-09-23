@@ -10,9 +10,9 @@
 	<link rel="icon" sizes="48x48" href="<?=base_url('/img/ico.ico')?>">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v1.4.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v1.5.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.0.css">
 	<!-- jQuery library -->
 	<script src="<?php echo base_url()?>js/jquery.min.js"></script>
 	<!-- Latest compiled JavaScript -->
@@ -41,7 +41,13 @@
 							<img src="<?=base_url('/img/home-banner/nha.jpg')?>"/>
 						</div>
 						<div class="item">
+							<img src="<?=base_url('/img/home-banner/tin.png')?>"/>
+						</div>
+						<div class="item">
 							<img src="<?=base_url('/img/home-banner/chungcu.jpg')?>"/>
+						</div>
+						<div class="item">
+							<img src="<?=base_url('/img/home-banner/vanphong.png')?>"/>
 						</div>
 					</div>
 				</div>
@@ -155,7 +161,7 @@
 						echo '<div class="row pos-relative">';
 
 						echo '<div class="productTop">';
-						echo '<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="color bold">'.$product->PriceString.'</span><span class="margin-left-10 mobile-hide">Diện tích: <span class="color bold">'.$product->Area.'</span></span><span class="margin-left-10 mobile-hide">Quận/Huyện: <span class="color bold">'.$product->district.', '.$product->city.'</span></div>';
+						echo '<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="color bold">'.$product->PriceString.'</span>, <span class="mobile-hide">Diện tích: <span class="color bold">'.$product->Area.'</span></span>, <span class="mobile-hide">Quận/Huyện: <span class="color bold">'.$product->district.', '.$product->city.'</span></div>';
 						echo '<div class="col-md-2 color bold mobile-hide relative-time no-padding text-right">'.date('d/m/Y', strtotime($product->PostDate)).'</div>';
 						echo '<div class="clear-both"></div>';
 						echo '</div>';
@@ -206,12 +212,16 @@
 					<div class="text-right"><a href="<?=base_url('/nha-dat-cho-thue-c267.html')?>">Xem thêm</a></div>
 				</div>
 			</div>
+			<div class="text-center mobile-hide">
+				<a href="<?=base_url('/dang-tin.html')?>"><img src="<?=base_url('/img/bottom_banner.jpg')?>" alt="bottom banner"/></a>
+			</div>
 		</div>
 
 		<!-- begin left side -->
 		<div class="col-md-3">
 			<?php $this->load->view('/common/news_plot')?>
 			<?php $this->load->view('/common/city-left-link')?>
+			<img class="width100pc margin-bottom-20" src="<?=base_url('/img/hoatraotay.jpg')?>" alt="Hoa Trao Tay"/>
 			<?php $this->load->view('/common/branch-left-link')?>
 		</div>
 		<!-- end left side -->

@@ -259,13 +259,6 @@ a:focus, a{
 	margin-bottom:5px;
 }
 
-.banner{
-	background: url('../img/top_banner2.jpg');
-	background-repeat: no-repeat;
-	background-position-x: 332px;
-
-}
-
 .left-banner > img, .right-banner > img{
 	width: 120px;
 	margin-bottom: 4px;

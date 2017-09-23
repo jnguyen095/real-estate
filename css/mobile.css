@@ -11,3 +11,9 @@
 		height: auto !important;
 	}
 }
+
+@media (max-width: 120px) {
+	.ipad-hide{
+		display: none !important;
+	}
+}
