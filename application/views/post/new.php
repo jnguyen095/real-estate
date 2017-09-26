@@ -50,7 +50,7 @@
 			<hr/>
 
 			<!-- Step -->
-			<div class="row smpl-step" style="border-bottom: 0; min-width: 500px;">
+			<div class="row smpl-step mobile-hide" style="border-bottom: 0; min-width: 500px;">
 				<div class="col-xs-4 smpl-step-step complete">
 					<div class="text-center smpl-step-num">Bước 1</div>
 					<div class="progress">

@@ -5,7 +5,7 @@
 	<meta charset = "utf-8">
 	<meta name="description" content="<?=$sampleHouseDetail->Title?>">
 	<meta name="keywords" content="Bất động sản, bán nhà, chung cư, mua đất, bán đất, real estate">
-	<title>Tin Đất Đai | <?=$sampleHouseDetail->Title?></title>
+	<title><?=$sampleHouseDetail->Title?></title>
 	<?php $this->load->view('common_header')?>
 	<?php $this->load->view('/common/googleadsense')?>
 	<?php $this->load->view('/common/facebook-pixel-tracking')?>

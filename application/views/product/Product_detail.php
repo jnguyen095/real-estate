@@ -5,7 +5,7 @@
 	<meta charset = "utf-8">
 	<meta name="description" content="<?=$product->Title?>">
 	<meta name="keywords" content="Bất động sản, bán nhà, chung cư, mua đất, bán đất, real estate">
-	<title>Tin Đất Đai | <?php echo $product->Title?></title>
+	<title><?php echo $product->Title?></title>
 	<?php $this->load->view('common_header')?>
 	<link rel="stylesheet" href="<?=base_url('/css/jquery.mCustomScrollbar.min.css')?>" />
 	<link rel="stylesheet" href="<?=base_url('/css/carousel-custom.css')?>" />
@@ -121,33 +121,33 @@
 						<td colspan="2">Đặc Điểm</td>
 					</tr>
 					<tr>
-						<td>Chiều rộng</td>
+						<td class="width100">Chiều rộng</td>
 						<td><?=$product->WidthSize != null ? $product->WidthSize : 'KXĐ'?></td>
 					</tr>
 					<tr>
-						<td>Chiều dài</td>
+						<td class="width100">Chiều dài</td>
 						<td><?=$product->LongSize != null ? $product->LongSize : 'KXĐ'?></td>
 					</tr>
 					<tr>
-						<td>Số tầng</td>
+						<td class="width100">Số tầng</td>
 						<td><?=$product->Floor != null ? $product->Floor : 'KXĐ'?></td>
 					</tr>
 					<tr>
-						<td>Số phòng</td>
+						<td class="width100">Số phòng</td>
 						<td><?=$product->Room != null ? $product->Room : 'KXĐ'?></td>
 					</tr>
 					<tr>
-						<td>Nhà vệ sinh</td>
+						<td class="width100">Nhà vệ sinh</td>
 						<td><?=$product->Toilet != null ? $product->Toilet : 'KXĐ'?></td>
 					</tr>
 					<tr>
-						<td>Hướng</td>
+						<td class="width100">Hướng</td>
 						<td><?=(isset($product->Direction) && $product->Direction) ? $product->Direction->DirectionName : 'KXĐ'?></td>
 					</tr>
 					<?php
 						if(isset($product->Brand) && $product->Brand != null){
 							?>
-							<td>Thuộc dự án</td>
+							<td class="width100">Thuộc dự án</td>
 							<td><a href="<?=base_url() . seo_url($product->Brand->BrandName) . '-b' . $product->Brand->BrandID ?>.html" title="<?=$product->Brand->BrandName?>" class="listing-card-link listing-img-a"><?=$product->Brand->BrandName?></a></td>
 						<?php
 						}
@@ -165,14 +165,14 @@
 					</tr>
 					<tr>
 						<td class="width100">Số ĐT</td>
-						<td><?=$product->ContactPhone != null ? $product->ContactPhone : '-'?></td>
+						<td><a href="tel:<?=$product->ContactPhone?>"><?=$product->ContactPhone != null ? $product->ContactPhone : '-'?></a></td>
 					</tr>
 					<?php
 					if($product->ContactMobile != null) {
 						?>
 						<tr>
 							<td class="width100">Di động</td>
-							<td><?= $product->ContactMobile != null ? $product->ContactMobile : 'KXĐ' ?></td>
+							<td><a href="tel:<?=$product->ContactMobile?>"><?= $product->ContactMobile != null ? $product->ContactMobile : 'KXĐ' ?></a></td>
 						</tr>
 						<?php
 					}
@@ -212,10 +212,10 @@
 				<div class="col-md-6 col-xs-12 brief-box">
 					<div class="brief-box-item">
 						<div class="content">
-							<div class="image col-md-4">
-								<img style="max-width: 120px" src="<?=$similarProduct->Thumb?>" alt="<?=$product->Title?>"/>
+							<div class="image col-md-4 col-xs-4">
+								<img style="max-width: 100%" src="<?=$similarProduct->Thumb?>" alt="<?=$product->Title?>"/>
 							</div>
-							<div class="brief-detail col-md-8">
+							<div class="brief-detail col-md-8 col-xs-8">
 								<a href="<?=base_url().seo_url($similarProduct->Title).'-p'.$similarProduct->ProductID?>.html"><?=$similarProduct->Title?></a>
 								<div class="price"><span class="color bold"><?=$similarProduct->PriceString?></span>, <span class="color bold"><?=$similarProduct->Area?></span></div>
 							</div>

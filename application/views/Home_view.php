@@ -11,7 +11,7 @@
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v1.7.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.min_v1.0.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.1.css">
 	<!-- jQuery library -->
 	<script src="<?php echo base_url()?>js/jquery.min.js"></script>
@@ -152,28 +152,27 @@
 				<div class="block-body">
 					<?php
 					foreach ($nhadatban as $product){
-						echo '<div class="row product-list">';
-						echo '<div class="row product-title"><a href="'.base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html">'. $product->Title .'</a> </div>';
+						?>
+						<div class="row product-list">
+							<div class="row product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><?=$product->Title?></a> </div>
+							<div class="row product-content">
+								<div class="col-md-2 col-xs-5 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+								<div class="col-md-10 col-xs-7">
+									<div class="row pos-relative">
+										<div class="productTop">
+											<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="color bold"><?=$product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?=$product->Area?></span></span><span class="margin-left-10">Quận/Huyện: <span class="color bold"><?=$product->district.', '.$product->city?></span></div>
+											<div class="col-md-2 color bold mobile-hide relative-time no-padding text-right"><?=date('d/m/Y', strtotime($product->PostDate))?></div>
+											<div class="clear-both"></div>
+										</div>
 
-						echo '<div class="row product-content">';
-						echo '<div class="col-md-2 col-xs-5 no-padding"><a href="'.base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html"><img style="max-width: 120px" src="'.$product->Thumb.'" alt="'.$product->Title.'"/></a></div>';
-						echo '<div class="col-md-10 col-xs-7">';
-						echo '<div class="row pos-relative">';
-
-						echo '<div class="productTop">';
-						echo '<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="color bold">'.$product->PriceString.'</span>, <span class="mobile-hide">Diện tích: <span class="color bold">'.$product->Area.'</span></span>, <span class="mobile-hide">Quận/Huyện: <span class="color bold">'.$product->district.', '.$product->city.'</span></div>';
-						echo '<div class="col-md-2 color bold mobile-hide relative-time no-padding text-right">'.date('d/m/Y', strtotime($product->PostDate)).'</div>';
-						echo '<div class="clear-both"></div>';
-						echo '</div>';
-
-						echo '<div class="col-md-12 col-xs-12 product-brief no-padding">';
-						echo '<div class="no-margin no-padding col-md-12 col-xs-12">'. $product->Brief . '</div>';
-						echo '</div>';
-
-						echo '</div>';
-						echo '</div>';
-						echo '</div>';
-						echo '</div>';
+										<div class="col-md-12 col-xs-12 product-brief no-padding mobile-hide">
+											<div class="no-margin no-padding col-md-12 col-xs-12"><?=$product->Brief?></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					<?php
 					}
 					?>
 					<div class="text-right"><a href="<?=base_url('/nha-dat-ban-c257.html')?>">&#187; Xem thêm</a></div>
@@ -185,28 +184,26 @@
 				<div class="block-body">
 					<?php
 					foreach ($nhadatchothue as $product){
-						echo '<div class="row product-list">';
-						echo '<div class="row product-title"><a href="'.base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html">'. $product->Title .'</a> </div>';
-
-						echo '<div class="row product-content">';
-						echo '<div class="col-md-2 col-xs-5 no-padding"><a href="'.base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html"><img style="max-width: 120px" src="'.$product->Thumb.'" alt="'.$product->Title.'"/></a></div>';
-						echo '<div class="col-md-10 col-xs-7">';
-						echo '<div class="row pos-relative">';
-
-						echo '<div class="productTop">';
-						echo '<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="color bold">'.$product->PriceString.'</span><span class="margin-left-10 mobile-hide">Diện tích: <span class="color bold">'.$product->Area.'</span></span><span class="margin-left-10 mobile-hide">Quận/Huyện: <span class="color bold">'.$product->district.', '.$product->city.'</span></div>';
-						echo '<div class="col-md-2 color bold mobile-hide relative-time no-padding text-right">'.date('d/m/Y', strtotime($product->PostDate)).'</div>';
-						echo '<div class="clear-both"></div>';
-						echo '</div>';
-
-						echo '<div class="col-md-12 col-xs-12 product-brief no-padding">';
-						echo '<div class="no-margin no-padding col-md-12 col-xs-12">'. $product->Brief . '</div>';
-						echo '</div>';
-
-						echo '</div>';
-						echo '</div>';
-						echo '</div>';
-						echo '</div>';
+						?>
+						<div class="row product-list">
+							<div class="row product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><?=$product->Title?></a> </div>
+							<div class="row product-content">
+								<div class="col-md-2 col-xs-5 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+								<div class="col-md-10 col-xs-7">
+									<div class="row pos-relative">
+										<div class="productTop">
+											<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="color bold"><?=$product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?=$product->Area?></span></span><span class="margin-left-10">Quận/Huyện: <span class="color bold"><?=$product->district.', '.$product->city?></span></div>
+											<div class="col-md-2 color bold mobile-hide relative-time no-padding text-right"><?=date('d/m/Y', strtotime($product->PostDate))?></div>
+											<div class="clear-both"></div>
+										</div>
+										<div class="col-md-12 col-xs-12 product-brief no-padding mobile-hide">
+											<div class="no-margin no-padding col-md-12 col-xs-12"><?=$product->Brief?></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					<?php
 					}
 					?>
 					<div class="text-right"><a href="<?=base_url('/nha-dat-cho-thue-c267.html')?>">&#187; Xem thêm</a></div>
