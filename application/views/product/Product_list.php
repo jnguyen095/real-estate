@@ -2,9 +2,21 @@
 <html lang = "en">
 
 <head>
-	<meta charset = "utf-8">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="audience" content="general" />
+	<meta name="resource-type" content="document" />
+	<meta name="abstract" content="Thông tin nhà đất Việt Nam" />
+	<meta name="classification" content="Bất động sản Việt Nam" />
+	<meta name="area" content="Nhà đất và bất động sản" />
+	<meta name="placename" content="Việt Nam" />
+	<meta name="author" content="tindatdai.com" />
+	<meta name="copyright" content="©2017 tindatdai.com" />
+	<meta name="owner" content="tindatdai.com" />
+	<meta name="distribution" content="Global" />
 	<meta name="description" content="<?=$category->CatName?>">
-	<meta name="keywords" content="Bất động sản, bán nhà, chung cư, mua đất, bán đất, real estate">
+	<meta name="keywords" content="<?=keyword_maker($category->CatName)?>">
+	<meta name="revisit-after" content="1 days" />
+	<meta name="robots" content="follow" />
 	<title><?php echo $category->CatName?></title>
 	<?php $this->load->view('common_header')?>
 	<?php $this->load->view('/common/googleadsense')?>
@@ -41,7 +53,7 @@
 				foreach ($products as $product){
 					?>
 					<div class="row product-list vip<?=$product->Vip?>">
-						<div class="row product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><?=($product->Vip < 5 ? '<span class="pvip">v'.$product->Vip.'</span>' :  '') . $product->Title?></a> </div>
+						<div class="row product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><?=($product->Vip < 5 ? '<span class="pvip">v'.$product->Vip.'</span>' :  '')?><h3><?=$product->Title?></h3></a> </div>
 						<div class="row product-content">
 							<div class="col-md-2 col-xs-5 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
 							<div class="col-md-10 col-xs-7">

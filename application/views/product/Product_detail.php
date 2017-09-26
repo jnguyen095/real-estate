@@ -2,9 +2,21 @@
 <html lang = "en">
 
 <head>
-	<meta charset = "utf-8">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="audience" content="general" />
+	<meta name="resource-type" content="document" />
+	<meta name="abstract" content="Thông tin nhà đất Việt Nam" />
+	<meta name="classification" content="Bất động sản Việt Nam" />
+	<meta name="area" content="Nhà đất và bất động sản" />
+	<meta name="placename" content="Việt Nam" />
+	<meta name="author" content="tindatdai.com" />
+	<meta name="copyright" content="©2017 tindatdai.com" />
+	<meta name="owner" content="tindatdai.com" />
+	<meta name="distribution" content="Global" />
 	<meta name="description" content="<?=$product->Title?>">
-	<meta name="keywords" content="Bất động sản, bán nhà, chung cư, mua đất, bán đất, real estate">
+	<meta name="keywords" content="<?=keyword_maker($product->Title)?>">
+	<meta name="revisit-after" content="1 days" />
+	<meta name="robots" content="follow" />
 	<title><?php echo $product->Title?></title>
 	<?php $this->load->view('common_header')?>
 	<link rel="stylesheet" href="<?=base_url('/css/jquery.mCustomScrollbar.min.css')?>" />
@@ -30,7 +42,7 @@
 </ul>
 <div class="row no-margin">
 	<div class="col-md-9 no-margin no-padding product-detail">
-		<div class="product-title"><?php echo $product->Title?></div>
+		<div class="product-title"><h1 itemprop="name" class="h1Class"><?php echo $product->Title?></h1></div>
 		<div class="date-time">Ngày đăng: <?=date('d/m/Y', strtotime($product->PostDate))?></div>
 		<div class="row">
 			<div class="col-md-4">Giá: <span class="color bold"><?php echo $product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?php echo $product->Area?></span></span></div>
@@ -110,7 +122,7 @@
 		}
 		?>
 
-		<h2 class="h2title">Chi Tiết</h2>
+		<div class="h2title">Chi Tiết</div>
 
 		<div class="product-detail content"><?php echo $product->Detail?></div>
 
@@ -216,7 +228,7 @@
 								<img style="max-width: 100%" src="<?=$similarProduct->Thumb?>" alt="<?=$product->Title?>"/>
 							</div>
 							<div class="brief-detail col-md-8 col-xs-8">
-								<a href="<?=base_url().seo_url($similarProduct->Title).'-p'.$similarProduct->ProductID?>.html"><?=$similarProduct->Title?></a>
+								<a href="<?=base_url().seo_url($similarProduct->Title).'-p'.$similarProduct->ProductID?>.html"><h3><?=$similarProduct->Title?></h3></a>
 								<div class="price"><span class="color bold"><?=$similarProduct->PriceString?></span>, <span class="color bold"><?=$similarProduct->Area?></span></div>
 							</div>
 							<div class="clear-both"></div>

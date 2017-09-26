@@ -50,3 +50,13 @@ if ( ! function_exists('seo_url'))
 		return $string;
 	}
 }
+
+if ( ! function_exists('keyword_maker'))
+{
+	function keyword_maker($string) {
+		$words = preg_replace('/[0-9.,!?]+/', '', $string);
+		$words = preg_replace('!\s+!', ' ', $words);
+		$words = preg_replace("/[\s_]/", ',', $words);
+		return $words;
+	}
+}

@@ -959,3 +959,7 @@ span.pvip {
 .vip3 a{
 	color: #ffaf03;
 }
+.product-title h3 {
+	display: inline;
+	font-weight: bold;
+}

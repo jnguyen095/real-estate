@@ -10,7 +10,7 @@
 <div class="header">
 	<div class="banner">
 		<div class="header-logo float-left">
-			<a href="<?=base_url('/trang-chu.html')?>"><img src="<?=base_url('/img/logo.jpg')?>" alt="Logo"/></a>
+			<a href="<?=base_url('/trang-chu.html')?>" rel="nofollow"><h1><img src="<?=base_url('/img/logo.jpg')?>" alt="Bất động sản, bán nhà, bán đất, nhà cho thuê, chung cư"/></h1></a>
 		</div>
 		<div class="header-right float-right">
 			<?php

@@ -2,15 +2,28 @@
 <html lang = "en">
 
 <head>
-	<meta charset = "utf-8">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="audience" content="general" />
+	<meta name="resource-type" content="document" />
+	<meta name="abstract" content="Thông tin nhà đất Việt Nam" />
+	<meta name="classification" content="Bất động sản Việt Nam" />
+	<meta name="area" content="Nhà đất và bất động sản" />
+	<meta name="placename" content="Việt Nam" />
+	<meta name="author" content="tindatdai.com" />
+	<meta name="copyright" content="©2017 tindatdai.com" />
+	<meta name="owner" content="tindatdai.com" />
+	<meta name="distribution" content="Global" />
+	<meta name="description" content="Thông tin mua bán bất động sản, đăng tin miễn phí. Mua bán nhà đất, cho thuê nhà đất, văn phòng, căn hộ, biệt thự, chung cư, tin tức bất động sản, thiết kế đẹp, nhà mẫu, tin thị trường">
+	<meta name="keywords" content="Bất, động, sản, bán, nhà, chung, cư, mua, đất, real, estate">
+	<meta name="revisit-after" content="1 days" />
+	<meta name="robots" content="follow" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Thông tin mua bán bất động sản, đăng tin miễn phí. Mua bán nhà đất, cho thuê nhà đất, văn phòng, căn hộ, biệt thự, chung cư.">
-	<meta name="keywords" content="Bất động sản, bán nhà, chung cư, mua đất, bán đất, real estate">
+
 	<title>Tin Đất Đai | Bất Động Sản | Mua Bán Chung Cư, Nhà Đất</title>
 	<link rel="icon" sizes="48x48" href="<?=base_url('/img/ico.ico')?>">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v1.7.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v1.8.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.min_v1.0.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.1.css">
 	<!-- jQuery library -->
@@ -148,13 +161,13 @@
 	<div class="nha-dat-ban">
 		<div class="col-md-9">
 			<div class="block-panel">
-				<div class="block-header text-left"><h1 class="h1Class">NHÀ ĐẤT BÁN</h1></div>
+				<div class="block-header text-left"><span class="h1Class">NHÀ ĐẤT BÁN</span></div>
 				<div class="block-body">
 					<?php
 					foreach ($nhadatban as $product){
 						?>
 						<div class="row product-list">
-							<div class="row product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><?=$product->Title?></a> </div>
+							<div class="row product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><h3><?=$product->Title?></h3></a> </div>
 							<div class="row product-content">
 								<div class="col-md-2 col-xs-5 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
 								<div class="col-md-10 col-xs-7">
@@ -180,13 +193,13 @@
 			</div>
 
 			<div class="block-panel">
-				<div class="block-header text-left"><h1 class="h1Class">NHÀ ĐẤT CHO THUÊ</h1></div>
+				<div class="block-header text-left"><span class="h1Class">NHÀ ĐẤT CHO THUÊ</span></div>
 				<div class="block-body">
 					<?php
 					foreach ($nhadatchothue as $product){
 						?>
 						<div class="row product-list">
-							<div class="row product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><?=$product->Title?></a> </div>
+							<div class="row product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><h3><?=$product->Title?></h3></a> </div>
 							<div class="row product-content">
 								<div class="col-md-2 col-xs-5 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
 								<div class="col-md-10 col-xs-7">
