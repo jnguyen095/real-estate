@@ -14,6 +14,14 @@
 		margin-left: 0px;
 		display: block;
 	}
+
+	.hasInfo #mapInfo{
+		width: 100%;
+	}
+
+	.hasInfo #map{
+		width: 100%;
+	}
 }
 
 @media (max-width: 120px) {

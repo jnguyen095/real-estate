@@ -5,7 +5,7 @@
  * Date: 8/27/2017
  * Time: 10:29 PM
  */
-?>
+/*
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
 	(adsbygoogle = window.adsbygoogle || []).push({
@@ -13,3 +13,4 @@
 		enable_page_level_ads: true
 	});
 </script>
+*/ ?>

@@ -203,7 +203,21 @@
 
 
 		<?php if($product->Latitude > 0 && $product->Longitude > 0){?>
-		<?php $this->load->view('/Map_view')?>
+			<ul id="mapTabs" class="nav nav-tabs">
+				<li class="active"><a data-toggle="tab" href="#home">Bản Đồ</a></li>
+				<li><a data-toggle="tab" data-type="school" href="#home">Trường Học</a></li>
+				<li><a data-toggle="tab" data-type="hospital" href="#home">Bệnh Viện</a></li>
+				<li><a data-toggle="tab" data-type="bank" href="#home">Ngân Hàng, ATM</a></li>
+				<li><a data-toggle="tab" data-type="grocery_or_supermarket" href="#home">Chợ, Siêu Thị</a></li>
+				<li><a data-toggle="tab" data-type="store" href="#home">Cửa Hàng</a></li>
+				<li><a data-toggle="tab" data-type="church" href="#home">Nhà Thờ</a></li>
+			</ul>
+			<div class="tab-content">
+				<div id="home" class="tab-pane fade in active">
+					<?php $this->load->view('/Map_view')?>
+				</div>
+			</div>
+
 		<?php }?>
 
 		<?php

@@ -395,10 +395,62 @@ a#btnSubscrible {
 	color: #999;
 }
 
+.hasInfo #map{
+	width: 50%;
+	float: left;
+}
+
+.hasInfo #mapInfo{
+	width: 50%;
+	float: left;
+	display: block;
+}
+
+#mapInfo{
+	display: none;
+	height: 400px;
+}
+
+.nearme{
+	height: 400px;
+}
+
+span.distance {
+	float: right;
+}
+
+span.serviceName {
+	float: left;
+}
+
+.tab-content {
+	padding: 2px;
+	border-left: solid 1px #ddd;
+	border-right: solid 1px #ddd;
+	border-bottom: solid 1px #ddd;
+}
+
+ul.nearme {
+	margin-left: -15px;
+}
+
+.nearme span, .nearme a {
+	font-size: 11px;
+	font-weight: normal;
+	cursor: pointer;
+}
+
+ul.nearme {
+	margin-left: -15px;
+	line-height: 20px;
+	font-size: 11px;
+}
+
 #map {
 	height: 400px;
 	width: 100%;
 }
+
 .product-detail, .product-detail.content{
 	font-size: 14px !important;
 	padding: 10px 0px;
@@ -515,11 +567,15 @@ a#btnSubscrible {
 }
 
 .width100{
-	width: 80px;
+	width: 120px;
 }
 
 .width100pc{
 	width: 100%;
+}
+
+.nearme li {
+	border-bottom: solid 1px #ebebeb;
 }
 
 .margin-bottom-20{

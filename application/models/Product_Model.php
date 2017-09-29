@@ -248,6 +248,7 @@ class Product_Model extends CI_Model
 			'Status' => INACTIVE,
 			'UnitID' => $data['unit'],
 			'Address' => $data['address'],
+			'Vip' => 5
 		);
 
 		$newdatadetail = array(
@@ -312,7 +313,7 @@ class Product_Model extends CI_Model
 			'CreatedByID' => $data['CreatedByID'],
 			'UnitID' => $data['unit'],
 			'Address' => $data['address'],
-			'Vip' => 0
+			'Vip' => 5
 		);
 		$newdatadetail = array(
 			'Detail' => $data['description'],
