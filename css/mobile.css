@@ -17,10 +17,27 @@
 
 	.hasInfo #mapInfo{
 		width: 100%;
+		height: auto;
 	}
 
 	.hasInfo #map{
 		width: 100%;
+	}
+	.nearme{
+		height: auto;
+		margin-top: 10px;
+	}
+	.nav-tabs>li.active>a{
+		border: none !important;
+		text-decoration: underline;
+	}
+	#mapTabs >li {
+		display: inline-block;
+		margin-bottom: -1px;
+	}
+
+	.pc-hide{
+		display: block;
 	}
 }
 

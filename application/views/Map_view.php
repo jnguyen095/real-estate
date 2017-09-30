@@ -54,16 +54,16 @@
 				radius: 500,
 				type: [nearBy]
 			}, callbackService);
+		}else{
+			// Open by default
+			infoWindow.setContent(infowincontent);
+			infoWindow.open(map, marker);
 		}
-
-		// Open by default
-		infoWindow.setContent(infowincontent);
-		infoWindow.open(map, marker);
 	}
 
 	function callbackService(results, status) {
+		var str = '<span class="no-data">Không có dữ liệu</span>';
 		if (status === google.maps.places.PlacesServiceStatus.OK) {
-			var str = '';
 			if(results.length > 0) {
 				str = '<ul class="nearme">';
 				for (var i = 0; i < results.length; i++) {
@@ -87,9 +87,9 @@
 				}
 				str += "</ul>";
 			}
-			$("#mapInfo").html(str);
-			$(".nearme").mCustomScrollbar({axis:"y"});
 		}
+		$("#mapInfo").html(str);
+		$(".nearme").mCustomScrollbar({axis:"y"});
 	}
 
 	function showMe(index){

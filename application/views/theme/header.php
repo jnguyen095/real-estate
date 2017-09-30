@@ -8,30 +8,11 @@
 ?>
 
 <div class="header">
-	<div class="banner">
-		<div class="header-logo float-left">
-			<a href="<?=base_url('/trang-chu.html')?>" rel="nofollow"><h1><img src="<?=base_url('/img/logo.jpg')?>" alt="Bất động sản, bán nhà, bán đất, nhà cho thuê, chung cư"/></h1></a>
-		</div>
-		<div class="header-right float-right">
-			<?php
-				if($this->session->userdata('username') != null){
-			?>
-				<div class="head-links"><a href="<?=base_url('/thong-tin-ca-nhan.html')?>"><?=$this->session->userdata('fullname')?></a> | <a href="<?=base_url('/quan-ly-tin-rao.html')?>">Quản lý tin rao</a> | <a href="<?=base_url('/dang-xuat.html')?>">Đăng xuất</a></div>
-			<?php
-				}else{
-			?>
-				<div class="head-links"><a href="<?=base_url('/dang-nhap.html')?>">Đăng nhập</a>  | <a href="<?=base_url('/dang-ky.html')?>">Đăng ký</a></div>
-			<?php
-				}
-			?>
-			<div class="post-btn"><a class="btn-sm btn-tindatdai" href="<?=base_url('/dang-tin.html')?>">Đăng tin miễn phí</a></div>
-		</div>
-		<div class="clear-both"></div>
-	</div>
-
-
-	<nav class="navbar navbar-default m-navbar" data-spy="affix_" data-offset-top="67"/>
+	<nav class="navbar navbar-default m-navbar"/>
 		<div class="container-fluid">
+			<a class="navbar-brand brandName" href="<?=base_url('/')?>">
+				<img src="<?=base_url('/img/branch.png')?>" atl="Tin Dat Dai Logo"/>
+			</a>
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar4">
 					<span class="sr-only">Toggle navigation</span>
@@ -43,7 +24,6 @@
 			<div id="navbar4" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<?php
-					echo ' <li><a class="navbar-brand" href="'.base_url().'"><span class="glyphicon glyphicon-home"></span></a></li>';
 					foreach($categories as $r) {
 						if(count($child[$r->CategoryID]) > 0){
 							echo '<li role="presentation" class="dropdown">
@@ -63,6 +43,30 @@
 					?>
 					<li role="presentation"><a href="<?=base_url('nha-mau-dep.html')?>">Nhà Mẫu Đẹp</a> </li>
 					<li role="presentation"><a href="<?=base_url('tin-tuc.html')?>">Tin Tức</a> </li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<?php
+					if($this->session->userdata('username') != null){
+						?>
+						<li role="presentation" class="dropdown">
+							<a href="<?=base_url('/thong-tin-ca-nhan.html')?>" role="button" aria-haspopup="true" aria-expanded="false">
+								<?=$this->session->userdata('fullname')?>
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="<?=base_url('/quan-ly-tin-rao.html')?>">Quản lý tin rao</a></li>
+								<li><a href="<?=base_url('/dang-xuat.html')?>">Đăng xuất</a></li>
+							</ul>
+						</li>
+
+						<?php
+					}else{
+						?>
+						<li><a href="<?=base_url('/dang-nhap.html')?>">Đăng nhập</a></li>
+						<?php
+					}
+					?>
+					<li><a href="<?=base_url('/dang-tin.html')?>">Đăng tin miễn phí</a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->

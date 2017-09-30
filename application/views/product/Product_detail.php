@@ -43,11 +43,12 @@
 <div class="row no-margin">
 	<div class="col-md-9 no-margin no-padding product-detail">
 		<div class="product-title"><h1 itemprop="name" class="h1Class"><?php echo $product->Title?></h1></div>
-		<div class="date-time">Ngày đăng: <?=date('d/m/Y', strtotime($product->PostDate))?></div>
+
 		<div class="row">
-			<div class="col-md-4">Giá: <span class="color bold"><?php echo $product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?php echo $product->Area?></span></span></div>
-			<div class="col-md-8 text-right">
-				<span class="color bold glyphicon glyphicon-map-marker"></span><span class="color bold">
+			<div class="col-md-12"><span class="price-detail"><?php echo $product->PriceString?></span>	</div>
+			<div class="col-md-4 area-detail">Diện tích: <?php echo $product->Area?></div>
+			<div class="col-md-8 text-right addr-detail">
+				<span class="glyphicon glyphicon-map-marker"></span><span class="addr-detail">
 				<?php
 				if(isset($product->Street)){
 					echo $product->Street;
@@ -122,9 +123,12 @@
 		}
 		?>
 
+
 		<div class="h2title">Chi Tiết</div>
 
-		<div class="product-detail content"><?php echo $product->Detail?></div>
+		<div id="prDetail" class="product-detail content">
+			<?php echo $product->Detail?>
+		</div>
 
 		<div class="row">
 			<div class="col-md-6">
@@ -222,7 +226,17 @@
 
 		<?php
 			if(isset($product->Source)){
-				echo '<div class="copy-source row color-gray no-margin no-padding">Nguồn: '.$product->Source.'</div>';
+				?>
+				<div class="row">
+					<div class="col-md-6 col-xs-8">
+						<div class="copy-source row color-gray no-margin no-padding">Nguồn: <?=$product->Source?></div>
+					</div>
+					<div class="col-md-6 col-xs-4">
+						<div class="copy-source row color-gray no-margin no-padding text-right">Ngày đăng: <?=date('d/m/Y', strtotime($product->PostDate))?></div>
+					</div>
+				</div>
+
+				<?php
 			}
 		?>
 		<?php $this->load->view('/SocialShare') ?>
