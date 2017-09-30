@@ -29,7 +29,7 @@
 	</ul>
 
 	<div class="row no-margin">
-		<div class="col-lg-12 col-sm-12">
+		<div class="col-lg-12 col-sm-12 no-padding">
 			<div>
 				<div class="float-left h2title">Quản lý tin rao</div>
 				<div class="float-right">
@@ -65,8 +65,8 @@
 							<th>Tiêu đề</th>
 							<th>Lượt xem</th>
 							<th>Ngày đăng</th>
-							<th>Ngày cập nhật</th>
-							<th>Tình trạng</th>
+							<th class="mobile-hide">Ngày cập nhật</th>
+							<th class="mobile-hide">Tình trạng</th>
 							<th>Chỉnh sửa</th>
 						</tr>
 					</thead>
@@ -94,13 +94,13 @@
 										echo mdate($datestring, strtotime($product->PostDate));
 									?>
 								</td>
-								<td>
+								<td class="mobile-hide">
 									<?php
 									$datestring = '%d/%m/%Y';
 									echo mdate($datestring, strtotime($product->ModifiedDate));
 									?>
 								</td>
-								<td><?php
+								<td class="mobile-hide"><?php
 									if($product->Status == 1){
 										echo '<span class="active">Hoạt động</span>';
 									}else{

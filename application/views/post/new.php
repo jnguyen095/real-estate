@@ -31,7 +31,7 @@
 	</ul>
 
 	<div class="row no-margin">
-		<div class="col-lg-12 col-sm-12">
+		<div class="col-lg-12 col-sm-12 no-padding">
 			<?php if($this->session->userdata('loginid') < 1) { ?>
 				<div class="alert alert-danger">
 					<b>Bạn vẫn có thể tiếp tục đăng tin miễn phí mà không cần đăng nhập.</b><br/>
@@ -79,7 +79,7 @@
 			</div>
 			<!-- end -->
 
-			<div class="col-lg-9 col-sm-9">
+			<div class="col-lg-9 col-sm-9 no-padding">
 				<?php
 					$attributes = array("enctype" => "multipart/form-data", "class" => "custom-input");
 					echo form_open("dang-tin", $attributes);

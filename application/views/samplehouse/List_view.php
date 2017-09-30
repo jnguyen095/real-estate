@@ -41,7 +41,7 @@
 						echo '<div class="clear-both"></div>';
 						echo '</div>';
 
-						echo '<div class="col-md-12 col-xs-12 product-brief no-padding">';
+						echo '<div class="col-md-12 col-xs-12 product-brief no-padding mobile-hide">';
 						echo '<div class="no-margin no-padding col-md-12 col-xs-12">' . $sampleHouse->Brief . '</div>';
 						echo '</div>';
 
