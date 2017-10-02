@@ -46,7 +46,7 @@
 
 		<div class="row">
 			<div class="col-md-12"><span class="price-detail"><?php echo $product->PriceString?></span>	</div>
-			<div class="col-md-4 area-detail">Diện tích: <?php echo $product->Area?></div>
+			<div class="col-md-4 area-detail">Diện tích: <?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></div>
 			<div class="col-md-8 text-right addr-detail">
 				<span class="glyphicon glyphicon-map-marker"></span><span class="addr-detail">
 				<?php

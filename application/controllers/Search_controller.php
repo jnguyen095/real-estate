@@ -22,6 +22,7 @@ class Search_controller extends CI_Controller
 		$this->load->helper("bootstrap_pagination");
 		$this->load->library('pagination');
 		$this->load->helper('form');
+		$this->load->library('session');
 	}
 
 	public function index($offset=0){
@@ -30,12 +31,30 @@ class Search_controller extends CI_Controller
 		$data['cities'] = $this->City_Model->getAllActive();
 
 		$keyword = $this->input->post("keyword");
-		$catId = $this->input->post("cmCatId");
-		$cityId = $this->input->post("cmCityId");
-		$districtId = $this->input->post("cmDistrictId");
-		$area = $this->input->post("cmArea");
-		$price = $this->input->post("cmPrice");
-		$postDate = $this->input->post("cmPostDate");
+
+		if($offset == 0){
+			$catId = $this->input->post("cmCatId");
+			$cityId = $this->input->post("cmCityId");
+			$districtId = $this->input->post("cmDistrictId");
+			$area = $this->input->post("cmArea");
+			$price = $this->input->post("cmPrice");
+
+			$searchFilters = array(
+				'cmCatId' => $catId,
+				'cmCityId' => $cityId,
+				'cmDistrictId' => $districtId,
+				'cmArea' => $area,
+				'cmPrice' => $price
+			);
+			$this->session->set_userdata($searchFilters);
+		}else{
+			$catId = $this->session->userdata("cmCatId");
+			$cityId = $this->session->userdata("cmCityId");
+			$districtId = $this->session->userdata("cmDistrictId");
+			$price = $this->session->userdata("cmPrice");
+			$area = $this->session->userdata("cmArea");
+		}
+
 
 		$data['keyword'] = $keyword;
 		$data['cmCatId'] = $catId;
@@ -43,9 +62,8 @@ class Search_controller extends CI_Controller
 		$data['cmDistrictId'] = $districtId;
 		$data['cmArea'] = $area;
 		$data['cmPrice'] = $price;
-		$data['cmPostDate'] = $postDate;
 
-		$search_data = $this->Product_Model->searchByProperties($keyword, $catId, $cityId, $districtId, $area, $price, $postDate, $offset, MAX_PAGE_ITEM);
+		$search_data = $this->Product_Model->searchByProperties($keyword, $catId, $cityId, $districtId, $area, $price, $offset, MAX_PAGE_ITEM);
 		$data = array_merge($data, $search_data);
 		$config = pagination();
 		$config['base_url'] = base_url('tim-kiem.html');
