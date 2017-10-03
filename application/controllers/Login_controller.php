@@ -92,7 +92,8 @@ class Login_controller extends CI_Controller
 						'loginid' => $usr_result->Us3rID,
 						'username' => $username,
 						'fullname' => $usr_result->FullName,
-						'loginuser' => TRUE
+						'loginuser' => TRUE,
+						'usergroup' => $usr_result->UserGroup
 					);
 					$this->session->set_userdata($sessiondata);
 					$this->Login_Model->updateLastLogin($usr_result->Us3rID);

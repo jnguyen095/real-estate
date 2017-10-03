@@ -38,7 +38,7 @@
 		}
 	?>
 	<li><a href="<?php echo base_url().seo_url($category->CatName).'-c'.$category->CategoryID?>.html"><?php echo $category->CatName?></a></li>
-	<li class="active"><?php echo $product->Title?></li>
+	<li class="active mobile-hide"><?php echo $product->Title?></li>
 </ul>
 <div class="row no-margin">
 	<div class="col-md-9 no-margin no-padding product-detail">

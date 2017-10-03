@@ -54,7 +54,14 @@
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="<?=base_url('/quan-ly-tin-rao.html')?>">Quản lý tin rao</a></li>
+								<?php
+								if($this->session->userdata('usergroup') != null && $this->session->userdata('usergroup') == 'ADMIN') {
+									?>
+									<li><a href="<?= base_url('/admin.html') ?>">Quản trị</a></li>
+									<?php
+								}
+								?>
+								<li><a href="<?= base_url('/quan-ly-tin-rao.html') ?>">Quản lý tin rao</a></li>
 								<li><a href="<?=base_url('/dang-xuat.html')?>">Đăng xuất</a></li>
 							</ul>
 						</li>

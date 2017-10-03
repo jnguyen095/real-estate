@@ -62,7 +62,7 @@
 	}
 
 	function callbackService(results, status) {
-		var str = '<span class="no-data">Không có dữ liệu</span>';
+		var str = '<span class="no-data">Không có dữ liệu trong bán kính 500m.</span>';
 		if (status === google.maps.places.PlacesServiceStatus.OK) {
 			if(results.length > 0) {
 				str = '<ul class="nearme">';

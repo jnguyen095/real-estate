@@ -17,7 +17,7 @@ class Login_Model extends CI_Model
 	//get the username & password from tbl_usrs
 	function get_user($usr, $pwd)
 	{
-		$sql = "select * from us3r where UserName = '" . $usr . "' and Password = '" . md5($pwd) . "' and status = '".ACTIVE."' limit 1";
+		$sql = "select u.*, ug.Code as UserGroup from us3r u inner join usergroup ug on u.UserGroupID = ug.UserGroupID where u.UserName = '" . $usr . "' and u.Password = '" . md5($pwd) . "' and u.Status = '".ACTIVE."' limit 1";
 		$query = $this->db->query($sql);
 		return $query->row();
 	}
