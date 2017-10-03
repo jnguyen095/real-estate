@@ -107,3 +107,6 @@ $route['(:any)-c(:num).html/(:num)'] = "Product_controller/listItem/$2/$3";
 // View product detail
 $route['(:any)-p(:num)'] = "Product_controller/detailItem/$2";
 
+/* Administrator */
+$route['admin/dashboard'] = "admin/Admin_controller";
+$route['admin/user/list'] = "admin/UserManagement_controller";

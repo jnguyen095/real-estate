@@ -57,7 +57,7 @@
 								<?php
 								if($this->session->userdata('usergroup') != null && $this->session->userdata('usergroup') == 'ADMIN') {
 									?>
-									<li><a href="<?= base_url('/admin.html') ?>">Quản trị</a></li>
+									<li><a href="<?= base_url('/admin/dashboard.html') ?>">Quản trị</a></li>
 									<?php
 								}
 								?>

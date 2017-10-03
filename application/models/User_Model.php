@@ -66,4 +66,10 @@ class User_Model extends CI_Model
 		$this->db->where('Us3rID', $userId);
 		$this->db->update('us3r', $newdata);
 	}
+
+	function getAllUsers($offset=0, $limit){
+		$sql = "select * from us3r u order by u.CreatedDate desc limit ".$offset.','.$limit;
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 }

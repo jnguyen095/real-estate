@@ -8,3 +8,4 @@ Disallow: /login_controller/do_upload_others_images/
 Disallow: /login_controller/loadOthersImages/
 Disallow: /login_controller/removeSecondaryImage/
 Disallow: /ajax_controller/
+Disallow: /admin/
