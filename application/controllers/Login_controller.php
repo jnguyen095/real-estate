@@ -26,13 +26,12 @@ class Login_controller extends CI_Controller
 	}
 
 	public function logout(){
-		$this->session->unset_userdata('username');
-		$this->session->unset_userdata('loginuser');
-		$this->session->unset_userdata('loginid');
+		$this->unsetSession();
 		redirect("trang-chu");
 	}
 
 	public function socialLogin(){
+		$this->unsetSession();
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
 		$fullname = $this->input->post('fullname');
@@ -83,6 +82,7 @@ class Login_controller extends CI_Controller
 			//validation succeeds
 			if ($this->input->post('crudaction') == "Login")
 			{
+				$this->unsetSession();
 				//check if username and password is correct
 				$usr_result = $this->Login_Model->get_user($username, $password);
 				if ($usr_result != null) //active user record is present
@@ -110,5 +110,12 @@ class Login_controller extends CI_Controller
 				redirect('dang-nhap');
 			}
 		}
+	}
+
+	function unsetSession(){
+		$this->session->unset_userdata('username');
+		$this->session->unset_userdata('loginuser');
+		$this->session->unset_userdata('loginid');
+		$this->session->unset_userdata('usergroup');
 	}
 }
