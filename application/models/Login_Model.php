@@ -45,11 +45,7 @@ class Login_Model extends CI_Model
 	}
 
 	public function updateLastLogin($userId){
-		$datestring = '%Y-%m-%d %h:%i:%s';
-		$time = time();
-		$now = mdate($datestring, $time);
-
-		$this->db->set('LastLogin', $now);
+		$this->db->set('LastLogin', "NOW()", false);
 		$this->db->where('Us3rID', $userId);
 		$this->db->update('us3r');
 	}

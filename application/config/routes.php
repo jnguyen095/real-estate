@@ -107,6 +107,14 @@ $route['(:any)-c(:num).html/(:num)'] = "Product_controller/listItem/$2/$3";
 // View product detail
 $route['(:any)-p(:num)'] = "Product_controller/detailItem/$2";
 
-/* Administrator */
+// Static Pages
+$route['dieu-khoan-su-dung'] = "StaticPage_controller/term";
+$route['quy-che-hoat-dong'] = "StaticPage_controller/used";
+
+
+/* ADMINISTRATOR */
 $route['admin/dashboard'] = "admin/Admin_controller";
 $route['admin/user/list'] = "admin/UserManagement_controller";
+$route['admin/static-page/list'] = "admin/StaticPage_controller";
+$route['admin/static-page/add'] = "admin/StaticPage_controller/add";
+$route['admin/static-page/add-(:num)'] = "admin/StaticPage_controller/add/$1";

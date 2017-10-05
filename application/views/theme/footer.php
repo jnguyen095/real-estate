@@ -25,8 +25,8 @@
 	<div class="menu_bottom">
 		<ul>
 			<li><a href="#">Báo giá quảng cáo</a></li>
-			<li><a href="#">Điều khoản thỏa thuận</a></li>
-			<li><a href="#">Quy chế hoạt động</a></li>
+			<li><a href="<?=base_url('/dieu-khoan-su-dung.html')?>">Điều khoản thỏa thuận</a></li>
+			<li><a href="<?=base_url('/quy-che-hoat-dong.html')?>">Quy chế hoạt động</a></li>
 			<li><a href="#">Câu hỏi thường gặp</a></li>
 			<li><a href="#">Hỗ trợ - góp ý</a></li>
 			<li><a href="#">Tuyển dụng</a></li>
