@@ -417,6 +417,9 @@ class Product_Model extends CI_Model
 		$sql .= ' limit '.$offset.','.$limit;
 
 		$countsql = 'select count(*) as total from product p where p.Status = '.ACTIVE;
+		if(isset($keyword)){
+			$countsql .= ' and p.Title like \'%' . $keyword .'%\'';
+		}
 		if(isset($catId) && $catId > -1) {
 			$countsql .= ' and p.CategoryID = ' . $catId;
 		}

@@ -70,6 +70,19 @@ class Search_controller extends CI_Controller
 		$config['total_rows'] = $data['total'];
 		$config['per_page'] = MAX_PAGE_ITEM;
 
+		if($catId != null && $catId > 0){
+			$category = $this->Category_Model->findByNotChildId($catId);
+			$data['category'] = $category;
+		}
+		if($cityId != null && $cityId > 0){
+			$city = $this->City_Model->findById($cityId);
+			$data['scity'] = $city;
+		}
+		if($districtId != null && $districtId > 0){
+			$district = $this->District_Model->findById($districtId);
+			$data['sdistrict'] = $district;
+		}
+
 		$this->pagination->initialize($config);
 		$data['pagination'] = $this->pagination->create_links();
 		$this->load->helper('url');
