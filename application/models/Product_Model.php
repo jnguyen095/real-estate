@@ -32,8 +32,8 @@ class Product_Model extends CI_Model
 		$sql .= ' inner join city c on p.cityid = c.cityid';
 		$sql .= ' inner join district d on p.districtid = d.districtid';
 		$sql .= ' inner join category ct on ct.categoryid = p.categoryid';
-		$sql .= ' where ct.code = \''.$catCode.'\' and p.status = '.ACTIVE.' and p.View < 5';
-		$sql .= ' order by p.postdate desc';
+		$sql .= ' where ct.code = \''.$catCode.'\' and p.status = '.ACTIVE;
+		$sql .= ' order by p.postdate desc, p.Vip asc';
 		$sql .= ' limit '.$offset.','.$limit;
 
 		$query = $this->db->query($sql);
@@ -56,11 +56,7 @@ class Product_Model extends CI_Model
 	}
 
 	public function pushPostUp($productId){
-		$datestring = '%Y-%m-%d %h:%i:%s';
-		$time = time();
-		$now = mdate($datestring, $time);
-
-		$this->db->set('ModifiedDate', $now);
+		$this->db->set('ModifiedDate', 'NOW()', false);
 		$this->db->where('ProductID', $productId);
 		$this->db->update('product');
 	}
@@ -225,9 +221,6 @@ class Product_Model extends CI_Model
 	public function updatePost($data, $assets){
 		$productId = $data['productId'];
 
-		$datestring = '%Y-%m-%d %h:%i:%s';
-		$time = time();
-		$now = mdate($datestring, $time);
 		// Get Unit
 		$this->db->where("UnitID", $data['unit']);
 		$query = $this->db->get("unit");
@@ -239,7 +232,7 @@ class Product_Model extends CI_Model
 			'Price' => $data['price'],
 			'PriceString' => $data['price'].' '.$unit->Title,
 			'Area' => $data['area'].' m²',
-			'ModifiedDate' => $now,
+			'ModifiedDate' => date('Y-m-d H:i:s'),
 			'CityID' => $data['city'],
 			'DistrictID' => $data['district'],
 			'WardID' => $data['ward'],
@@ -284,10 +277,6 @@ class Product_Model extends CI_Model
 	}
 
 	public function saveNewPost($data, $assets){
-		$datestring = '%Y-%m-%d %h:%i:%s';
-		$time = time();
-		$now = mdate($datestring, $time);
-
 		// Get Unit
 		$this->db->where("UnitID", $data['unit']);
 		$query = $this->db->get("unit");
@@ -301,8 +290,8 @@ class Product_Model extends CI_Model
 			'PriceString' => $data['price'].' '.$unit->Title,
 			'Area' => $data['area'].' m²',
 			'Thumb' => $data['image'],
-			'PostDate' => $now,
-			'ModifiedDate' => $now,
+			'PostDate' => date('Y-m-d H:i:s'),
+			'ModifiedDate' => date('Y-m-d H:i:s'),
 			'CityID' => $data['city'],
 			'DistrictID' => $data['district'],
 			'WardID' => $data['ward'],
