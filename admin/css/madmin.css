@@ -2,3 +2,20 @@
 	color: #FF0000;
 	display: inline;
 }
+
+.admin-table .glyphicon-triangle-bottom:before {
+	color: #ebebeb;
+}
+
+.admin-table th > span{
+	float:left;
+}
+.admin-table th > i{
+	float:right;
+}
+
+.admin-table th > i.active,
+.admin-table th > i.active:before{
+	color:#008000;
+}
+
