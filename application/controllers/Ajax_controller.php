@@ -55,4 +55,11 @@ class Ajax_controller extends CI_Controller
 			echo json_encode('failure');
 		}
 	}
+
+	public function updateViewForProductIdManual(){
+		$productId = $this->input->post('productId');
+		$view = $this->input->post('view');
+		$this->Product_Model->updateViewForProductIdManual($productId, $view);
+		echo json_encode('success');
+	}
 }

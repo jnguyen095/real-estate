@@ -5,6 +5,10 @@
 
 $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
+	//Date picker
+	$('.datepicker').datepicker({
+		autoclose: true
+	})
 });
 
 var getNamedParameter = function (key) {
@@ -38,6 +42,7 @@ var remove_value = function (value, remove) {
 	}
 	return value;
 };
+
 
 var admin_paging = function(baseUrl){
 	var sendRequest = function(){

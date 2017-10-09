@@ -93,8 +93,8 @@
 								<td><?=date('d/m/Y H:i', strtotime($user->CreatedDate))?></td>
 								<td><?=date('d/m/Y H:i', strtotime($user->LastLogin))?></td>
 								<td>
-									<a data-toggle="tooltip" title="Xem tin rao"><i class="glyphicon glyphicon-folder-open"></i></a>&nbsp;|
-									<a data-toggle="tooltip" title="Chỉnh sửa"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;|
+									<a href="<?=base_url('/admin/product/list.html?createdById='.$user->Us3rID)?>" data-toggle="tooltip" title="Xem tin rao"><i class="glyphicon glyphicon-folder-open"></i></a>&nbsp;|&nbsp;
+									<a data-toggle="tooltip" title="Chỉnh sửa"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;|&nbsp;
 									<a data-toggle="tooltip" title="Xóa Người dùng"><i class="glyphicon glyphicon-remove"></i></a>
 								</td>
 							</tr>
@@ -132,7 +132,29 @@
 <script src="<?=base_url('/admin/js/tindatdai_admin.js')?>"></script>
 
 <script type="text/javascript">
-	admin_paging('<?=base_url('admin/user/list.html')?>');
+	var sendRequest = function(){
+		var searchKey = $('#searchKey').val()||"";
+		window.location.href = '<?=base_url('admin/user/list.html')?>?query='+searchKey+ '&orderField='+curOrderField+'&orderDirection='+curOrderDirection;
+	}
+
+	var curOrderField, curOrderDirection;
+	$('[data-action="sort"]').on('click', function(e){
+		curOrderField = $(this).data('title');
+		curOrderDirection = $(this).data('direction');
+		sendRequest();
+	});
+
+
+	$('#searchKey').val(decodeURIComponent(getNamedParameter('query')||""));
+
+	var curOrderField = getNamedParameter('orderField')||"";
+	var curOrderDirection = getNamedParameter('orderDirection')||"";
+	var currentSort = $('[data-action="sort"][data-title="'+getNamedParameter('orderField')+'"]');
+	if(curOrderDirection=="ASC"){
+		currentSort.attr('data-direction', "DESC").find('i.glyphicon').removeClass('glyphicon-triangle-bottom').addClass('glyphicon-triangle-top active');
+	}else{
+		currentSort.attr('data-direction', "ASC").find('i.glyphicon').removeClass('glyphicon-triangle-top').addClass('glyphicon-triangle-bottom active');
+	}
 </script>
 </body>
 </html>

@@ -55,6 +55,12 @@ class Product_Model extends CI_Model
 		$this->db->update('product');
 	}
 
+	public function updateViewForProductIdManual($productId, $view){
+		$this->db->set('View', $view);
+		$this->db->where('ProductID', $productId);
+		$this->db->update('product');
+	}
+
 	public function pushPostUp($productId){
 		$this->db->set('ModifiedDate', 'NOW()', false);
 		$this->db->where('ProductID', $productId);
@@ -504,7 +510,31 @@ class Product_Model extends CI_Model
 		return $where;
 	}
 
-	private function getAreaFromInt($areaInt){
+	function findAndFilter($offset=0, $limit, $st = "", $fromDate, $toDate, $createdById, $orderField, $orderDirection){
+		//$this->output->enable_profiler(TRUE);
+		if($fromDate){
+			$this->db->where('PostDate >=', $fromDate);
+		}
+		if($toDate){
+			$this->db->where('PostDate <=', $toDate);
+		}
+		if($createdById){
+			$this->db->where('CreatedByID', $createdById);
+		}
+		$query = $this->db->like('Title', $st)->limit($limit, $offset)->order_by($orderField, $orderDirection)->get('product');
+		$result['items'] = $query->result();
 
+		if($fromDate){
+			$this->db->where('date(PostDate) >=', $fromDate);
+		}
+		if($toDate){
+			$this->db->where('date(PostDate) <=', $toDate);
+		}
+		if($createdById){
+			$this->db->where('CreatedByID', $createdById);
+		}
+		$query = $this->db->like('Title', $st)->get('product');
+		$result['total'] = $query->num_rows();
+		return $result;
 	}
 }

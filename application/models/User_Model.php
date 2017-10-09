@@ -62,9 +62,6 @@ class User_Model extends CI_Model
 	}
 
 	function getAllUsers($offset=0, $limit, $st = "", $orderField, $orderDirection){
-		/*$sql = "select * from us3r u order by u.CreatedDate desc limit ".$offset.','.$limit;
-		$query = $this->db->query($sql);
-		return $query->result();*/
 		$query = $this->db->or_like('FullName', $st)->or_like('Email', $st)->or_like('Phone', $st)->limit($limit, $offset)->order_by($orderField, $orderDirection)->get('us3r');
 		$result['items'] = $query->result();
 		$query = $this->db->or_like('FullName', $st)->or_like('Email', $st)->or_like('Phone', $st)->get('us3r');

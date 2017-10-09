@@ -19,3 +19,16 @@
 	color:#008000;
 }
 
+.txtView{
+	width: 50px;
+}
+
+.admin-table th[data-action] > span {
+	cursor: pointer;
+}
+.search-filter {
+	margin: 10px 0px;
+	background: #ebebeb;
+	padding: 10px;
+	border-radius: 8px;
+}

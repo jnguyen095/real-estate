@@ -115,6 +115,7 @@ $route['quy-che-hoat-dong'] = "StaticPage_controller/used";
 /* ADMINISTRATOR */
 $route['admin/dashboard'] = "admin/Admin_controller";
 $route['admin/user/list'] = "admin/UserManagement_controller";
+$route['admin/product/list'] = "admin/ProductManagement_controller";
 $route['admin/static-page/list'] = "admin/StaticPage_controller";
 $route['admin/static-page/add'] = "admin/StaticPage_controller/add";
 $route['admin/static-page/add-(:num)'] = "admin/StaticPage_controller/add/$1";
