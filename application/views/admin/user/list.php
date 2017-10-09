@@ -65,6 +65,7 @@
 								<th>Email</th>
 								<th>Địa Chỉ</th>
 								<th>Ngày Tạo</th>
+								<th>Ngày Thay Đổi</th>
 								<th>Lần Cuối Đăng Nhập</th>
 								<th>#</th>
 							</tr>
@@ -80,7 +81,8 @@
 								<td><?=$user->Email?></td>
 								<td><?=$user->Address?></td>
 								<td><?=date('d/m/Y', strtotime($user->CreatedDate))?></td>
-								<td><?=date('d/m/Y', strtotime($user->LastLogin))?></td>
+								<td><?=date('d/m/Y H:i', strtotime($user->UpdatedDate))?></td>
+								<td><?=date('d/m/Y H:i', strtotime($user->LastLogin))?></td>
 								<td></td>
 							</tr>
 							<?php

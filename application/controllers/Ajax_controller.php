@@ -48,11 +48,7 @@ class Ajax_controller extends CI_Controller
 	public function addSubscrible(){
 		$email = $this->input->post('email');
 		if($this->Subscrible_Model->findByEmail($email) < 1){
-			$datestring = '%Y-%m-%d %h:%i:%s';
-			$time = time();
-			$now = mdate($datestring, $time);
-
-			$data = array("Email" => $email, "CreatedDate" => $now, "Status" => ACTIVE);
+			$data = array("Email" => $email, "CreatedDate" => date('Y-m-d H:i:s'), "Status" => ACTIVE);
 			$this->Subscrible_Model->insert($data);
 			echo json_encode('success');
 		}else{

@@ -253,7 +253,7 @@ class Post_controller extends CI_Controller
 		if(!empty($this->input->post("txt_userfile"))){
 			return $this->input->post("txt_userfile");
 		}else{
-			$upath = '/attachments' . DIRECTORY_SEPARATOR .'u'. $_POST['txt_folder'] . DIRECTORY_SEPARATOR. $this->session->userdata('uuid'). DIRECTORY_SEPARATOR;
+			$upath = 'attachments' . DIRECTORY_SEPARATOR .'u'. $_POST['txt_folder'] . DIRECTORY_SEPARATOR. $this->session->userdata('uuid'). DIRECTORY_SEPARATOR;
 
 			if (!file_exists($upath)) {
 				mkdir($upath, 0777, true);
@@ -284,7 +284,7 @@ class Post_controller extends CI_Controller
  				$thumbimgname = $imgDetailArray[0].'_thumb'.'.'.$imgDetailArray[1];
 
 				unlink($upath.$img['file_name']);
-				return $upath.$thumbimgname;
+				return "/".$upath.$thumbimgname;
 			}
 		}
 	}
@@ -292,7 +292,7 @@ class Post_controller extends CI_Controller
 	public function do_upload_others_images()
 	{
 		if ($this->input->is_ajax_request()) {
-			$upath = '/attachments' . DIRECTORY_SEPARATOR .'u'. $_POST['txt_folder'] . DIRECTORY_SEPARATOR. $this->session->userdata('uuid'). DIRECTORY_SEPARATOR;
+			$upath = 'attachments' . DIRECTORY_SEPARATOR .'u'. $_POST['txt_folder'] . DIRECTORY_SEPARATOR. $this->session->userdata('uuid'). DIRECTORY_SEPARATOR;
 			if (!file_exists($upath)) {
 				mkdir($upath, 0777, true);
 			}
@@ -342,7 +342,7 @@ class Post_controller extends CI_Controller
 								$output .= '
                                 <div class="other-img" id="image-container-' . $i . '">
                                     <img src="' . $dir . $file . '" style="width:100px; height: 100px;">
-                                    <input type="hidden" name="otherImages[]" value="\'' . $dir . $file . '\'"/>
+                                    <input type="hidden" name="otherImages[]" value="\'/' . $dir . $file . '\'"/>
                                     <a href="javascript:void(0);" onclick="removeSecondaryProductImage(\'' . $file . '\', \'' . $_POST['txt_folder'] . '\', ' . $i . ')">
                                         <span class="glyphicon glyphicon-remove"></span>
                                     </a>

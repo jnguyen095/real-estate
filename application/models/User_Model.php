@@ -30,10 +30,6 @@ class User_Model extends CI_Model
 
 	function addNewUser($data)
 	{
-		$datestring = '%Y-%m-%d %h:%i:%s';
-		$time = time();
-		$now = mdate($datestring, $time);
-
 		$newdata = array(
 			'FullName' => $data['fullname'],
 			'UserName' => $data['username'],
@@ -41,8 +37,8 @@ class User_Model extends CI_Model
 			'Email' => $data['email'],
 			'Phone' => $data['phone'],
 			'Address' => $data['address'],
-			'CreatedDate' => $now,
-			'UpdatedDate' => $now,
+			'CreatedDate' => date('Y-m-d H:i:s'),
+			'UpdatedDate' => date('Y-m-d H:i:s'),
 			'Status' => ACTIVE,
 			'UserGroupID' => 2
 		);
@@ -51,9 +47,6 @@ class User_Model extends CI_Model
 
 	function updateUser($data)
 	{
-		$datestring = '%Y-%m-%d %h:%i:%s';
-		$time = time();
-		$now = mdate($datestring, $time);
 		$userId = $data['UserId'];
 
 		$newdata = array(
@@ -61,7 +54,7 @@ class User_Model extends CI_Model
 			'Email' => $data['txt_email'],
 			'Phone' => $data['txt_phone'],
 			'Address' => $data['txt_address'],
-			'UpdatedDate' => $now
+			'UpdatedDate' => date('Y-m-d H:i:s')
 		);
 		$this->db->where('Us3rID', $userId);
 		$this->db->update('us3r', $newdata);

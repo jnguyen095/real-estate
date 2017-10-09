@@ -26,22 +26,23 @@ class Login_Model extends CI_Model
 		$sql = "select * from us3r where UserName = '" . $usr . "' and Password = '" . md5($pwd) . "' and status = '".ACTIVE."' limit 1";
 		$query = $this->db->query($sql);
 		$result = $query->row();
+		$uId = null;
 		if($result == null || !isset($result->Us3rID)){
-			$datestring = '%Y-%m-%d %h:%i:%s';
-			$time = time();
-			$now = mdate($datestring, $time);
 			$data = array(
 				'UserGroupID' => 2,
 				'UserName' => $usr,
 				'Password' => md5($pwd),
 				'Email' => $usr,
-				'CreatedDate' => $now,
+				'CreatedDate' => date('Y-m-d H:i:s'),
 				'Status' => ACTIVE,
 				'FullName' => $fullname
 			);
-			$result = $this->db->insert('us3r', $data);
+			$this->db->insert('us3r', $data);
+			$uId = $this->db->insert_id();
+		}else{
+			$uId = $result->Us3rID;
 		}
-		return $result;
+		return $uId;
 	}
 
 	public function updateLastLogin($userId){

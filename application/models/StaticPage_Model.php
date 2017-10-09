@@ -30,15 +30,11 @@ class StaticPage_Model extends CI_Model
 	}
 
 	public function saveOrUpdate($data){
-		$datestring = '%Y-%m-%d %h:%i:%s';
-		$time = time();
-		$now = mdate($datestring, $time);
-
 		$newdata = array(
 			'Code' => $data['code'],
 			'Title' => $data['title'],
 			'Description' => $data['description'],
-			'ModifiedDate' => $now,
+			'ModifiedDate' => date('Y-m-d H:i:s'),
 			'Status' => $data['status'],
 			'View' => 0
 		);
@@ -52,7 +48,7 @@ class StaticPage_Model extends CI_Model
 			$this->db->update('staticpage', $newdata);
 			$insert_id = $data['staticPageID'];
 		}else{
-			$newdata['CreatedDate'] = $now;
+			$newdata['CreatedDate'] = date('Y-m-d H:i:s');
 			$this->db->insert('staticpage', $newdata);
 			$insert_id = $this->db->insert_id();
 		}

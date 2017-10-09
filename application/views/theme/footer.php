@@ -14,8 +14,12 @@
 		//print_r($footerMenus);
 		foreach ($footerMenus as $key => $footerMenu){
 			echo '<div class="city-footer-block"><div class="fTitle">'.$footerMenu['CityName'].'</div><ul>';
+			$counter = 1;
 			foreach ($footerMenu['child'] as $ch){
-				echo '<li><a href="'.base_url().seo_url($ch->CatName).'-'.seo_url($ch->CityName).'-cc'.$ch->CategoryID.'-'.$ch->CityID.'.html">'.$ch->CatName.' '. $ch->CityName.'</a></li>';
+				if($counter < 11) {
+					echo '<li><a href="' . base_url() . seo_url($ch->CatName) . '-' . seo_url($ch->CityName) . '-cc' . $ch->CategoryID . '-' . $ch->CityID . '.html">' . $ch->CatName . ' ' . $ch->CityName . '</a></li>';
+				}
+				$counter++;
 			}
 			echo '</ul></div>';
 		}

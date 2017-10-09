@@ -80,7 +80,7 @@
 				 echo ', '.$cat_city;
 			 }else{
 				 $str = '';
-				 if(isset($keyword)){
+				 if(isset($keyword) && strlen($keyword) > 0){
 					 $str .= ' "'.$keyword.'"';
 				 }
 				 if(isset($category)){

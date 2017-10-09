@@ -33,7 +33,7 @@ class Product_Model extends CI_Model
 		$sql .= ' inner join district d on p.districtid = d.districtid';
 		$sql .= ' inner join category ct on ct.categoryid = p.categoryid';
 		$sql .= ' where ct.code = \''.$catCode.'\' and p.status = '.ACTIVE;
-		$sql .= ' order by p.postdate desc, p.Vip asc';
+		$sql .= ' order by date(p.postdate) desc, p.vip asc';
 		$sql .= ' limit '.$offset.','.$limit;
 
 		$query = $this->db->query($sql);
@@ -134,7 +134,7 @@ class Product_Model extends CI_Model
 		$sql .= ' inner join city c on p.cityid = c.cityid';
 		$sql .= ' inner join district d on p.districtid = d.districtid';
 		$sql .= ' where p.CityID = '.$cityId.' and p.status = 1';
-		$sql .= ' order by p.postdate desc';
+		$sql .= ' order by p.postdate desc, p.vip asc';
 		$sql .= ' limit '.$offset.','.$limit;
 
 		$countsql = 'select count(*) as total from product where CityID = '.$cityId.' and Status = 1';
@@ -153,7 +153,7 @@ class Product_Model extends CI_Model
 		$sql .= ' inner join city c on p.cityid = c.cityid';
 		$sql .= ' inner join district d on p.districtid = d.districtid';
 		$sql .= ' where p.BrandID = '.$branchId.' and p.status = 1';
-		$sql .= ' order by p.postdate desc';
+		$sql .= ' order by p.postdate desc, p.vip asc';
 		$sql .= ' limit '.$offset.','.$limit;
 
 		$countsql = 'select count(*) as total from product where BrandID = '.$branchId.' and Status = 1';
@@ -172,7 +172,7 @@ class Product_Model extends CI_Model
 		$sql .= ' inner join city c on p.cityid = c.cityid';
 		$sql .= ' inner join district d on p.districtid = d.districtid';
 		$sql .= ' where p.CategoryID = '.$catId.' and p.CityID = '.$cityId.' and p.status = 1';
-		$sql .= ' order by p.postdate desc';
+		$sql .= ' order by (p.postdate) desc, p.vip asc';
 		$sql .= ' limit '.$offset.','.$limit;
 
 		$countsql = 'select count(*) as total from product where CategoryID = '.$catId.' and CityID = '.$cityId.' and Status = 1';
@@ -192,7 +192,7 @@ class Product_Model extends CI_Model
 		$sql .= ' inner join district d on p.districtid = d.districtid';
 		$sql .= ' where p.CategoryID = '.$catId.' and p.DistrictID = '.$districtId.' and p.status = '.ACTIVE;
 		$sql .= ' and p.ProductID not in('.$currentProductId.')';
-		$sql .= ' order by p.postdate desc';
+		$sql .= ' order by date(p.postdate) desc, p.vip asc';
 		$sql .= ' limit 0, '.$limit;
 		$products = $this->db->query($sql);
 		return $products->result();

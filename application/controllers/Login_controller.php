@@ -36,22 +36,22 @@ class Login_controller extends CI_Controller
 		$password = $this->input->post('password');
 		$fullname = $this->input->post('fullname');
 
-		$usr_result = $this->Login_Model->get_facebooker($username, $password, $fullname);
+		$userID = $this->Login_Model->get_facebooker($username, $password, $fullname);
 
 		$data = array(
 			'success' => false
 		);
-		if(($usr_result != null && isset($usr_result->Us3rID)) || $usr_result){
+		if($userID != null && $userID > 0){
 			$data = array(
 				'success' => true
 			);
 			$sessiondata = array(
-				'loginid' => $usr_result->Us3rID,
+				'loginid' => $userID,
 				'username' => $username,
 				'fullname' => $fullname,
 				'loginuser' => TRUE
 			);
-			$this->Login_Model->updateLastLogin($usr_result->Us3rID);
+			$this->Login_Model->updateLastLogin($userID);
 			$this->session->set_userdata($sessiondata);
 		}
 
