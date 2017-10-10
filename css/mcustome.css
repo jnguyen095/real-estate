@@ -942,6 +942,30 @@ ul.city-link a{
 	padding-left: 23px;
 }
 
+.brief .inews-l-content ul li a{
+	background: none;
+	padding-left: 2px;
+}
+
+.brief .inews-l-content img{
+	margin:2px;
+}
+
+.brief .product-title{
+	margin-bottom: 2px;
+	text-transform: capitalize;
+
+}
+
+.brief.odd, .brief.even{
+	height: 100px;
+	overflow: hidden;
+}
+
+.brief img{
+	margin-left: 2px;
+}
+
 .guidline .pullet{
 	padding-left:20px;
 	background: url(../img/icon_butlet.png) no-repeat 8px 5px;

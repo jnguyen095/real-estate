@@ -23,9 +23,9 @@
 	<link rel="icon" sizes="48x48" href="<?=base_url('/img/ico.ico')?>">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v2.1.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v2.2.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.min_v1.2.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.1.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.2.css">
 	<!-- jQuery library -->
 	<script src="<?php echo base_url()?>js/jquery.min.js"></script>
 	<!-- Latest compiled JavaScript -->
@@ -160,68 +160,123 @@
 
 	<div class="nha-dat-ban">
 		<div class="col-md-9">
-			<div class="block-panel">
-				<div class="block-header text-left"><span class="h1Class">NHÀ ĐẤT BÁN</span></div>
-				<div class="block-body">
-					<?php
-					foreach ($nhadatban as $product){
-						?>
-						<div class="row product-list">
-							<div class="row product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><h3><?=$product->Title?></h3></a> </div>
-							<div class="row product-content">
-								<div class="col-md-2 col-xs-5 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
-								<div class="col-md-10 col-xs-7">
-									<div class="row pos-relative">
-										<div class="productTop">
-											<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="color bold"><?=$product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?=$product->Area?></span></span><span class="margin-left-10">Quận/Huyện: <span class="color bold"><?=$product->district.', '.$product->city?></span></div>
-											<div class="col-md-2 color bold mobile-hide relative-time no-padding text-right"><?=date('d/m/Y', strtotime($product->PostDate))?></div>
-											<div class="clear-both"></div>
-										</div>
 
-										<div class="col-md-12 col-xs-12 product-brief no-padding mobile-hide">
-											<div class="no-margin no-padding col-md-12 col-xs-12"><?=$product->Brief?></div>
+			<div class="home-group">
+				<div class="block-header text-left"><a href="<?=base_url('/nha-dat-ban-c257.html')?>"><h2 class="h2Class">NHÀ ĐẤT BÁN</h2></a></div>
+				<?php
+				foreach ($nhadatban as $product){
+					?>
+					<div class="row product-list">
+						<div class="row product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><h3><?=$product->Title?></h3></a> </div>
+						<div class="row product-content">
+							<div class="col-md-2 col-xs-5 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+							<div class="col-md-10 col-xs-7">
+								<div class="row pos-relative">
+									<div class="productTop">
+										<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="color bold"><?=$product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></span></span><span class="margin-left-10">Quận/Huyện: <span class="color bold"><?=$product->district.', '.$product->city?></span></div>
+										<div class="col-md-2 color bold mobile-hide relative-time no-padding text-right"><?=date('d/m/Y', strtotime($product->PostDate))?></div>
+										<div class="clear-both"></div>
+									</div>
+
+									<div class="col-md-12 col-xs-12 product-brief no-padding mobile-hide">
+										<div class="no-margin no-padding col-md-12 col-xs-12"><?=$product->Brief?></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				<?php
+				}
+				?>
+				<div class="text-right"><a href="<?=base_url('/nha-dat-ban-c257.html')?>">&#187; Xem thêm</a></div>
+			</div>
+
+			<div class="home-group">
+				<div class="block-header text-left"><a href="<?=base_url('/nha-dat-cho-thue-c267.html')?>"><h2 class="h2Class">NHÀ ĐẤT CHO THUÊ</h2></a></div>
+				<?php
+				foreach ($nhadatchothue as $product){
+					?>
+					<div class="row product-list">
+						<div class="row product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><h3><?=$product->Title?></h3></a> </div>
+						<div class="row product-content">
+							<div class="col-md-2 col-xs-5 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+							<div class="col-md-10 col-xs-7">
+								<div class="row pos-relative">
+									<div class="productTop">
+										<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="color bold"><?=$product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></span></span><span class="margin-left-10">Quận/Huyện: <span class="color bold"><?=$product->district.', '.$product->city?></span></div>
+										<div class="col-md-2 color bold mobile-hide relative-time no-padding text-right"><?=date('d/m/Y', strtotime($product->PostDate))?></div>
+										<div class="clear-both"></div>
+									</div>
+									<div class="col-md-12 col-xs-12 product-brief no-padding mobile-hide">
+										<div class="no-margin no-padding col-md-12 col-xs-12"><?=$product->Brief?></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				<?php
+				}
+				?>
+				<div class="text-right"><a href="<?=base_url('/nha-dat-cho-thue-c267.html')?>">&#187; Xem thêm</a></div>
+			</div>
+
+			<div class="row home-group">
+				<div class="col-md-6 col-xs-12">
+					<div class="block-header text-left"><a href="<?=base_url('/nha-dat-cho-thue-c267.html')?>"><h2 class="h2Class">NHÀ ĐẤT DƯỚI 1 TỶ</h2></a></div>
+					<?php
+					$index = 1;
+					foreach ($underOneBillion as $product){
+						?>
+						<div class="brief row no-margin <?=$index++%2 == 0 ? 'even' : 'odd'?>">
+							<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><h3><?=$product->Title?></h3></a> </div>
+							<div class="product-content">
+								<div class="col-md-2 col-xs-5 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img class="width100pc" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+								<div class="col-md-10 col-xs-7">
+									<div class="pos-relative">
+										<div class="productTop">
+											<div class="col-md-10 col-xs-12 no-padding">
+												<div>Giá: <?=$product->PriceString?>, <?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></div>
+												<div><?=$product->district.', '.$product->city?></div>
+											</div>
+											<div class="clear-both"></div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					<?php
+						<?php
 					}
 					?>
-					<div class="text-right"><a href="<?=base_url('/nha-dat-ban-c257.html')?>">&#187; Xem thêm</a></div>
 				</div>
-			</div>
-
-			<div class="block-panel">
-				<div class="block-header text-left"><span class="h1Class">NHÀ ĐẤT CHO THUÊ</span></div>
-				<div class="block-body">
+				<div class="col-md-6 col-xs-12">
+					<div class="block-header text-left"><a href="<?=base_url('/nha-dat-cho-thue-c267.html')?>"><h2 class="h2Class">MỚI CẬP NHẬT</h2></a></div>
 					<?php
-					foreach ($nhadatchothue as $product){
+					$index = 1;
+					foreach ($justUpdates as $product){
 						?>
-						<div class="row product-list">
-							<div class="row product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><h3><?=$product->Title?></h3></a> </div>
-							<div class="row product-content">
-								<div class="col-md-2 col-xs-5 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+						<div class="brief row no-margin <?=$index++%2 == 0 ? 'even' : 'odd'?>">
+							<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><h3><?=$product->Title?></h3></a> </div>
+							<div class="product-content">
+								<div class="col-md-2 col-xs-5 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img class="width100pc" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
 								<div class="col-md-10 col-xs-7">
-									<div class="row pos-relative">
+									<div class="pos-relative">
 										<div class="productTop">
-											<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="color bold"><?=$product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?=$product->Area?></span></span><span class="margin-left-10">Quận/Huyện: <span class="color bold"><?=$product->district.', '.$product->city?></span></div>
-											<div class="col-md-2 color bold mobile-hide relative-time no-padding text-right"><?=date('d/m/Y', strtotime($product->PostDate))?></div>
+											<div class="col-md-10 col-xs-12 no-padding">
+												<div>Giá: <?=$product->PriceString?>, <?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></div>
+												<div><?=$product->district.', '.$product->city?></div>
+											</div>
 											<div class="clear-both"></div>
-										</div>
-										<div class="col-md-12 col-xs-12 product-brief no-padding mobile-hide">
-											<div class="no-margin no-padding col-md-12 col-xs-12"><?=$product->Brief?></div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					<?php
+						<?php
 					}
 					?>
-					<div class="text-right"><a href="<?=base_url('/nha-dat-cho-thue-c267.html')?>">&#187; Xem thêm</a></div>
 				</div>
 			</div>
+
 			<div class="text-center mobile-hide">
 				<a href="<?=base_url('/dang-tin.html')?>"><img src="<?=base_url('/img/bottom_banner.jpg')?>" alt="bottom banner"/></a>
 			</div>
@@ -233,6 +288,7 @@
 			<?php $this->load->view('/common/city-left-link')?>
 			<img class="width100pc margin-bottom-20" src="<?=base_url('/img/hoatraotay.jpg')?>" alt="Hoa Trao Tay"/>
 			<?php $this->load->view('/common/branch-left-link')?>
+			<?php $this->load->view('/common/sample_house_plot')?>
 		</div>
 		<!-- end left side -->
 

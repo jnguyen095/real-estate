@@ -29,7 +29,7 @@
 				if(isset($news) && count($news) > 0){
 					foreach ($news as $new) {
 						echo '<div class="row product-list">';
-						echo '<div class="row product-title"><a href="' . base_url() . seo_url($new->Title) . '-n' . $new->NewsID . '.html">' . $new->Title . '</a> </div>';
+						echo '<div class="row product-title"><a href="' . base_url() . seo_url($new->Title) . '-n' . $new->NewsID . '.html"><h3>' . $new->Title . '</h3></a> </div>';
 
 						echo '<div class="row product-content">';
 						echo '<div class="col-md-2 col-xs-5 no-padding"><a href="' . base_url() . seo_url($new->Title) . '-n' . $new->NewsID . '.html"><img style="max-width: 120px" src="' . $new->Thumb . '" alt="'.$new->Title.'"/></a></div>';

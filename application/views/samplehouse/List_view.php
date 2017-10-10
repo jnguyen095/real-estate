@@ -29,7 +29,7 @@
 				if(isset($sampleHouses) && count($sampleHouses) > 0){
 					foreach ($sampleHouses as $sampleHouse) {
 						echo '<div class="row product-list">';
-						echo '<div class="row product-title"><a href="' . base_url() . seo_url($sampleHouse->Title) . '-s' . $sampleHouse->SampleHouseID . '.html">' . $sampleHouse->Title . '</a> </div>';
+						echo '<div class="row product-title"><a href="' . base_url() . seo_url($sampleHouse->Title) . '-s' . $sampleHouse->SampleHouseID . '.html"><h3>' . $sampleHouse->Title . '</h3></a> </div>';
 
 						echo '<div class="row product-content">';
 						echo '<div class="col-md-2 col-xs-5 no-padding"><a href="' . base_url() . seo_url($sampleHouse->Title) . '-s' . $sampleHouse->SampleHouseID . '.html"><img style="max-width: 120px" src="' . $sampleHouse->Thumb . '" alt="'.$sampleHouse->Title.'"/></a></div>';

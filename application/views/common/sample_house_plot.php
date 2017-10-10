@@ -1,0 +1,41 @@
+<?php
+/**
+ * Created by Khang Nguyen.
+ * Email: khang.nguyen@banvien.com
+ * Date: 9/14/2017
+ * Time: 10:05 AM
+ */
+
+if(isset($sampleHouses)) {
+	?>
+
+	<div class="inews-l brief">
+		<div class="inews-l-title">
+			<h3><a href="/nha-mau-dep.html" title="Tin Bất Động Sản">Thiết kế đẹp</a></h3>
+		</div>
+		<div class="inews-l-content">
+			<ul>
+				<?php
+				foreach ($sampleHouses as $sampleHouse) {
+					?>
+					<li>
+						<div class="row">
+							<div class="col-md-3 col-xm-12 no-padding-right">
+								<img class="width100pc" alt="<?=$sampleHouse->Title?>" src="<?=$sampleHouse->Thumb?>"/>
+							</div>
+							<div class="col-md-9 col-xm-12">
+								<h3><a href="<?=seo_url($sampleHouse->Title).'-s'.$sampleHouse->SampleHouseID.'.html'?>"><?=$sampleHouse->Title?></a></h3>
+							</div>
+						</div>
+					</li>
+					<?php
+				}
+				?>
+			</ul>
+			<div class="clear"></div>
+		</div>
+	</div>
+
+	<?php
+}
+?>
