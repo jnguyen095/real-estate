@@ -1,4 +1,7 @@
 @media (max-width: 767px) {
+	body{
+		background: none !important;
+	}
 	.banner {
 		background: none !important;
 	}
@@ -36,8 +39,21 @@
 		margin-bottom: -1px;
 	}
 
+	.no-padding-mobile{
+		padding: 0px !important;
+	}
+
+	.brief-box-item{
+		height: 82px;
+	}
+
 	.pc-hide{
 		display: block;
+	}
+
+	.brief-box-item .brief-detail h3 {
+		max-height: 42px;
+		overflow: hidden;
 	}
 }
 

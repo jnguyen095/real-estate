@@ -252,12 +252,12 @@
 				<div class="col-md-6 col-xs-12 brief-box">
 					<div class="brief-box-item">
 						<div class="content">
-							<div class="image col-md-4 col-xs-4">
-								<img style="max-width: 100%" src="<?=$similarProduct->Thumb?>" alt="<?=$product->Title?>"/>
+							<div class="image col-md-4 col-xs-3 no-padding-mobile">
+								<img class="width100pc" src="<?=$similarProduct->Thumb?>" alt="<?=$product->Title?>"/>
 							</div>
-							<div class="brief-detail col-md-8 col-xs-8">
+							<div class="brief-detail col-md-8 col-xs-9">
 								<a href="<?=base_url().seo_url($similarProduct->Title).'-p'.$similarProduct->ProductID?>.html"><h3><?=$similarProduct->Title?></h3></a>
-								<div class="price"><span class="color bold"><?=$similarProduct->PriceString?></span>, <span class="color bold"><?=$similarProduct->Area?></span></div>
+								<div class="price"><span class="color bold"><?=$similarProduct->PriceString?></span>, <span class="color bold"><?=is_numeric($similarProduct->Area) ? $similarProduct->Area.' m²' : $similarProduct->Area?></span></div>
 							</div>
 							<div class="clear-both"></div>
 						</div>
