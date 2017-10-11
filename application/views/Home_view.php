@@ -23,7 +23,7 @@
 	<link rel="icon" sizes="48x48" href="<?=base_url('/img/ico.ico')?>">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v2.2.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v2.3.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.min_v1.2.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.2.css">
 	<!-- jQuery library -->
@@ -257,8 +257,8 @@
 						<div class="brief row no-margin <?=$index++%2 == 0 ? 'even' : 'odd'?>">
 							<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><h3><?=$product->Title?></h3></a> </div>
 							<div class="product-content">
-								<div class="col-md-2 col-xs-5 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img class="width100pc" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
-								<div class="col-md-10 col-xs-7">
+								<div class="col-md-2 col-xs-4 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img class="width100pc" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+								<div class="col-md-10 col-xs-8">
 									<div class="pos-relative">
 										<div class="productTop">
 											<div class="col-md-10 col-xs-12 no-padding">
@@ -295,7 +295,7 @@
 	</div>
 </div>
 
-<script src="<?php echo base_url()?>js/homeland.js"></script>
+<script src="<?php echo base_url()?>js/homeland.min_v1.0.js"></script>
 <?php $this->load->view('/theme/footer')?>
 </div>
 </body>

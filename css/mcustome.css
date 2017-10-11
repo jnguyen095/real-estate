@@ -1105,3 +1105,38 @@ span.pvip {
 	font-size: 18px;
 }
 
+.toggleMore, .toggleLess{
+	color: #228959 !important;
+	cursor: pointer;
+	text-decoration: none;
+
+	position: relative;
+	top: 1px;
+	display: inline-block;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+.toggleMore:after{
+	font-family: 'Glyphicons Halflings';
+	content: "\e259";
+	margin-left: 4px;
+	position: absolute;
+	top: -1px;
+}
+
+.toggleLess:after{
+	font-family: 'Glyphicons Halflings';
+	content: "\e260";
+	margin-left: 4px;
+	top: 1px;
+	position: absolute;
+}
+
+.toggleBtn:focus, .toggleBtn:hover{
+	text-decoration: none !important;
+}
+
+

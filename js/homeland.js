@@ -7,7 +7,22 @@ $(document).ready(function(){
 	loadSearchDistrictByCityId();
 	submitSearchForm();
 	subscribleHandler();
+	$(".toggleBtn").click(function() {
+		changeIconMoreLess($(this));
+	});
 });
+
+function changeIconMoreLess($this){
+	if($this.data('status') == 'open'){
+		$this.html('Ít hơn');
+		$this.data('status','close');
+		$this.removeClass('toggleMore').addClass('toggleLess');
+	}else{
+		$this.html('Xem thêm');
+		$this.data('status','open');
+		$this.removeClass('toggleLess').addClass('toggleMore');
+	}
+}
 
 function subscribleHandler(){
 	$("#btnSubscrible").click(function(e){

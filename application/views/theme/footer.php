@@ -18,9 +18,14 @@
 			foreach ($footerMenu['child'] as $ch){
 				if($counter < 11) {
 					echo '<li><a href="' . base_url() . seo_url($ch->CatName) . '-' . seo_url($ch->CityName) . '-cc' . $ch->CategoryID . '-' . $ch->CityID . '.html">' . $ch->CatName . ' ' . $ch->CityName . '</a></li>';
+				}else if($counter == 11){
+					echo '<div id="ct_'.$ch->CityID.'" class="collapse">';
+				}else{
+					echo '<li><a href="' . base_url() . seo_url($ch->CatName) . '-' . seo_url($ch->CityName) . '-cc' . $ch->CategoryID . '-' . $ch->CityID . '.html">' . $ch->CatName . ' ' . $ch->CityName . '</a></li>';
 				}
 				$counter++;
 			}
+			echo '</div><a href="javascript:void(0);" class="toggleBtn toggleMore" data-status="open" data-toggle="collapse" data-target="#ct_'.$ch->CityID.'">Xem thêm</a>';
 			echo '</ul></div>';
 		}
 		?>
@@ -38,8 +43,8 @@
 		</ul>
 	</div>
 	<div class="copyright text-center">
-		<div>Copyright © 2017 tindatdai.vn ® Ghi rõ nguồn "tindatdai.com" khi phát hành lại thông tin từ website này.</div>
-		<div>Hotline: 0982.647.619 | Email: tindatdai@gmail.com | <a rel="nofollow" href="skype:nhukhang095?chat" title="Chát với http://tindatdai.com"><img src="<?=base_url('/img/skype.png')?>"/></a> </div>
+		<div>Copyright © 2017 tindatdai.com ® Ghi rõ nguồn "tindatdai.com" khi phát hành lại thông tin từ website này.</div>
+		<div>Hotline: 0982.647.619 | Email: tindatdai@gmail.com | <a rel="nofollow" href="skype:nhukhang095?chat" title="Chát với http://tindatdai.com"><img src="<?=base_url('/img/skype.png')?>" alt="Skype icon"/></a> </div>
 	</div>
 </div>
 <script>
