@@ -234,7 +234,7 @@ class Product_Model extends CI_Model
 
 		$updateData = array(
 			'Title' => $data['title'],
-			'Brief' => substr($data['description'], 0, 400).'...',
+			'Brief' => strip_tags(substr($data['description'], 0, 400).'...'),
 			'Price' => $data['price'],
 			'PriceString' => $data['price'].' '.$unit->Title,
 			'Area' => $data['area'].' m²',
@@ -291,7 +291,7 @@ class Product_Model extends CI_Model
 		$newdata = array(
 			'code' => $data['code'],
 			'Title' => $data['title'],
-			'Brief' => substr($data['description'], 0, 400).'...',
+			'Brief' => strip_tags(substr($data['description'], 0, 400).'...'),
 			'Price' => $data['price'],
 			'PriceString' => $data['price'].' '.$unit->Title,
 			'Area' => $data['area'].' m²',
