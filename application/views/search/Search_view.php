@@ -45,7 +45,17 @@
 <ul class="breadcrumb">
 	<li><a href="<?=base_url().'trang-chu.html'?>">Trang Chủ</a></li>
 	<?php
-	if(isset($city)) {
+	if(isset($district)){
+		if(isset($city)){
+			?>
+			<li class="active">Tìm theo quận <?php echo $district->DistrictName ?>, <?php echo $city->CityName ?></li>
+			<?php
+		}else{
+			?>
+			<li class="active">Tìm theo quận <?php echo $district->DistrictName ?></li>
+			<?php
+		}
+	}else if(isset($city)) {
 		?>
 		<li class="active">Tìm theo thành phố <?php echo $city->CityName ?></li>
 		<?php
@@ -70,9 +80,15 @@
 	</div>
 	<div class="col-md-9 no-margin no-padding">
 		<div class="search-result-panel col-md-12">
-			<?=$total?> kết quả<span class="search-total-result">
+			<?=number_format($total)?> kết quả<span class="search-total-result">
 			<?php
-			 if(isset($city)){
+			if(isset($district)){
+				if(isset($city)){
+					echo ', nhà đất tại quận '.$district->DistrictName.', '. $city->CityName;
+				}else{
+					echo ', nhà đất tại quận '.$district->DistrictName;
+				}
+			}else if(isset($city)){
 				 echo ', nhà đất tại '.$city->CityName;
 			 }else if(isset($branch)){
 				 echo ', nhà đất dự án '.$branch->BrandName;
@@ -146,7 +162,7 @@
 			?>
 			</span>
 		</div>
-		<div class="product-panel col-md-12  no-margin no-padding">
+		<div class="product-panel col-md-12 no-margin no-padding">
 			<?php
 				if(isset($products) && count($products) > 0){
 					foreach ($products as $product) {
@@ -188,9 +204,11 @@
 			?>
 		</div>
 	</div>
-	<div class="col-md-3 no-margin-right no-padding-right">
+	<div class="col-md-3 no-margin-right no-padding-right no-padding-left-mobile">
 		<?php $this->load->view('/common/branch-left') ?>
 		<?php $this->load->view('/common/Search_filter') ?>
+		<?php $this->load->view('/common/district-left-link')?>
+		<?php $this->load->view('/common/branch-left-link')?>
 	</div>
 </div>
 

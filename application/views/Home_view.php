@@ -23,9 +23,9 @@
 	<link rel="icon" sizes="48x48" href="<?=base_url('/img/ico.ico')?>">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v2.3.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.min_v1.3.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.2.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v2.4.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.min_v1.4.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.3.css">
 	<!-- jQuery library -->
 	<script src="<?php echo base_url()?>js/jquery.min.js"></script>
 	<!-- Latest compiled JavaScript -->
@@ -173,7 +173,7 @@
 							<div class="col-md-10 col-xs-7">
 								<div class="row pos-relative">
 									<div class="productTop">
-										<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="color bold"><?=$product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></span></span><span class="margin-left-10">Quận/Huyện: <span class="color bold"><?=$product->district.', '.$product->city?></span></div>
+										<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="price bold"><?=$product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></span></span><span class="margin-left-10">Quận/Huyện: <span class="color bold"><?=$product->district.', '.$product->city?></span></div>
 										<div class="col-md-2 color bold mobile-hide relative-time no-padding text-right"><?=date('d/m/Y', strtotime($product->PostDate))?></div>
 										<div class="clear-both"></div>
 									</div>
@@ -203,7 +203,7 @@
 							<div class="col-md-10 col-xs-7">
 								<div class="row pos-relative">
 									<div class="productTop">
-										<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="color bold"><?=$product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></span></span><span class="margin-left-10">Quận/Huyện: <span class="color bold"><?=$product->district.', '.$product->city?></span></div>
+										<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="price bold"><?=$product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></span></span><span class="margin-left-10">Quận/Huyện: <span class="color bold"><?=$product->district.', '.$product->city?></span></div>
 										<div class="col-md-2 color bold mobile-hide relative-time no-padding text-right"><?=date('d/m/Y', strtotime($product->PostDate))?></div>
 										<div class="clear-both"></div>
 									</div>
@@ -222,25 +222,16 @@
 
 			<div class="row home-group">
 				<div class="col-md-6 col-xs-12">
-					<div class="block-header text-left"><a href="<?=base_url('/nha-dat-cho-thue-c267.html')?>"><h2 class="h2Class">NHÀ ĐẤT DƯỚI 1 TỶ</h2></a></div>
+					<div class="block-header text-left"><h2 class="h2Class">NHÀ ĐẤT DƯỚI 1 TỶ</h2></div>
 					<?php
-					$index = 1;
 					foreach ($underOneBillion as $product){
 						?>
-						<div class="brief row no-margin <?=$index++%2 == 0 ? 'even' : 'odd'?>">
-							<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><h3><?=$product->Title?></h3></a> </div>
-							<div class="product-content">
-								<div class="col-md-2 col-xs-5 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img class="width100pc" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
-								<div class="col-md-10 col-xs-7">
-									<div class="pos-relative">
-										<div class="productTop">
-											<div class="col-md-10 col-xs-12 no-padding">
-												<div>Giá: <?=$product->PriceString?>, <?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></div>
-												<div><?=$product->district.', '.$product->city?></div>
-											</div>
-											<div class="clear-both"></div>
-										</div>
-									</div>
+						<div class="briefHome row">
+							<div class="col-md-2 col-xs-2 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img class="imgBrief" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+							<div class="col-md-10 col-xs-10">
+								<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3><?=limit_text($product->Title, 25)?></h3></a> </div>
+								<div class="product-info">
+									<div><span class="color"><?=$product->district.', '.$product->city?></span> <span class="price"><?=$product->PriceString?></span></div>
 								</div>
 							</div>
 						</div>
@@ -249,25 +240,16 @@
 					?>
 				</div>
 				<div class="col-md-6 col-xs-12">
-					<div class="block-header text-left"><a href="<?=base_url('/nha-dat-cho-thue-c267.html')?>"><h2 class="h2Class">MỚI CẬP NHẬT</h2></a></div>
+					<div class="block-header text-left"><h2 class="h2Class">MỚI CẬP NHẬT</h2></div>
 					<?php
-					$index = 1;
 					foreach ($justUpdates as $product){
 						?>
-						<div class="brief row no-margin <?=$index++%2 == 0 ? 'even' : 'odd'?>">
-							<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><h3><?=$product->Title?></h3></a> </div>
-							<div class="product-content">
-								<div class="col-md-2 col-xs-4 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img class="width100pc" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
-								<div class="col-md-10 col-xs-8">
-									<div class="pos-relative">
-										<div class="productTop">
-											<div class="col-md-10 col-xs-12 no-padding">
-												<div>Giá: <?=$product->PriceString?>, <?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></div>
-												<div><?=$product->district.', '.$product->city?></div>
-											</div>
-											<div class="clear-both"></div>
-										</div>
-									</div>
+						<div class="briefHome row">
+							<div class="col-md-2 col-xs-2 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img class="imgBrief" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+							<div class="col-md-10 col-xs-10">
+								<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3><?=limit_text($product->Title, 25)?></h3></a> </div>
+								<div class="product-info">
+									<div><span class="color"><?=$product->district.', '.$product->city?></span> <span class="price"><?=$product->PriceString?></span></div>
 								</div>
 							</div>
 						</div>
@@ -286,7 +268,7 @@
 		<div class="col-md-3">
 			<?php $this->load->view('/common/news_plot')?>
 			<?php $this->load->view('/common/city-left-link')?>
-			<img class="width100pc margin-bottom-20" src="<?=base_url('/img/hoatraotay.jpg')?>" alt="Hoa Trao Tay"/>
+			<img class="width100pc margin-bottom-20 mobile-hide" src="<?=base_url('/img/hoatraotay.jpg')?>" alt="Hoa Trao Tay"/>
 			<?php $this->load->view('/common/branch-left-link')?>
 			<?php $this->load->view('/common/sample_house_plot')?>
 		</div>

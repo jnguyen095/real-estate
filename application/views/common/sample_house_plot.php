@@ -9,7 +9,7 @@
 if(isset($sampleHouses)) {
 	?>
 
-	<div class="inews-l brief">
+	<div class="inews-l brief mobile-hide">
 		<div class="inews-l-title">
 			<img class="imgIcon" src="<?=base_url('/img/nhadep1.png')?>" alt="Nhà đẹp">
 			<h3 class="title"><a href="/nha-mau-dep.html" title="Tin Bất Động Sản">Thiết kế đẹp</a></h3>

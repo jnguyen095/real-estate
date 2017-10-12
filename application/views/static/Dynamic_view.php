@@ -42,7 +42,7 @@
 			<?=$page->Description?>
 		</div>
 	</div>
-	<div class="col-md-3 no-margin-right no-padding-right">
+	<div class="col-md-3 no-margin-right no-padding-right no-padding-left-mobile">
 		<?php $this->load->view('/common/branch-left') ?>
 		<?php $this->load->view('/common/Search_filter') ?>
 	</div>
