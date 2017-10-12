@@ -154,6 +154,25 @@ class Product_Model extends CI_Model
 		return $data;
 	}
 
+	public function findByDistrictIdFetchAddress($districtId, $offset=0, $limit){
+		$sql = 'select p.*, c.cityname as city, d.districtname as district from product p';
+		$sql .= ' inner join city c on p.cityid = c.cityid';
+		$sql .= ' inner join district d on p.districtid = d.districtid';
+		$sql .= ' where p.DistrictID = '.$districtId.' and p.status = 1';
+		$sql .= ' order by p.postdate desc, p.vip asc';
+		$sql .= ' limit '.$offset.','.$limit;
+
+		$countsql = 'select count(*) as total from product where DistrictID = '.$districtId.' and Status = 1';
+
+		$products = $this->db->query($sql);
+		$total = $this->db->query($countsql);
+
+		$data['products'] = $products->result();
+		$total = $total->row();
+		$data['total'] = $total->total;
+		return $data;
+	}
+
 	public function findByBranchIdFetchAddress($branchId, $offset=0, $limit){
 		$sql = 'select p.*, c.cityname as city, d.districtname as district from product p';
 		$sql .= ' inner join city c on p.cityid = c.cityid';
