@@ -11,7 +11,9 @@ if(isset($topNews)) {
 
 	<div class="inews-l">
 		<div class="inews-l-title">
-			<h3><a href="/tin-tuc.html" title="Tin Bất Động Sản">Tin Bất Động Sản</a></h3>
+			<img class="imgIcon" src="<?=base_url('/img/tintuc.png')?>" alt="Nhà đẹp">
+			<h3 class="title"><a href="/tin-tuc.html" title="Tin Bất Động Sản">Tin Bất Động Sản</a></h3>
+			<div class="clear-both"></div>
 		</div>
 		<div class="inews-l-content">
 			<div class="inews-l-content-hot">
