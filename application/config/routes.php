@@ -76,6 +76,9 @@ $route['thong-tin-ca-nhan'] = 'UserProfile_controller';
 // Search by city
 $route['(:any)-ct(:num)'] = "Search_controller/searchByCity/$2";
 $route['(:any)-ct(:num).html/(:num)'] = "Search_controller/searchByCity/$2/$3";
+// Search by district
+$route['(:any)-dt(:num)'] = "Search_controller/searchByDistrict/$2";
+$route['(:any)-dt(:num).html/(:num)'] = "Search_controller/searchByDistrict/$2/$3";
 // Search by branch
 $route['(:any)-b(:num)'] = "Search_controller/searchByBranch/$2";
 $route['(:any)-b(:num).html/(:num)'] = "Search_controller/searchByBranch/$2/$3";
