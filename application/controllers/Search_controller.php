@@ -77,6 +77,10 @@ class Search_controller extends CI_Controller
 		if($cityId != null && $cityId > 0){
 			$city = $this->City_Model->findById($cityId);
 			$data['scity'] = $city;
+			if($districtId == null || $districtId < 1){
+				$data['sdistricts'] = $this->District_Model->findByCityId($cityId);
+			}
+
 		}
 		if($districtId != null && $districtId > 0){
 			$district = $this->District_Model->findById($districtId);
@@ -88,6 +92,7 @@ class Search_controller extends CI_Controller
 		$this->load->helper('url');
 		if($cityId != null && $cityId > -1) {
 			$data['districts'] = $this->District_Model->findByCityId($cityId);
+			$data['topdistricthasproduct'] = $data['districts'];
 		}
 
 		$this->load->view('/search/Search_view', $data);
@@ -98,12 +103,41 @@ class Search_controller extends CI_Controller
 		$data['city'] = $this->City_Model->findById($cityId);
 		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
 		$data['cities'] = $this->City_Model->getAllActive();
+		$data['cmCityId'] = $cityId;
+		$districts = $this->District_Model->findByCityId($cityId);
+		$data['districts'] = $districts;
 		$search_data = $this->Product_Model->findByCityIdFetchAddress($cityId, $offset, MAX_PAGE_ITEM);
 		$data = array_merge($data, $search_data);
 		$config = pagination();
 		$config['base_url'] = base_url(seo_url($data['city']->CityName).'-ct'.$cityId.'.html');
 		$config['total_rows'] = $data['total'];
 		$config['per_page'] = MAX_PAGE_ITEM;
+		$data['topdistricthasproduct'] = $districts;
+
+		$this->pagination->initialize($config);
+		$data['pagination'] = $this->pagination->create_links();
+		$this->load->helper('url');
+		$this->load->view('/search/Search_view', $data);
+	}
+
+	public function searchByDistrict($districtId, $offset=0) {
+		$data = $this->Category_Model->getCategories();
+		$district = $this->District_Model->findById($districtId);
+		$data['district'] = $district;
+		$data['city'] = $this->City_Model->findById($district->CityID);
+		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+		$data['cities'] = $this->City_Model->getAllActive();
+		$data['cmCityId'] = $district->CityID;
+		$data['cmDistrictId'] = $districtId;
+		$districts = $this->District_Model->findByCityId($district->CityID);
+		$data['districts'] = $districts;
+		$search_data = $this->Product_Model->findByDistrictIdFetchAddress($districtId, $offset, MAX_PAGE_ITEM);
+		$data = array_merge($data, $search_data);
+		$config = pagination();
+		$config['base_url'] = base_url(seo_url($district->DistrictName).'-dt'.$districtId.'.html');
+		$config['total_rows'] = $data['total'];
+		$config['per_page'] = MAX_PAGE_ITEM;
+		$data['topdistricthasproduct'] = $districts;
 
 		$this->pagination->initialize($config);
 		$data['pagination'] = $this->pagination->create_links();
@@ -125,6 +159,7 @@ class Search_controller extends CI_Controller
 
 		$this->pagination->initialize($config);
 		$data['pagination'] = $this->pagination->create_links();
+		$data['topbranchhasproduct'] = $this->Brand_Model->findTopBranchHasProduct(15);
 		$this->load->helper('url');
 		$this->load->view('/search/Search_view', $data);
 	}
@@ -142,6 +177,9 @@ class Search_controller extends CI_Controller
 		$config['base_url'] = base_url(seo_url($category->CatName).'-'.seo_url($city->CityName).'-cc'.$catId.'-'.$cityId.'.html');
 		$config['total_rows'] = $data['total'];
 		$config['per_page'] = MAX_PAGE_ITEM;
+		$data['cmCityId'] = $cityId;
+		$data['cmCatId'] = $catId;
+		$data['districts'] = $this->District_Model->findByCityId($cityId);
 
 		$this->pagination->initialize($config);
 		$data['pagination'] = $this->pagination->create_links();

@@ -36,8 +36,8 @@ class Home_controller extends CI_Controller
 		$data['cities'] = $this->City_Model->getAllActive();
 		$data['topNews'] = $this->News_Model->findTopNewExceptCurrent(0, 5);
 		$data['sampleHouses'] = $this->SampleHouse_Model->findTopNewExceptCurrent(0, 10);
-		$data['underOneBillion'] = $this->Product_Model->findUnderOneBillion(0, 11);
-		$data['justUpdates'] = $this->Product_Model->findJustUpdate(0, 11);
+		$data['underOneBillion'] = $this->Product_Model->findUnderOneBillion(0, 8);
+		$data['justUpdates'] = $this->Product_Model->findJustUpdate(0, 8);
 		$this->load->helper('url');
 		$this->load->view('Home_view', $data);
 	}
