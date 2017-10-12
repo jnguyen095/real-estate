@@ -6,7 +6,7 @@
  * Time: 11:45 AM
  */
 ?>
-<div class="subscribe-panel col-md-12 no-padding">
+<div class="subscribe-panel col-md-12 no-padding mobile-hide">
 	<div class="well">
 		<form id="subscribleForm" action="#">
 			<div class="row text-center panel-title">ĐĂNG KÝ NHẬN TIN</div>

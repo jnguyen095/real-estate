@@ -1,5 +1,5 @@
 
-<div class="subscribe-panel col-md-12 no-padding">
+<div class="subscribe-panel col-md-12 no-padding mobile-hide">
 	<div>
 		<div class="facebookShare">
 			<div id="fb-root"></div>
