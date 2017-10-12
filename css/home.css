@@ -188,7 +188,6 @@ img {
 }
 
 .block-header {
-	margin-bottom: 10px;
 	padding-bottom: 0px;
 	border-bottom: solid 1px rgba(0,0,0,.1);
 }
@@ -205,3 +204,8 @@ h2.h2Class {
 .home-group{
 	margin-bottom: 15px;
 }
+
+.home-group .block-header{
+	margin-bottom: 10px;
+}
+

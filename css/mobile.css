@@ -55,6 +55,12 @@
 		max-height: 42px;
 		overflow: hidden;
 	}
+	.briefHome{
+		height: auto !important;
+	}
+	.no-padding-left-mobile{
+		padding-left: 0px !important;
+	}
 }
 
 @media (max-width: 120px) {

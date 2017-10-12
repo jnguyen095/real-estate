@@ -7,7 +7,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 body{
 	/*background-color: #e9ebee;*/
-	background:  url('../img/background.jpg');
+	background: #ebebeb url('../img/background.jpg');
 	background-size:  100%;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
@@ -511,7 +511,7 @@ ul.nearme {
 	border-bottom: solid 1px #ccc;
 	border-left: solid 1px #ccc;
 	padding: 5px;
-	height: 100px;
+	height: 85px;
 	overflow: hidden;
 }
 
@@ -949,6 +949,8 @@ ul.city-link a{
 
 .brief .inews-l-content img{
 	margin:2px;
+	border: solid 1px #ccc;
+	padding: 1px;
 }
 
 .brief .product-title{
@@ -1138,5 +1140,60 @@ span.pvip {
 .toggleBtn:focus, .toggleBtn:hover{
 	text-decoration: none !important;
 }
+.briefHome .product-title h3,
+.brief-box-item .brief-detail h3{
+	color: #555;
+	font-size: 12px;
+	font-weight: 700;
+}
 
+.briefHome .product-title {
+	margin: 0px;
+}
+
+img.imgBrief {
+	width: 60px;
+	max-height: 80px;
+	min-height: 60px;
+	border: solid 1px #ccc;
+	padding: 1px;
+	margin-left:1px;
+}
+
+.price{
+	color: #ff5400;
+}
+
+.briefHome .product-info div, .briefHome .product-info span {
+	font-size: 12px;
+}
+
+.briefHome{
+	float: left;
+	margin: 0 10px 7px 0;
+	padding: 0px 0px 5px 0;
+	border-bottom: 1px dotted #EEEDEB;
+	height: 65px;
+	overflow: hidden;
+}
+
+.brief-box-item .image img{
+	max-height: 75px;
+	min-height: 60px;
+}
+
+img.imgIcon {
+	margin-top: -16px;
+	margin-left: -39px;
+}
+.inews-l-title .imgIcon{
+	float: left;
+	width: 40px;
+}
+.inews-l-title > h3.title{
+	float: left;
+}
+.inews-l {
+	margin-top: 10px;
+}
 
