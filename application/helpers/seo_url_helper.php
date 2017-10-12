@@ -61,7 +61,7 @@ if ( ! function_exists('keyword_maker'))
 	}
 }
 
-if ( ! function_exists('keyword_maker')) {
+if ( ! function_exists('limit_text')) {
 	function limit_text($text, $limit)
 	{
 		if (str_word_count($text, 0) > $limit) {
