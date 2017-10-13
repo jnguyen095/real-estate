@@ -1239,10 +1239,7 @@ img.imgIcon {
 	padding: 0px;
 }
 .quickSearch form input{
-	border-left: none;
 	min-width: 250px;
-	padding-left:0px;
-
 }
 .quickSearch form input.form-control:focus{
 	border-color:#ccc;
@@ -1275,3 +1272,15 @@ img.imgIcon {
 	color: #555555;
 }
 
+.right-inner-addon {
+	position: relative;
+}
+.right-inner-addon input {
+	padding-right: 30px;
+}
+.right-inner-addon i {
+	position: absolute;
+	right: 0px;
+	padding: 7px 12px;
+	pointer-events: none;
+}

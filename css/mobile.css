@@ -67,6 +67,10 @@
 	.breadcrumb.always > li{
 		display: block;
 	}
+
+	.quickSearch{
+		width: 100%;
+	}
 	.quickSearch form input{
 		min-width: 50px;
 	}
