@@ -61,6 +61,18 @@
 	.no-padding-left-mobile{
 		padding-left: 0px !important;
 	}
+	.breadcrumb > li{
+		display: none;
+	}
+	.breadcrumb.always > li{
+		display: block;
+	}
+	.quickSearch form input{
+		min-width: 50px;
+	}
+	img.imgBrief{
+		width: 100%;
+	}
 }
 
 @media (max-width: 120px) {

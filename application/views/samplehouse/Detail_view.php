@@ -17,7 +17,7 @@
 
 <?php $this->load->view('/theme/header')?>
 
-<ul class="breadcrumb">
+<ul class="breadcrumb always">
 	<li><a href="<?=base_url().'trang-chu.html'?>">Trang Chủ</a></li>
 	<li><a href="<?=base_url('nha-mau-dep.html')?>">Nhà Mẫu Đẹp</a></li>
 	<li class="active"><?=$sampleHouseDetail->Title?></li>

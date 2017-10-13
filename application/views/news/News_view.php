@@ -20,6 +20,7 @@
 <ul class="breadcrumb">
 	<li><a href="<?=base_url().'trang-chu.html'?>">Trang Chủ</a></li>
 	<li class="active">Tin Tức</li>
+	<?php $this->load->view('/common/quick-search')?>
 </ul>
 <div class="row no-margin">
 	<div class="col-md-9  no-margin no-padding">

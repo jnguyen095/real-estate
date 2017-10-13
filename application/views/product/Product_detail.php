@@ -31,7 +31,7 @@
 <div class="container">
 <?php $this->load->view('/theme/header')?>
 
-<ul class="breadcrumb">
+<ul class="breadcrumb always">
 	<?php
 		if(isset($category->Parent)){
 			echo '<li><a href="'.base_url().seo_url($category->Parent->CatName).'-c'.$category->Parent->CategoryID.'.html">'.$category->Parent->CatName.'</a></li>';
@@ -46,8 +46,8 @@
 
 		<div class="row">
 			<div class="col-md-12"><span class="price-detail"><?php echo $product->PriceString?></span>	</div>
-			<div class="col-md-4 area-detail">Diện tích: <?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></div>
-			<div class="col-md-8 text-right addr-detail">
+			<div class="col-md-3 area-detail">Diện tích: <?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></div>
+			<div class="col-md-9 text-right addr-detail">
 				<span class="glyphicon glyphicon-map-marker"></span><span class="addr-detail">
 				<?php
 				if(isset($product->Street)){
@@ -274,9 +274,9 @@
 		?>
 	</div>
 	<div class="col-md-3 no-margin-right no-padding-right no-padding-left-mobile">
-		<?php $this->load->view('/common/sample_house') ?>
 		<?php $this->load->view('/common/branch-left') ?>
 		<?php $this->load->view('/common/Search_filter') ?>
+		<?php $this->load->view('/common/sample_house') ?>
 		<div class="clear-both"></div>
 		<?php $this->load->view('/SocialShare') ?>
 		<?php $this->load->view('/Subscrible') ?>

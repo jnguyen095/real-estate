@@ -23,8 +23,8 @@
 	<link rel="icon" sizes="48x48" href="<?=base_url('/img/ico.ico')?>">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v2.5.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.min_v1.4.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v2.6.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.min_v1.5.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.3.css">
 	<!-- jQuery library -->
 	<script src="<?php echo base_url()?>js/jquery.min.js"></script>
@@ -229,7 +229,7 @@
 						?>
 						<div class="briefHome row">
 							<div class="col-md-2 col-xs-2 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img class="imgBrief" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
-							<div class="col-md-10 col-xs-10">
+							<div class="col-md-10 col-xs-10 no-padding-right">
 								<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3><?=limit_text($product->Title, 25)?></h3></a> </div>
 								<div class="product-info">
 									<div><span class="color"><?=$product->district.', '.$product->city?></span> <span class="price"><?=$product->PriceString?></span></div>
@@ -247,7 +247,7 @@
 						?>
 						<div class="briefHome row">
 							<div class="col-md-2 col-xs-2 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img class="imgBrief" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
-							<div class="col-md-10 col-xs-10">
+							<div class="col-md-10 col-xs-10 no-padding-right">
 								<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3><?=limit_text($product->Title, 25)?></h3></a> </div>
 								<div class="product-info">
 									<div><span class="color"><?=$product->district.', '.$product->city?></span> <span class="price"><?=$product->PriceString?></span></div>
@@ -278,7 +278,7 @@
 	</div>
 </div>
 
-<script src="<?php echo base_url()?>js/homeland.min_v1.1.js"></script>
+<script src="<?php echo base_url()?>js/homeland.min_v1.2.js"></script>
 <?php $this->load->view('/theme/footer')?>
 </div>
 </body>

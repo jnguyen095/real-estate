@@ -31,6 +31,11 @@ class Search_controller extends CI_Controller
 		$data['cities'] = $this->City_Model->getAllActive();
 
 		$keyword = $this->input->post("keyword");
+		$query = $this->input->get("query");
+		$type = $this->input->get("type");
+		if($query){
+			$keyword = $query;
+		}
 
 		if($offset == 0){
 			$catId = $this->input->post("cmCatId");
@@ -38,6 +43,11 @@ class Search_controller extends CI_Controller
 			$districtId = $this->input->post("cmDistrictId");
 			$area = $this->input->post("cmArea");
 			$price = $this->input->post("cmPrice");
+			if($type == "sale"){
+				$catId = 257;
+			}else if($type == "rent"){
+				$catId = 267;
+			}
 
 			$searchFilters = array(
 				'cmCatId' => $catId,

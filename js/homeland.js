@@ -107,14 +107,19 @@ window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
 	if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-		document.getElementById("myBtn").style.display = "block";
+		$("#myBtn").show(1000);
 	} else {
-		document.getElementById("myBtn").style.display = "none";
+		$("#myBtn").hide(1000);
 	}
 }
 
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
-	document.body.scrollTop = 0; // For Chrome, Safari and Opera
-	document.documentElement.scrollTop = 0; // For IE and Firefox
+	ga('send', {
+		hitType: 'event',
+		eventCategory: 'Go to Top',
+		eventAction: 'Go to Top',
+		eventLabel: 'Go to Top'
+	});
+	$('html,body').animate({ scrollTop: 0 }, 'slow');
 }

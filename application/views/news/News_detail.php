@@ -17,7 +17,7 @@
 
 <?php $this->load->view('/theme/header')?>
 
-<ul class="breadcrumb">
+<ul class="breadcrumb always">
 	<li><a href="<?=base_url().'trang-chu.html'?>">Trang Chủ</a></li>
 	<li><a href="<?=base_url('tin-tuc.html')?>">Tin Tức</a></li>
 	<li class="active"><?=$newsDetail->Title?></li>

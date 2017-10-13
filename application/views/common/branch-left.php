@@ -20,36 +20,44 @@ if(isset($branch)){
 				<p class="listing-location"><?=$branch->Description?></p>
 			</div>
 
-			<div class="branch-detail row">
+			<div class="branch-detail">
 				<?php
 				if(isset($branch->Price) && $branch->Price > 0) {
 					?>
-					<div class="col-md-5 text-right no-padding">Gía từ:</div>
-					<div class="col-md-7"><?= $branch->Price ?></div>
+					<div class="row">
+						<div class="col-xs-5 text-right no-padding">Gía từ:</div>
+						<div class="col-xs-7"><?= $branch->Price ?></div>
+					</div>
 					<?php
 				}
 				?>
 				<?php
 				if(isset($branch->Price) && $branch->Area > 0) {
 					?>
-					<div class="col-md-5 text-right no-padding">Diện tích:</div>
-					<div class="col-md-7"><?=$branch->Area?></div>
+					<div class="row">
+						<div class="col-xs-5 text-right no-padding">Diện tích:</div>
+						<div class="col-xs-7"><?=$branch->Area?></div>
+					</div>
 					<?php
 				}
 				?>
 				<?php
 				if(isset($branch->Price) && count($branch->Process) > 0) {
 					?>
-					<div class="col-md-5 text-right no-padding">Tiến độ:</div>
-					<div class="col-md-7"><?=$branch->Process?></div>
+					<div class="row">
+						<div class="col-xs-5 text-right no-padding">Tiến độ:</div>
+						<div class="col-xs-7"><?=$branch->Process?></div>
+					</div>
 					<?php
 				}
 				?>
 				<?php
 				if(isset($branch->Price) && count($branch->Owner) > 0) {
 					?>
-					<div class="col-md-5 text-right no-padding">Chủ đầu tư:</div>
-					<div class="col-md-7"><?=$branch->Owner?></div>
+					<div class="row">
+						<div class="col-xs-5 text-right no-padding">Chủ đầu tư:</div>
+						<div class="col-xs-7"><?=$branch->Owner?></div>
+					</div>
 					<?php
 				}
 				?>

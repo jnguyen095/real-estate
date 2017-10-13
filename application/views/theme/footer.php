@@ -58,6 +58,7 @@
 		findStreetByNameUrl: '<?= base_url('/ajax_controller/findStreetByName') ?>',
 		updateCoordinatorMapUrl: '<?= base_url('/ajax_controller/updateCoordinator') ?>',
 		addSubscribleUrl: '<?= base_url('/ajax_controller/addSubscrible') ?>',
+		base_url: '<?=base_url()?>'
 	};
 </script>
 <script src="<?php echo base_url()?>js/mcustome.js"></script>
