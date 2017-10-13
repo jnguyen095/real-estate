@@ -224,21 +224,23 @@
 
 		<?php }?>
 
-		<?php
-			if(isset($product->Source)){
-				?>
-				<div class="row">
-					<div class="col-md-6 col-xs-8">
-						<div class="copy-source row color-gray no-margin no-padding">Nguồn: <?=$product->Source?></div>
-					</div>
-					<div class="col-md-6 col-xs-4">
-						<div class="copy-source row color-gray no-margin no-padding text-right">Ngày đăng: <?=date('d/m/Y', strtotime($product->PostDate))?></div>
-					</div>
-				</div>
 
+		<div class="row">
+			<div class="col-md-6 col-xs-8">
 				<?php
-			}
-		?>
+				if(isset($product->Source)){
+					?>
+					<div class="copy-source row color-gray no-margin no-padding">Nguồn: <?=$product->Source?></div>
+					<?php
+				}
+				?>
+			</div>
+			<div class="col-md-6 col-xs-4">
+				<div class="copy-source row color-gray no-margin no-padding text-right">Ngày đăng: <?=date('d/m/Y', strtotime($product->ModifiedDate))?></div>
+			</div>
+		</div>
+
+
 		<?php $this->load->view('/SocialShare') ?>
 
 		<?php if(isset($similarProducts) && count($similarProducts) > 0){
