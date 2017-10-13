@@ -17,7 +17,7 @@
 				<img src="<?=base_url('/admin/img/user2-160x160.jpg')?>" class="img-circle" alt="User Image">
 			</div>
 			<div class="pull-left info">
-				<p>Alexander Pierce</p>
+				<p><?=$this->session->userdata('fullname')?></p>
 				<!-- Status -->
 				<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 			</div>
@@ -39,7 +39,8 @@
 		<ul class="sidebar-menu" data-widget="tree">
 			<li class="header">HEADER</li>
 			<!-- Optionally, you can add icons to the links -->
-			<li class="active"><a href="<?=base_url('/admin/user/list.html')?>"><i class="fa fa-link"></i> <span>Người dùng</span></a></li>
+			<li class="active"><a href="<?=base_url('/admin/dashboard.html')?>"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
+			<li><a href="<?=base_url('/admin/user/list.html')?>"><i class="fa fa-link"></i> <span>Người dùng</span></a></li>
 			<li><a href="<?=base_url('/admin/static-page/list.html')?>"><i class="fa fa-link"></i> <span>Trang tĩnh</span></a></li>
 			<li><a href="<?=base_url('/admin/product/list.html')?>"><i class="fa fa-link"></i> <span>Bài đăng</span></a></li>
 			<li class="treeview">

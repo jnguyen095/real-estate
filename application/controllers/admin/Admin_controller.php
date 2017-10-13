@@ -14,11 +14,18 @@ class Admin_controller extends CI_Controller
 		if (!$this->session->userdata('loginid') && $this->session->userdata('usergroup') != 'ADMIN'){
 			redirect('dang-nhap');
 		}
-
+		$this->load->model('Dashboard_Model');
 		$this->load->library('session');
 	}
 
 	public function index() {
-		$this->load->view('admin/dashboard');
+		$data['totalUser'] = $this->Dashboard_Model->countUser();
+		$data['totalPost'] = $this->Dashboard_Model->countPost();
+		$data['totalCrawler'] = $this->Dashboard_Model->countCrawler();
+		$data['totalSubscribe'] = $this->Dashboard_Model->countSubscribe();
+		$data['loginToday'] = $this->Dashboard_Model->getLoginToday();
+		$data['createdToday'] = $this->Dashboard_Model->getRegisterToday();
+		$data['postToday'] = $this->Dashboard_Model->getPostToday();
+		$this->load->view('admin/dashboard', $data);
 	}
 }

@@ -43,6 +43,230 @@
 			<!--------------------------
               | Your Page Content Here |
               -------------------------->
+			<!-- Info boxes -->
+			<div class="row">
+				<!-- fix for small devices only -->
+				<div class="clearfix visible-sm-block"></div>
+
+				<div class="col-md-3 col-sm-3 col-xs-6">
+					<div class="info-box">
+						<span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+
+						<div class="info-box-content">
+							<span class="info-box-text">Thành Viên</span>
+							<span class="info-box-number"><?=number_format($totalUser)?></span>
+						</div>
+						<!-- /.info-box-content -->
+					</div>
+					<!-- /.info-box -->
+				</div>
+				<!-- /.col -->
+
+				<div class="col-md-3 col-sm-3 col-xs-6">
+					<div class="info-box">
+						<span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+
+						<div class="info-box-content">
+							<span class="info-box-text">Bài Đăng Chính Chủ</span>
+							<span class="info-box-number"><?=number_format($totalPost)?></span>
+						</div>
+						<!-- /.info-box-content -->
+					</div>
+					<!-- /.info-box -->
+				</div>
+				<!-- /.col -->
+
+				<div class="col-md-3 col-sm-3 col-xs-6">
+					<div class="info-box">
+						<span class="info-box-icon bg-aqua"><i class="fa fa-product-hunt"></i></span>
+
+						<div class="info-box-content">
+							<span class="info-box-text">Crawler</span>
+							<span class="info-box-number"><?=number_format($totalCrawler)?></span>
+						</div>
+						<!-- /.info-box-content -->
+					</div>
+					<!-- /.info-box -->
+				</div>
+				<!-- /.col -->
+
+				<!-- /.col -->
+				<div class="col-md-3 col-sm-3 col-xs-6">
+					<div class="info-box">
+						<span class="info-box-icon bg-red"><i class="fa fa-envelope-o"></i></span>
+
+						<div class="info-box-content">
+							<span class="info-box-text">Subscribe</span>
+							<span class="info-box-number"><?=number_format($totalSubscribe)?></span>
+						</div>
+						<!-- /.info-box-content -->
+					</div>
+					<!-- /.info-box -->
+				</div>
+				<!-- /.col -->
+			</div>
+			<!-- /.row -->
+
+
+			<div class="row">
+				<div class="col-md-6 col-sm-12 col-xs-12">
+					<!-- TABLE: LATEST ORDERS -->
+					<div class="box box-info">
+						<div class="box-header with-border">
+							<h3 class="box-title">Đăng nhập hôm nay</h3>
+
+							<div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+								</button>
+								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+							</div>
+						</div>
+						<!-- /.box-header -->
+						<div class="box-body">
+							<div class="table-responsive">
+								<table class="table no-margin">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Họ Tên</th>
+											<th>Username</th>
+											<th>Ngày Tạo</th>
+											<th>Đăng Nhập</th>
+										</tr>
+									</thead>
+									<tbody>
+									<?php
+									$index = 1;
+									foreach ($loginToday as $user) {
+										?>
+										<tr>
+											<td><?=$index++?></td>
+											<td><?=$user->FullName?></td>
+											<td><?=$user->UserName?></td>
+											<td><?=date('d/m/Y H:i', strtotime($user->CreatedDate))?></td>
+											<td><?=date('d/m/Y H:i', strtotime($user->LastLogin))?></td>
+										</tr>
+										<?php
+									}
+									if(count($loginToday) < 1){
+										echo '<td colspan="5" class="text-center">Không có dữ liệu</td>';
+									}
+									?>
+									</tbody>
+								</table>
+							</div>
+							<!-- /.table-responsive -->
+						</div>
+					</div>
+					<!-- /.box -->
+				</div>
+				<div class="col-md-6 col-sm-12 col-xs-12">
+					<!-- TABLE: LATEST ORDERS -->
+					<div class="box box-info">
+						<div class="box-header with-border">
+							<h3 class="box-title">Đăng ký hôm nay</h3>
+
+							<div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+								</button>
+								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+							</div>
+						</div>
+						<!-- /.box-header -->
+						<div class="box-body">
+							<div class="table-responsive">
+								<table class="table no-margin">
+									<thead>
+									<tr>
+										<th>#</th>
+										<th>Họ Tên</th>
+										<th>Username</th>
+										<th>Ngày Tạo</th>
+										<th>Đăng Nhập</th>
+									</tr>
+									</thead>
+									<tbody>
+									<?php
+									$index = 1;
+									foreach ($createdToday as $user) {
+										?>
+										<tr>
+											<td><?=$index++?></td>
+											<td><?=$user->FullName?></td>
+											<td><?=$user->UserName?></td>
+											<td><?=date('d/m/Y H:i', strtotime($user->CreatedDate))?></td>
+											<td><?=date('d/m/Y H:i', strtotime($user->LastLogin))?></td>
+										</tr>
+										<?php
+									}
+									if(count($createdToday) < 1){
+										echo '<td colspan="5" class="text-center">Không có dữ liệu</td>';
+									}
+									?>
+									</tbody>
+								</table>
+							</div>
+							<!-- /.table-responsive -->
+						</div>
+
+					</div>
+					<!-- /.box -->
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<!-- TABLE: LATEST ORDERS -->
+					<div class="box box-info">
+						<div class="box-header with-border">
+							<h3 class="box-title">Bài đăng hôm nay</h3>
+
+							<div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+								</button>
+								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+							</div>
+						</div>
+						<!-- /.box-header -->
+						<div class="box-body">
+							<div class="table-responsive">
+								<table class="table no-margin">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Tiêu Đề</th>
+											<th>Tạo Lúc</th>
+											<th>Người Tạo</th>
+										</tr>
+									</thead>
+									<tbody>
+									<?php
+									$index = 1;
+									foreach ($postToday as $post) {
+										?>
+										<tr>
+											<td><?=$index++?></td>
+											<td><?=$post->Title?></td>
+											<td><?=date('d/m/Y H:i', strtotime($post->PostDate))?></td>
+											<td><?=$post->CreatedByID?></td>
+										</tr>
+										<?php
+									}
+									if(count($createdToday) < 1){
+										echo '<td colspan="4" class="text-center">Không có dữ liệu</td>';
+									}
+									?>
+									</tbody>
+								</table>
+							</div>
+							<!-- /.table-responsive -->
+						</div>
+
+					</div>
+					<!-- /.box -->
+				</div>
+
+			</div>
 
 		</section>
 		<!-- /.content -->
