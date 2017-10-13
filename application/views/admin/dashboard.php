@@ -28,12 +28,12 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 			<h1>
-				Page Header
-				<small>Optional description</small>
+				Dashboard
+				<small>Tổng quan Tin Đất Đai</small>
 			</h1>
 			<ol class="breadcrumb">
-				<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-				<li class="active">Here</li>
+				<li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
+				<li class="active">Dashboard</li>
 			</ol>
 		</section>
 
@@ -68,7 +68,7 @@
 
 						<div class="info-box-content">
 							<span class="info-box-text">Bài Đăng Chính Chủ</span>
-							<span class="info-box-number"><?=number_format($totalPost)?></span>
+							<span class="info-box-number"><?=number_format($totalPost)?>/<?=number_format($postDisabled)?></span>
 						</div>
 						<!-- /.info-box-content -->
 					</div>

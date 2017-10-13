@@ -19,7 +19,13 @@ class Dashboard_Model extends CI_Model
 		return $row->Total;
 	}
 	public function countPost(){
-		$query = "select count(*) as Total from product where CreatedByID is not null";
+		$query = "select count(*) as Total from product where Status = 1 and CreatedByID is not null";
+		$total = $this->db->query($query);
+		$row = $total->row();
+		return $row->Total;
+	}
+	public function countPostDisabled(){
+		$query = "select count(*) as Total from product where Status = 0 and CreatedByID is not null";
 		$total = $this->db->query($query);
 		$row = $total->row();
 		return $row->Total;

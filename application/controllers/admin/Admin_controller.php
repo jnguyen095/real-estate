@@ -21,6 +21,7 @@ class Admin_controller extends CI_Controller
 	public function index() {
 		$data['totalUser'] = $this->Dashboard_Model->countUser();
 		$data['totalPost'] = $this->Dashboard_Model->countPost();
+		$data['postDisabled'] = $this->Dashboard_Model->countPostDisabled();
 		$data['totalCrawler'] = $this->Dashboard_Model->countCrawler();
 		$data['totalSubscribe'] = $this->Dashboard_Model->countSubscribe();
 		$data['loginToday'] = $this->Dashboard_Model->getLoginToday();
