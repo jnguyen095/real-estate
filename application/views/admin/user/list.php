@@ -58,11 +58,11 @@
 								<th></th>
 								<th data-action="sort" data-title="FullName" data-direction="ASC"><span>Họ Tên</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th data-action="sort" data-title="UserName" data-direction="ASC"><span>Username</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="Phone" data-direction="ASC"><span>Số Điện Thoại</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+								<th data-action="sort" data-title="Phone" data-direction="ASC"><span>Điện Thoại</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th data-action="sort" data-title="Email" data-direction="ASC"><span>Email</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th data-action="sort" data-title="Address" data-direction="ASC"><span>Địa Chỉ</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th data-action="sort" data-title="CreatedDate" data-direction="ASC"><span>Ngày Tạo</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="LastLogin" data-direction="ASC"><span>Lần Cuối Đăng Nhập</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+								<th data-action="sort" data-title="LastLogin" data-direction="ASC"><span>Đăng Nhập</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th></th>
 							</tr>
 						</thead>

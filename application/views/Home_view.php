@@ -23,7 +23,7 @@
 	<link rel="icon" sizes="48x48" href="<?=base_url('/img/ico.ico')?>">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v2.4.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v2.5.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.min_v1.4.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.3.css">
 	<!-- jQuery library -->
@@ -37,8 +37,9 @@
 <body>
 <?php $this->load->view('/common/analyticstracking')?>
 
-<div class="container">
 <?php $this->load->view('/theme/header')?>
+<div class="container">
+
 
 <div class="home-page row">
 	<div class="home-first-row">
@@ -277,7 +278,7 @@
 	</div>
 </div>
 
-<script src="<?php echo base_url()?>js/homeland.min_v1.0.js"></script>
+<script src="<?php echo base_url()?>js/homeland.min_v1.1.js"></script>
 <?php $this->load->view('/theme/footer')?>
 </div>
 </body>

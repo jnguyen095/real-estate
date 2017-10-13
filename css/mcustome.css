@@ -11,6 +11,7 @@ body{
 	background-size:  100%;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
+	padding-top: 50px;
 }
 
 .container{
@@ -20,9 +21,13 @@ body{
 
 .m-navbar{
 	z-index: 9;
-	background-color: #20C063; /*#365899;*/
+	background-color: transparent; /*#365899;*/
 	color: #ffffff;
 	margin-bottom: 0px;
+}
+
+.m-navbar > .container{
+	background-color: #20C063;
 }
 
 .breadcrumb{
@@ -227,6 +232,12 @@ a:focus, a{
 	width: 160px;
 	margin-left: 20px;
 	background: #ffffff;
+}
+
+.navbar-brand>img {
+	display: block;
+	height: 50px;
+	margin-left: 2px;
 }
 
 .affix{
@@ -1195,5 +1206,27 @@ img.imgIcon {
 }
 .inews-l {
 	margin-top: 10px;
+}
+
+#myBtn {
+	display: none; /* Hidden by default */
+	position: fixed; /* Fixed/sticky position */
+	bottom: 20px; /* Place the button at the bottom of the page */
+	right: 30px; /* Place the button 30px from the right */
+	z-index: 99; /* Make sure it does not overlap */
+	border: none; /* Remove borders */
+	outline: none; /* Remove outline */
+	color: white; /* Text color */
+	cursor: pointer; /* Add a mouse pointer on hover */
+	padding: 2px; /* Some padding */
+}
+
+#myBtn img{
+	width: 40px;
+	height: 40px;
+}
+
+#myBtn:hover {
+	background-color: #20C063; /* Add a dark-grey background on hover */
 }
 

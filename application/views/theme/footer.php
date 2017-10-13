@@ -7,7 +7,7 @@
  */
 
 ?>
-
+<a id="myBtn" href="javascript:void(0);" class="mobile-hide" title="Go to top"><img src="<?=base_url('/img/gotop.png')?>" alt="Go Top"/></a>
 <div class="footer row no-margin">
 	<div class="quickLink mobile-hide">
 		<?php
