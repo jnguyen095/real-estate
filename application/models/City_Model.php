@@ -54,4 +54,17 @@ class City_Model extends CI_Model
 		}
 		return $result;
 	}
+
+	public function findCityByCategoryId($categoryId){
+		$sql = "select p.CityID, ct.CityName, count(p.productid) as Total";
+		$sql .= " from product p";
+		$sql .= " inner join category c on p.categoryid = c.categoryid";
+		$sql .= " inner join city ct on ct.cityid = p.cityid";
+		$sql .= " where c.categoryid = {$categoryId}";
+		$sql .= " group by p.cityid, p.categoryid";
+		$sql .= " order by count(p.productid) desc, c.CatName asc";
+		$query = $this->db->query($sql);
+		$items = $query->result();
+		return $items;
+	}
 }

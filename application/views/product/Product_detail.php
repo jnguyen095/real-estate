@@ -255,7 +255,7 @@
 					<div class="brief-box-item">
 						<div class="content">
 							<div class="image col-md-4 col-xs-3 no-padding-mobile">
-								<img src="<?=$similarProduct->Thumb?>" alt="<?=$product->Title?>"/>
+								<img class="width100pc" src="<?=$similarProduct->Thumb?>" alt="<?=$product->Title?>"/>
 							</div>
 							<div class="brief-detail col-md-8 col-xs-9">
 								<a href="<?=base_url().seo_url($similarProduct->Title).'-p'.$similarProduct->ProductID?>.html"><h3><?=$similarProduct->Title?></h3></a>

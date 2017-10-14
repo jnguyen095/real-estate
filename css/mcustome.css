@@ -881,13 +881,27 @@ ol, ul {
 
 ul.city-link {
 	padding: 0px;
-	line-height: 20px;
+	line-height: 22px;
 }
 
-ul.city-link a{
+.city-link li:not(:last-child) {
+	border-bottom: solid 1px #fbfbfb;
+}
+
+ul.city-link li a{
 	background: url(../img/arrow-right.png) no-repeat 0px 2px;
 	padding-left: 10px;
 	color: #424242;
+}
+
+.result-count{
+	color: #ccc;
+	display: none;
+}
+
+ul.city-link li:hover .result-count {
+	display: inline-block;
+	float: right;
 }
 
 .h1Class{
@@ -1283,4 +1297,22 @@ img.imgIcon {
 	right: 0px;
 	padding: 7px 12px;
 	pointer-events: none;
+}
+.category-panel.affix {
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 99;
+	top: 44px;
+	background: transparent;
+	border: none;
+	width: 100%;
+}
+.affix-top .container{
+	width: 100%;
+	background: #f5f5f5;
+}
+.affix .container.mcontainer{
+	background: #f5f5f5;
+	border-bottom: solid 1px #ccc;
 }

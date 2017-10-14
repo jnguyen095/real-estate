@@ -45,6 +45,7 @@ class Product_controller extends CI_Controller
 		$data['pagination'] = $this->pagination->create_links();
 		$data['cities'] = $this->City_Model->getAllActive();
 		$data['topNews'] = $this->News_Model->findTopNewExceptCurrent(0, 5);
+		$data['cityWithCats'] = $this->City_Model->findCityByCategoryId($catId);
 
 		$this->load->helper('url');
 		$this->load->view('product/Product_list', $data);
