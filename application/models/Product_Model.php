@@ -32,7 +32,7 @@ class Product_Model extends CI_Model
 		$sql .= ' inner join city c on p.cityid = c.cityid';
 		$sql .= ' inner join district d on p.districtid = d.districtid';
 		$sql .= ' inner join category ct on ct.categoryid = p.categoryid';
-		$sql .= ' where ct.code = \''.$catCode.'\' and p.status = '.ACTIVE;
+		$sql .= ' where ct.parentid in(select ct1.categoryid from category ct1 where ct1.code = \''.$catCode.'\') or ct.code = \''.$catCode.'\' and p.status = '.ACTIVE;
 		$sql .= ' order by date(p.modifieddate) desc, p.vip asc';
 		$sql .= ' limit '.$offset.','.$limit;
 
@@ -57,6 +57,12 @@ class Product_Model extends CI_Model
 
 	public function updateViewForProductIdManual($productId, $view){
 		$this->db->set('View', $view);
+		$this->db->where('ProductID', $productId);
+		$this->db->update('product');
+	}
+
+	public function updateVipPackageForProductId($productId, $vip){
+		$this->db->set('Vip', $vip);
 		$this->db->where('ProductID', $productId);
 		$this->db->update('product');
 	}

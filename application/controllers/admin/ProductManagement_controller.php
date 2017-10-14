@@ -26,7 +26,7 @@ class ProductManagement_controller extends CI_Controller
 		$config = pagination($this);
 		$config['base_url'] = base_url('admin/product/list.html');
 		if(!$config['orderField']){
-			$config['orderField'] = "PostDate";
+			$config['orderField'] = "ModifiedDate";
 			$config['orderDirection'] = "DESC";
 		}
 		$postFromDate = $this->input->get('postFromDate');
@@ -40,5 +40,11 @@ class ProductManagement_controller extends CI_Controller
 		$data['pagination'] = $this->pagination->create_links();
 
 		$this->load->view("admin/product/list", $data);
+	}
+
+	public function pushPostUp(){
+		$productId = $this->input->post('productId');
+		$this->Product_Model->pushPostUp($productId);
+		echo json_encode('success');
 	}
 }
