@@ -12,6 +12,12 @@ class Dashboard_Model extends CI_Model
 		parent::__construct();
 	}
 
+	public function countPostVip($vipType){
+		$query = "select count(*) as Total from product where Vip = {$vipType}";
+		$total = $this->db->query($query);
+		$row = $total->row();
+		return $row->Total;
+	}
 	public function countUser(){
 		$query = "select count(*) as Total from us3r where UserGroupID != 1";
 		$total = $this->db->query($query);
@@ -59,5 +65,17 @@ class Dashboard_Model extends CI_Model
 		$query = "select * from product p where p.CreatedByID is not null and date(p.PostDate) = '{$today}' order by p.PostDate desc";
 		$result = $this->db->query($query);
 		return $result->result();
+	}
+	public function updateStandardForPreviousPost(){
+		$today = date('Y-m-d');
+		$query = "update product set Vip = 5 where date(ModifiedDate) != '{$today}' and Vip != 5";
+		$this->db->query($query);
+	}
+	public function countStandardForPreviousPost(){
+		$today = date('Y-m-d');
+		$query = "select count(*) as Total from product where date(ModifiedDate) != '{$today}' and Vip != 5";
+		$total = $this->db->query($query);
+		$row = $total->row();
+		return $row->Total;
 	}
 }

@@ -107,6 +107,44 @@
 			</div>
 			<!-- /.row -->
 
+			<div class="row">
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<div class="box box-success box-solid">
+						<div class="box-header with-border">
+							<h3 class="box-title">Gói VIP</h3>
+
+							<div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+							</div>
+						</div>
+						<div class="box-body">
+							<span class="col-sm-4 bg-red">Vip-1: <strong><?=$postVip1?></strong></span>
+							<span class="col-sm-4 bg-blue">Vip-2: <strong><?=$postVip2?></strong></span>
+							<span class="col-sm-4 bg-aqua">Vip-3: <strong><?=$postVip3?></strong></span>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="box">
+						<div class="box-header">
+							<h3 class="box-title">Xử lý nhanh</h3>
+						</div>
+						<div class="box-body">
+							<a id="updateVip" class="btn btn-app">
+								<span id="previousVipPost" class="badge bg-red"><?=$postVipPreviousDate?></span>
+								<i class="fa fa-repeat"></i> Xóa VIP ngày cũ
+							</a>
+
+						</div>
+						<!-- /.box-body -->
+					</div>
+				</div>
+			</div>
+
 
 			<div class="row">
 				<div class="col-md-6 col-sm-12 col-xs-12">
@@ -363,9 +401,28 @@
 <script src="<?=base_url('/admin/js/bootstrap.min.js')?>"></script>
 <!-- AdminLTE App -->
 <script src="<?=base_url('/admin/js/adminlte.min.js')?>"></script>
+<script src="<?=base_url('/js/bootbox.min.js')?>"></script>
 
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#updateVip").click(function(){
+			bootbox.confirm("Chuyển VIP những ngày trước sang Standard?", function(r){
+				if(r){
+					jQuery.ajax({
+						type: "POST",
+						url: '<?=base_url("/admin/admin_controller/updateStandardForPreviousPost")?>',
+						dataType: 'json',
+						data: {},
+						success: function(res){
+							if(res == 'success'){
+								bootbox.alert("Cập nhật thành công");
+							}
+						}
+					});
+				}
+			});
+		})
+	});
+</script>
 </body>
 </html>
