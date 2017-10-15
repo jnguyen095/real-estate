@@ -1302,7 +1302,7 @@ img.imgIcon {
 	top: 0;
 	left: 0;
 	right: 0;
-	z-index: 99;
+	z-index: 2;
 	top: 44px;
 	background: transparent;
 	border: none;

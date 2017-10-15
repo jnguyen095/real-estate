@@ -80,52 +80,53 @@ class Product_Model extends CI_Model
 		$product = $query->row();
 
 		// Fetch Brand
-		if($product->BrandID != null){
-			$this->db->where("BrandID", $product->BrandID);
-			$query = $this->db->get("brand");
-			$product->Brand = $query->row();
+		if($product != null) {
+			if ($product->BrandID != null) {
+				$this->db->where("BrandID", $product->BrandID);
+				$query = $this->db->get("brand");
+				$product->Brand = $query->row();
+			}
+
+			// Fetch City
+			if ($product->CityID != null) {
+				$this->db->where("CityID", $product->CityID);
+				$query = $this->db->get("city");
+				$product->City = $query->row();
+			}
+
+			// Fetch District
+			if ($product->DistrictID != null) {
+				$this->db->where("DistrictID", $product->DistrictID);
+				$query = $this->db->get("district");
+				$product->District = $query->row();
+			}
+
+			// Fetch Ward
+			if ($product->WardID != null) {
+				$this->db->where("WardID", $product->WardID);
+				$query = $this->db->get("ward");
+				$product->Ward = $query->row();
+			}
+
+			// Fetch Ward
+			if ($product->UnitID != null) {
+				$this->db->where("UnitID", $product->UnitID);
+				$query = $this->db->get("unit");
+				$product->Unit = $query->row();
+			}
+
+			// Fetch Direction
+			if ($product->DirectionID != null) {
+				$this->db->where("DirectionID", $product->DirectionID);
+				$query = $this->db->get("direction");
+				$product->Direction = $query->row();
+			}
+
+			// Product Assets
+			$this->db->where("ProductID", $productId);
+			$query = $this->db->get("productasset");
+			$product->Assets = $query->result();
 		}
-
-		// Fetch City
-		if($product->CityID != null){
-			$this->db->where("CityID", $product->CityID);
-			$query = $this->db->get("city");
-			$product->City = $query->row();
-		}
-
-		// Fetch District
-		if($product->DistrictID != null){
-			$this->db->where("DistrictID", $product->DistrictID);
-			$query = $this->db->get("district");
-			$product->District = $query->row();
-		}
-
-		// Fetch Ward
-		if($product->WardID != null){
-			$this->db->where("WardID", $product->WardID);
-			$query = $this->db->get("ward");
-			$product->Ward = $query->row();
-		}
-
-		// Fetch Ward
-		if($product->UnitID != null){
-			$this->db->where("UnitID", $product->UnitID);
-			$query = $this->db->get("unit");
-			$product->Unit = $query->row();
-		}
-
-		// Fetch Direction
-		if($product->DirectionID != null){
-			$this->db->where("DirectionID", $product->DirectionID);
-			$query = $this->db->get("direction");
-			$product->Direction = $query->row();
-		}
-
-		// Product Assets
-		$this->db->where("ProductID", $productId);
-		$query = $this->db->get("productasset");
-		$product->Assets = $query->result();
-
 		return $product;
 	}
 
@@ -203,7 +204,7 @@ class Product_Model extends CI_Model
 		$sql .= ' inner join city c on p.cityid = c.cityid';
 		$sql .= ' inner join district d on p.districtid = d.districtid';
 		$sql .= ' where p.CategoryID = '.$catId.' and p.CityID = '.$cityId.' and p.status = 1';
-		$sql .= ' order by (p.modifieddate) desc, p.vip asc';
+		$sql .= ' order by date(p.modifieddate) desc, p.vip asc';
 		$sql .= ' limit '.$offset.','.$limit;
 
 		$countsql = 'select count(*) as total from product where CategoryID = '.$catId.' and CityID = '.$cityId.' and Status = 1';

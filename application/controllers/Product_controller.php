@@ -52,6 +52,10 @@ class Product_controller extends CI_Controller
 	}
 
 	public function detailItem($productId) {
+		$product = $this->Product_Model->findByIdFetchAll($productId);
+		if(!isset($product) || $product->ProductID == null){
+			redirect("/khong-tim-thay");
+		}
 		$data = $this->Category_Model->getCategories();
 		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
 		$product = $this->Product_Model->findByIdFetchAll($productId);

@@ -16,7 +16,6 @@ class Home_controller extends CI_Controller
 		$this->load->model('City_Model');
 		$this->load->model('Brand_Model');
 		$this->load->helper("seo_url");
-		$this->load->helper("seo_url");
 		$this->load->helper('text');
 		$this->load->helper("my_date");
 		$this->load->model('News_Model');
