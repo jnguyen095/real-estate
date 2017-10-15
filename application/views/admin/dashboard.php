@@ -290,7 +290,7 @@
 										</tr>
 										<?php
 									}
-									if(count($createdToday) < 1){
+									if(count($postToday) < 1){
 										echo '<td colspan="4" class="text-center">Không có dữ liệu</td>';
 									}
 									?>

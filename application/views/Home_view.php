@@ -23,8 +23,8 @@
 	<link rel="icon" sizes="48x48" href="<?=base_url('/img/ico.ico')?>">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v2.8.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.min_v1.7.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v2.9.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.min_v1.8.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.3.css">
 	<!-- jQuery library -->
 	<script src="<?php echo base_url()?>js/jquery.min.js"></script>
@@ -46,7 +46,7 @@
 		<div class="col-md-3">
 			<?php $this->load->view('/common/Search_filter') ?>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-6 mobile-hide">
 			<div id='carousel-custom' class='carousel slide fix-height-standard orver-hidden' data-interval="5000" data-ride='carousel'>
 				<div class='carousel-outer'>
 					<!-- Wrapper for slides -->
@@ -67,7 +67,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-3 mobile-hide">
 			<div id='carousel-custom' class='carousel slide hot-product fix-height-standard' data-interval="7000" data-ride='carousel'>
 				<img class="post-star" src="<?=base_url('/img/3d-yellow-star.png')?>"/>
 				<div class='carousel-outer'>
@@ -170,8 +170,8 @@
 					<div class="row product-list">
 						<div class="row product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><h3><?=$product->Title?></h3></a> </div>
 						<div class="row product-content">
-							<div class="col-md-2 col-xs-5 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
-							<div class="col-md-10 col-xs-7">
+							<div class="col-md-2 col-xs-3 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img class="width100pc" style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+							<div class="col-md-10 col-xs-9">
 								<div class="row pos-relative">
 									<div class="productTop">
 										<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="price bold"><?=$product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></span></span><span class="margin-left-10">Quận/Huyện: <span class="color bold"><?=$product->district.', '.$product->city?></span></div>
@@ -200,8 +200,8 @@
 					<div class="row product-list">
 						<div class="row product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><h3><?=$product->Title?></h3></a> </div>
 						<div class="row product-content">
-							<div class="col-md-2 col-xs-5 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
-							<div class="col-md-10 col-xs-7">
+							<div class="col-md-2 col-xs-3 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img class="width100pc" style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+							<div class="col-md-10 col-xs-9">
 								<div class="row pos-relative">
 									<div class="productTop">
 										<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="price bold"><?=$product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></span></span><span class="margin-left-10">Quận/Huyện: <span class="color bold"><?=$product->district.', '.$product->city?></span></div>

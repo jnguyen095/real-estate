@@ -86,6 +86,27 @@
 	.category-panel.affix{
 		background: #f5f5f5;
 	}
+	.product-list{
+		margin-bottom:0px !important;
+		border-top: none !important;
+	}
+	.product-list:first-child{
+		border-top: solid 1px #d3d5d8 !important;
+	}
+	.product-list .product-title{
+		text-transform: none;
+	}
+	.bold{
+		font-weight: normal !important;
+	}
+
+	.home-group .block-header{
+		margin-bottom: 0px !important;
+	}
+
+	.product-title h3{
+		color: #555;
+	}
 }
 
 @media (max-width: 120px) {
