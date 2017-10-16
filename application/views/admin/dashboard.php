@@ -274,6 +274,7 @@
 											<th>#</th>
 											<th>Tiêu Đề</th>
 											<th>Tạo Lúc</th>
+											<th>Lượt View</th>
 											<th>Người Tạo</th>
 										</tr>
 									</thead>
@@ -286,6 +287,7 @@
 											<td><?=$index++?></td>
 											<td><?=$post->Title?></td>
 											<td><?=date('d/m/Y H:i', strtotime($post->PostDate))?></td>
+											<td><?=$post->View?></td>
 											<td><?=$post->CreatedByID?></td>
 										</tr>
 										<?php
