@@ -59,10 +59,10 @@
 			<?php
 				foreach ($products as $product){
 					?>
-					<div class="row product-list vip<?=$product->Vip?>">
-						<div class="row product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><?=($product->Vip < 5 ? '<span class="pvip">v'.$product->Vip.'</span>' :  '')?><h3><?=$product->Title?></h3></a> </div>
+					<div itemscope itemtype="http://schema.org/Product" class="row product-list vip<?=$product->Vip?>">
+						<div class="row product-title"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><?=($product->Vip < 5 ? '<span class="pvip">v'.$product->Vip.'</span>' :  '')?><h3 itemprop="name"><?=$product->Title?></h3></a> </div>
 						<div class="row product-content">
-							<div class="col-md-2 col-xs-3 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img class="width100pc" style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+							<div class="col-md-2 col-xs-3 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="width100pc" style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
 							<div class="col-md-10 col-xs-9">
 								<div class="row pos-relative">
 									<div class="productTop">
@@ -71,7 +71,7 @@
 										<div class="clear-both"></div>
 									</div>
 									<div class="col-md-12 col-xs-12 product-brief no-padding mobile-hide">
-										<div class="no-margin no-padding col-md-12 col-xs-12"><?=$product->Brief?></div>
+										<div class="no-margin no-padding col-md-12 col-xs-12" itemprop="description"><?=$product->Brief?></div>
 									</div>
 								</div>
 							</div>

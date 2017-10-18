@@ -42,8 +42,9 @@
 	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="active mobile-hide"><span itemprop="item"><span itemprop="name"><?php echo $product->Title?></span></span><meta itemprop="position" content="<?=$position++?>" /></li>
 </ul>
 <div class="row no-margin">
-	<div class="col-md-9 no-margin no-padding product-detail">
-		<div class="product-title"><h1 itemprop="name" class="h1Class"><?php echo $product->Title?></h1></div>
+	<div itemscope itemtype="http://schema.org/Product" class="col-md-9 no-margin no-padding product-detail">
+		<div class="product-title"><h1 class="h1Class" itemprop="name"><?php echo $product->Title?></h1></div>
+		<img class="hidden" itemprop="image" src="<?=$product->Thumb?>" alt="<?php echo $product->Title?>" />
 
 		<div class="row">
 			<div class="col-md-12"><span class="price-detail"><?php echo $product->PriceString?></span>	</div>
@@ -127,7 +128,7 @@
 
 		<div class="h2title">Chi Tiết</div>
 
-		<div id="prDetail" class="product-detail content">
+		<div id="prDetail" class="product-detail content" itemprop="description">
 			<?php echo $product->Detail?>
 		</div>
 
@@ -165,7 +166,7 @@
 						if(isset($product->Brand) && $product->Brand != null){
 							?>
 							<td class="width100">Thuộc dự án</td>
-							<td><a href="<?=base_url() . seo_url($product->Brand->BrandName) . '-b' . $product->Brand->BrandID ?>.html" title="<?=$product->Brand->BrandName?>" class="listing-card-link listing-img-a"><?=$product->Brand->BrandName?></a></td>
+							<td><a href="<?=base_url() . seo_url($product->Brand->BrandName) . '-b' . $product->Brand->BrandID ?>.html" title="<?=$product->Brand->BrandName?>" class="listing-card-link listing-img-a"><span itemprop="brand"><?=$product->Brand->BrandName?></span></a></td>
 						<?php
 						}
 					?>
@@ -253,13 +254,13 @@
 			foreach ($similarProducts as $similarProduct){
 				?>
 				<div class="col-md-6 col-xs-12 brief-box">
-					<div class="brief-box-item">
+					<div itemscope itemtype="http://schema.org/Product" class="brief-box-item">
 						<div class="content">
 							<div class="image col-md-4 col-xs-3 no-padding-mobile">
-								<img class="width100pc" src="<?=$similarProduct->Thumb?>" alt="<?=$product->Title?>"/>
+								<img itemprop="image" class="width100pc" src="<?=$similarProduct->Thumb?>" alt="<?=$product->Title?>"/>
 							</div>
 							<div class="brief-detail col-md-8 col-xs-9">
-								<a href="<?=base_url().seo_url($similarProduct->Title).'-p'.$similarProduct->ProductID?>.html"><h3><?=$similarProduct->Title?></h3></a>
+								<a itemprop="url" href="<?=base_url().seo_url($similarProduct->Title).'-p'.$similarProduct->ProductID?>.html"><span itemprop="name"><h3><?=$similarProduct->Title?></h3></span></a>
 								<div class="price"><span class="color"><?=is_numeric($similarProduct->Area) ? $similarProduct->Area.' m²' : $similarProduct->Area?></span> <?=$similarProduct->PriceString?></div>
 							</div>
 							<div class="clear-both"></div>
@@ -283,13 +284,13 @@
 				foreach ($similarCityProducts as $similarProduct){
 					?>
 					<div class="col-md-6 col-xs-12 brief-box">
-						<div class="brief-box-item">
+						<div itemscope itemtype="http://schema.org/Product" class="brief-box-item">
 							<div class="content">
 								<div class="image col-md-4 col-xs-3 no-padding-mobile">
-									<img class="width100pc" src="<?=$similarProduct->Thumb?>" alt="<?=$product->Title?>"/>
+									<img itemprop="image" class="width100pc" src="<?=$similarProduct->Thumb?>" alt="<?=$product->Title?>"/>
 								</div>
 								<div class="brief-detail col-md-8 col-xs-9">
-									<a href="<?=base_url().seo_url($similarProduct->Title).'-p'.$similarProduct->ProductID?>.html"><h3><?=$similarProduct->Title?></h3></a>
+									<a itemprop="url" href="<?=base_url().seo_url($similarProduct->Title).'-p'.$similarProduct->ProductID?>.html"><span itemprop="name"><h3><?=$similarProduct->Title?></h3></span></a>
 									<div class="price"><span class="color"><?=is_numeric($similarProduct->Area) ? $similarProduct->Area.' m²' : $similarProduct->Area?></span> <?=$similarProduct->PriceString?></div>
 								</div>
 								<div class="clear-both"></div>

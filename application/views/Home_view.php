@@ -167,10 +167,10 @@
 				<?php
 				foreach ($nhadatban as $product){
 					?>
-					<div class="row product-list">
-						<div class="row product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><h3><?=$product->Title?></h3></a> </div>
+					<div itemscope itemtype="http://schema.org/Product" class="row product-list">
+						<div class="row product-title"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><h3 itemprop="name"><?=$product->Title?></h3></a> </div>
 						<div class="row product-content">
-							<div class="col-md-2 col-xs-3 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img class="width100pc" style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+							<div class="col-md-2 col-xs-3 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="width100pc" style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
 							<div class="col-md-10 col-xs-9">
 								<div class="row pos-relative">
 									<div class="productTop">
@@ -180,7 +180,7 @@
 									</div>
 
 									<div class="col-md-12 col-xs-12 product-brief no-padding mobile-hide">
-										<div class="no-margin no-padding col-md-12 col-xs-12"><?=$product->Brief?></div>
+										<div class="no-margin no-padding col-md-12 col-xs-12" itemprop="description"><?=$product->Brief?></div>
 									</div>
 								</div>
 							</div>
@@ -197,10 +197,10 @@
 				<?php
 				foreach ($nhadatchothue as $product){
 					?>
-					<div class="row product-list">
-						<div class="row product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><h3><?=$product->Title?></h3></a> </div>
+					<div itemscope itemtype="http://schema.org/Product" class="row product-list">
+						<div class="row product-title"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><h3 itemprop="name"><?=$product->Title?></h3></a> </div>
 						<div class="row product-content">
-							<div class="col-md-2 col-xs-3 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img class="width100pc" style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+							<div class="col-md-2 col-xs-3 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="width100pc" style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
 							<div class="col-md-10 col-xs-9">
 								<div class="row pos-relative">
 									<div class="productTop">
@@ -209,7 +209,7 @@
 										<div class="clear-both"></div>
 									</div>
 									<div class="col-md-12 col-xs-12 product-brief no-padding mobile-hide">
-										<div class="no-margin no-padding col-md-12 col-xs-12"><?=$product->Brief?></div>
+										<div class="no-margin no-padding col-md-12 col-xs-12" itemprop="description"><?=$product->Brief?></div>
 									</div>
 								</div>
 							</div>
@@ -227,10 +227,10 @@
 					<?php
 					foreach ($underOneBillion as $product){
 						?>
-						<div class="briefHome row">
-							<div class="col-md-2 col-xs-2 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img class="imgBrief" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+						<div itemscope itemtype="http://schema.org/Product" class="briefHome row">
+							<div class="col-md-2 col-xs-2 no-padding"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="imgBrief" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
 							<div class="col-md-10 col-xs-10 no-padding-right">
-								<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3><?=limit_text($product->Title, 25)?></h3></a> </div>
+								<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=limit_text($product->Title, 25)?></h3></a> </div>
 								<div class="product-info">
 									<div><span class="color"><?=$product->district.', '.$product->city?></span> <span class="price"><?=$product->PriceString?></span></div>
 								</div>
@@ -245,10 +245,10 @@
 					<?php
 					foreach ($justUpdates as $product){
 						?>
-						<div class="briefHome row">
-							<div class="col-md-2 col-xs-2 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img class="imgBrief" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+						<div itemscope itemtype="http://schema.org/Product" class="briefHome row">
+							<div class="col-md-2 col-xs-2 no-padding"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="imgBrief" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
 							<div class="col-md-10 col-xs-10 no-padding-right">
-								<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3><?=limit_text($product->Title, 25)?></h3></a> </div>
+								<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=limit_text($product->Title, 25)?></h3></a> </div>
 								<div class="product-info">
 									<div><span class="color"><?=$product->district.', '.$product->city?></span> <span class="price"><?=$product->PriceString?></span></div>
 								</div>
