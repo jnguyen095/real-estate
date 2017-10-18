@@ -42,34 +42,34 @@
 
 <?php $this->load->view('/theme/header')?>
 
-<ul class="breadcrumb">
-	<li><a href="<?=base_url().'trang-chu.html'?>">Trang Chủ</a></li>
+<ul itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" href="<?=base_url().'trang-chu.html'?>"><span itemprop="name">Trang Chủ</span></a><meta itemprop="position" content="1" /></li>
 	<?php
 	if(isset($district)){
 		if(isset($city)){
 			?>
-			<li class="active">Tìm theo quận <?php echo $district->DistrictName ?>, <?php echo $city->CityName ?></li>
+			<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="active"><span itemprop="item"><span itemprop="name">Tìm theo quận <?php echo $district->DistrictName ?>, <?php echo $city->CityName ?></span></span><meta itemprop="position" content="2" /></li>
 			<?php
 		}else{
 			?>
-			<li class="active">Tìm theo quận <?php echo $district->DistrictName ?></li>
+			<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="active"><span itemprop="item"><span itemprop="name">Tìm theo quận <?php echo $district->DistrictName ?></span></span><meta itemprop="position" content="2" /></li>
 			<?php
 		}
 	}else if(isset($city)) {
 		?>
-		<li class="active">Tìm theo thành phố <?php echo $city->CityName ?></li>
+		<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="active"><span itemprop="item"><span itemprop="name">Tìm theo thành phố <?php echo $city->CityName ?></span></span><meta itemprop="position" content="2" /></li>
 		<?php
 	}else if(isset($branch)){
 		?>
-		<li class="active">Tìm theo dự án <?php echo $branch->BrandName ?></li>
+		<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="active"><span itemprop="item"><span itemprop="name">Tìm theo dự án <?php echo $branch->BrandName ?></span></span><meta itemprop="position" content="2" /></li>
 		<?php
 	}else if(isset($cat_city)){
 		?>
-		<li class="active"><?php echo $cat_city ?></li>
+		<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="active"><span itemprop="item"><span itemprop="name"><?php echo $cat_city ?></span></span><meta itemprop="position" content="2" /></li>
 		<?php
 	}else{
 		?>
-		<li class="active">Tìm kiếm</li>
+		<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="active"><span itemprop="item"><span itemprop="name">Tìm kiếm</span></span><meta itemprop="position" content="2" /></li>
 		<?php
 	}
 	?>

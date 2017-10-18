@@ -62,3 +62,17 @@
 	};
 </script>
 <script src="<?php echo base_url()?>js/mcustome.js"></script>
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "url": "http://tindatdai.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "http://tindatdai.com/tim-kiem.html?query={search_term_string}",
+      "query-input": "required name=search_term_string"
+    },
+    "name": "tindatdai.com",
+    "alternateName": "Tindatdai - Bất Động Sản - Mua Bán Chung Cư, Nhà Đất"
+}
+</script>

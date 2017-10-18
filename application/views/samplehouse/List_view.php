@@ -17,9 +17,9 @@
 
 <?php $this->load->view('/theme/header')?>
 
-<ul class="breadcrumb">
-	<li><a href="<?=base_url().'trang-chu.html'?>">Trang Chủ</a></li>
-	<li class="active">Nhà Mẫu Đẹp</li>
+<ul itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" href="<?=base_url().'trang-chu.html'?>"><span itemprop="name">Trang Chủ</span></a><meta itemprop="position" content="1" /></li>
+	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="active"><span itemprop="item"><span itemprop="name">Nhà Mẫu Đẹp</span></span><meta itemprop="position" content="2" /></li>
 	<?php $this->load->view('/common/quick-search')?>
 </ul>
 <div class="row no-margin">

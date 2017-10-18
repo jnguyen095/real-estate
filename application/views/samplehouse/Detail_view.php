@@ -17,10 +17,10 @@
 
 <?php $this->load->view('/theme/header')?>
 
-<ul class="breadcrumb always">
-	<li><a href="<?=base_url().'trang-chu.html'?>">Trang Chủ</a></li>
-	<li><a href="<?=base_url('nha-mau-dep.html')?>">Nhà Mẫu Đẹp</a></li>
-	<li class="active"><?=$sampleHouseDetail->Title?></li>
+<ul itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb always">
+	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" href="<?=base_url().'trang-chu.html'?>"><span itemprop="name">Trang Chủ</span></a><meta itemprop="position" content="1" /></li>
+	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" href="<?=base_url('nha-mau-dep.html')?>"><span itemprop="name">Nhà Mẫu Đẹp</span></a><meta itemprop="position" content="2" /></li>
+	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="active"><span itemprop="item"><span itemprop="name"><?=$sampleHouseDetail->Title?></span></span><meta itemprop="position" content="3" /></li>
 </ul>
 
 <div class="row no-margin">

@@ -29,13 +29,14 @@
 
 <?php $this->load->view('/theme/header')?>
 
-<ul class="breadcrumb">
+<ul itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
 	<?php
+		$position = 1;
 		if(isset($category->Parent)){
-			echo '<li><a href="'.base_url().seo_url($category->Parent->CatName).'-c'.$category->Parent->CategoryID.'.html">'.$category->Parent->CatName.'</a></li>';
+			echo '<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" href="'.base_url().seo_url($category->Parent->CatName).'-c'.$category->Parent->CategoryID.'.html"><span itemprop="name">'.$category->Parent->CatName.'</span></a><meta itemprop="position" content="'.$position++.'" /></li>';
 		}
 	?>
-	<li class="active"><?php echo $category->CatName?></li>
+	<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="active"><span itemprop="item"><span itemprop="name"><?php echo $category->CatName?></span></span><meta itemprop="position" content="<?=$position++?>" /></li>
 	<?php $this->load->view('/common/quick-search')?>
 </ul>
 <div class="row no-margin">
