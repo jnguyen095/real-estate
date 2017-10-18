@@ -272,6 +272,36 @@
 		<?php
 		}
 		?>
+
+		<?php if(isset($similarCityProducts) && count($similarCityProducts) > 0){
+			?>
+			<hr/>
+			<h2 class="h2footer"><a href="<?=base_url(seo_url($category->CatName.'-'.$city->CityName.'-cc'.$category->CategoryID.'-'.$city->CityID)).'.html'?>" style="color:#fff">&#187; Xem thêm <?=$category->CatName?> tại <?=$city->CityName?></a></h2>
+			<div class="row no-margin border-right-gray">
+				<?php
+				foreach ($similarCityProducts as $similarProduct){
+					?>
+					<div class="col-md-6 col-xs-12 brief-box">
+						<div class="brief-box-item">
+							<div class="content">
+								<div class="image col-md-4 col-xs-3 no-padding-mobile">
+									<img class="width100pc" src="<?=$similarProduct->Thumb?>" alt="<?=$product->Title?>"/>
+								</div>
+								<div class="brief-detail col-md-8 col-xs-9">
+									<a href="<?=base_url().seo_url($similarProduct->Title).'-p'.$similarProduct->ProductID?>.html"><h3><?=$similarProduct->Title?></h3></a>
+									<div class="price"><span class="color"><?=is_numeric($similarProduct->Area) ? $similarProduct->Area.' m²' : $similarProduct->Area?></span> <?=$similarProduct->PriceString?></div>
+								</div>
+								<div class="clear-both"></div>
+							</div>
+						</div>
+					</div>
+					<?php
+				}
+				?>
+			</div>
+			<?php
+		}
+		?>
 	</div>
 	<div class="col-md-3 no-margin-right no-padding-right no-padding-left-mobile">
 		<?php $this->load->view('/common/branch-left') ?>

@@ -70,6 +70,14 @@ class Product_controller extends CI_Controller
 				unset($similarPros[0]);
 			}
 			$data['similarProducts'] = $similarPros;
+			if(count($similarPros) < 1){
+				$similarCityPros = $this->Product_Model->findByCatIdAndCityIdFetchAddressNotCurrent($product->CategoryID, $product->CityID, 10, $productId);
+				if(count($similarCityPros)%2 != 0){
+					unset($similarCityPros[0]);
+				}
+				$data['similarCityProducts'] = $similarCityPros;
+				$data['city'] = $this->City_Model->findById($product->CityID);
+			}
 		}
 		if($product->BrandID != null){
 			$data['branch'] = $this->Brand_Model->findByIdHasImage($product->BrandID);
