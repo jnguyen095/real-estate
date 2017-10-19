@@ -23,7 +23,7 @@
 	<link rel="icon" sizes="48x48" href="<?=base_url('/img/ico.ico')?>">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v3.0.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v3.1.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.min_v1.8.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.4.css">
 	<!-- jQuery library -->
@@ -135,65 +135,83 @@
 
 	<div class="nha-dat-ban">
 		<div class="col-md-9">
+			<div class="row no-padding">
+				<div class="col-md-6 col-sm-12">
+					<div class="home-group">
+						<div class="block-header text-left"><a href="<?=base_url('/nha-dat-ban-c257.html')?>"><h2 class="h2Class">NHÀ ĐẤT BÁN</h2></a></div>
+						<?php
+						foreach ($nhadatban as $product){
+							?>
+							<div itemscope itemtype="http://schema.org/Product" class="row product-list">
 
-			<div class="home-group">
-				<div class="block-header text-left"><a href="<?=base_url('/nha-dat-ban-c257.html')?>"><h2 class="h2Class">NHÀ ĐẤT BÁN</h2></a></div>
-				<?php
-				foreach ($nhadatban as $product){
-					?>
-					<div itemscope itemtype="http://schema.org/Product" class="row product-list">
-						<div class="row product-title"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><h3 itemprop="name"><?=$product->Title?></h3></a> </div>
-						<div class="row product-content">
-							<div class="col-md-2 col-xs-3 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="width100pc" style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
-							<div class="col-md-10 col-xs-9">
-								<div class="row pos-relative">
-									<div class="productTop">
-										<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="price bold"><?=$product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></span></span><span class="margin-left-10">Quận/Huyện: <span class="color bold"><?=$product->district.', '.$product->city?></span></div>
-										<div class="col-md-2 color bold mobile-hide relative-time no-padding text-right"><?=date('d/m/Y', strtotime($product->ModifiedDate))?></div>
-										<div class="clear-both"></div>
-									</div>
-
-									<div class="col-md-12 col-xs-12 product-brief no-padding mobile-hide">
-										<div class="no-margin no-padding col-md-12 col-xs-12" itemprop="description"><?=$product->Brief?></div>
+								<div class="row product-content">
+									<div class="col-md-3 col-xs-3 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="width100pc" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+									<div class="col-md-9 col-xs-9 no-padding-right">
+										<div class="row pos-relative">
+											<div class="productTop">
+												<div class="row product-title"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=limit_text($product->Title, 22)?></h3></a> </div>
+												<div class="col-xs-12 no-padding">
+													<div>
+														<span class="price"><?=$product->PriceString?></span>, <?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?>
+													</div>
+													<div>
+														<span class="float-left"><?=$product->district.', '.$product->city?></span>
+														<span class="float-right postdate"><?=date('d/m/Y', strtotime($product->ModifiedDate))?></span>
+														<span class="clear-both"></span>
+													</div>
+												</div>
+												<div class="clear-both"></div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+							<?php
+						}
+						?>
+						<div class="text-right"><a href="<?=base_url('/nha-dat-ban-c257.html')?>">&#187; Xem thêm</a></div>
 					</div>
-				<?php
-				}
-				?>
-				<div class="text-right"><a href="<?=base_url('/nha-dat-ban-c257.html')?>">&#187; Xem thêm</a></div>
-			</div>
+				</div>
 
-			<div class="home-group">
-				<div class="block-header text-left"><a href="<?=base_url('/nha-dat-cho-thue-c267.html')?>"><h2 class="h2Class">NHÀ ĐẤT CHO THUÊ</h2></a></div>
-				<?php
-				foreach ($nhadatchothue as $product){
-					?>
-					<div itemscope itemtype="http://schema.org/Product" class="row product-list">
-						<div class="row product-title"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><h3 itemprop="name"><?=$product->Title?></h3></a> </div>
-						<div class="row product-content">
-							<div class="col-md-2 col-xs-3 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="width100pc" style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
-							<div class="col-md-10 col-xs-9">
-								<div class="row pos-relative">
-									<div class="productTop">
-										<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="price bold"><?=$product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></span></span><span class="margin-left-10">Quận/Huyện: <span class="color bold"><?=$product->district.', '.$product->city?></span></div>
-										<div class="col-md-2 color bold mobile-hide relative-time no-padding text-right"><?=date('d/m/Y', strtotime($product->ModifiedDate))?></div>
-										<div class="clear-both"></div>
-									</div>
-									<div class="col-md-12 col-xs-12 product-brief no-padding mobile-hide">
-										<div class="no-margin no-padding col-md-12 col-xs-12" itemprop="description"><?=$product->Brief?></div>
+				<div class="col-md-6 col-sm-12">
+					<div class="home-group">
+						<div class="block-header text-left"><a href="<?=base_url('/nha-dat-cho-thue-c267.html')?>"><h2 class="h2Class">NHÀ ĐẤT CHO THUÊ</h2></a></div>
+						<?php
+						foreach ($nhadatchothue as $product){
+							?>
+							<div itemscope itemtype="http://schema.org/Product" class="row product-list">
+
+								<div class="row product-content">
+									<div class="col-md-2 col-xs-3 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="width100pc" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+									<div class="col-md-10 col-xs-9 no-padding-right">
+										<div class="row pos-relative">
+											<div class="productTop">
+												<div class="row product-title"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=limit_text($product->Title, 22)?></h3></a> </div>
+												<div class="col-xs-12 no-padding">
+													<div>
+														<span class="price"><?=$product->PriceString?></span>, <?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?>
+													</div>
+													<div>
+														<span class="float-left"><?=$product->district.', '.$product->city?></span>
+														<span class="float-right postdate"><?=date('d/m/Y', strtotime($product->ModifiedDate))?></span>
+														<span class="clear-both"></span>
+													</div>
+												</div>
+												<div class="clear-both"></div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+							<?php
+						}
+						?>
+						<div class="text-right"><a href="<?=base_url('/nha-dat-cho-thue-c267.html')?>">&#187; Xem thêm</a></div>
 					</div>
-				<?php
-				}
-				?>
-				<div class="text-right"><a href="<?=base_url('/nha-dat-cho-thue-c267.html')?>">&#187; Xem thêm</a></div>
+					<div class="clear-both"></div>
+				</div>
 			</div>
+
 
 			<div class="row home-group">
 				<div class="col-md-6 col-xs-12">
@@ -204,7 +222,7 @@
 						<div itemscope itemtype="http://schema.org/Product" class="briefHome row">
 							<div class="col-md-2 col-xs-2 no-padding"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="imgBrief" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
 							<div class="col-md-10 col-xs-10 no-padding-right">
-								<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=limit_text($product->Title, 25)?></h3></a> </div>
+								<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=limit_text($product->Title, 23)?></h3></a> </div>
 								<div class="product-info">
 									<div><span class="color"><?=$product->district.', '.$product->city?></span> <span class="price"><?=$product->PriceString?></span></div>
 								</div>
@@ -222,7 +240,7 @@
 						<div itemscope itemtype="http://schema.org/Product" class="briefHome row">
 							<div class="col-md-2 col-xs-2 no-padding"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="imgBrief" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
 							<div class="col-md-10 col-xs-10 no-padding-right">
-								<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=limit_text($product->Title, 25)?></h3></a> </div>
+								<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=limit_text($product->Title, 23)?></h3></a> </div>
 								<div class="product-info">
 									<div><span class="color"><?=$product->district.', '.$product->city?></span> <span class="price"><?=$product->PriceString?></span></div>
 								</div>
