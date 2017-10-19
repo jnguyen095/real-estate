@@ -125,6 +125,21 @@
 					</div>
 				</div>
 
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<div class="box box-info box-solid">
+						<div class="box-header with-border">
+							<h3 class="box-title">Bài hôm nay</h3>
+
+							<div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+							</div>
+						</div>
+						<div class="box-body">
+							<span class="col-sm-12 text-center"><strong><?=$postCurrentDate?></strong></span>
+						</div>
+					</div>
+				</div>
+
 			</div>
 
 			<div class="row">
@@ -135,7 +150,13 @@
 						</div>
 						<div class="box-body">
 							<a id="updateVip" class="btn btn-app">
-								<span id="previousVipPost" class="badge bg-red"><?=$postVipPreviousDate?></span>
+								<?php
+								if(count($postVipPreviousDate) > 0) {
+									?>
+									<span id="previousVipPost" class="badge bg-red"><?=$postVipPreviousDate?></span>
+									<?php
+								}
+								?>
 								<i class="fa fa-repeat"></i> Xóa VIP ngày cũ
 							</a>
 
@@ -202,7 +223,7 @@
 					<!-- TABLE: LATEST ORDERS -->
 					<div class="box box-info">
 						<div class="box-header with-border">
-							<h3 class="box-title">Đăng ký hôm nay <span class="label label-<?=count($createdToday) > 0 ? 'success' : 'default'?>"><?=count($createdToday)?></span></h3>
+							<h3 class="box-title">User đăng ký hôm nay <span class="label label-<?=count($createdToday) > 0 ? 'success' : 'default'?>"><?=count($createdToday)?></span></h3>
 
 							<div class="box-tools pull-right">
 								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -308,7 +329,7 @@
 
 					<div class="box box-info">
 						<div class="box-header with-border">
-							<h3 class="box-title">Cập nhật hôm nay <span class="label label-<?=count($postPushToday) > 0 ? 'success' : 'default'?>"><?=count($postPushToday)?></span></h3>
+							<h3 class="box-title">Bài cập nhật hôm nay <span class="label label-<?=count($postPushToday) > 0 ? 'success' : 'default'?>"><?=count($postPushToday)?></span></h3>
 
 							<div class="box-tools pull-right">
 								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>

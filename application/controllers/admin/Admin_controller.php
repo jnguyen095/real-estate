@@ -29,6 +29,7 @@ class Admin_controller extends CI_Controller
 		$data['postToday'] = $this->Dashboard_Model->getPostToday();
 		$data['postPushToday'] = $this->Dashboard_Model->getPostPushToday();
 		$data['postVipPreviousDate'] = $this->Dashboard_Model->countStandardForPreviousPost();
+		$data['postCurrentDate'] = $this->Dashboard_Model->getPostCurrentDate();
 		$data['postVip1'] = $this->Dashboard_Model->countPostVip(1);
 		$data['postVip2'] = $this->Dashboard_Model->countPostVip(2);
 		$data['postVip3'] = $this->Dashboard_Model->countPostVip(3);

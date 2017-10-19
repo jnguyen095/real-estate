@@ -68,9 +68,16 @@ class Dashboard_Model extends CI_Model
 	}
 	public function getPostPushToday(){
 		$today = date('Y-m-d');
-		$query = "select p.*, u.FullName as FullName from product p inner join us3r u on p.CreatedByID = u.Us3rID where p.CreatedByID is not null and date(p.ModifiedDate) = '{$today}' and p.PostDate != '{$today}' order by p.ModifiedDate desc";
+		$query = "select p.*, u.FullName as FullName from product p inner join us3r u on p.CreatedByID = u.Us3rID where p.CreatedByID is not null and date(p.ModifiedDate) = '{$today}' and date(p.PostDate) != '{$today}' order by p.ModifiedDate desc";
 		$result = $this->db->query($query);
 		return $result->result();
+	}
+	public function getPostCurrentDate(){
+		$today = date('Y-m-d');
+		$query = "select count(*) as Total from product p where date(p.ModifiedDate) = '{$today}'";
+		$total = $this->db->query($query);
+		$row = $total->row();
+		return $row->Total;
 	}
 	public function updateStandardForPreviousPost(){
 		$today = date('Y-m-d');
