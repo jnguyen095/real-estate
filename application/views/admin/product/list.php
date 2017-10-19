@@ -106,7 +106,7 @@
 								<td><input class="txtView" type="text" value="<?=$product->View?>" onchange="updateView('<?=$product->ProductID?>', this.value);"/></td>
 								<td><?=date('d/m/Y H:i', strtotime($product->PostDate))?></td>
 								<td id="modifiedDate_<?=$product->ProductID?>"><?=date('d/m/Y H:i', strtotime($product->ModifiedDate))?></td>
-								<td><?=$product->CreatedByID?></td>
+								<td><?=$product->FullName?></td>
 								<td>
 									<a onclick="pushPostUp('<?=$product->ProductID?>');" data-toggle="tooltip" title="Làm mới tin"><i class="glyphicon glyphicon-refresh"></i></a>&nbsp;|&nbsp;
 									<a data-toggle="tooltip" title="Sửa tin đăng"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;|&nbsp;

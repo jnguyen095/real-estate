@@ -62,7 +62,13 @@ class Dashboard_Model extends CI_Model
 	}
 	public function getPostToday(){
 		$today = date('Y-m-d');
-		$query = "select * from product p where p.CreatedByID is not null and date(p.PostDate) = '{$today}' order by p.PostDate desc";
+		$query = "select p.*, u.FullName as FullName from product p inner join us3r u on p.CreatedByID = u.Us3rID where p.CreatedByID is not null and date(p.PostDate) = '{$today}' order by p.PostDate desc";
+		$result = $this->db->query($query);
+		return $result->result();
+	}
+	public function getPostPushToday(){
+		$today = date('Y-m-d');
+		$query = "select p.*, u.FullName as FullName from product p inner join us3r u on p.CreatedByID = u.Us3rID where p.CreatedByID is not null and date(p.ModifiedDate) = '{$today}' and p.PostDate != '{$today}' order by p.ModifiedDate desc";
 		$result = $this->db->query($query);
 		return $result->result();
 	}

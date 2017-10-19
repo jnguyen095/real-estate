@@ -288,7 +288,7 @@
 											<td><?=$post->Title?></td>
 											<td><?=date('d/m/Y H:i', strtotime($post->PostDate))?></td>
 											<td><?=$post->View?></td>
-											<td><?=$post->CreatedByID?></td>
+											<td><?=$post->FullName?></td>
 										</tr>
 										<?php
 									}
@@ -304,6 +304,58 @@
 
 					</div>
 					<!-- /.box -->
+
+
+					<div class="box box-info">
+						<div class="box-header with-border">
+							<h3 class="box-title">Cập nhật hôm nay</h3>
+
+							<div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+								</button>
+								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+							</div>
+						</div>
+						<!-- /.box-header -->
+						<div class="box-body">
+							<div class="table-responsive">
+								<table class="table no-margin">
+									<thead>
+									<tr>
+										<th>#</th>
+										<th>Tiêu Đề</th>
+										<th>Tạo Lúc</th>
+										<th>Cập nhật</th>
+										<th>Lượt View</th>
+										<th>Người Tạo</th>
+									</tr>
+									</thead>
+									<tbody>
+									<?php
+									$index = 1;
+									foreach ($postPushToday as $post) {
+										?>
+										<tr>
+											<td><?=$index++?></td>
+											<td><?=$post->Title?></td>
+											<td><?=date('d/m/Y H:i', strtotime($post->PostDate))?></td>
+											<td><?=date('d/m/Y H:i', strtotime($post->ModifiedDate))?></td>
+											<td><?=$post->View?></td>
+											<td><?=$post->FullName?></td>
+										</tr>
+										<?php
+									}
+									if(count($postPushToday) < 1){
+										echo '<td colspan="4" class="text-center">Không có dữ liệu</td>';
+									}
+									?>
+									</tbody>
+								</table>
+							</div>
+							<!-- /.table-responsive -->
+						</div>
+
+					</div>
 				</div>
 
 			</div>

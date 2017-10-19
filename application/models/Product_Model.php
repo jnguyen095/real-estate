@@ -559,7 +559,16 @@ class Product_Model extends CI_Model
 		if($createdById){
 			$this->db->where('CreatedByID', $createdById);
 		}
-		$query = $this->db->like('Title', $st)->limit($limit, $offset)->order_by($orderField, $orderDirection)->get('product');
+		//$query = $this->db->like('Title', $st)->limit($limit, $offset)->order_by($orderField, $orderDirection)->get('product');
+
+		$query = $this->db->select('p.*, u.FullName')
+			->from('product p')
+			->join('us3r u', 'u.Us3rID = p.CreatedByID', 'left')
+			->like('Title', $st)
+			->limit($limit, $offset)
+			->order_by($orderField, $orderDirection)
+			->get();
+
 		$result['items'] = $query->result();
 
 		if($fromDate){
