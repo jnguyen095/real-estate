@@ -5,6 +5,7 @@
 .home-page .carousel-inner {
 	position: relative;
 	width: 100%;
+	height: 100%;
 	overflow: hidden;
 }
 
@@ -179,8 +180,28 @@ img {
 
 .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
 	display: block;
-	height: 314px;
+	height: 100%;
 	width: 100%;
+}
+
+.news-view h2 a{
+	font-size: 16px;
+}
+.news-description{
+	color: #555;
+	margin-top: 5px;
+}
+.news-date{
+	font-style: italic;
+	color: #ccc;
+	font-size: 12px;
+}
+
+.news-view{
+	padding-bottom: 2px;
+}
+.news-view img{
+	height: 164px;
 }
 
 .row.odd{
@@ -207,5 +228,30 @@ h2.h2Class {
 
 .home-group .block-header{
 	margin-bottom: 10px;
+}
+
+.news-links li{
+	border-bottom: solid 1px #ebebeb;
+	border-left: solid 1px #ebebeb;
+	border-right: solid 1px #ebebeb;
+}
+.news-links li:first-child{
+	border-top: solid 1px #ebebeb;
+}
+.news-links li{
+	padding-left: 10px;
+}
+.news-links li a{
+	background: url(../img/icon_butlet.png) 0px 4px no-repeat;
+	padding-left: 12px;
+	color: #555;
+}
+.news-links{
+	height: 147px;
+
+}
+.news-links ul{
+	padding-left: 0px;
+	line-height: 28px;
 }
 

@@ -25,7 +25,7 @@
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v3.0.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.min_v1.8.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.3.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.4.css">
 	<!-- jQuery library -->
 	<script src="<?php echo base_url()?>js/jquery.min.js"></script>
 	<!-- Latest compiled JavaScript -->
@@ -47,23 +47,36 @@
 			<?php $this->load->view('/common/Search_filter') ?>
 		</div>
 		<div class="col-md-6 mobile-hide">
-			<div id='carousel-custom' class='carousel slide fix-height-standard orver-hidden' data-interval="5000" data-ride='carousel'>
-				<div class='carousel-outer'>
-					<!-- Wrapper for slides -->
-					<div class='carousel-inner'>
-						<div class="item active">
-							<img src="<?=base_url('/img/home-banner/nha.jpg')?>"/>
-						</div>
-						<div class="item">
-							<img src="<?=base_url('/img/home-banner/tin.png')?>"/>
-						</div>
-						<div class="item">
-							<img src="<?=base_url('/img/home-banner/chungcu.jpg')?>"/>
-						</div>
-						<div class="item">
-							<img src="<?=base_url('/img/home-banner/vanphong.png')?>"/>
-						</div>
+			<div class="fix-height">
+				<div class="news-view">
+					<div class="col-md-5 col-sm-12 no-padding-left">
+						<a href="<?=seo_url($topNews[0]->Title).'-n'.$topNews[0]->NewsID.'.html'?>">
+							<img class="width100pc" alt="<?=$topNews[0]->Title?>" src="<?=str_replace("132x100", "210x160", $topNews[0]->Thumb)?>"/>
+						</a>
 					</div>
+					<div class="col-md-7 col-sm-12 no-padding-right">
+						<h2><a href="<?=seo_url($topNews[0]->Title).'-n'.$topNews[0]->NewsID.'.html'?>"><?=$topNews[0]->Title?></a></h2>
+						<div class="news-description"><?=$topNews[0]->Brief?></div>
+						<div class="news-date text-right"><?=date('d/m/Y', strtotime($topNews[0]->CreatedDate))?></div>
+					</div>
+					<div class="clear-both"></div>
+				</div>
+				<div class="news-links mCustomScrollbar">
+					<ul class="">
+						<?php
+						$index = 1;
+						foreach ($topNews as $topNew) {
+							if ($index > 1) {
+								?>
+								<li>
+									<a href="<?= seo_url($topNew->Title) . '-n' . $topNew->NewsID . '.html' ?>"><?= $topNew->Title ?></a>
+								</li>
+								<?php
+							}
+							$index++;
+						}
+						?>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -73,54 +86,15 @@
 				<div class='carousel-outer'>
 					<!-- Wrapper for slides -->
 					<div class='carousel-inner'>
-						<?php /*
-						$counter = 0;
-						foreach ($hotProducts as $hotProduct) {
-							?>
-							<div class="item <?=$counter++ == 0 ? 'active' : ''?>">
-								<div class="hotProduct">
-									<div class="hot-title">
-										<a href="<?=seo_url($hotProduct->Title).'-p'.$hotProduct->ProductID.'.html'?>"><?=$hotProduct->Title?></a>
-									</div>
-									<div class="hot-img">
-										<div class="hotImg">
-											<img src="<?=$hotProduct->Thumb?>"/>
-										</div>
-										<div class="hot-price">
-											<div>Gía: <span class="color bold"><?=$hotProduct->PriceString?></span> </div>
-											<div>Diện tích: <span class="color bold"><?=$hotProduct->Area?></span> </div>
-											<div class="hot-area"><?=$hotProduct->DistrictName.', '.$hotProduct->CityName?></div>
-										</div>
-										<div class="clear-both"></div>
-									</div>
-									<div class="hot-brief"><?=$hotProduct->Brief?></div>
-								</div>
-							</div>
-							<?php
-						} */
-						?>
-
-						<?php
-						$counter = 0;
-						foreach ($topNews as $topNew) {
-							?>
-							<div class="item <?=$counter++ == 0 ? 'active' : ''?>">
-								<div class="hotProduct">
-									<div class="hot-title">
-										<a href="<?=seo_url($topNew->Title).'-n'.$topNew->NewsID.'.html'?>"><?=$topNew->Title?></a>
-									</div>
-									<div class="hot-img">
-										<div class="hotImg">
-											<img alt="<?=$topNew->Title?>" src="<?=$topNew->Thumb?>"/>
-										</div>
-										<div class="clear-both"></div>
-									</div>
-									<div class="hot-brief"><?=$topNew->Brief?></div>
-								</div>
-							</div>
-							<?php
-						}
-						?>
+						<div class="item active">
+							<img src="<?=base_url('/img/home-banner/nha0.jpg')?>" alt="Nhà ở"/>
+						</div>
+						<div class="item">
+							<img src="<?=base_url('/img/home-banner/canho.jpg')?>" alt="Căn hộ"/>
+						</div>
+						<div class="item">
+							<img src="<?=base_url('/img/home-banner/bietthu.jpg')?>" alt="Biệt thự"/>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -267,11 +241,10 @@
 
 		<!-- begin left side -->
 		<div class="col-md-3">
-			<?php $this->load->view('/common/news_plot')?>
+			<?php $this->load->view('/common/sample_house_plot')?>
 			<?php $this->load->view('/common/city-left-link')?>
 			<img class="width100pc margin-bottom-20 mobile-hide" src="<?=base_url('/img/hoatraotay.jpg')?>" alt="Hoa Trao Tay"/>
 			<?php $this->load->view('/common/branch-left-link')?>
-			<?php $this->load->view('/common/sample_house_plot')?>
 		</div>
 		<!-- end left side -->
 
