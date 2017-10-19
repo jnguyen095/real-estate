@@ -151,7 +151,7 @@
 					<!-- TABLE: LATEST ORDERS -->
 					<div class="box box-info">
 						<div class="box-header with-border">
-							<h3 class="box-title">Đăng nhập hôm nay</h3>
+							<h3 class="box-title">Đăng nhập hôm nay <span class="label label-<?=count($loginToday) > 0 ? 'success' : 'default'?>"><?=count($loginToday)?></span> </h3>
 
 							<div class="box-tools pull-right">
 								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -202,7 +202,7 @@
 					<!-- TABLE: LATEST ORDERS -->
 					<div class="box box-info">
 						<div class="box-header with-border">
-							<h3 class="box-title">Đăng ký hôm nay</h3>
+							<h3 class="box-title">Đăng ký hôm nay <span class="label label-<?=count($createdToday) > 0 ? 'success' : 'default'?>"><?=count($createdToday)?></span></h3>
 
 							<div class="box-tools pull-right">
 								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -257,7 +257,7 @@
 					<!-- TABLE: LATEST ORDERS -->
 					<div class="box box-info">
 						<div class="box-header with-border">
-							<h3 class="box-title">Bài đăng hôm nay</h3>
+							<h3 class="box-title">Bài đăng hôm nay <span class="label label-<?=count($postToday) > 0 ? 'success' : 'default'?>"><?=count($postToday)?></span></h3>
 
 							<div class="box-tools pull-right">
 								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -308,7 +308,7 @@
 
 					<div class="box box-info">
 						<div class="box-header with-border">
-							<h3 class="box-title">Cập nhật hôm nay</h3>
+							<h3 class="box-title">Cập nhật hôm nay <span class="label label-<?=count($postPushToday) > 0 ? 'success' : 'default'?>"><?=count($postPushToday)?></span></h3>
 
 							<div class="box-tools pull-right">
 								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
