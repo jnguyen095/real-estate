@@ -143,25 +143,22 @@
 						foreach ($nhadatban as $product){
 							?>
 							<div itemscope itemtype="http://schema.org/Product" class="row product-list">
-
-								<div class="row product-content">
-									<div class="col-md-3 col-xs-3 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="width100pc" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
-									<div class="col-md-9 col-xs-9 no-padding-right">
-										<div class="row pos-relative">
-											<div class="productTop">
-												<div class="row product-title"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=limit_text($product->Title, 22)?></h3></a> </div>
-												<div class="col-xs-12 no-padding">
-													<div>
-														<span class="price"><?=$product->PriceString?></span>, <?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?>
-													</div>
-													<div>
-														<span class="float-left"><?=$product->district.', '.$product->city?></span>
-														<span class="float-right postdate"><?=date('d/m/Y', strtotime($product->ModifiedDate))?></span>
-														<span class="clear-both"></span>
-													</div>
+								<div class="col-md-3 col-xs-3 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="width100pc" style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+								<div class="col-md-9 col-xs-9 no-padding-right">
+									<div class="row pos-relative">
+										<div class="productTop">
+											<div class="row product-title"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=limit_text($product->Title, 22)?></h3></a> </div>
+											<div class="row no-padding">
+												<div>
+													<span class="price"><?=$product->PriceString?></span>, <?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?>
 												</div>
-												<div class="clear-both"></div>
+												<div>
+													<div class="float-left color"><?=$product->district.', '.$product->city?></div>
+													<div class="float-right postdate"><?=date('d/m/Y', strtotime($product->ModifiedDate))?></div>
+													<div class="clear-both"></div>
+												</div>
 											</div>
+											<div class="clear-both"></div>
 										</div>
 									</div>
 								</div>
@@ -180,25 +177,22 @@
 						foreach ($nhadatchothue as $product){
 							?>
 							<div itemscope itemtype="http://schema.org/Product" class="row product-list">
-
-								<div class="row product-content">
-									<div class="col-md-2 col-xs-3 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="width100pc" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
-									<div class="col-md-10 col-xs-9 no-padding-right">
-										<div class="row pos-relative">
-											<div class="productTop">
-												<div class="row product-title"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=limit_text($product->Title, 22)?></h3></a> </div>
-												<div class="col-xs-12 no-padding">
-													<div>
-														<span class="price"><?=$product->PriceString?></span>, <?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?>
-													</div>
-													<div>
-														<span class="float-left"><?=$product->district.', '.$product->city?></span>
-														<span class="float-right postdate"><?=date('d/m/Y', strtotime($product->ModifiedDate))?></span>
-														<span class="clear-both"></span>
-													</div>
+								<div class="col-md-3 col-xs-3 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="width100pc" style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+								<div class="col-md-9 col-xs-9 no-padding-right">
+									<div class="row pos-relative">
+										<div class="productTop">
+											<div class="row product-title"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=limit_text($product->Title, 22)?></h3></a> </div>
+											<div class="row no-padding">
+												<div>
+													<span class="price"><?=$product->PriceString?></span>, <?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?>
 												</div>
-												<div class="clear-both"></div>
+												<div>
+													<div class="float-left color"><?=$product->district.', '.$product->city?></div>
+													<div class="float-right postdate"><?=date('d/m/Y', strtotime($product->ModifiedDate))?></div>
+													<div class="clear-both"></div>
+												</div>
 											</div>
+											<div class="clear-both"></div>
 										</div>
 									</div>
 								</div>

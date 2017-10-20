@@ -6,6 +6,7 @@
 		<title>Tin Đất Đai - Đăng Nhập</title>
 		<?php $this->load->view('common_header')?>
 		<?php $this->load->view('/common/googleadsense')?>
+		<link rel="stylesheet" href="<?=base_url('/css/iCheck/all.css')?>">
 	</head>
 </head>
 <body>
@@ -41,6 +42,16 @@
 						<div class="col-lg-8 col-sm-8">
 							<input class="form-control" id="txt_password" name="txt_password" placeholder="Password" type="password" value="<?php echo set_value('txt_password'); ?>" />
 							<span class="text-danger"><?php echo form_error('txt_password'); ?></span>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row colbox no-margin">
+						<div class="col-lg-4 col-sm-4">
+						</div>
+						<div class="col-lg-8 col-sm-8">
+							<label><input type="checkbox" class="minimal" name="ch_rememberme"/> Nhớ đăng nhập</label>
 						</div>
 					</div>
 				</div>
@@ -154,11 +165,15 @@
 			$("#loginBtnGoogle").click(function(){
 				checkGoogleLoginState();
 			});
+			$('input[type="checkbox"].minimal').iCheck({
+				checkboxClass: 'icheckbox_minimal-blue',
+				radioClass   : 'iradio_minimal-blue'
+			})
 		});
 	</script>
 
 	<?php $this->load->view('/theme/footer')?>
 </div>
-
+<script src="<?=base_url('/css/iCheck/icheck.min.js')?>"></script>
 </body>
 </html>

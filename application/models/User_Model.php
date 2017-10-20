@@ -62,7 +62,18 @@ class User_Model extends CI_Model
 	}
 
 	function getAllUsers($offset=0, $limit, $st = "", $orderField, $orderDirection){
-		$query = $this->db->or_like('FullName', $st)->or_like('Email', $st)->or_like('Phone', $st)->limit($limit, $offset)->order_by($orderField, $orderDirection)->get('us3r');
+		$query = $this->db->select('u.*, count(p.ProductID) as Total')
+			->from('us3r u')
+			->join('product p', 'u.Us3rID = p.CreatedByID', 'left')
+			->or_like('u.FullName', $st)
+			->or_like('u.Email', $st)
+			->or_like('u.Phone', $st)
+			->limit($limit, $offset)
+			->group_by('u.Us3rID')
+			->order_by($orderField, $orderDirection)
+			->get();
+
+		// $query = $this->db->or_like('FullName', $st)->or_like('Email', $st)->or_like('Phone', $st)->limit($limit, $offset)->order_by($orderField, $orderDirection)->get('us3r');
 		$result['items'] = $query->result();
 		$query = $this->db->or_like('FullName', $st)->or_like('Email', $st)->or_like('Phone', $st)->get('us3r');
 		$result['total'] = $query->num_rows();

@@ -60,7 +60,7 @@
 								<th data-action="sort" data-title="UserName" data-direction="ASC"><span>Username</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th data-action="sort" data-title="Phone" data-direction="ASC"><span>Điện Thoại</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th data-action="sort" data-title="Email" data-direction="ASC"><span>Email</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="Address" data-direction="ASC"><span>Địa Chỉ</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+								<th><span>Bài Đăng</span></th>
 								<th data-action="sort" data-title="CreatedDate" data-direction="ASC"><span>Ngày Tạo</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th data-action="sort" data-title="LastLogin" data-direction="ASC"><span>Đăng Nhập</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th></th>
@@ -77,7 +77,7 @@
 								<td><?=$user->UserName?></td>
 								<td><?=$user->Phone?></td>
 								<td><?=$user->Email?></td>
-								<td><?=$user->Address?></td>
+								<td class="text-center"><?=$user->Total?></td>
 								<td><?=date('d/m/Y H:i', strtotime($user->CreatedDate))?></td>
 								<td><?=date('d/m/Y H:i', strtotime($user->LastLogin))?></td>
 								<td>
