@@ -10,7 +10,7 @@
 
 <nav class="navbar navbar-default m-navbar navbar-fixed-top"/>
 	<div class="container">
-		<a class="navbar-brand brandName" href="<?=base_url('/')?>">
+		<a class="navbar-brand brandName ipad-mini-hide" href="<?=base_url('/')?>">
 			<img src="<?=base_url('/img/logo1.png')?>" atl="Tin Dat Dai Logo"/>
 		</a>
 		<div class="navbar-header">

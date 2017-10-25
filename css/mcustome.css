@@ -68,6 +68,7 @@ body{
 
 .home-group .product-list{
 	height: 94px;
+	overflow: hidden;
 }
 
 .pc-hide{
@@ -382,7 +383,7 @@ a:focus, a{
 	background: none;
 }
 
-.postdate{
+.productTop .postdate{
 	margin-right: 4px;
 }
 
@@ -408,8 +409,13 @@ a:focus, a{
 	position: relative;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
 	.mobile-hide{ display: none !important; }
+}
+@media (device-width: 768px){
+	.ipad-mini-hide{
+		display: none !important;
+	}
 }
 
 .subscribe-panel input.btn.btn-sm,
