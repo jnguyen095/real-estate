@@ -41,4 +41,16 @@ class StaticPage_controller extends CI_Controller
 		$this->StaticPage_Model->updateViewForPageWithCode('USED');
 		$this->load->view("/static/Dynamic_view", $data);
 	}
+
+	// Bao gia quang cao
+	public function adv(){
+		$data = $this->Category_Model->getCategories();
+		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+		$data['cities'] = $this->City_Model->getAllActive();
+
+		$page = $this->StaticPage_Model->findByCode('ADV');
+		$data['page'] = $page;
+		$this->StaticPage_Model->updateViewForPageWithCode('ADV');
+		$this->load->view("/static/Dynamic_view", $data);
+	}
 }
