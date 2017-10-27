@@ -15,8 +15,19 @@ if(isset($topbranchhasproduct) && count($topbranchhasproduct) > 0){
 		<div class="block-body">
 			<ul class="city-link">
 				<?php
+				$counter = 1;
 				foreach ($topbranchhasproduct as $br) {
-					echo '<li><a href="' . base_url() . seo_url($br->BrandName) . '-b' . $br->BrandID . '.html">' . $br->BrandName . '</a></li>';
+					if($counter < 11) {
+						echo '<li><a href="' . base_url() . seo_url($br->BrandName) . '-b' . $br->BrandID . '.html">' . $br->BrandName . '</a></li>';
+					}else if($counter == 11){
+						echo '<div id="br_left" class="collapse">';
+					}else{
+						echo '<li><a href="' . base_url() . seo_url($br->BrandName) . '-b' . $br->BrandID . '.html">' . $br->BrandName . '</a></li>';
+					}
+					$counter++;
+				}
+				if($counter > 10){
+					echo '</div><a href="javascript:void(0);" class="toggleBtn toggleMore" data-status="open" data-toggle="collapse" data-target="#br_left">Xem thêm</a>';
 				}
 				?>
 			</ul>

@@ -30,7 +30,7 @@ class Home_controller extends CI_Controller
 		$data['nhadatban'] = $this->Product_Model->findByCategoryCode(NHADAT_BAN, 0, 10);
 		$data['nhadatchothue'] = $this->Product_Model->findByCategoryCode(NHADAT_CHOTHUE, 0, 10);
 		$data['topcityhasproduct'] = $this->City_Model->findTopCityHasProduct(20);
-		$data['topbranchhasproduct'] = $this->Brand_Model->findTopBranchHasProduct(10);
+		$data['topbranchhasproduct'] = $this->Brand_Model->findTopBranchHasProduct(20);
 		$data['hotBranches'] = $this->Brand_Model->findTopBranchHasProductAndData(4);
 		$data['cities'] = $this->City_Model->getAllActive();
 		$data['topNews'] = $this->News_Model->findTopNewExceptCurrent(0, 6);

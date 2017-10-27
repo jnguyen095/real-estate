@@ -25,7 +25,7 @@
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v3.2.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.min_v1.8.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.4.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.5.css">
 	<!-- jQuery library -->
 	<script src="<?php echo base_url()?>js/jquery.min.js"></script>
 	<!-- Latest compiled JavaScript -->
@@ -132,6 +132,8 @@
 		<?php
 	}
 	?>
+	
+
 
 	<div class="nha-dat-ban">
 		<div class="col-md-9">
@@ -206,6 +208,9 @@
 				</div>
 			</div>
 
+			<div class="row no-margin">
+				<img class="middleHorizontalBanner" src="<?=base_url('/img/banner_leaf.jpg')?>" alt="Middle horizontal banner">
+			</div>
 
 			<div class="row home-group">
 				<div class="col-md-6 col-xs-12">
