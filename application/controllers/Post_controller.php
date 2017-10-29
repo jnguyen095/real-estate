@@ -57,8 +57,14 @@ class Post_controller extends CI_Controller
 				$data['txt_email'] = $user->Email;
 				$data['contact_address'] = $user->Address;
 			}
-			$this->input->ip_address();
-			$this->load->view('post/new', $data);
+			$ipAddress = $this->input->ip_address();
+			$postToday = $this->Product_Model->findPostWithPackageToday($ipAddress, 5);
+			if($postToday > 4){
+				$this->load->view('post/limit', $data);
+			}else{
+				$this->load->view('post/new', $data);
+			}
+
 		}
 	}
 

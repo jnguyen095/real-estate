@@ -82,6 +82,7 @@
 								<th data-action="sort" data-title="PostDate" data-direction="ASC"><span>Ngày đăng</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th data-action="sort" data-title="ModifiedDate" data-direction="ASC"><span>Cập nhật</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th data-action="sort" data-title="CreatedByID" data-direction="ASC"><span>Người đăng</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+								<th data-action="sort" data-title="IpAddress" data-direction="ASC"><span>Ip Address</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th></th>
 							</tr>
 						</thead>
@@ -92,8 +93,8 @@
 							?>
 							<tr>
 								<td><?=$counter++?></td>
-								<td><?=$product->Title?></td>
-								<td><?=$product->Status == 1 ? 'Show' : 'Hide'?></td>
+								<td><a data-toggle="tooltip" title="<?=$product->Title?>" href="<?=base_url(seo_url($product->Title).'-p').$product->ProductID.'.html'?>"><?=substr_with_ellipsis($product->Title, 50)?></a></td>
+								<td><?=$product->Status == 1 ? '<span class="label label-success">Show</span>' : '<span class="label label-danger">Hide</span>'?></td>
 								<td>
 									<select onchange="updateVip('<?=$product->ProductID?>', this.value);">
 										<option value="0" <?=$product->Vip == 0 ? ' selected' : ''?>>Vip 0</option>
@@ -107,6 +108,7 @@
 								<td><?=date('d/m/Y H:i', strtotime($product->PostDate))?></td>
 								<td id="modifiedDate_<?=$product->ProductID?>"><?=date('d/m/Y H:i', strtotime($product->ModifiedDate))?></td>
 								<td><?=$product->FullName?></td>
+								<td><?=$product->IpAddress?></td>
 								<td>
 									<a onclick="pushPostUp('<?=$product->ProductID?>');" data-toggle="tooltip" title="Làm mới tin"><i class="glyphicon glyphicon-refresh"></i></a>&nbsp;|&nbsp;
 									<a data-toggle="tooltip" title="Sửa tin đăng"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;|&nbsp;

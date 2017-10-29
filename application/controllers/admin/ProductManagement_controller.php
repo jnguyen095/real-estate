@@ -19,6 +19,7 @@ class ProductManagement_controller extends CI_Controller
 		$this->load->model('Product_Model');
 		$this->load->library('pagination');
 		$this->load->helper("bootstrap_pagination_admin");
+		$this->load->helper("seo_url");
 	}
 
 	public function index()

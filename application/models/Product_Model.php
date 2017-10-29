@@ -19,6 +19,13 @@ class Product_Model extends CI_Model
 		return $product;
 	}
 
+	public function findPostWithPackageToday($ipAddress, $package){
+		// $this->output->enable_profiler(TRUE);
+		$this->db->where(array("IpAddress" => $ipAddress, "date(PostDate)" => date('Y-m-d'), "Vip" => $package));
+		$total = $this->db->count_all_results('product');
+		return $total;
+	}
+
 	public function findByUserId($userId, $page) {
 		$this->db->order_by('ModifiedDate', 'desc');
 		$this->db->where(array("CreatedByID" => $userId));
