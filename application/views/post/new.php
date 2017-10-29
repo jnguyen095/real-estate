@@ -94,7 +94,7 @@
 
 							<div class="no-padding-mobile col-lg-2 col-md-4 col-xs-6">
 								<label>Giá</label>
-								<input type="text" placeholder="KXĐ" id="txt_price" name="txt_price" class="form-control" value="<?=isset($price) ? $price : ''?>">
+								<input type="text" placeholder="Thỏa thuận" id="txt_price" name="txt_price" class="form-control" value="<?=isset($price) ? $price : ''?>">
 								<span class="text-danger"><?php echo form_error('txt_price'); ?></span>
 							</div>
 							<div class="no-padding-right-mobile col-lg-2 col-md-4 col-xs-6">

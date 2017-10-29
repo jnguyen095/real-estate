@@ -389,10 +389,26 @@ class Post_controller extends CI_Controller
 	}
 
 	private function buildAddress($street, $wardId, $districtId, $cityId){
-		$ward = $this->Ward_Model->findById($wardId);
-		$district = $this->District_Model->findById($districtId);
-		$city = $this->City_Model->findById($cityId);
-		$address = $street.', '.$ward->WardName.', '.$district->DistrictName.', '.$city->CityName;
+		$address = "";
+		if($street != null && count($street) > 0){
+			$address .= $street.', ';
+		}
+		if($wardId != null && $wardId > 0){
+			$ward = $this->Ward_Model->findById($wardId);
+			$address .= $ward->WardName.', ';
+		}
+		if($districtId != null && $districtId > 0){
+			$district = $this->District_Model->findById($districtId);
+			$address .= $district->DistrictName.', ';
+		}
+		if($cityId != null && $cityId > 0){
+			$city = $this->City_Model->findById($cityId);
+			$address .= $city->CityName.', ';
+		}
+		if(count($address) > 2){
+			$address = substr($address, 0, count($address) - 2);
+		}
+
 		return $address;
 	}
 
