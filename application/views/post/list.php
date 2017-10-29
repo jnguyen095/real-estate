@@ -58,14 +58,14 @@
 			?>
 			<!-- content -->
 			<div class="col-md-12 no-margin no-padding text-center">
-				<table class="table table-bordered table-hover">
+				<table class="table table-bordered table-hover table-striped">
 					<thead class="thead-table">
-						<tr>
+						<tr class="bg-success">
 							<th>#</th>
 							<th>Tiêu đề</th>
 							<th>Lượt xem</th>
 							<th>Ngày đăng</th>
-							<th class="mobile-hide">Ngày cập nhật</th>
+							<th class="mobile-hide">Ngày cập nhật <i class="glyphicon glyphicon-triangle-bottom"></i></th>
 							<th class="mobile-hide">Tình trạng</th>
 							<th>Chỉnh sửa</th>
 						</tr>
@@ -86,7 +86,7 @@
 							?>
 							<tr>
 								<th scope="row"><?=$counter++?></th>
-								<td class="text-left"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html'?>" target="_blank" title="<?=$product->Title?>"><?=substr_with_ellipsis($product->Title, 80)?></a></td>
+								<td class="text-left"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html'?>" target="_blank" title="<?=$product->Title?>"><?=substr_with_ellipsis($product->Title, 60)?></a></td>
 								<td><?=$product->View?></td>
 								<td>
 									<?php
@@ -96,8 +96,8 @@
 								</td>
 								<td class="mobile-hide">
 									<?php
-									$datestring = '%d/%m/%Y';
-									echo mdate($datestring, strtotime($product->ModifiedDate));
+									$datestring = '%d/%m/%Y H:i';
+									echo date('d/m/Y H:i', strtotime($product->ModifiedDate));
 									?>
 								</td>
 								<td class="mobile-hide"><?php
