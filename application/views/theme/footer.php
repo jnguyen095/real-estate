@@ -38,7 +38,7 @@
 			<li><a href="<?=base_url('/quy-che-hoat-dong.html')?>">Quy chế hoạt động</a></li>
 			<li><a href="#">Câu hỏi thường gặp</a></li>
 			<li><a href="#">Hỗ trợ - góp ý</a></li>
-			<li><a href="#">Tuyển dụng</a></li>
+			<li><a href="<?=base_url('/tuyen-dung.html')?>">Tuyển dụng</a></li>
 			<li><a href="#">Rss</a></li>
 		</ul>
 	</div>

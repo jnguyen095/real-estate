@@ -115,6 +115,7 @@ $route['(:any)-p(:num)'] = "Product_controller/detailItem/$2";
 $route['dieu-khoan-su-dung'] = "StaticPage_controller/term";
 $route['quy-che-hoat-dong'] = "StaticPage_controller/used";
 $route['bao-gia-quang-cao'] = "StaticPage_controller/adv";
+$route['tuyen-dung'] = "StaticPage_controller/carer";
 $route['khong-tim-thay'] = "Notfound_controller";
 
 
