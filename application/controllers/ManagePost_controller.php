@@ -20,9 +20,11 @@ class ManagePost_controller extends CI_Controller
 		$this->load->helper("seo_url");
 		$this->load->helper('date');
 		$this->load->helper('form');
+		$this->load->helper("bootstrap_pagination");
+		$this->load->library('pagination');
 	}
 
-	public function index()
+	public function index($page = 0)
 	{
 		$data = $this->Category_Model->getCategories();
 		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
@@ -62,9 +64,18 @@ class ManagePost_controller extends CI_Controller
 			}
 		}
 
-		$products = $this->Product_Model->findByUserId($userId);
+		$products = $this->Product_Model->findByUserId($userId, $page);
 
-		$data['products'] = $products;
+		$data['products'] = $products['products'];
+
+		$config = pagination();
+		$config['base_url'] = base_url('quan-ly-tin-rao.html');
+		$config['total_rows'] = $products['total'];
+		$config['per_page'] = 10;
+
+		$this->pagination->initialize($config);
+		$data['pagination'] = $this->pagination->create_links();
+
 		$this->load->view('post/list', $data);
 	}
 

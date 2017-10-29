@@ -69,4 +69,21 @@ class Ajax_controller extends CI_Controller
 		$this->Product_Model->updateVipPackageForProductId($productId, $vip);
 		echo json_encode('success');
 	}
+	public function getGeoFromAddress(){
+		$addr = $this->input->post('address');
+		$address = $addr.', Việt Nam';
+		$geo = file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($address).'&sensor=false');
+
+		// Convert the JSON to an array
+		$geo = json_decode($geo, true);
+
+		$latitude = 0;
+		$longitude = 0;
+		if ($geo['status'] == 'OK') {
+			// Get Lat & Long
+			$latitude = $geo['results'][0]['geometry']['location']['lat'];
+			$longitude = $geo['results'][0]['geometry']['location']['lng'];
+		}
+		echo json_encode(array($longitude, $latitude));
+	}
 }

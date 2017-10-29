@@ -57,6 +57,7 @@ class Post_controller extends CI_Controller
 				$data['txt_email'] = $user->Email;
 				$data['contact_address'] = $user->Address;
 			}
+			$this->input->ip_address();
 			$this->load->view('post/new', $data);
 		}
 	}
@@ -100,6 +101,9 @@ class Post_controller extends CI_Controller
 			$data['contact_phone'] = $product->ContactPhone;
 			$data['contact_address'] = $product->ContactAddress;
 			$data['txt_email'] = $product->ContactEmail;
+			$data['lat'] = $product->Latitude;
+			$data['lng'] = $product->Longitude;
+			$data['address'] = $product->Address;
 
 			$data['districts'] = $this->District_Model->findByCityId($product->CityID);
 			$data['wards'] = $this->Ward_Model->findByDistrictId($product->DistrictID);
@@ -158,33 +162,37 @@ class Post_controller extends CI_Controller
 			$data['contact_phone'] = $this->input->post("txt_phone");
 			$data['contact_address'] = $this->input->post("txt_address");
 			$data['txt_email'] = $this->input->post("txt_email");
+			$data['lng'] = $this->input->post("txt_lng");
+			$data['lat'] = $this->input->post("txt_lat");
+			$data['ipaddress'] = $this->input->ip_address();
+			$data['address'] = $this->buildAddress($data['street'], $data['ward'], $data['district'], $data['city']);
 
 
 			//set validations
-			$this->form_validation->set_rules("txt_title", "Title", "trim|required");
-			$this->form_validation->set_rules("sl_category", "Category", "required|numeric");
-			$this->form_validation->set_rules("txt_price", "Price", "numeric");
-			$this->form_validation->set_rules("txt_area", "Area", "numeric");
-			$this->form_validation->set_rules("txt_city", "City", "required|numeric");
-			$this->form_validation->set_rules("txt_district", "District", "required|numeric");
-			$this->form_validation->set_rules("txt_ward", "Ward", "numeric");
-			$this->form_validation->set_rules("txt_street", "Street", "required");
-			$this->form_validation->set_rules("txt_fullname", "Name", "required");
-			$this->form_validation->set_rules("txt_phone", "Phone", "required");
+			$this->form_validation->set_rules("txt_title", "Tiêu đề", "trim|required");
+			$this->form_validation->set_rules("sl_category", "Danh mục", "required|numeric");
+			$this->form_validation->set_rules("txt_price", "Giá", "numeric");
+			$this->form_validation->set_rules("txt_area", "Diện tích", "numeric");
+			$this->form_validation->set_rules("txt_city", "Thành phố", "required|numeric");
+			$this->form_validation->set_rules("txt_district", "Quận", "required|numeric");
+			$this->form_validation->set_rules("txt_ward", "Phường", "numeric");
+			$this->form_validation->set_rules("txt_street", "Đường", "required");
+			$this->form_validation->set_rules("txt_fullname", "Người liên hệ", "required");
+			$this->form_validation->set_rules("txt_phone", "Số điện thoại", "required");
 			$img = $this->uploadImage();
 			if($img != null){
 				$data['image'] = $img;
 			}
 			if($data['image'] == null){
-				$this->form_validation->set_rules("txt_userfile", "Image", "required");
+				$this->form_validation->set_rules("txt_userfile", "Hình đại diện", "required");
 			}
 
-			$this->form_validation->set_rules("description", "Des", "required");
-			$this->form_validation->set_rules("txt_width", "Width", "numeric");
-			$this->form_validation->set_rules("txt_long", "Long", "numeric");
-			$this->form_validation->set_rules("txt_room", "Room", "numeric");
-			$this->form_validation->set_rules("txt_floor", "Floor", "numeric");
-			$this->form_validation->set_rules("txt_toilet", "Toilet", "numeric");
+			$this->form_validation->set_rules("description", "Mô tả", "required");
+			$this->form_validation->set_rules("txt_width", "Chiều rộng", "numeric");
+			$this->form_validation->set_rules("txt_long", "Chiều dài", "numeric");
+			$this->form_validation->set_rules("txt_room", "Số phòng", "numeric");
+			$this->form_validation->set_rules("txt_floor", "Số tầng", "numeric");
+			$this->form_validation->set_rules("txt_toilet", "Nhà vệ sinh", "numeric");
 
 			$validateResult = $this->form_validation->run();
 			if ($validateResult == FALSE) {
@@ -223,7 +231,7 @@ class Post_controller extends CI_Controller
 
 				if($ok){
 					// Save successful
-					redirect("xem-truoc-p".$ok);
+					redirect("dang-bai-thanh-cong-p".$ok);
 				}else{
 					// Save failure
 					//validation fails
