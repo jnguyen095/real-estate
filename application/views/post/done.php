@@ -27,52 +27,33 @@
 	<ul class="breadcrumb">
 		<li><a href="<?=base_url('/trang-chu.html')?>">Trang chủ</a> </li>
 		<li class="active">Đăng tin</li>
-		<li class="active">Thành công</li>
 	</ul>
 
 	<div class="row no-margin">
 		<div class="col-lg-12 col-sm-12">
-			<h1 class="h2title">ĐĂNG TIN</h1>
+			<h1 class="h2title">ĐĂNG TIN THÀNH CÔNG</h1>
 			<hr/>
-
-			<!-- Step -->
-			<div class="row smpl-step" style="border-bottom: 0; min-width: 500px;">
-				<div class="col-xs-4 smpl-step-step complete">
-					<div class="text-center smpl-step-num">Bước 1</div>
-					<div class="progress">
-						<div class="progress-bar"></div>
-					</div>
-					<a class="smpl-step-icon"><i class="glyphicon glyphicon-edit" style="font-size: 35px; padding-left: 19px; padding-top: 16px; color: #fff;"></i></a>
-					<div class="smpl-step-info text-center">Soạn bài đăng</div>
-				</div>
-
-				<div class="col-xs-4 smpl-step-step complete ">
-					<div class="text-center smpl-step-num">Bước 2</div>
-					<div class="progress">
-						<div class="progress-bar"></div>
-					</div>
-					<a class="smpl-step-icon"><i class="glyphicon glyphicon-eye-open" style="font-size: 35px; padding-left: 17px; padding-top: 17px; color: #fff;"></i></a>
-					<div class="smpl-step-info text-center">Bản đồ</div>
-				</div>
-				<div class="col-xs-4 smpl-step-step complete">
-					<div class="text-center smpl-step-num">Bước 3</div>
-					<div class="progress">
-						<div class="progress-bar"></div>
-					</div>
-					<a class="smpl-step-icon"><i class="glyphicon glyphicon-check" style="font-size: 35px; padding-left: 20px; padding-top: 15px; color: #fff;"></i></a>
-					<div class="smpl-step-info text-center">Đăng bài</div>
-				</div>
-			</div>
-			<!-- end -->
 
 			<!-- content -->
 			<div class="col-md-12 no-margin no-padding text-center">
 				<?php
 				if($result == 1) {
 					?>
+					<div class="alert alert-success">
+						<strong class="title">Đăng tin thành công!</strong> <?=$product->Title?>
+					</div>
+
 					<div class="post-success">
-						<div class="title">Đăng tin thành công!</div>
 						<div>Link đến tin rao: <a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html'?>"><?=base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html'?></a></div>
+						<div>
+							<i>
+								<ol>
+									<li>Hãy share tin rao lên mạng xã hội facebook hoặc google+ để tiếp cận nhiều khách hàng hơn 40%</li>
+									<li>Làm mới tin rao để bài viết xuất hiện đầu danh sách tin rao</li>
+								</ol>
+
+							</i>
+						</div>
 						<div class="margin-top-20"><a href="<?=base_url('/dang-tin.html')?>">&raquo;Đăng tin mới</a>
 							<?php if($this->session->userdata('loginid') > 0) { ?>
 								&nbsp;&nbsp;<a href="<?= base_url('/quan-ly-tin-rao.html') ?>">&raquo;Đến trang quản lý

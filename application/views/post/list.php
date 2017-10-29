@@ -13,7 +13,7 @@
 		<meta charset = "utf-8">
 		<title>Tin Đất Đai | Quản Lý Tin Rao</title>
 		<?php $this->load->view('common_header')?>
-		<script src="<?= base_url('/js/createPost.js') ?>"></script>
+		<script src="<?= base_url('/js/createpost.min_v1.0.js') ?>"></script>
 		<script src="<?=base_url('/js/bootbox.min.js')?>"></script>
 		<?php $this->load->view('/common/googleadsense')?>
 </head>
@@ -29,7 +29,7 @@
 	</ul>
 
 	<div class="row no-margin">
-		<div class="col-lg-12 col-sm-12 no-padding">
+		<div class="col-lg-12 col-sm-12">
 			<div>
 				<div class="float-left h2title">Quản lý tin rao</div>
 				<div class="float-right">
@@ -86,7 +86,7 @@
 							?>
 							<tr>
 								<th scope="row"><?=$counter++?></th>
-								<td class="text-left"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html'?>" target="_blank"><?=$product->Title?></a></td>
+								<td class="text-left"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html'?>" target="_blank" title="<?=$product->Title?>"><?=substr_with_ellipsis($product->Title, 80)?></a></td>
 								<td><?=$product->View?></td>
 								<td>
 									<?php
@@ -123,6 +123,10 @@
 					?>
 					</tbody>
 				</table>
+				<div class="row text-center">
+					<?php if (isset($pagination)) echo $pagination; ?>
+				</div>
+
 			</div>
 			<!-- end content -->
 			<input type="hidden" id="crudaction" name="crudaction">

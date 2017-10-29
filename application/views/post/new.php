@@ -17,10 +17,10 @@
 		<link rel="stylesheet" href="<?=base_url('/css/stepbar.css')?>">
 		<script src="<?= base_url('/ckeditor/ckeditor.js') ?>"></script>
 		<?php $this->load->view('common_header')?>
-		<script src="<?= base_url('/js/createPost.js') ?>"></script>
+		<script src="<?= base_url('/js/createpost.min_v1.0.js') ?>"></script>
 </head>
 </head>
-<body>
+<body class="create-post">
 <?php $this->load->view('/common/analyticstracking')?>
 <div class="container">
 	<?php $this->load->view('/theme/header')?>
@@ -42,44 +42,15 @@
 			?>
 			<?php if(!empty($error_message)){
 				echo '<div class="alert alert-danger">';
+				echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
 				echo $error_message;
 				echo '</div>';
 			}?>
 
-			<h1 class="h2title">ĐĂNG TIN</h1>
+			<h1 class="h2title">ĐĂNG TIN RAO BẤT ĐỘNG SẢN</h1>
 			<hr/>
 
-			<!-- Step -->
-			<div class="row smpl-step mobile-hide" style="border-bottom: 0; min-width: 500px;">
-				<div class="col-xs-4 smpl-step-step complete">
-					<div class="text-center smpl-step-num">Bước 1</div>
-					<div class="progress">
-						<div class="progress-bar"></div>
-					</div>
-					<a class="smpl-step-icon"><i class="glyphicon glyphicon-edit" style="font-size: 35px; padding-left: 19px; padding-top: 16px; color: #fff;"></i></a>
-					<div class="smpl-step-info text-center">Soạn bài đăng</div>
-				</div>
-
-				<div class="col-xs-4 smpl-step-step ">
-					<div class="text-center smpl-step-num">Bước 2</div>
-					<div class="progress">
-						<div class="progress-bar"></div>
-					</div>
-					<a class="smpl-step-icon"><i class="glyphicon glyphicon-eye-open" style="font-size: 35px; padding-left: 17px; padding-top: 17px; color: #fff;"></i></a>
-					<div class="smpl-step-info text-center">Bản đồ</div>
-				</div>
-				<div class="col-xs-4 smpl-step-step ">
-					<div class="text-center smpl-step-num">Bước 3</div>
-					<div class="progress">
-						<div class="progress-bar"></div>
-					</div>
-					<a class="smpl-step-icon"><i class="glyphicon glyphicon-check" style="font-size: 35px; padding-left: 20px; padding-top: 15px; color: #fff;"></i></a>
-					<div class="smpl-step-info text-center">Đăng bài</div>
-				</div>
-			</div>
-			<!-- end -->
-
-			<div class="col-lg-9 col-sm-9 no-padding">
+			<div class="col-lg-9 col-sm-9">
 				<?php
 					$attributes = array("enctype" => "multipart/form-data", "class" => "custom-input");
 					echo form_open("dang-tin", $attributes);
@@ -88,7 +59,7 @@
 					<div class="block-header">THÔNG TIN CƠ BẢN</div>
 					<div class="block-body">
 						<div class="form-group">
-							<div class="col-lg-12">
+							<div class="col-lg-12 no-padding-mobile">
 								<label>Tiêu đề <span class="required">*</span></label>
 								<input type="text" id="txt_title" name="txt_title" value="<?=isset($title) ? $title : ''?>" class="form-control">
 								<span class="text-danger"><?php echo form_error('txt_title'); ?></span>
@@ -97,7 +68,7 @@
 						</div>
 
 						<div class="form-group">
-							<div class="col-lg-6">
+							<div class="col-lg-6 no-padding-mobile">
 								<label>Loại tin rao <span class="required">*</span></label>
 								<select class="form-control" id="sl_category" name="sl_category">
 									<option>Chọn loại tin</option>
@@ -121,16 +92,12 @@
 								<span class="text-danger"><?php echo form_error('sl_category'); ?></span>
 							</div>
 
-							<div class="clear-both"></div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-lg-4">
+							<div class="no-padding-mobile col-lg-2 col-md-4 col-xs-6">
 								<label>Giá</label>
-								<input type="text" id="txt_price" name="txt_price" class="form-control" value="<?=isset($price) ? $price : ''?>">
+								<input type="text" placeholder="KXĐ" id="txt_price" name="txt_price" class="form-control" value="<?=isset($price) ? $price : ''?>">
 								<span class="text-danger"><?php echo form_error('txt_price'); ?></span>
 							</div>
-							<div class="col-lg-2">
+							<div class="no-padding-right-mobile col-lg-2 col-md-4 col-xs-6">
 								<label>Đơn vị</label>
 								<select class="form-control" name="txt_unit">
 									<?php
@@ -142,16 +109,17 @@
 									?>
 								</select>
 							</div>
-							<div class="col-lg-6">
+							<div class="no-padding-mobile col-lg-2 col-md-4 col-xs-12">
 								<label>Diện tích(m²)</label>
-								<input type="text" id="txt_area" name="txt_area" class="form-control" value="<?=isset($area) ? $area : ''?>">
+								<input placeholder="KXĐ" type="text" id="txt_area" name="txt_area" class="form-control" value="<?=isset($area) ? $area : ''?>">
 								<span class="text-danger"><?php echo form_error('txt_area'); ?></span>
 							</div>
+
 							<div class="clear-both"></div>
 						</div>
 
 						<div class="form-group">
-							<div class="col-lg-6">
+							<div class="no-padding-mobile col-lg-6 col-md-6 col-sm-6 col-xs-12">
 								<label>Thành phố <span class="required">*</span></label>
 								<select id="txtCity" class="form-control" name="txt_city">
 									<option value="-1">Chọn tỉnh/thành phố</option>
@@ -168,7 +136,7 @@
 								</select>
 								<span class="text-danger"><?php echo form_error('txt_city'); ?></span>
 							</div>
-							<div class="col-lg-6">
+							<div class="no-padding-mobile col-lg-6 col-md-6 col-sm-6 col-xs-12">
 								<label>Quận/huyện <span class="required">*</span></label>
 								<select id="txtDistrict" class="form-control" name="txt_district">
 									<option>Chọn quận/huyện</option>
@@ -189,7 +157,7 @@
 						</div>
 
 						<div class="form-group">
-							<div class="col-lg-6">
+							<div class="no-padding-mobile col-lg-6 col-md-6 col-sm-6 col-xs-12">
 								<label>Phường/xã</label>
 								<select id="txtWard" class="form-control" name="txt_ward">
 									<option value="-1">Chọn phường/xã</option>
@@ -206,7 +174,7 @@
 								</select>
 								<span class="text-danger"><?php echo form_error('txt_ward'); ?></span>
 							</div>
-							<div class="col-lg-6">
+							<div class="no-padding-mobile col-lg-6 col-md-6 col-sm-6 col-xs-12">
 								<label>Đường <span class="required">*</span></label>
 								<input type="text" id="txt_street" name="txt_street" class="form-control typeahead" value="<?=isset($street) ? $street : ''?>">
 								<span class="text-danger"><?php echo form_error('txt_street'); ?></span>
@@ -245,7 +213,7 @@
 							<div class="others-images-container">
 								<?=isset($other_images) ? $other_images : ''?>
 							</div>
-							<a href="javascript:void(0);" data-toggle="modal" data-target="#modalMoreImages" class="btn btn-info">Upload thêm hình</a>
+							<a href="javascript:void(0);" data-toggle="modal" data-target="#modalMoreImages" class="btn btn-info">Upload hình chi tiết</a>
 						</div>
 					</div>
 				</div><!-- end image block -->
@@ -268,49 +236,49 @@
 				</div>
 
 				<div class="form-group">
-					<div class="col-md-6 no-padding-left">
+					<div class="col-md-6 no-padding-left no-padding-mobile">
 						<table class="table tableBorder">
 							<tbody>
 								<tr class="tbHeader">
 									<td colspan="2">Đặc Điểm</td>
 								</tr>
 								<tr>
-									<td>Chiều rộng(m)</td>
+									<td class="width100">Chiều rộng(m)</td>
 									<td>
 										<input id="txt_width" type="text" name="txt_width" class="form-control" value="<?=isset($width) ? $width : ''?>">
 										<span class="text-danger"><?php echo form_error('txt_width'); ?></span>
 									</td>
 								</tr>
 								<tr>
-									<td>Chiều dài(m)</td>
+									<td class="width100">Chiều dài(m)</td>
 									<td>
 										<input id="txt_long" type="text" name="txt_long" class="form-control" value="<?=isset($long) ? $long : ''?>">
 										<span class="text-danger"><?php echo form_error('txt_long'); ?></span>
 									</td>
 								</tr>
 								<tr>
-									<td>Số tầng</td>
+									<td class="width100">Số tầng</td>
 									<td>
 										<input id="txt_floor" type="text" name="txt_floor" class="form-control" value="<?=isset($floor) ? $floor : ''?>">
 										<span class="text-danger"><?php echo form_error('txt_floor'); ?></span>
 									</td>
 								</tr>
 								<tr>
-									<td>Số phòng</td>
+									<td class="width100">Số phòng</td>
 									<td>
 										<input id="txt_room" type="text" name="txt_room" class="form-control" value="<?=isset($room) ? $room : ''?>">
 										<span class="text-danger"><?php echo form_error('txt_room'); ?></span>
 									</td>
 								</tr>
 								<tr>
-									<td>Nhà vệ sinh</td>
+									<td class="width100">Nhà vệ sinh</td>
 									<td>
 										<input id="txt_toilet" type="text" name="txt_toilet" class="form-control" value="<?=isset($toilet) ? $toilet : ''?>">
 										<span class="text-danger"><?php echo form_error('txt_toilet'); ?></span>
 									</td>
 								</tr>
 								<tr>
-									<td>Hướng</td>
+									<td class="width100">Hướng</td>
 									<td>
 										<select class="form-control" name="txt_direction">
 											<option value="-1">KXĐ</option>
@@ -325,7 +293,7 @@
 									</td>
 								</tr>
 								<tr>
-									<td>Thuộc dự án</td>
+									<td class="width100">Thuộc dự án</td>
 									<td>
 										<select class="form-control" name="txt_brand">
 											<option value="-1">KXĐ</option>
@@ -342,7 +310,7 @@
 							</tbody>
 						</table>
 					</div>
-					<div class="col-md-6 no-padding-right">
+					<div class="col-md-6 no-padding-right no-padding-mobile">
 						<table class="table tableBorder">
 							<tbody>
 								<tr class="tbHeader">
@@ -379,10 +347,19 @@
 					<div class="clear-both"></div>
 				</div>
 
-				<div class="row text-center">
+				<div class="block-panel">
+					<div class="block-header">BẢN ĐỒ - VỊ TRÍ <span class="required">(Thay đổi vị trí bằng cách click lên bản đồ)</span></div>
+					<div class="block-body">
+						<div id="map"></div>
+					</div>
+				</div>
+
+
+				<div class="row text-center bottom-buttons">
 					<input type="hidden" name="crudaction" value="add_new">
-					<a class="btn btn-danger">Hủy bài</a>
-					<button type="submit" class="btn btn-info">Xem trước</button>
+					<input type="hidden" name="txt_lng">
+					<input type="hidden" name="txt_lat">
+					<button type="submit" class="btn btn-info">Đăng Bài</button>
 				</div>
 				<?php echo form_close(); ?>
 
@@ -458,9 +435,19 @@
 		</div>
 	</div>
 	<script src="<?=base_url('/js/typeahead.bundle.min.js')?>"></script>
-
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=<?=GOOGLE_MAP_KEY?>&callback=defaultMap"></script>
 	<?php $this->load->view('/theme/footer')?>
+	<script>
+		$(document).ready(function(){
+			<?php
+			if(isset($lat) && isset($lng)) {
+				?>
+				loadMap(<?=$lat?>, <?=$lng?>, '<?=$address?>');
+				<?php
+			}
+			?>
+		});
+	</script>
 </div>
-
 </body>
 </html>

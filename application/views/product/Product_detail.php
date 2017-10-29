@@ -44,10 +44,9 @@
 <div class="row no-margin">
 	<div itemscope itemtype="http://schema.org/Product" class="col-md-9 no-margin no-padding product-detail">
 		<div class="product-title"><h1 class="h1Class" itemprop="name"><?php echo $product->Title?></h1></div>
-		<img class="hidden" itemprop="image" src="<?=$product->Thumb?>" alt="<?php echo $product->Title?>" />
 
 		<div class="row">
-			<div class="col-md-12"><span class="price-detail"><?php echo $product->PriceString?></span>	</div>
+			<div class="col-md-12"><span class="price-detail price"><?php echo $product->PriceString?></span>	</div>
 			<div class="col-md-3 area-detail">Diện tích: <?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></div>
 			<div class="col-md-9 text-right addr-detail">
 				<span class="glyphicon glyphicon-map-marker"></span><span class="addr-detail">

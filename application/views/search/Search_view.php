@@ -174,8 +174,8 @@
 								<div class="col-md-10 col-xs-9">
 									<div class="row pos-relative">
 										<div class="productTop">
-											<div class="col-md-10 col-xs-12 no-padding"><span>Giá: <span class="color bold price"><?=$product->PriceString?></span><span class="margin-left-10">Diện tích: <span class="color bold"><?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></span></span><span class="margin-left-10">Quận/Huyện: <span class="color bold"><?=$product->district.', '.$product->city?></span></div>
-											<div class="col-md-2 color bold mobile-hide relative-time no-padding text-right"><?=date('d/m/Y', strtotime($product->ModifiedDate))?></div>
+											<div class="col-md-10 col-xs-12 no-padding"><span><span class="mobile-hide">Giá: </span><span class="color bold price"><?=$product->PriceString?></span><span class="margin-left-10"><span class="mobile-hide">Diện tích: </span><span class="color bold"><?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></span></span><span class="margin-left-10"><span class="mobile-hide">Quận/Huyện: </span><span class="color bold  mobile-block"><?=$product->district.', '.$product->city?></span></div>
+											<div class="col-md-2 color bold mobile-block relative-time no-padding text-right"><?=date('d/m/Y', strtotime($product->ModifiedDate))?></div>
 											<div class="clear-both"></div>
 										</div>
 										<div class="col-md-12 col-xs-12 product-brief no-padding mobile-hide">

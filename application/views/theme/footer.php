@@ -58,6 +58,7 @@
 		findStreetByNameUrl: '<?= base_url('/ajax_controller/findStreetByName') ?>',
 		updateCoordinatorMapUrl: '<?= base_url('/ajax_controller/updateCoordinator') ?>',
 		addSubscribleUrl: '<?= base_url('/ajax_controller/addSubscrible') ?>',
+		loadGeoFromAddrUrl: '<?= base_url('/ajax_controller/getGeoFromAddress') ?>',
 		base_url: '<?=base_url()?>'
 	};
 </script>
