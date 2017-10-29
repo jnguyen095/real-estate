@@ -19,12 +19,17 @@ class Product_Model extends CI_Model
 		return $product;
 	}
 
-	public function findByUserId($userId) {
+	public function findByUserId($userId, $page) {
 		$this->db->order_by('ModifiedDate', 'desc');
 		$this->db->where(array("CreatedByID" => $userId));
-		$query = $this->db->get("product");
-		$product = $query->result();
-		return $product;
+
+		$query = $this->db->get("product", 10, $page);
+		$data['products'] = $query->result();
+
+		$this->db->where(array("CreatedByID" => $userId));
+		$total = $this->db->count_all_results('product');
+		$data['total'] = $total;
+		return $data;
 	}
 
 	public function findByCategoryCode($catCode, $offset=0, $limit) {
@@ -301,7 +306,9 @@ class Product_Model extends CI_Model
 			'ContactAddress' => $data['contact_address'],
 			'ContactEmail' => $data['txt_email'],
 			'ContactName' => $data['contact_name'],
-			'Source' => null
+			'Source' => null,
+			'Longitude' => $data['lng'],
+			'Latitude' => $data['lat']
 		);
 
 		if($data['brand'] != null && $data['brand'] > 0){
@@ -342,11 +349,12 @@ class Product_Model extends CI_Model
 			'Street' => $data['street'],
 			'CategoryID' => $data['categoryID'],
 			'Status' => INACTIVE,
-			'View' => 0,
+			'View' => 1,
 			'CreatedByID' => $data['CreatedByID'],
 			'UnitID' => $data['unit'],
 			'Address' => $data['address'],
-			'Vip' => 5
+			'Vip' => 5,
+			'IpAddress' => $data['ipaddress']
 		);
 		$newdatadetail = array(
 			'Detail' => $data['description'],
@@ -361,7 +369,9 @@ class Product_Model extends CI_Model
 			'ContactAddress' => $data['contact_address'],
 			'ContactEmail' => $data['txt_email'],
 			'ContactName' => $data['contact_name'],
-			'Source' => null
+			'Source' => null,
+			'Longitude' => $data['lng'],
+			'Latitude' => $data['lat']
 		);
 		if($data['brand'] != null && $data['brand'] > 0){
 			$newdata['BrandID'] = $data['brand'];
