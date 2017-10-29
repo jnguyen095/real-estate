@@ -72,3 +72,12 @@ if ( ! function_exists('limit_text')) {
 		return $text;
 	}
 }
+
+if ( ! function_exists('substr_with_ellipsis')) {
+	function substr_with_ellipsis($string, $chars = 100)
+	{
+		preg_match('/^.{0,' . $chars . '}(?:.*?)\b/iu', $string, $matches);
+		$new_string = $matches[0];
+		return ($new_string === $string) ? $string : $new_string . '&hellip;';
+	}
+}
