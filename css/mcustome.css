@@ -505,6 +505,16 @@ ul.nearme {
 	width: 100%;
 }
 
+.ellipsis {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.create-post .block-panel .block-header{
+	color: #5eab1f;
+}
+
 .product-detail, .product-detail.content{
 	font-size: 14px !important;
 	padding: 10px 0px;
@@ -1339,4 +1349,10 @@ img.imgIcon {
 .affix .container.mcontainer{
 	background: #f5f5f5;
 	border-bottom: solid 1px #ccc;
+}
+.h2title.disabled {
+	color: #ccc;
+}
+.bottom-buttons{
+	margin-bottom: 15px;
 }

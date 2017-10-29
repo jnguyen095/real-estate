@@ -14,8 +14,13 @@
 		height: auto !important;
 	}
 	.margin-left-10{
-		margin-left: 0px;
+		margin-left: 5px;
+	}
+
+	.mobile-block{
 		display: block;
+		text-align: left;
+		margin-bottom: -15px;
 	}
 
 	.hasInfo #mapInfo{
@@ -41,6 +46,10 @@
 
 	.no-padding-mobile{
 		padding: 0px !important;
+	}
+
+	.no-padding-right-mobile{
+		padding-right: 0px !important;
 	}
 
 	.brief-box-item{

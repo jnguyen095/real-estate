@@ -11,6 +11,10 @@ $(document).ready(function(){
 	refreshPostHandler();
 	activePostHandler();
 	inactivePostHandler();
+	$("#txtWard").change(function(){
+		getGeoFromAddress();
+	});
+
 });
 
 function inactivePostHandler(){
@@ -71,11 +75,15 @@ function autoComplete(){
 				displayKey: 'Street',
 				source: function (query, process) {
 					return $.get(urls.findStreetByNameUrl, {query: query}, function (data) {
+						getGeoFromAddress();
 						if (data != null && data.length > 0) {
 							var json = $.parseJSON(data);
+							getGeoFromAddress();
 							return process(json);
 						}
+
 					});
+
 				}
 			});
 	}
@@ -94,6 +102,7 @@ function loadWardByDistrictId(){
 				for(key in res){
 					$("#txtWard").append("<option value='"+res[key].WardID+"'>"+res[key].WardName+"</option>");
 				}
+				getGeoFromAddress();
 			}
 		});
 	});
@@ -113,7 +122,7 @@ function loadDistrictByCityId(){
 				for(key in res){
 					$("#txtDistrict").append("<option value='"+res[key].DistrictID+"'>"+res[key].DistrictName+"</option>");
 				}
-
+				getGeoFromAddress();
 			}
 		});
 	});
@@ -142,14 +151,15 @@ function uploadMultipleImages(){
 					}
 				}
 				if(ok){
-					$('.finish-upload .finish-text').show();
-					$('.finish-upload .loadUploadOthers').hide();
 					reloadOthersImagesContainer();
-					$('#modalMoreImages').modal('hide');
-					document.getElementById("uploadImagesForm").reset();
 				}
+				$('.finish-upload .finish-text').show();
+				$('.finish-upload .loadUploadOthers').hide();
+				$('#modalMoreImages').modal('hide');
+				document.getElementById("uploadImagesForm").reset();
 			}
 		});
+
 	});
 }
 
@@ -175,4 +185,96 @@ function updateCoordinators(productId, lng, lat) {
 		data: {productId: productId, lng: lng, lat: lat}
 	}).done(function (data) {
 	});
+}
+
+var _map, _marker;
+var infoWindow;
+function defaultMap(){
+	infoWindow = new google.maps.InfoWindow;
+	var uluru = {lat: 14.0583, lng: 108.2772};
+	_map = new google.maps.Map(document.getElementById('map'), {
+		zoom: 5,
+		center: uluru
+	});
+	_marker = new google.maps.Marker({
+		position: uluru,
+		map: _map,
+		label: 'K'
+	});
+
+	var infowincontent = document.createElement('div');
+	var strong = document.createElement('strong');
+	strong.textContent = 'Việt Nam';
+	infowincontent.appendChild(strong);
+
+	google.maps.event.addListener(_map, 'click', function(event) {
+		_marker.setPosition(event.latLng);
+		$("input[name=txt_lng]").val(event.latLng.lng());
+		$("input[name=txt_lat]").val(event.latLng.lat());
+	});
+
+	// Open by default
+	infoWindow.setContent(infowincontent);
+	infoWindow.open(_map, _marker);
+}
+
+function initMap(_lat, _lng, _addr) {
+	var uluru = {lat: _lat, lng: _lng};
+	_map.setZoom(17);
+	_map.setCenter(uluru);
+	_marker.setPosition(uluru);
+	var strong = document.createElement('strong');
+	strong.textContent = _addr;
+	var infowincontent = document.createElement('div');
+	infowincontent.appendChild(strong);
+	infoWindow.setContent(infowincontent);
+	infoWindow.open(_map, _marker);
+	_marker.addListener('click', function() {
+		infoWindow.setContent(infowincontent);
+		infoWindow.open(_map, _marker);
+	});
+}
+
+var _oldAddr = null;
+function getGeoFromAddress(){
+	var txtCity = $("#txtCity").val();
+	var txtDistrict = $("#txtDistrict").val();
+	var txtWard = $("#txtWard").val();
+	var txtStreet = $("#txt_street").val();
+	var addr = '';
+	if(txtStreet.length > 1){
+		addr = txtStreet + ', ';
+	}
+	if(!isNaN(txtWard) && txtWard > 0){
+		addr += $("#txtWard option:selected").text()  + ', ';
+	}
+	if(!isNaN(txtDistrict) && txtDistrict > 0){
+		addr += $("#txtDistrict option:selected").text()  + ', ';
+	}
+	if(!isNaN(txtCity) && txtCity > 0){
+		addr += $("#txtCity option:selected").text()  + ', ';
+	}
+	if(addr.length > 2) {
+		addr = addr.substr(0, addr.length - 2);
+	}
+	if(_oldAddr != addr){
+		_oldAddr = addr;
+		jQuery.ajax({
+			type: "POST",
+			url: urls.loadGeoFromAddrUrl,
+			dataType: 'json',
+			data: {address: addr},
+			success: function(res){
+				initMap(res[1], res[0], addr);
+				$("input[name=txt_lng]").val(res[0]);
+				$("input[name=txt_lat]").val(res[1]);
+			}
+		});
+	}
+}
+
+function loadMap(lat, lng, addr){
+	initMap(lat, lng, addr);
+	$("input[name=txt_lng]").val(lng);
+	$("input[name=txt_lat]").val(lat);
 }
