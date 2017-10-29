@@ -70,6 +70,7 @@ $route['chinh-sua-p(:num)'] = "Post_controller/edit/$1";
 $route['dang-bai-thanh-cong-p(:num)'] = "Post_controller/done/$1";
 // Trang quan ly tin rao
 $route['quan-ly-tin-rao'] = "ManagePost_controller";
+$route['quan-ly-tin-rao.html/(:num)'] = "ManagePost_controller/index/$1";
 // Trang thong tin ca nhan
 $route['thong-tin-ca-nhan'] = 'UserProfile_controller';
 
