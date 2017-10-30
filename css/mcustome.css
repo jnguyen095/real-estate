@@ -1356,3 +1356,35 @@ img.imgIcon {
 .bottom-buttons{
 	margin-bottom: 15px;
 }
+
+.cooperate-panel .coo-title{
+	font-size: 14px;
+	font-weight: 600;
+	height: 45px;
+	margin-bottom: 5px;
+	overflow: hidden;
+}
+.cooperate-panel .coo-title a{
+	color: #555;
+}
+.cooperate-panel .coo-image img{
+	height: 170px;
+}
+.cooperate-result-panel{
+	margin-bottom: 15px;
+}
+.cooperate-result-panel .title{
+	font-size: 16px;
+	color: green;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.cooperate-panel .coo-item{
+	margin-bottom: 30px;
+	border: solid 1px #fff;
+}
+
+.cooperate-panel .coo-item:hover{
+	border: solid 1px #ccc;
+}

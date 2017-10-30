@@ -98,6 +98,13 @@ $route['tin-tuc'] = "News_controller";
 $route['tin-tuc.html/(:num)'] = "News_controller/index/$1";
 $route['(:any)-n(:num)'] = "News_controller/detail/$2";
 
+// Hop tac
+$route['hop-tac'] = "Cooperate_controller";
+$route['hop-tac.html/(:num)'] = "Cooperate_controller/index/$1";
+$route['(:any)-co(:num)'] = "Cooperate_controller/detail/$2";
+$route['dang-tin-hop-tac'] = "Cooperate_controller/add";
+$route['dang-bai-thanh-cong-cp(:num)'] = "Cooperate_controller/done/$1";
+
 // nha mau dep
 $route['nha-mau-dep'] = "SampleHouse_controller";
 $route['nha-mau-dep.html/(:num)'] = "SampleHouse_controller/index/$1";

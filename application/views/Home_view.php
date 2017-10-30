@@ -23,7 +23,7 @@
 	<link rel="icon" sizes="48x48" href="<?=base_url('/img/ico.ico')?>">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v3.3.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v3.4.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.min_v1.9.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.5.css">
 	<!-- jQuery library -->

@@ -41,6 +41,7 @@
 					}
 				}
 				?>
+				<li role="presentation"><a href="<?=base_url('hop-tac.html')?>">Hợp Tác</a> </li>
 				<li role="presentation"><a href="<?=base_url('nha-mau-dep.html')?>">Nhà Mẫu Đẹp</a> </li>
 				<li role="presentation"><a href="<?=base_url('tin-tuc.html')?>">Tin Tức</a> </li>
 			</ul>
