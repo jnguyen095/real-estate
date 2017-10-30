@@ -149,15 +149,13 @@
 							<h3 class="box-title">Xử lý nhanh</h3>
 						</div>
 						<div class="box-body">
-							<a id="updateVip" class="btn btn-app">
-								<?php
-								if(count($postVipPreviousDate) > 0) {
-									?>
-									<span id="previousVipPost" class="badge bg-red"><?=$postVipPreviousDate?></span>
-									<?php
-								}
-								?>
+							<a id="updateVip" data-vip="<?=$postVipPreviousDate?>" class="btn btn-app">
+								<span id="previousVipPost" class="badge <?=$postVipPreviousDate > 0 ? 'bg-red' : 'bg-green'?>"><?=$postVipPreviousDate?></span>	
 								<i class="fa fa-repeat"></i> Xóa VIP ngày cũ
+							</a>
+							
+							<a id="deleteExpired" class="btn btn-app">
+								<i class="fa fa-trash"></i> Xóa Post hết hạn
 							</a>
 
 						</div>
@@ -297,6 +295,7 @@
 											<th>Tạo Lúc</th>
 											<th>Lượt View</th>
 											<th>Người Tạo</th>
+											<th>Ip Address</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -310,6 +309,7 @@
 											<td><?=date('d/m/Y H:i', strtotime($post->PostDate))?></td>
 											<td><?=$post->View?></td>
 											<td><?=$post->FullName?></td>
+											<td><?=$post->IpAddress?></td>
 										</tr>
 										<?php
 									}
@@ -481,7 +481,8 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#updateVip").click(function(){
-			bootbox.confirm("Chuyển VIP những ngày trước sang Standard?", function(r){
+			if($(this).data('vip') > 0){
+				bootbox.confirm("Chuyển VIP những ngày trước sang Standard?", function(r){
 				if(r){
 					jQuery.ajax({
 						type: "POST",
@@ -496,6 +497,8 @@
 					});
 				}
 			});
+			}
+			
 		})
 	});
 </script>

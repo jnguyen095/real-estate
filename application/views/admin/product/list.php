@@ -80,6 +80,7 @@
 								<th data-action="sort" data-title="Vip" data-direction="ASC"><span>Loại tin</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th data-action="sort" data-title="View" data-direction="ASC"><span>Lượt xem</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th data-action="sort" data-title="PostDate" data-direction="ASC"><span>Ngày đăng</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+								<th data-action="sort" data-title="ExpireDate" data-direction="ASC"><span>Hết hạn</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th data-action="sort" data-title="ModifiedDate" data-direction="ASC"><span>Cập nhật</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th data-action="sort" data-title="CreatedByID" data-direction="ASC"><span>Người đăng</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th data-action="sort" data-title="IpAddress" data-direction="ASC"><span>Ip Address</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
@@ -106,6 +107,7 @@
 								</td>
 								<td><input class="txtView" type="text" value="<?=$product->View?>" onchange="updateView('<?=$product->ProductID?>', this.value);"/></td>
 								<td><?=date('d/m/Y H:i', strtotime($product->PostDate))?></td>
+								<td><?=date('d/m/Y', strtotime($product->ExpireDate))?></td>
 								<td id="modifiedDate_<?=$product->ProductID?>"><?=date('d/m/Y H:i', strtotime($product->ModifiedDate))?></td>
 								<td><?=$product->FullName?></td>
 								<td><?=$product->IpAddress?></td>
