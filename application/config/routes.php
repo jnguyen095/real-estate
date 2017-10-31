@@ -133,3 +133,6 @@ $route['admin/product/list'] = "admin/ProductManagement_controller";
 $route['admin/static-page/list'] = "admin/StaticPage_controller";
 $route['admin/static-page/add'] = "admin/StaticPage_controller/add";
 $route['admin/static-page/add-(:num)'] = "admin/StaticPage_controller/add/$1";
+$route['admin/transfer'] = "admin/Transfer_controller";
+$route['admin/transfer-user-(:num)'] = "admin/Transfer_controller/processUser/$1";
+

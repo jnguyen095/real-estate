@@ -41,7 +41,10 @@ class User_Model extends CI_Model
 			'CreatedDate' => date('Y-m-d H:i:s'),
 			'UpdatedDate' => date('Y-m-d H:i:s'),
 			'Status' => ACTIVE,
-			'UserGroupID' => 2
+			'UserGroupID' => 2,
+			'AvailableMoney' => 0,
+			'DepositedMoney' => 0,
+			'SpentMoney' => 0
 		);
 		$this->db->insert('us3r', $newdata);
 	}

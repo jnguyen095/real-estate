@@ -60,7 +60,6 @@
 						<?php
 						if(isset($staticpages) && count($staticpages) > 0) {
 							foreach ($staticpages as $stPage) {
-								print_r($stPage->Code);
 								?>
 								<tr>
 									<td><?=$stPage->Code?></td>
