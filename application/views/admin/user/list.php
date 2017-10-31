@@ -73,7 +73,7 @@
 							?>
 							<tr>
 								<td><?=$counter++?></td>
-								<td><?=$user->FullName?></td>
+								<td><a data-toggle="tooltip" title="<?=$user->Address?>"><?=$user->FullName?></a></td>
 								<td><?=$user->UserName?></td>
 								<td><?=$user->Phone?></td>
 								<td><?=$user->Email?></td>

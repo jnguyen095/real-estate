@@ -24,11 +24,13 @@
 <?php $this->load->view('/common/analyticstracking')?>
 <div class="container">
 	<?php $this->load->view('/theme/header')?>
-
-	<ul class="breadcrumb">
-		<li><a href="<?=base_url('/trang-chu.html')?>">Trang chủ</a> </li>
-		<li class="active">Tìm đối tác, hợp tác</li>
+	
+	<ul itemscope itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+		<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a itemprop="item" href="<?=base_url('hop-tac.html')?>"><span itemprop="name">Hợp tác</span></a><meta itemprop="position" content="1" /></li>
+		<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="active"><span itemprop="item"><span itemprop="name">Tìm đối tác, hợp tác</span></span><meta itemprop="position" content="2" /></li>
+		<?php $this->load->view('/common/quick-search')?>
 	</ul>
+	
 
 	<div class="row no-margin">
 		<div class="col-lg-12 col-sm-12 no-padding">
