@@ -94,10 +94,13 @@ class Ajax_controller extends CI_Controller
 			'img_id'		=> 'captcha',
 			'img_path'      => 'img/captcha/',
 			'img_url'       => base_url().'img/captcha/',
+			'font_path'		=> base_url().'admin/fonts/arial.ttf',
 			'img_width'     => '150',
+			'expiration'    => 7200,
 			'img_height'    => 30,
 			'word_length'   => 6,
 			'font_size'     => 18,
+			'line_count'	=> 10,
 			'colors'        => array(
 				'background' => array(255, 255, 255),
 				'border' => array(204, 204, 204),
