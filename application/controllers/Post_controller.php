@@ -23,6 +23,7 @@ class Post_controller extends CI_Controller
 		$this->load->library('form_validation');
 		$this->load->model('Category_Model');
 		$this->load->helper("seo_url");
+		$this->load->helper('captcha');
 		$this->load->model('City_Model');
 		$this->load->model('User_Model');
 		$this->load->model('District_Model');
@@ -31,6 +32,7 @@ class Post_controller extends CI_Controller
 		$this->load->model('Brand_Model');
 		$this->load->model('Product_Model');
 		$this->load->model('Direction_Model');
+		$this->load->helper('security');
 	}
 
 	public function index()
@@ -62,6 +64,10 @@ class Post_controller extends CI_Controller
 			if($postToday > 4){
 				$this->load->view('post/limit', $data);
 			}else{
+				$captcha = $this->generatedCapcha();
+				$data['capchaImg'] = $captcha['image'];
+				$this->session->set_userdata('captcha', $captcha['word']);
+
 				$this->load->view('post/new', $data);
 			}
 
@@ -168,6 +174,7 @@ class Post_controller extends CI_Controller
 			$data['contact_phone'] = $this->input->post("txt_phone");
 			$data['contact_address'] = $this->input->post("txt_address");
 			$data['txt_email'] = $this->input->post("txt_email");
+			$data['txt_captcha'] = $this->input->post("txt_captcha");
 			$data['lng'] = $this->input->post("txt_lng");
 			$data['lat'] = $this->input->post("txt_lat");
 			$data['ipaddress'] = $this->input->ip_address();
@@ -185,6 +192,9 @@ class Post_controller extends CI_Controller
 			$this->form_validation->set_rules("txt_street", "Đường", "required");
 			$this->form_validation->set_rules("txt_fullname", "Người liên hệ", "required");
 			$this->form_validation->set_rules("txt_phone", "Số điện thoại", "required");
+			if($data['productId'] == null || $data['productId'] < 1){
+				$this->form_validation->set_rules("txt_captcha", "Mã xác thực", "callback_validateCaptcha");
+			}
 			$img = $this->uploadImage();
 			if($img != null){
 				$data['image'] = $img;
@@ -202,6 +212,7 @@ class Post_controller extends CI_Controller
 
 			$validateResult = $this->form_validation->run();
 			if ($validateResult == FALSE) {
+				$this->form_validation->set_message('txt_captcha', 'Mã xác thực không khớp.');
 				//validation fails
 				if($data['city'] != null && $data['city'] > 0){
 					$data['districts'] = $this->District_Model->findByCityId($data['city']);
@@ -212,6 +223,10 @@ class Post_controller extends CI_Controller
 				$data['other_images'] = $this->loadOthersImages();
 				$data['error_message'] = 'Dữ liệu chưa hợp lệ, vui lòng kiểm tra các thông tin bên dưới.';
 				if($type == 'add'){
+					$captcha = $this->generatedCapcha();
+					$data['capchaImg'] = $captcha['image'];
+					$this->session->set_userdata('captcha', $captcha['word']);
+
 					$this->load->view('post/new', $data);
 				}else{
 					$this->load->view('post/edit', $data);
@@ -237,6 +252,7 @@ class Post_controller extends CI_Controller
 
 				if($ok){
 					// Save successful
+					$this->session->unset_userdata('captcha');
 					redirect("dang-bai-thanh-cong-p".$ok);
 				}else{
 					// Save failure
@@ -250,6 +266,10 @@ class Post_controller extends CI_Controller
 					$data['other_images'] = $this->loadOthersImages();
 					$data['error_message'] = 'Có lỗi xảy ra trong quá trình lưu trữ, vui lòng thử lại.';
 					if($type == 'add'){
+						$captcha = $this->generatedCapcha();
+						$data['capchaImg'] = $captcha['image'];
+						$this->session->set_userdata('captcha', $captcha['word']);
+
 						$this->load->view('post/new', $data);
 					}else{
 						$this->load->view('post/edit', $data);
@@ -262,6 +282,34 @@ class Post_controller extends CI_Controller
 		}
 	}
 
+	public function validateCaptcha($str){
+		if($str != $this->session->userdata['captcha'])
+		{
+			$this->form_validation->set_message('validateCaptcha', '{field} không khớp');
+			return FALSE;
+		}else{
+			return TRUE;
+		}
+	}
+
+	private function generatedCapcha(){
+		$config = array(
+			'img_id'		=> 'captcha',
+			'img_path'      => 'img/captcha/',
+			'img_url'       => base_url().'img/captcha/',
+			'img_width'     => '150',
+			'img_height'    => 30,
+			'word_length'   => 6,
+			'font_size'     => 18,
+			'colors'        => array(
+				'background' => array(255, 255, 255),
+				'border' => array(204, 204, 204),
+				'text' => array(255, 93, 14),
+				'grid' => array(204, 204, 204)
+			)
+		);
+		return create_captcha($config);
+	}
 
 	private function uploadImage(){
 		if(!empty($this->input->post("txt_userfile"))){

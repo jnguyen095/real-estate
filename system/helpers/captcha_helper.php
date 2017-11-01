@@ -259,9 +259,8 @@ if ( ! function_exists('create_captcha'))
 		$theta		= 1;
 		$thetac		= 7;
 		$radius		= 16;
-		$circles	= 20;
+		$circles	= 10;
 		$points		= 32;
-
 		for ($i = 0, $cp = ($circles * $points) - 1; $i < $cp; $i++)
 		{
 			$theta += $thetac;

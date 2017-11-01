@@ -1388,3 +1388,8 @@ img.imgIcon {
 .cooperate-panel .coo-item:hover{
 	border: solid 1px #ccc;
 }
+
+#captchaImg{
+	display: inline-block;
+	width: 150px;
+}

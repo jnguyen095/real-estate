@@ -59,6 +59,7 @@
 		updateCoordinatorMapUrl: '<?= base_url('/ajax_controller/updateCoordinator') ?>',
 		addSubscribleUrl: '<?= base_url('/ajax_controller/addSubscrible') ?>',
 		loadGeoFromAddrUrl: '<?= base_url('/ajax_controller/getGeoFromAddress') ?>',
+		loadCaptchaUrl: '<?= base_url('/ajax_controller/getCaptchaImg') ?>',
 		base_url: '<?=base_url()?>'
 	};
 </script>

@@ -10,12 +10,14 @@ class Ajax_controller extends CI_Controller
 {
 	function __construct() {
 		parent::__construct();
+		$this->load->library('session');
 		$this->load->model('District_Model');
 		$this->load->model('Ward_Model');
 		$this->load->helper("seo_url");
 		$this->load->model('Street_Model');
 		$this->load->model('Product_Model');
 		$this->load->model('Subscrible_Model');
+		$this->load->helper('captcha');
 		$this->load->helper('date');
 	}
 
@@ -85,5 +87,27 @@ class Ajax_controller extends CI_Controller
 			$longitude = $geo['results'][0]['geometry']['location']['lng'];
 		}
 		echo json_encode(array($longitude, $latitude));
+	}
+
+	public function getCaptchaImg(){
+		$config = array(
+			'img_id'		=> 'captcha',
+			'img_path'      => 'img/captcha/',
+			'img_url'       => base_url().'img/captcha/',
+			'img_width'     => '150',
+			'img_height'    => 30,
+			'word_length'   => 6,
+			'font_size'     => 18,
+			'colors'        => array(
+				'background' => array(255, 255, 255),
+				'border' => array(204, 204, 204),
+				'text' => array(255, 93, 14),
+				'grid' => array(204, 204, 204)
+			)
+		);
+		$captcha = create_captcha($config);
+		$data['capchaImg'] = $captcha['image'];
+		$this->session->set_userdata('captcha', $captcha['word']);
+		echo json_encode(array($data));
 	}
 }

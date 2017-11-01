@@ -354,6 +354,23 @@
 					</div>
 				</div>
 
+				<div class="block-panel">
+					<div class="block-header">XÁC THỰC THÔNG TIN</div>
+					<div class="block-body">
+						<div class="row">
+							<div class="col-lg-2 col-md-4 col-sm-12">Mã xác thực: <span class="required">*</span></div>
+							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+								<input name="txt_captcha" class="form-control" value="<?=(isset($txt_captcha) ? $txt_captcha : '')?>"/>
+								<span class="text-danger"><?php echo form_error('txt_captcha'); ?></span>
+							</div>
+							<div class="col-lg-3 col-md-6 col-sm-8 col-xs-8 no-padding-left">
+								<span id="captchaImg"><?=$capchaImg?></span><a id="changeCaptcha" data-toggle="tooltip" title="Đổi mã xác thực khác" class="margin-left-10"><i class="glyphicon glyphicon-refresh"></i> </a>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
 
 				<div class="row text-center bottom-buttons">
 					<input type="hidden" name="crudaction" value="add_new">

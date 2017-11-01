@@ -153,6 +153,11 @@
 								<span id="previousVipPost" class="badge <?=$postVipPreviousDate > 0 ? 'bg-red' : 'bg-green'?>"><?=$postVipPreviousDate?></span>	
 								<i class="fa fa-repeat"></i> Xóa VIP ngày cũ
 							</a>
+
+							<a id="deleteCaptchaImgs" data-captcha="<?=$captchaImgs?>" class="btn btn-app">
+								<span id="captchaImgs" class="badge <?=$captchaImgs > 0 ? 'bg-red' : 'bg-green'?>"><?=$captchaImgs?></span>
+								<i class="fa fa-repeat"></i> Xóa Captcha rác
+							</a>
 							
 							<a id="deleteExpired" class="btn btn-app">
 								<i class="fa fa-trash"></i> Xóa Post hết hạn
@@ -499,7 +504,28 @@
 			});
 			}
 			
-		})
+		});
+
+		$("#deleteCaptchaImgs").click(function(){
+			if($(this).data('captcha') > 0){
+				bootbox.confirm("Xóa hết hình captcha trong thư mục?", function(r){
+					if(r){
+						jQuery.ajax({
+							type: "POST",
+							url: '<?=base_url("/admin/admin_controller/deleteAllCaptcha")?>',
+							dataType: 'json',
+							data: {},
+							success: function(res){
+								if(res == 'success'){
+									bootbox.alert("Xóa thành công");
+								}
+							}
+						});
+					}
+				});
+			}
+
+		});
 	});
 </script>
 </body>

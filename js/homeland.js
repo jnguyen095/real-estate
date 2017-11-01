@@ -13,6 +13,17 @@ $(document).ready(function(){
 	$("#myBtn").click(function(){
 		topFunction();
 	});
+	$("#changeCaptcha").click(function (){
+		$("#captchaImg").html("<img src='/img/load.gif'/>");
+		jQuery.ajax({
+			type: "POST",
+			url: urls.loadCaptchaUrl,
+			dataType: 'json',
+			success: function(res){
+				$("#captchaImg").html(res[0].capchaImg);
+			}
+		});
+	});
 });
 
 function changeIconMoreLess($this){

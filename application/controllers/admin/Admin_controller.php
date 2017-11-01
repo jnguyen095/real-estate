@@ -33,10 +33,20 @@ class Admin_controller extends CI_Controller
 		$data['postVip1'] = $this->Dashboard_Model->countPostVip(1);
 		$data['postVip2'] = $this->Dashboard_Model->countPostVip(2);
 		$data['postVip3'] = $this->Dashboard_Model->countPostVip(3);
+		$data['captchaImgs'] = count(glob("img/captcha/*.jpg"));
 		$this->load->view('admin/dashboard', $data);
 	}
 	public function updateStandardForPreviousPost(){
 		$this->Dashboard_Model->updateStandardForPreviousPost();
+		echo json_encode('success');
+	}
+	public function deleteAllCaptcha(){
+		$files = glob('img/captcha/*.jpg'); // get all file names
+		foreach($files as $file){ // iterate files
+			if(is_file($file)) {
+				unlink($file); // delete file
+			}
+		}
 		echo json_encode('success');
 	}
 }
