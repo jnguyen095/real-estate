@@ -224,117 +224,100 @@
 					</script>
 				</div>
 
-				<div class="form-group">
-					<div class="col-md-6 no-padding-left no-padding-mobile">
-						<table class="table tableBorder">
-							<tbody>
-								<tr class="tbHeader">
-									<td colspan="2">Đặc Điểm</td>
-								</tr>
-								<tr>
-									<td class="width100">Chiều rộng(m)</td>
-									<td>
-										<input id="txt_width" type="text" name="txt_width" class="form-control" value="<?=isset($width) ? $width : ''?>">
-										<span class="text-danger"><?php echo form_error('txt_width'); ?></span>
-									</td>
-								</tr>
-								<tr>
-									<td class="width100">Chiều dài(m)</td>
-									<td>
-										<input id="txt_long" type="text" name="txt_long" class="form-control" value="<?=isset($long) ? $long : ''?>">
-										<span class="text-danger"><?php echo form_error('txt_long'); ?></span>
-									</td>
-								</tr>
-								<tr>
-									<td class="width100">Số tầng</td>
-									<td>
-										<input id="txt_floor" type="text" name="txt_floor" class="form-control" value="<?=isset($floor) ? $floor : ''?>">
-										<span class="text-danger"><?php echo form_error('txt_floor'); ?></span>
-									</td>
-								</tr>
-								<tr>
-									<td class="width100">Số phòng</td>
-									<td>
-										<input id="txt_room" type="text" name="txt_room" class="form-control" value="<?=isset($room) ? $room : ''?>">
-										<span class="text-danger"><?php echo form_error('txt_room'); ?></span>
-									</td>
-								</tr>
-								<tr>
-									<td class="width100">Nhà vệ sinh</td>
-									<td>
-										<input id="txt_toilet" type="text" name="txt_toilet" class="form-control" value="<?=isset($toilet) ? $toilet : ''?>">
-										<span class="text-danger"><?php echo form_error('txt_toilet'); ?></span>
-									</td>
-								</tr>
-								<tr>
-									<td class="width100">Hướng</td>
-									<td>
-										<select class="form-control" name="txt_direction">
-											<option value="-1">KXĐ</option>
-											<?php
-											foreach ($directions as $dr){
-												?>
-												<option value="<?=$dr->DirectionID?>" <?=(isset($direction) && $direction == $dr->DirectionID) ? ' selected': ''?>><?=$dr->DirectionName?></option>
-												<?php
-											}
+				<div class="block-panel">
+					<div class="block-header">ĐẶC ĐIỂM BẤT ĐỘNG SẢN</div>
+					<div class="block-body">
+						<div class="form-group">
+							<div class="form-group">
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 no-padding-left-mobile">
+									<label>Chiều rộng(m)</label>
+									<input id="txt_width" type="text" name="txt_width" class="form-control" value="<?=isset($width) ? $width : ''?>">
+									<span class="text-danger"><?php echo form_error('txt_width'); ?></span>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 no-padding-left-mobile">
+									<label>Chiều dài(m)</label>
+									<input id="txt_long" type="text" name="txt_long" class="form-control" value="<?=isset($long) ? $long : ''?>">
+									<span class="text-danger"><?php echo form_error('txt_long'); ?></span>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 no-padding-left-mobile">
+									<label>Số tầng</label>
+									<input id="txt_floor" type="text" name="txt_floor" class="form-control" value="<?=isset($floor) ? $floor : ''?>">
+									<span class="text-danger"><?php echo form_error('txt_floor'); ?></span>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 no-padding-left-mobile">
+									<label>Số phòng</label>
+									<input id="txt_room" type="text" name="txt_room" class="form-control" value="<?=isset($room) ? $room : ''?>">
+									<span class="text-danger"><?php echo form_error('txt_room'); ?></span>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 no-padding-left-mobile">
+									<label>Nhà vệ sinh</label>
+									<input id="txt_toilet" type="text" name="txt_toilet" class="form-control" value="<?=isset($toilet) ? $toilet : ''?>">
+									<span class="text-danger"><?php echo form_error('txt_toilet'); ?></span>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 no-padding-left-mobile">
+									<label>Hướng</label>
+									<select class="form-control" name="txt_direction">
+										<option value="-1">KXĐ</option>
+										<?php
+										foreach ($directions as $dr){
 											?>
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td class="width100">Thuộc dự án</td>
-									<td>
-										<select class="form-control" name="txt_brand">
-											<option value="-1">KXĐ</option>
+											<option value="<?=$dr->DirectionID?>" <?=(isset($direction) && $direction == $dr->DirectionID) ? ' selected': ''?>><?=$dr->DirectionName?></option>
 											<?php
-											foreach ($brands as $br){
-												?>
-												<option value="<?=$br->BrandID?>" <?=(isset($brand) && $brand == $br->BrandID) ? ' selected': ''?>><?=$br->BrandName?></option>
-											<?php
-											}
+										}
+										?>
+									</select>
+								</div>
+								<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 no-padding-left-mobile">
+									<label>Thuộc dự án</label>
+									<select class="form-control" name="txt_brand">
+										<option value="-1">KXĐ</option>
+										<?php
+										foreach ($brands as $br){
 											?>
-										</select>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="col-md-6 no-padding-right no-padding-mobile">
-						<table class="table tableBorder">
-							<tbody>
-								<tr class="tbHeader">
-									<td colspan="2">Liên Hệ</td>
-								</tr>
-								<tr>
-									<td class="width100">Liên hệ <span class="required">*</span></td>
-									<td>
-										<input id="contactName" name="txt_fullname" class="form-control" value="<?=(isset($contact_name) ? $contact_name : '')?>">
-										<span class="text-danger"><?php echo form_error('contactName'); ?></span>
-									</td>
-								</tr>
-								<tr>
-									<td class="width100">Số ĐT <span class="required">*</span></td>
-									<td>
-										<input id="contactPhone" name="txt_phone" class="form-control" value="<?=(isset($contact_phone) ? $contact_phone : '')?>"/>
-										<span class="text-danger"><?php echo form_error('contactPhone'); ?></span>
-									</td>
-								</tr>
-								<tr>
-									<td class="width100">Địa chỉ</td>
-									<td>
-										<input name="txt_address" class="form-control" value="<?=(isset($contact_address) ? $contact_address : '')?>"/>
-									</td>
-								</tr>
-								<tr>
-									<td class="width100">Email</td>
-									<td><input name="txt_email" class="form-control" value="<?=(isset($txt_email) ? $txt_email : '')?>"/></td>
-								</tr>
-							</tbody>
-						</table>
+											<option value="<?=$br->BrandID?>" <?=(isset($brand) && $brand == $br->BrandID) ? ' selected': ''?>><?=$br->BrandName?></option>
+											<?php
+										}
+										?>
+									</select>
+								</div>
+								<div class="clear-both"></div>
+							</div>
 
+						</div>
 					</div>
-					<div class="clear-both"></div>
 				</div>
+
+				<div class="block-panel">
+					<div class="block-header">LIÊN HỆ</div>
+					<div class="block-body">
+						<div class="form-group">
+							<div class="form-group">
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 no-padding-mobile">
+									<label>Liên hệ <span class="required">*</span></label>
+									<input id="contactName" name="txt_fullname" class="form-control" value="<?=(isset($contact_name) ? $contact_name : '')?>">
+									<span class="text-danger"><?php echo form_error('txt_fullname'); ?></span>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 no-padding-mobile">
+									<label>Số ĐT <span class="required">*</span></label>
+									<input id="contactPhone" name="txt_phone" class="form-control" value="<?=(isset($contact_phone) ? $contact_phone : '')?>"/>
+									<span class="text-danger"><?php echo form_error('txt_phone'); ?></span>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 no-padding-mobile">
+									<label>Địa chỉ</label>
+									<input name="txt_address" class="form-control" value="<?=(isset($contact_address) ? $contact_address : '')?>"/>
+								</div>
+								<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 no-padding-mobile">
+									<label>Email</label>
+									<input name="txt_email" class="form-control" value="<?=(isset($txt_email) ? $txt_email : '')?>"/>
+									<span class="text-danger"><?php echo form_error('txt_email'); ?></span>
+								</div>
+								<div class="clear-both"></div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
 
 				<div class="block-panel">
 					<div class="block-header">BẢN ĐỒ - VỊ TRÍ <span class="required">(Thay đổi vị trí bằng cách click lên bản đồ)</span></div>
