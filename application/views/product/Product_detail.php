@@ -43,12 +43,18 @@
 </ul>
 <div class="row no-margin">
 	<div itemscope itemtype="http://schema.org/Product" class="col-md-9 no-margin no-padding product-detail">
-		<div class="product-title"><h1 class="h1Class" itemprop="name"><?php echo $product->Title?></h1></div>
+		<div class="product-title">
+			<h1 class="h1Class" itemprop="name"><?php echo $product->Title?></h1>
+		</div>
 
 		<div class="row">
-			<div class="col-md-12"><span class="price-detail price"><?php echo $product->PriceString?></span>	</div>
-			<div class="col-md-3 area-detail">Diện tích: <?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></div>
-			<div class="col-md-9 text-right addr-detail">
+			<div class="col-md-12">
+				<div class="price-detail price float-left"><?php echo $product->PriceString?></div>
+				<div class="addr-detail row color-gray no-margin no-padding text-right float-right"><span class="mobile-hide">Ngày đăng: </span><?=date('d/m/Y', strtotime($product->ModifiedDate))?></div>
+				<div class="clear-both"></div>
+			</div>
+			<div class="col-md-3 col-sm-12 area-detail">Diện tích: <?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></div>
+			<div class="col-md-9 col-sm-12 text-right text-left-mobile addr-detail">
 				<span class="glyphicon glyphicon-map-marker"></span><span class="addr-detail">
 				<?php
 				if(isset($product->Street)){
@@ -227,7 +233,10 @@
 
 
 		<div class="row">
-			<div class="col-md-6 col-xs-8">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 margin-top-5">
+				<?php $this->load->view('/SocialShare') ?>
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-right text-left-mobile">
 				<?php
 				if(isset($product->Source)){
 					?>
@@ -236,13 +245,10 @@
 				}
 				?>
 			</div>
-			<div class="col-md-6 col-xs-4">
-				<div class="copy-source row color-gray no-margin no-padding text-right">Ngày đăng: <?=date('d/m/Y', strtotime($product->ModifiedDate))?></div>
-			</div>
 		</div>
 
 
-		<?php $this->load->view('/SocialShare') ?>
+
 
 		<?php if(isset($similarProducts) && count($similarProducts) > 0){
 			?>
@@ -258,9 +264,10 @@
 							<div class="image col-md-4 col-xs-3 no-padding-mobile">
 								<img itemprop="image" class="width100pc" src="<?=$similarProduct->Thumb?>" alt="<?=$product->Title?>"/>
 							</div>
-							<div class="brief-detail col-md-8 col-xs-9">
+							<div class="brief-detail col-md-8 col-xs-9 no-padding-right">
 								<a itemprop="url" href="<?=base_url().seo_url($similarProduct->Title).'-p'.$similarProduct->ProductID?>.html"><span itemprop="name"><h3><?=$similarProduct->Title?></h3></span></a>
 								<div class="price"><?=$similarProduct->PriceString?> <span class="color"><?=is_numeric($similarProduct->Area) ? $similarProduct->Area.' m²' : $similarProduct->Area?></span></div>
+								<div class="color"><?=date('d/m/Y', strtotime($similarProduct->ModifiedDate))?></div>
 							</div>
 							<div class="clear-both"></div>
 						</div>
@@ -288,9 +295,10 @@
 								<div class="image col-md-4 col-xs-3 no-padding-mobile">
 									<img itemprop="image" class="width100pc" src="<?=$similarProduct->Thumb?>" alt="<?=$product->Title?>"/>
 								</div>
-								<div class="brief-detail col-md-8 col-xs-9">
+								<div class="brief-detail col-md-8 col-xs-9 no-padding-right">
 									<a itemprop="url" href="<?=base_url().seo_url($similarProduct->Title).'-p'.$similarProduct->ProductID?>.html"><span itemprop="name"><h3><?=$similarProduct->Title?></h3></span></a>
 									<div class="price"><?=$similarProduct->PriceString?> <span class="color"><?=is_numeric($similarProduct->Area) ? $similarProduct->Area.' m²' : $similarProduct->Area?></span></div>
+									<div class="color"><?=date('d/m/Y', strtotime($similarProduct->ModifiedDate))?></div>
 								</div>
 								<div class="clear-both"></div>
 							</div>
@@ -309,7 +317,6 @@
 		<?php $this->load->view('/common/Search_filter') ?>
 		<?php $this->load->view('/common/sample_house') ?>
 		<div class="clear-both"></div>
-		<?php $this->load->view('/SocialShare') ?>
 		<?php $this->load->view('/Subscrible') ?>
 		<div class="clear-both"></div>
 		<img class="width100pc margin-bottom-20 mobile-hide" src="<?=base_url('/img/hoatraotay.jpg')?>" alt="Hoa Trao Tay"/>

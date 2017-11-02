@@ -573,6 +573,9 @@ ul.nearme {
 .margin-top-20{
 	margin-top: 20px;
 }
+.margin-top-5{
+	margin-top:5px;
+}
 
 .copy-source{
 	margin: 10px 0px !important;
@@ -1160,11 +1163,15 @@ span.pvip {
 }
 
 .brief-detail .price {
-	margin-top: 15px;
+	margin-top: 5px;
 }
 .search-total-result{
 	color: #3b3b3b;
 	font-size: 18px;
+}
+
+.gray-color{
+	color: #869099;
 }
 
 .toggleMore, .toggleLess{

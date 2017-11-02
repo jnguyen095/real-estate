@@ -51,6 +51,9 @@
 	.no-padding-right-mobile{
 		padding-right: 0px !important;
 	}
+	.text-left-mobile{
+		text-align: left !important;
+	}
 
 	.brief-box-item{
 		height: 82px;
@@ -61,7 +64,7 @@
 	}
 
 	.brief-box-item .brief-detail h3 {
-		max-height: 42px;
+		max-height: 37px;
 		overflow: hidden;
 	}
 	.briefHome{
@@ -116,6 +119,7 @@
 	.product-title h3{
 		color: #555;
 	}
+
 }
 
 @media (max-width: 120px) {
