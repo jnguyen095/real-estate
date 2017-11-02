@@ -574,7 +574,7 @@ class Product_Model extends CI_Model
 		if($toDate){
 			$this->db->where('PostDate <=', $toDate);
 		}
-		if($createdById){
+		if($createdById != null && $createdById > -1){
 			$this->db->where('CreatedByID', $createdById);
 		}
 		//$query = $this->db->like('Title', $st)->limit($limit, $offset)->order_by($orderField, $orderDirection)->get('product');
@@ -595,7 +595,7 @@ class Product_Model extends CI_Model
 		if($toDate){
 			$this->db->where('date(PostDate) <=', $toDate);
 		}
-		if($createdById){
+		if($createdById != null && $createdById > -1){
 			$this->db->where('CreatedByID', $createdById);
 		}
 		$query = $this->db->like('Title', $st)->get('product');
