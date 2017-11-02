@@ -33,6 +33,8 @@ class Admin_controller extends CI_Controller
 		$data['postVip1'] = $this->Dashboard_Model->countPostVip(1);
 		$data['postVip2'] = $this->Dashboard_Model->countPostVip(2);
 		$data['postVip3'] = $this->Dashboard_Model->countPostVip(3);
+		$data['userRegistByDate'] = $this->Dashboard_Model->countUserByDate(15);
+		$data['postRegistByDate'] = $this->Dashboard_Model->countPostByDate(15);
 		$data['captchaImgs'] = count(glob("img/captcha/*.jpg"));
 		$this->load->view('admin/dashboard', $data);
 	}

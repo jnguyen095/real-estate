@@ -91,4 +91,16 @@ class Dashboard_Model extends CI_Model
 		$row = $total->row();
 		return $row->Total;
 	}
+	function countUserByDate($limit){
+		$sql = "SELECT DATE(CreatedDate) AS ForDate,";
+		$sql .= "  COUNT(*) AS Total FROM us3r GROUP BY DATE(CreatedDate) ORDER BY ForDate DESC limit 0, {$limit}";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
+	function countPostByDate($limit){
+		$sql = "SELECT DATE(PostDate) AS ForDate,";
+		$sql .= "  COUNT(*) AS Total FROM product WHERE CreatedByID IS NOT NULL GROUP BY DATE(PostDate) ORDER BY ForDate DESC limit 0, {$limit}";
+		$query = $this->db->query($sql);
+		return $query->result();
+	}
 }

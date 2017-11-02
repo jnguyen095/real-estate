@@ -52,7 +52,7 @@
 			<h1 class="h2title">ĐĂNG TIN HỢP TÁC BẤT ĐỘNG SẢN</h1>
 			<hr/>
 
-			<div class="col-lg-9 col-sm-9">
+			<div class="col-lg-9 col-sm-9 no-padding-mobile">
 				<?php
 					$attributes = array("enctype" => "multipart/form-data", "class" => "custom-input");
 					echo form_open("dang-tin-hop-tac", $attributes);
@@ -254,7 +254,7 @@
 
 			</div> <!-- end column 9 -->
 
-			<div class="col-lg-3 col-sm-3">
+			<div class="col-lg-3 col-sm-3 no-padding-mobile">
 				<div class="subscribe-panel col-md-12 no-padding">
 					<div class="well">
 						<div class="row text-center panel-title">HƯỚNG DẪN ĐĂNG TIN</div>

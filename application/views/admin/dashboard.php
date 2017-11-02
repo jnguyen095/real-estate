@@ -386,6 +386,44 @@
 
 			</div>
 
+			<div class="row">
+				<div class="col-md-6 col-sm-12 col-xs-12">
+					<div class="box box-danger">
+						<div class="box-header with-border">
+							<h3 class="box-title">Biến thiên User đăng ký</h3>
+
+							<div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+								</button>
+								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+							</div>
+						</div>
+						<!-- /.box-header -->
+						<div class="box-body" style="height: 450px;">
+							<div id="placeholder" class="demo-placeholder" style="width: 100%;height: 100%"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-sm-12 col-xs-12">
+					<div class="box box-success">
+						<div class="box-header with-border">
+							<h3 class="box-title">Biến thiên bài đăng</h3>
+
+							<div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+								</button>
+								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+							</div>
+						</div>
+						<!-- /.box-header -->
+						<div class="box-body" style="height: 450px;">
+							<div id="postholder" class="demo-placeholder" style="width: 100%;height: 100%"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 		</section>
 		<!-- /.content -->
 	</div>
@@ -394,82 +432,6 @@
 	<!-- Main Footer -->
 	<?php $this->load->view('/admin/common/admin-footer')?>
 
-	<!-- Control Sidebar -->
-	<aside class="control-sidebar control-sidebar-dark">
-		<!-- Create the tabs -->
-		<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-			<li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-			<li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-		</ul>
-		<!-- Tab panes -->
-		<div class="tab-content">
-			<!-- Home tab content -->
-			<div class="tab-pane active" id="control-sidebar-home-tab">
-				<h3 class="control-sidebar-heading">Recent Activity</h3>
-				<ul class="control-sidebar-menu">
-					<li>
-						<a href="javascript:;">
-							<i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-							<div class="menu-info">
-								<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-								<p>Will be 23 on April 24th</p>
-							</div>
-						</a>
-					</li>
-				</ul>
-				<!-- /.control-sidebar-menu -->
-
-				<h3 class="control-sidebar-heading">Tasks Progress</h3>
-				<ul class="control-sidebar-menu">
-					<li>
-						<a href="javascript:;">
-							<h4 class="control-sidebar-subheading">
-								Custom Template Design
-								<span class="pull-right-container">
-                    <span class="label label-danger pull-right">70%</span>
-                  </span>
-							</h4>
-
-							<div class="progress progress-xxs">
-								<div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-							</div>
-						</a>
-					</li>
-				</ul>
-				<!-- /.control-sidebar-menu -->
-
-			</div>
-			<!-- /.tab-pane -->
-			<!-- Stats tab content -->
-			<div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-			<!-- /.tab-pane -->
-			<!-- Settings tab content -->
-			<div class="tab-pane" id="control-sidebar-settings-tab">
-				<form method="post">
-					<h3 class="control-sidebar-heading">General Settings</h3>
-
-					<div class="form-group">
-						<label class="control-sidebar-subheading">
-							Report panel usage
-							<input type="checkbox" class="pull-right" checked>
-						</label>
-
-						<p>
-							Some information about this general settings option
-						</p>
-					</div>
-					<!-- /.form-group -->
-				</form>
-			</div>
-			<!-- /.tab-pane -->
-		</div>
-	</aside>
-	<!-- /.control-sidebar -->
-	<!-- Add the sidebar's background. This div must be placed
-    immediately after the control sidebar -->
-	<div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 
@@ -482,6 +444,8 @@
 <!-- AdminLTE App -->
 <script src="<?=base_url('/admin/js/adminlte.min.js')?>"></script>
 <script src="<?=base_url('/js/bootbox.min.js')?>"></script>
+<script src="<?=base_url('/admin/js/jquery.flot.js')?>"></script>
+<script src="<?=base_url('/admin/js/jquery.flot.categories.js')?>"></script>
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -525,6 +489,68 @@
 				});
 			}
 
+		});
+
+		var userdata = [];
+		<?php
+		foreach ($userRegistByDate as $userDate){
+			?>
+				var child = ["<?=date('d/m', strtotime($userDate->ForDate))?>", <?=$userDate->Total?>];
+				userdata.push(child);
+			<?php
+		}
+		?>
+
+		// User registed
+		userdata.reverse();
+		$.plot("#placeholder", [ userdata ], {
+			series: {
+				bars: {
+					show: true,
+					barWidth: 0.6,
+					align: "center"
+				}
+			},
+			xaxis: {
+				mode: "categories",
+				tickLength: 0
+			},grid: {
+				hoverable: true,
+				borderWidth: 1,
+				backgroundColor: { colors: ["#ffffff", "#ebebeb"] }
+			}
+
+		});
+
+
+		// Post registed
+		var postdata = [];
+		<?php
+		foreach ($postRegistByDate as $postDate){
+		?>
+			var childPost = ["<?=date('d/m', strtotime($postDate->ForDate))?>", <?=$postDate->Total?>];
+			postdata.push(childPost);
+		<?php
+		}
+		?>
+
+		postdata.reverse();
+		$.plot("#postholder", [ postdata ], {
+			series: {
+				bars: {
+					show: true,
+					barWidth: 0.6,
+					align: "center"
+				}
+			},
+			xaxis: {
+				mode: "categories",
+				tickLength: 0
+			},grid: {
+				hoverable: true,
+				borderWidth: 1,
+				backgroundColor: { colors: ["#ffffff", "#EDF5FF"] }
+			}
 		});
 	});
 </script>

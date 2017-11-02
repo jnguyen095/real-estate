@@ -57,7 +57,7 @@
 			echo form_open("quan-ly-tin-rao", $attributes);
 			?>
 			<!-- content -->
-			<div class="col-md-12 no-margin no-padding text-center">
+			<div class="col-md-12 no-margin no-padding text-center table-responsive">
 				<table class="table table-bordered table-hover table-striped">
 					<thead class="thead-table">
 						<tr class="bg-success">
