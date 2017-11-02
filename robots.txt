@@ -1,8 +1,6 @@
 User-agent: *
-Disallow: /attachments/
 Disallow: /ckeditor/
 Disallow: /img/
-Disallow: /css/
 Disallow: /login_controller/socialLogin/
 Disallow: /login_controller/do_upload_others_images/
 Disallow: /login_controller/loadOthersImages/

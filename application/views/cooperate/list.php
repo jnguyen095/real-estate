@@ -42,10 +42,10 @@
 								<div class="clear-both"></div>
 							</div>
 							<div class="coo-image">
-								<img class="width100pc" src="<?=base_url($cooperate->Thumb)?>" alt="<?=$cooperate->Title?>"/>
+								<a href="<?=base_url(seo_url($cooperate->Title).'-co'.$cooperate->CooperateID.'.html')?>"><img class="width100pc" src="<?=base_url($cooperate->Thumb)?>" alt="<?=$cooperate->Title?>"/></a>
 							</div>
 							<div class="cool-location">
-								<?=$cooperate->Address?>
+								<?=$cooperate->district?>, <?=$cooperate->city?>
 							</div>
 						</div>
 					<?php

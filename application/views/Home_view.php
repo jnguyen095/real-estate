@@ -23,9 +23,9 @@
 	<link rel="icon" sizes="48x48" href="<?=base_url('/img/ico.ico')?>">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v3.5.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v3.6.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.min_v1.9.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.5.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.6.css">
 	<!-- jQuery library -->
 	<script src="<?php echo base_url()?>js/jquery.min.js"></script>
 	<!-- Latest compiled JavaScript -->
@@ -84,18 +84,27 @@
 			<div id='carousel-custom' class='carousel slide hot-product fix-height-standard' data-interval="7000" data-ride='carousel'>
 				<img class="post-star" src="<?=base_url('/img/3d-yellow-star.png')?>"/>
 				<div class='carousel-outer'>
+					<h2 class="cooperateRealEstate"><a href="<?=base_url('/hop-tac.html')?>">HỢP TÁC BẤT ĐỘNG SẢN</a></h2>
 					<!-- Wrapper for slides -->
 					<div class='carousel-inner'>
-						<div class="item active">
-							<img src="<?=base_url('/img/home-banner/nha0.jpg')?>" alt="Nhà ở"/>
-						</div>
-						<div class="item">
-							<img src="<?=base_url('/img/home-banner/canho.jpg')?>" alt="Căn hộ"/>
-						</div>
-						<div class="item">
-							<img src="<?=base_url('/img/home-banner/bietthu.jpg')?>" alt="Biệt thự"/>
-						</div>
+						<?php
+						$counter = 0;
+						foreach ($cooperates as $cooperate) {
+							?>
+							<div class="item <?=$counter++ == 0 ? 'active' : ''?>">
+								<div><img class="width100pc" src="<?=base_url($cooperate->Thumb)?>" alt="<?=$cooperate->Title?>"/></div>
+								<div class="cooperate-title">
+									<?=$cooperate->Title?>
+								</div>
+								<div class="news-date text-right">
+									<?=date('d/m/Y', strtotime($cooperate->PostDate))?>
+								</div>
+							</div>
+							<?php
+						}
+						?>
 					</div>
+					<div class="seemore-coop"><a href="<?=base_url('/hop-tac.html')?>">&#187; Xem thêm tin hợp tác</a></div>
 				</div>
 			</div>
 		</div>

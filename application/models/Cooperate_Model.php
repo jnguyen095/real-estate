@@ -12,6 +12,12 @@ class Cooperate_Model extends CI_Model
 		parent::__construct();
 	}
 
+	public function findTopLatest($limit){
+		$query = $this->db->order_by('ModifiedDate', 'desc')->get_where('cooperate', array("Status" => ACTIVE), $limit, 0);
+		$news = $query->result();
+		return $news;
+	}
+
 	public function findById($postId){
 		$this->db->where(array("CooperateID" => $postId));
 		$query = $this->db->get("cooperate");
@@ -55,7 +61,15 @@ class Cooperate_Model extends CI_Model
 	}
 
 	public function searchByProperties($start, $limit=null){
-		$query = $this->db->order_by('ModifiedDate', 'desc')->get_where('cooperate', array("Status" => ACTIVE), $limit, $start);
+		$sql = 'select p.*, c.cityname as city, d.districtname as district from cooperate p';
+		$sql .= ' inner join city c on p.cityid = c.cityid';
+		$sql .= ' inner join district d on p.districtid = d.districtid';
+		$sql .= ' where p.Status = '.ACTIVE;
+		$sql .= ' order by date(p.ModifiedDate) desc';
+		$sql .= ' limit '.$start.','.$limit;
+
+
+		$query = $this->db->query($sql);
 		$cooperates = $query->result();
 
 		$this->db->where('Status', ACTIVE);

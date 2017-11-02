@@ -19,6 +19,7 @@ class Home_controller extends CI_Controller
 		$this->load->helper('text');
 		$this->load->helper("my_date");
 		$this->load->model('News_Model');
+		$this->load->model('Cooperate_Model');
 		$this->load->model('SampleHouse_Model');
 		$this->load->helper('form');
 	}
@@ -37,6 +38,7 @@ class Home_controller extends CI_Controller
 		$data['sampleHouses'] = $this->SampleHouse_Model->findTopNewExceptCurrent(0, 10);
 		$data['underOneBillion'] = $this->Product_Model->findUnderOneBillion(0, 8);
 		$data['justUpdates'] = $this->Product_Model->findJustUpdate(0, 8);
+		$data['cooperates'] = $this->Cooperate_Model->findTopLatest(3);
 		$this->load->helper('url');
 		$this->load->view('Home_view', $data);
 	}

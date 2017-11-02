@@ -70,6 +70,31 @@
 	overflow: hidden;
 }
 
+.cooperateRealEstate{
+	color: #555;
+	margin-bottom: 5px;
+	font-weight: 600;
+}
+.cooperateRealEstate a{
+	color: #555;
+}
+.cooperate-title{
+	color: #555;
+	margin-top: 5px;
+}
+
+.hot-product .carousel-outer{
+	height: 260px;
+}
+
+.seemore-coop{
+	position: absolute;
+}
+
+.news-date.text-right{
+	font-weight: normal;
+}
+
 @media (max-width: 4019px) and (min-width: 980px) {
 	.home .box-featured-new-projects .listing-card .listing-img-a img {
 		height: 163px;
