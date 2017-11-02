@@ -604,7 +604,6 @@ class Product_Model extends CI_Model
 	}
 
 	public function findUnderOneBillion($offset, $limit){
-		//$this->output->enable_profiler(TRUE);
 		$sql = 'select p.*, c.cityname as city, d.districtname as district from product p';
 		$sql .= ' inner join city c on p.cityid = c.cityid';
 		$sql .= ' inner join district d on p.districtid = d.districtid';
@@ -613,17 +612,15 @@ class Product_Model extends CI_Model
 
 		$sql .= ' order by date(p.modifieddate) desc, p.vip asc';
 		$sql .= ' limit '.$offset.','.$limit;
-
-		//$countsql = 'select count(*) as total from product p where p.Status = '.ACTIVE;
-		//$countsql .= ' and ((p.Price > 0 and p.Price < 1000 and p.UnitID IN(select UnitID from unit where Code = "MILI")) OR (p.Price <= 1 and p.UnitID IN(select UnitID from unit where Code = "BILI")))';
-
 		$products = $this->db->query($sql);
-		//$total = $this->db->query($countsql);
-
-
-		//$total = $total->row();
-		//$data['total'] = $total->total;
 		return $products->result();
+	}
+	public function countProductUnderOneBillion(){
+		$countsql = 'select count(*) as Total from product p where p.vip = 5 and p.status = '.ACTIVE;
+		$countsql .= ' and ((p.Price > 0 and p.Price < 1000 and p.UnitID IN(select UnitID from unit where Code = "MILI")) OR (p.Price <= 1 and p.UnitID IN(select UnitID from unit where Code = "BILI")))';
+		$total = $this->db->query($countsql);
+		$total = $total->row();
+		return $total->Total;
 	}
 
 	public function findJustUpdate($offset, $limit){
@@ -637,5 +634,11 @@ class Product_Model extends CI_Model
 
 		$products = $this->db->query($sql);
 		return $products->result();
+	}
+	public function countAllProduct(){
+		$countsql = 'select count(*) as Total from product p where p.Status = '.ACTIVE;
+		$total = $this->db->query($countsql);
+		$total = $total->row();
+		return $total->Total;
 	}
 }

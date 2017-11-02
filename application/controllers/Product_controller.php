@@ -86,4 +86,52 @@ class Product_controller extends CI_Controller
 		$this->load->helper('url');
 		$this->load->view('product/Product_detail', $data);
 	}
+
+	public function justUpdateItems($offset=0) {
+		$data = $this->Category_Model->getCategories();
+		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+
+		$totalProduct = $this->Product_Model->countAllProduct();
+		$justUpdateItems = $this->Product_Model->findJustUpdate($offset, MAX_PAGE_ITEM);
+		$data['products'] = $justUpdateItems;
+
+		$config = pagination();
+		$config['base_url'] = base_url('/bat-dong-san-moi-cap-nhat.html');
+		$config['total_rows'] = $totalProduct;
+		$config['per_page'] = MAX_PAGE_ITEM;
+
+		$this->pagination->initialize($config);
+		$data['pagination'] = $this->pagination->create_links();
+		$data['cities'] = $this->City_Model->getAllActive();
+		$data['topNews'] = $this->News_Model->findTopNewExceptCurrent(0, 5);
+		$data['topcityhasproduct'] = $this->City_Model->findTopCityHasProduct(20);
+		$data['topbranchhasproduct'] = $this->Brand_Model->findTopBranchHasProduct(20);
+
+		$this->load->helper('url');
+		$this->load->view('product/Product_just_update', $data);
+	}
+
+	public function underOneBillion($offset=0){
+		$data = $this->Category_Model->getCategories();
+		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+
+		$totalProduct = $this->Product_Model->countProductUnderOneBillion();
+		$underOneBillionItems = $this->Product_Model->findUnderOneBillion($offset, MAX_PAGE_ITEM);
+		$data['products'] = $underOneBillionItems;
+
+		$config = pagination();
+		$config['base_url'] = base_url('/nha-dat-duoi-mot-ty.html');
+		$config['total_rows'] = $totalProduct;
+		$config['per_page'] = MAX_PAGE_ITEM;
+
+		$this->pagination->initialize($config);
+		$data['pagination'] = $this->pagination->create_links();
+		$data['cities'] = $this->City_Model->getAllActive();
+		$data['topNews'] = $this->News_Model->findTopNewExceptCurrent(0, 5);
+		$data['topcityhasproduct'] = $this->City_Model->findTopCityHasProduct(20);
+		$data['topbranchhasproduct'] = $this->Brand_Model->findTopBranchHasProduct(20);
+
+		$this->load->helper('url');
+		$this->load->view('product/Product_under_one_billion', $data);
+	}
 }

@@ -214,7 +214,7 @@
 
 			<div class="row home-group">
 				<div class="col-md-6 col-xs-12">
-					<div class="block-header text-left"><h2 class="h2Class">NHÀ ĐẤT DƯỚI 1 TỶ</h2></div>
+					<div class="block-header text-left"><a href="<?=base_url('/nha-dat-duoi-mot-ty.html')?>"><h2 class="h2Class">NHÀ ĐẤT DƯỚI 1 TỶ</h2></a></div>
 					<?php
 					foreach ($underOneBillion as $product){
 						?>
@@ -230,9 +230,11 @@
 						<?php
 					}
 					?>
+					<div class="text-right"><a href="<?=base_url('/nha-dat-duoi-mot-ty.html')?>">&#187; Xem thêm</a></div>
+					<div class="clear-both"></div>
 				</div>
 				<div class="col-md-6 col-xs-12">
-					<div class="block-header text-left"><h2 class="h2Class">MỚI CẬP NHẬT</h2></div>
+					<div class="block-header text-left"><a href="<?=base_url('/bat-dong-san-moi-cap-nhat.html')?>"><h2 class="h2Class">MỚI CẬP NHẬT</h2></a></div>
 					<?php
 					foreach ($justUpdates as $product){
 						?>
@@ -248,6 +250,8 @@
 						<?php
 					}
 					?>
+					<div class="text-right"><a href="<?=base_url('/bat-dong-san-moi-cap-nhat.html')?>">&#187; Xem thêm</a></div>
+					<div class="clear-both"></div>
 				</div>
 			</div>
 

@@ -118,6 +118,12 @@ $route['(:any)-c(:num)'] = "Product_controller/listItem/$2";
 $route['(:any)-c(:num).html/(:num)'] = "Product_controller/listItem/$2/$3";
 // View product detail
 $route['(:any)-p(:num)'] = "Product_controller/detailItem/$2";
+// Moi cap nhat
+$route['bat-dong-san-moi-cap-nhat'] = "Product_controller/justUpdateItems";
+$route['bat-dong-san-moi-cap-nhat.html/(:num)'] = "Product_controller/justUpdateItems/$1";
+// Duoi 1 ty
+$route['nha-dat-duoi-mot-ty'] = "Product_controller/underOneBillion";
+$route['nha-dat-duoi-mot-ty.html/(:num)'] = "Product_controller/underOneBillion/$1";
 
 // Static Pages
 $route['dieu-khoan-su-dung'] = "StaticPage_controller/term";
