@@ -223,7 +223,7 @@
 							<div class="col-md-10 col-sm-11 col-xs-10 no-padding-right">
 								<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=limit_text($product->Title, 23)?></h3></a> </div>
 								<div class="product-info">
-									<div><span class="color"><?=$product->district.', '.$product->city?></span> <span class="price"><?=$product->PriceString?></span></div>
+									<div><span class="price"><?=$product->PriceString?></span> <span class="color"><?=$product->district.', '.$product->city?></span></div>
 								</div>
 							</div>
 						</div>
@@ -241,7 +241,7 @@
 							<div class="col-md-10 col-sm-11 col-xs-10 no-padding-right">
 								<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=limit_text($product->Title, 23)?></h3></a> </div>
 								<div class="product-info">
-									<div><span class="color"><?=$product->district.', '.$product->city?></span> <span class="price"><?=$product->PriceString?></span></div>
+									<div><span class="price"><?=$product->PriceString?></span> <span class="color"><?=$product->district.', '.$product->city?></span></div>
 								</div>
 							</div>
 						</div>

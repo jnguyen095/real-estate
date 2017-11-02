@@ -260,7 +260,7 @@
 							</div>
 							<div class="brief-detail col-md-8 col-xs-9">
 								<a itemprop="url" href="<?=base_url().seo_url($similarProduct->Title).'-p'.$similarProduct->ProductID?>.html"><span itemprop="name"><h3><?=$similarProduct->Title?></h3></span></a>
-								<div class="price"><span class="color"><?=is_numeric($similarProduct->Area) ? $similarProduct->Area.' m²' : $similarProduct->Area?></span> <?=$similarProduct->PriceString?></div>
+								<div class="price"><?=$similarProduct->PriceString?> <span class="color"><?=is_numeric($similarProduct->Area) ? $similarProduct->Area.' m²' : $similarProduct->Area?></span></div>
 							</div>
 							<div class="clear-both"></div>
 						</div>
@@ -290,7 +290,7 @@
 								</div>
 								<div class="brief-detail col-md-8 col-xs-9">
 									<a itemprop="url" href="<?=base_url().seo_url($similarProduct->Title).'-p'.$similarProduct->ProductID?>.html"><span itemprop="name"><h3><?=$similarProduct->Title?></h3></span></a>
-									<div class="price"><span class="color"><?=is_numeric($similarProduct->Area) ? $similarProduct->Area.' m²' : $similarProduct->Area?></span> <?=$similarProduct->PriceString?></div>
+									<div class="price"><?=$similarProduct->PriceString?> <span class="color"><?=is_numeric($similarProduct->Area) ? $similarProduct->Area.' m²' : $similarProduct->Area?></span></div>
 								</div>
 								<div class="clear-both"></div>
 							</div>

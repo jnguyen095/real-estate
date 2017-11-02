@@ -62,6 +62,7 @@ $route['dang-ky'] = "Register_controller";
 $route['dang-xuat'] = "Login_controller/logout";
 // Dang tin rao
 $route['dang-tin'] = "Post_controller";
+$route['gui-mail'] = "Post_controller/sendMail";
 // Xem truoc dang tin rao
 $route['xem-truoc-p(:num)'] = "Post_controller/preview/$1";
 // Chinh sua tin rao
