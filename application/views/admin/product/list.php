@@ -88,13 +88,14 @@
 							</tr>
 						</thead>
 						<tbody>
+
 						<?php
 						$counter = 1;
 						foreach ($products as $product) {
 							?>
 							<tr>
 								<td><?=$counter++?></td>
-								<td><a data-toggle="tooltip" title="<?=$product->Title?>" href="<?=base_url(seo_url($product->Title).'-p').$product->ProductID.'.html'?>"><?=substr_with_ellipsis($product->Title, 50)?></a></td>
+								<td><a data-toggle="tooltip" title="<?=$product->Title?>" href="<?=base_url(seo_url($product->Title).'-p').$product->ProductID.'.html'?>"><?=substr_at_middle($product->Title, 60)?></a></td>
 								<td><?=$product->Status == 1 ? '<span class="label label-success">Show</span>' : '<span class="label label-danger">Hide</span>'?></td>
 								<td>
 									<select onchange="updateVip('<?=$product->ProductID?>', this.value);">

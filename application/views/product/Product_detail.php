@@ -265,7 +265,7 @@
 								<img itemprop="image" class="width100pc" src="<?=$similarProduct->Thumb?>" alt="<?=$product->Title?>"/>
 							</div>
 							<div class="brief-detail col-md-8 col-xs-9 no-padding-right">
-								<a itemprop="url" href="<?=base_url().seo_url($similarProduct->Title).'-p'.$similarProduct->ProductID?>.html"><span itemprop="name"><h3><?=$similarProduct->Title?></h3></span></a>
+								<a itemprop="url" href="<?=base_url().seo_url($similarProduct->Title).'-p'.$similarProduct->ProductID?>.html" title="<?=$similarProduct->Title?>"><span itemprop="name"><h3><?=substr_at_middle($similarProduct->Title, 80)?></h3></span></a>
 								<div class="price"><?=$similarProduct->PriceString?> <span class="color"><?=is_numeric($similarProduct->Area) ? $similarProduct->Area.' m²' : $similarProduct->Area?></span></div>
 								<div class="color"><?=date('d/m/Y', strtotime($similarProduct->ModifiedDate))?></div>
 							</div>
@@ -296,7 +296,7 @@
 									<img itemprop="image" class="width100pc" src="<?=$similarProduct->Thumb?>" alt="<?=$product->Title?>"/>
 								</div>
 								<div class="brief-detail col-md-8 col-xs-9 no-padding-right">
-									<a itemprop="url" href="<?=base_url().seo_url($similarProduct->Title).'-p'.$similarProduct->ProductID?>.html"><span itemprop="name"><h3><?=$similarProduct->Title?></h3></span></a>
+									<a itemprop="url" href="<?=base_url().seo_url($similarProduct->Title).'-p'.$similarProduct->ProductID?>.html" title="<?=$similarProduct->Title?>"><span itemprop="name"><h3><?=substr_at_middle($similarProduct->Title,90)?></h3></span></a>
 									<div class="price"><?=$similarProduct->PriceString?> <span class="color"><?=is_numeric($similarProduct->Area) ? $similarProduct->Area.' m²' : $similarProduct->Area?></span></div>
 									<div class="color"><?=date('d/m/Y', strtotime($similarProduct->ModifiedDate))?></div>
 								</div>

@@ -158,7 +158,7 @@
 								<div class="col-md-9 col-sm-10 col-xs-9 no-padding-right">
 									<div class="row pos-relative">
 										<div class="productTop">
-											<div class="row product-title"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=limit_text($product->Title, 22)?></h3></a> </div>
+											<div class="row product-title"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=substr_at_middle($product->Title, 80)?></h3></a> </div>
 											<div class="row no-padding">
 												<div>
 													<span class="price"><?=$product->PriceString?></span>, <?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?>
@@ -192,7 +192,7 @@
 								<div class="col-md-9 col-sm-10 col-xs-9 no-padding-right">
 									<div class="row pos-relative">
 										<div class="productTop">
-											<div class="row product-title"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=limit_text($product->Title, 22)?></h3></a> </div>
+											<div class="row product-title"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=substr_at_middle($product->Title, 80)?></h3></a> </div>
 											<div class="row no-padding">
 												<div>
 													<span class="price"><?=$product->PriceString?></span>, <?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?>
@@ -230,7 +230,7 @@
 						<div itemscope itemtype="http://schema.org/Product" class="briefHome row">
 							<div class="col-md-2 col-sm-1 col-xs-2 no-padding"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="imgBrief" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
 							<div class="col-md-10 col-sm-11 col-xs-10 no-padding-right">
-								<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=limit_text($product->Title, 23)?></h3></a> </div>
+								<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=substr_at_middle($product->Title, 80)?></h3></a> </div>
 								<div class="product-info">
 									<div><span class="price"><?=$product->PriceString?></span> <span class="color"><?=$product->district.', '.$product->city?></span></div>
 								</div>
@@ -250,7 +250,7 @@
 						<div itemscope itemtype="http://schema.org/Product" class="briefHome row">
 							<div class="col-md-2 col-sm-1 col-xs-2 no-padding"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="imgBrief" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
 							<div class="col-md-10 col-sm-11 col-xs-10 no-padding-right">
-								<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=limit_text($product->Title, 23)?></h3></a> </div>
+								<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=substr_at_middle($product->Title, 80)?></h3></a> </div>
 								<div class="product-info">
 									<div><span class="price"><?=$product->PriceString?></span> <span class="color"><?=$product->district.', '.$product->city?></span></div>
 								</div>

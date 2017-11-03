@@ -81,3 +81,19 @@ if ( ! function_exists('substr_with_ellipsis')) {
 		return ($new_string === $string) ? $string : $new_string . '&hellip;';
 	}
 }
+
+if ( ! function_exists('substr_at_middle')) {
+	function substr_at_middle($input, $maxword = 10)
+	{
+		$wordLength = strlen($input);
+		$result = $input;
+		if($wordLength > $maxword){
+			$beginIndex = $maxword/2;
+			$beginIndex = strrpos(substr($input, 0, $beginIndex), ' ');
+			$endIndex = $wordLength - ($maxword - $beginIndex);
+			$endIndex = strrpos(substr($input, 0, $endIndex), ' ');
+			$result = substr_replace($input, '...', $beginIndex, $endIndex - $beginIndex);
+		}
+		return $result;
+	}
+}

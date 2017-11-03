@@ -2,10 +2,20 @@
 <html lang = "en">
 
 <head>
-	<meta charset = "utf-8">
-	<meta name="description" content="Hợp tác, tìm đối tác, góp vốn, bất động sản, nhà đất, chung cư">
-	<meta name="keywords" content="Bất động sản, bán nhà, chung cư, mua đất, bán đất, real estate">
-	<title>Hợp Tác Bất Động Sản</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta http-equiv="audience" content="general" />
+	<meta name="resource-type" content="document" />
+	<meta name="abstract" content="Gọi vốn, hợp tác bất động sản, startup, khởi nghiệp, hợp tác kinh doanh" />
+	<meta name="classification" content="Tìm đối tác, hợp tác kinh doanh, khởi nghiệp, startup, góp vốn" />
+	<meta name="area" content="Hợp tác bất động sản" />
+	<meta name="placename" content="Việt Nam" />
+	<meta name="author" content="tindatdai.com" />
+	<meta name="copyright" content="©2017 tindatdai.com" />
+	<meta name="owner" content="tindatdai.com" />
+	<meta name="distribution" content="Global" />
+	<meta name="description" content="Hợp tác, tìm đối tác, góp vốn, gọi vốn, khởi nghiệp, startup, bất động sản, nhà đất, chung cư, real estate">
+	<meta name="keywords" content="Bất, động, sản, bán, nhà, chung, cư, mua, đất, bán, đất, real, estate,khởi,nghiệp,startup,gọi,vốn">
+	<title>Hợp Tác Bất Động Sản, Tìm Đối Tác, Khởi Nghiệp</title>
 	<?php $this->load->view('common_header')?>
 	<?php $this->load->view('/common/googleadsense')?>
 	<?php $this->load->view('/common/facebook-pixel-tracking')?>
@@ -35,7 +45,7 @@
 					foreach ($cooperates as $cooperate) {
 						?>
 						<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 coo-item">
-							<div class="coo-title"><a href="<?=base_url(seo_url($cooperate->Title).'-co'.$cooperate->CooperateID.'.html')?>"><?=$cooperate->Title?></a></div>
+							<div class="coo-title"><a href="<?=base_url(seo_url($cooperate->Title).'-co'.$cooperate->CooperateID.'.html')?>" title="<?=$cooperate->Title?>"><?=substr_at_middle($cooperate->Title, 100)?></a></div>
 							<div class="coo-price-date">
 								<span class="float-left price"><?=$cooperate->PriceString?></span>
 								<span class="float-right text-right"><?=date('d/m/Y', strtotime($cooperate->ModifiedDate))?></span>

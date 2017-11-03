@@ -5,9 +5,9 @@
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta http-equiv="audience" content="general" />
 	<meta name="resource-type" content="document" />
-	<meta name="abstract" content="Thông tin nhà đất Việt Nam" />
-	<meta name="classification" content="Bất động sản Việt Nam" />
-	<meta name="area" content="Nhà đất và bất động sản" />
+	<meta name="abstract" content="Gọi vốn, hợp tác bất động sản, startup, khởi nghiệp, hợp tác kinh doanh" />
+	<meta name="classification" content="Tìm đối tác, hợp tác kinh doanh, khởi nghiệp, startup, góp vốn" />
+	<meta name="area" content="Hợp tác bất động sản" />
 	<meta name="placename" content="Việt Nam" />
 	<meta name="author" content="tindatdai.com" />
 	<meta name="copyright" content="©2017 tindatdai.com" />
