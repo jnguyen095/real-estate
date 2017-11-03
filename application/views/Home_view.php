@@ -92,9 +92,9 @@
 						foreach ($cooperates as $cooperate) {
 							?>
 							<div class="item <?=$counter++ == 0 ? 'active' : ''?>">
-								<div><img class="width100pc" src="<?=base_url($cooperate->Thumb)?>" alt="<?=$cooperate->Title?>"/></div>
+								<div><a href="<?=seo_url($cooperate->Title).'-co'.$cooperate->CooperateID.'.html'?>"><img class="width100pc" src="<?=base_url($cooperate->Thumb)?>" alt="<?=$cooperate->Title?>"/></a></div>
 								<div class="cooperate-title">
-									<?=$cooperate->Title?>
+									<a href="<?=seo_url($cooperate->Title).'-co'.$cooperate->CooperateID.'.html'?>"><?=$cooperate->Title?></a>
 								</div>
 								<div class="news-date text-right">
 									<?=date('d/m/Y', strtotime($cooperate->PostDate))?>
