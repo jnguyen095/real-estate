@@ -97,3 +97,18 @@ if ( ! function_exists('substr_at_middle')) {
 		return $result;
 	}
 }
+
+if ( ! function_exists('getCurrentURL')) {
+	function getCurrentURL()
+	{
+		$currentURL = (@$_SERVER["HTTPS"] == "on") ? "https://" : "http://";
+		$currentURL .= $_SERVER["SERVER_NAME"];
+
+		if ($_SERVER["SERVER_PORT"] != "80" && $_SERVER["SERVER_PORT"] != "443") {
+			$currentURL .= ":" . $_SERVER["SERVER_PORT"];
+		}
+
+		$currentURL .= $_SERVER["REQUEST_URI"];
+		return $currentURL;
+	}
+}

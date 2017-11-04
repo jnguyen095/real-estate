@@ -25,8 +25,8 @@ if(isset($branch)){
 				if(isset($branch->Price) && $branch->Price > 0) {
 					?>
 					<div class="row">
-						<div class="col-xs-5 text-right no-padding">Gía từ:</div>
-						<div class="col-xs-7"><?= $branch->Price ?></div>
+						<div class="col-xs-4 text-right no-padding">Gía từ:</div>
+						<div class="col-xs-8"><?= $branch->Price ?></div>
 					</div>
 					<?php
 				}
@@ -35,8 +35,8 @@ if(isset($branch)){
 				if(isset($branch->Price) && $branch->Area > 0) {
 					?>
 					<div class="row">
-						<div class="col-xs-5 text-right no-padding">Diện tích:</div>
-						<div class="col-xs-7"><?=$branch->Area?></div>
+						<div class="col-xs-4 text-right no-padding">Diện tích:</div>
+						<div class="col-xs-8"><?=$branch->Area?></div>
 					</div>
 					<?php
 				}
@@ -45,8 +45,8 @@ if(isset($branch)){
 				if(isset($branch->Price) && count($branch->Process) > 0) {
 					?>
 					<div class="row">
-						<div class="col-xs-5 text-right no-padding">Tiến độ:</div>
-						<div class="col-xs-7"><?=$branch->Process?></div>
+						<div class="col-xs-4 text-right no-padding">Tiến độ:</div>
+						<div class="col-xs-8"><?=$branch->Process?></div>
 					</div>
 					<?php
 				}
@@ -55,8 +55,8 @@ if(isset($branch)){
 				if(isset($branch->Price) && count($branch->Owner) > 0) {
 					?>
 					<div class="row">
-						<div class="col-xs-5 text-right no-padding">Chủ đầu tư:</div>
-						<div class="col-xs-7"><?=$branch->Owner?></div>
+						<div class="col-xs-4 text-right no-padding">Chủ đầu tư:</div>
+						<div class="col-xs-8"><?=$branch->Owner?></div>
 					</div>
 					<?php
 				}

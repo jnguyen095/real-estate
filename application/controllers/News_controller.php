@@ -13,6 +13,8 @@ class News_controller extends CI_Controller
 		$this->load->model('Category_Model');
 		$this->load->model('News_Model');
 		$this->load->model('City_Model');
+		$this->load->model('Brand_Model');
+		$this->load->model('Product_Model');
 		$this->load->model('SampleHouse_Model');
 		$this->load->helper("seo_url");
 		$this->load->helper("my_date");
@@ -34,6 +36,9 @@ class News_controller extends CI_Controller
 		$config['total_rows'] = $data['total'];
 		$config['per_page'] = MAX_PAGE_ITEM;
 		$data['sampleHouses'] = $this->SampleHouse_Model->findTopNewExceptCurrent(0, 5);
+		$data['justUpdatedProducts'] = $this->Product_Model->findJustUpdate(0, 10);
+		$data['topcityhasproduct'] = $this->City_Model->findTopCityHasProduct(20);
+		$data['topbranchhasproduct'] = $this->Brand_Model->findTopBranchHasProduct(20);
 
 		$this->pagination->initialize($config);
 		$data['pagination'] = $this->pagination->create_links();

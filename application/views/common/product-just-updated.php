@@ -6,27 +6,26 @@
  * Time: 10:05 AM
  */
 
-if(isset($sampleHouses)) {
+if(isset($justUpdatedProducts)) {
 	?>
 
 	<div class="inews-l brief mobile-hide">
 		<div class="inews-l-title">
-			<img class="imgIcon" src="<?=base_url('/img/nhadep1.png')?>" alt="Nhà đẹp">
-			<h3 class="title"><a href="/nha-mau-dep.html" title="Tin Bất Động Sản">Thiết kế đẹp</a></h3>
+			<h3 class="title"><a href="/nha-mau-dep.html" title="Tin Bất Động Sản">MỚI CẬP NHẬT</a></h3>
 			<div class="clear-both"></div>
 		</div>
 		<div class="inews-l-content">
 			<ul>
 				<?php
-				foreach ($sampleHouses as $sampleHouse) {
+				foreach ($justUpdatedProducts as $product) {
 					?>
 					<li>
 						<div class="row">
 							<div class="col-md-3 col-xm-12 no-padding-right">
-								<img class="width100pc" alt="<?=$sampleHouse->Title?>" src="<?=$sampleHouse->Thumb?>"/>
+								<img class="width100pc" alt="<?=$product->Title?>" src="<?=$product->Thumb?>"/>
 							</div>
 							<div class="col-md-9 col-xm-12">
-								<h3 class="margin-top-5"><a href="<?=seo_url($sampleHouse->Title).'-s'.$sampleHouse->SampleHouseID.'.html'?>"><?=$sampleHouse->Title?></a></h3>
+								<h3 class="margin-top-5"><a href="<?=seo_url($product->Title).'-p'.$product->ProductID.'.html'?>"><?=substr_at_middle($product->Title, 100)?></a></h3>
 							</div>
 						</div>
 					</li>

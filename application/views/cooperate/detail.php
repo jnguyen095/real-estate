@@ -26,6 +26,8 @@
 </head>
 
 <body>
+<div id="fb-root"></div>
+<?php $this->load->view('/FacebookID'); ?>
 <?php $this->load->view('/common/analyticstracking')?>
 <div class="container">
 <?php $this->load->view('/theme/header')?>
@@ -97,12 +99,36 @@
 					</tr>
 				</table>
 			</div>
+			<div class="col-xs-12">
+				<!-- Load Facebook SDK for JavaScript -->
+
+				<div class="fb-comment-embed"
+					 data-href="<?=base_url($_SERVER['REQUEST_URI'])?>"
+					 data-width="500"></div>
+			</div>
 		</div>
 
 
 		<div class="row">
 			<div class="col-md-6 col-xs-8">
-				<?php $this->load->view('/SocialShare') ?>
+				<div class="subscribe-panel col-md-12 no-padding">
+					<div>
+						<div class="facebookShare">
+							<!-- Your share button code -->
+							<div class="fb-share-button"
+								 data-href="<?=base_url($_SERVER['REQUEST_URI'])?>"
+								 data-size="large"
+								 data-layout="button">
+							</div>
+						</div>
+						<div class="googleShare">
+							<!-- Place this tag where you want the share button to render. -->
+							<div class="g-plus" data-action="share" data-height="32"></div>
+						</div>
+						<div class="clear-both"></div>
+					</div>
+				</div>
+				<div class="clear-both"></div>
 			</div>
 			<div class="col-md-6 col-xs-4">
 				<div class="copy-source row color-gray no-margin no-padding text-right">Ngày đăng: <?=date('d/m/Y', strtotime($cooperate->ModifiedDate))?></div>

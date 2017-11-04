@@ -25,7 +25,7 @@
 <div class="row no-margin">
 	<div class="col-md-9  no-margin no-padding">
 		<div class="search-result-panel col-md-12">Tin Tức Về Bất Động Sản</div>
-		<div class="product-panel col-md-12  no-margin no-padding">
+		<div class="product-panel col-md-7  no-margin no-padding">
 			<?php
 				if(isset($news) && count($news) > 0){
 					foreach ($news as $new) {
@@ -33,12 +33,12 @@
 						echo '<div class="row product-title"><a href="' . base_url() . seo_url($new->Title) . '-n' . $new->NewsID . '.html"><h3>' . $new->Title . '</h3></a> </div>';
 
 						echo '<div class="row product-content">';
-						echo '<div class="col-md-2 col-xs-5 no-padding"><a href="' . base_url() . seo_url($new->Title) . '-n' . $new->NewsID . '.html"><img style="max-width: 120px" src="' . $new->Thumb . '" alt="'.$new->Title.'"/></a></div>';
-						echo '<div class="col-md-10 col-xs-7">';
+						echo '<div class="col-md-4 col-xs-3 no-padding"><a href="' . base_url() . seo_url($new->Title) . '-n' . $new->NewsID . '.html"><img class="width100pc" src="' . $new->Thumb . '" alt="'.$new->Title.'"/></a></div>';
+						echo '<div class="col-md-8 col-xs-9">';
 						echo '<div class="row pos-relative">';
 
 						echo '<div class="productTop">';
-						echo '<div class="col-md-12 col-xs-12 color bold relative-time no-padding text-left">' . date('d/m/Y', strtotime($new->CreatedDate)) . '</div>';
+						echo '<div class="col-md-12 col-xs-12 green-color bold relative-time no-padding text-left">' . date('d/m/Y', strtotime($new->CreatedDate)) . '</div>';
 						echo '<div class="clear-both"></div>';
 						echo '</div>';
 
@@ -66,6 +66,12 @@
 				<?php
 			}
 			?>
+		</div>
+		<div class="product-panel col-md-5 no-padding-right no-padding-left-mobile">
+			<?php $this->load->view('/common/city-left-link')?>
+			<?php $this->load->view('/common/product-just-updated') ?>
+			<img class="width100pc margin-bottom-20" src="<?=base_url('/img/img_1.jpg')?>" alt="Hoa Trao Tay"/>
+			<?php $this->load->view('/common/branch-left-link')?>
 		</div>
 	</div>
 	<div class="col-md-3 no-margin-right no-padding-right no-padding-left-mobile">
