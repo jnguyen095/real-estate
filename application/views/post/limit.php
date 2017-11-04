@@ -85,20 +85,7 @@
 
 		</div>
 	</div>
-	<script src="<?=base_url('/js/typeahead.bundle.min.js')?>"></script>
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=<?=GOOGLE_MAP_KEY?>&callback=defaultMap"></script>
 	<?php $this->load->view('/theme/footer')?>
-	<script>
-		$(document).ready(function(){
-			<?php
-			if(isset($lat) && isset($lng)) {
-				?>
-				loadMap(<?=$lat?>, <?=$lng?>, '<?=$address?>');
-				<?php
-			}
-			?>
-		});
-	</script>
 </div>
 </body>
 </html>

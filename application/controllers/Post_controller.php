@@ -53,14 +53,16 @@ class Post_controller extends CI_Controller
 			$this->processSaveOrUpdatePost($data, 'add');
 		} else {
 			$this->session->set_userdata("uuid", uniqid());
+			$phoneNumber = null;
 			if($this->session->userdata('loginid') != null && isset($user)) {
 				$data['contact_name'] = $user->FullName;
 				$data['contact_phone'] = $user->Phone;
 				$data['txt_email'] = $user->Email;
 				$data['contact_address'] = $user->Address;
+				$phoneNumber = $user->Phone;
 			}
 			$ipAddress = $this->input->ip_address();
-			$postToday = $this->Product_Model->findPostWithPackageToday($ipAddress, 5);
+			$postToday = $this->Product_Model->findPostWithPackageToday($ipAddress, $phoneNumber, PRODUCT_STANDARD);
 			if($postToday > 4){
 				$this->load->view('post/limit', $data);
 			}else{

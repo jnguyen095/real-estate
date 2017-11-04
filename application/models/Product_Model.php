@@ -19,11 +19,19 @@ class Product_Model extends CI_Model
 		return $product;
 	}
 
-	public function findPostWithPackageToday($ipAddress, $package){
+	public function findPostWithPackageToday($ipAddress, $phoneNumber, $package){
 		// $this->output->enable_profiler(TRUE);
 		$this->db->where(array("IpAddress" => $ipAddress, "date(PostDate)" => date('Y-m-d'), "Vip" => $package));
-		$total = $this->db->count_all_results('product');
-		return $total;
+		$totalByIps = $this->db->count_all_results('product');
+		$totalByPhone = 0;
+		if($phoneNumber != null && count($phoneNumber) > 0){
+			$sql = 'select count(*) as Total from product p inner join productdetail pd on p.productid = pd.productid';
+			$sql .= " where p.vip = {$package} and date(p.postdate) = date(now()) and pd.contactphone = {$phoneNumber}";
+			$query = $this->db->query($sql);
+			$row = $query->row();
+			$totalByPhone = $row->Total;
+		}
+		return $totalByIps > $totalByPhone ? $totalByIps : $totalByPhone;
 	}
 
 	public function findByUserId($userId, $page) {

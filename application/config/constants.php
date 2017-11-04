@@ -112,3 +112,11 @@ defined('GOOGLE_ANALYTIC_ID')	OR define('GOOGLE_ANALYTIC_ID', 'UA-105379684-2');
 
 // Category Type
 defined("CATEGORY_MENU")		OR define('CATEGORY_MENU', 1); // Category will be displayed on top menu
+
+
+// Product Package
+defined("PRODUCT_STANDARD")		OR define('PRODUCT_STANDARD', 5); // Free product
+defined("PRODUCT_VIP_0")		OR define('PRODUCT_VIP_0', 0); // Highest priority
+defined("PRODUCT_VIP_1")		OR define('PRODUCT_VIP_1', 1); // 2nd priority
+defined("PRODUCT_VIP_2")		OR define('PRODUCT_VIP_2', 2); // 3th priority
+defined("PRODUCT_VIP_3")		OR define('PRODUCT_VIP_3', 3); // 4th priority
