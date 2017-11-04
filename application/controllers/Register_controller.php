@@ -33,11 +33,11 @@ class Register_controller extends CI_Controller
 		if($this->input->post('crudaction') == "register"){
 			$this->form_validation->set_message('txt_fullname', 'Họ tên không được để trống');
 
-			$this->form_validation->set_rules("txt_fullname", "Fullname", "trim|required");
-			$this->form_validation->set_rules("txt_username", "Username", "trim|required");
-			$this->form_validation->set_rules("txt_password", "Password", "trim|required");
+			$this->form_validation->set_rules("txt_fullname", "Họ tên", "trim|required");
+			$this->form_validation->set_rules("txt_username", "Tên đăng nhập", "trim|required");
+			$this->form_validation->set_rules("txt_password", "Mật khẩu", "trim|required");
 			$this->form_validation->set_rules("txt_email", "Email", "valid_email");
-			$this->form_validation->set_rules('txt_phone', 'Mobile Number ', 'regex_match[/^[0-9]{10,11}$/]'); //{10} for 10 or 11 digits number
+			$this->form_validation->set_rules('txt_phone', 'Số điện thoại', 'regex_match[/^[0-9]{10,11}$/]'); //{10} for 10 or 11 digits number
 
 			if ($this->form_validation->run() == FALSE)
 			{

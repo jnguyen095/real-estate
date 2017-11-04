@@ -39,8 +39,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $lang['form_validation_required']		= '{field} là bắt buộc nhập.';
 $lang['form_validation_isset']			= '{field} là bắt buộc nhập.';
-$lang['form_validation_valid_email']		= '{field} phải đúng định dạng của email.';
-$lang['form_validation_valid_emails']		= '{field} phải đúng định dạng của email.';
+$lang['form_validation_valid_email']		= '{field} không đúng định dạng.';
+$lang['form_validation_valid_emails']		= '{field} không đúng định dạng.';
 $lang['form_validation_valid_url']		= 'The {field} field must contain a valid URL.';
 $lang['form_validation_valid_ip']		= 'The {field} field must contain a valid IP.';
 $lang['form_validation_min_length']		= 'The {field} field must be at least {param} characters in length.';
@@ -53,7 +53,7 @@ $lang['form_validation_alpha_dash']		= 'The {field} field may only contain alpha
 $lang['form_validation_numeric']		= '{field} là bắt buộc nhập, là kiểu số.';
 $lang['form_validation_is_numeric']		= 'The {field} field must contain only numeric characters.';
 $lang['form_validation_integer']		= 'The {field} field must contain an integer.';
-$lang['form_validation_regex_match']		= 'The {field} field is not in the correct format.';
+$lang['form_validation_regex_match']		= '{field} không đúng định dạng.';
 $lang['form_validation_matches']		= 'The {field} field does not match the {param} field.';
 $lang['form_validation_differs']		= 'The {field} field must differ from the {param} field.';
 $lang['form_validation_is_unique'] 		= 'The {field} field must contain a unique value.';
