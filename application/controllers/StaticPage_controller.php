@@ -65,4 +65,16 @@ class StaticPage_controller extends CI_Controller
 		$this->StaticPage_Model->updateViewForPageWithCode('CARER');
 		$this->load->view("/static/Dynamic_view", $data);
 	}
+
+	// thanh toan
+	public function payment(){
+		$data = $this->Category_Model->getCategories();
+		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+		$data['cities'] = $this->City_Model->getAllActive();
+
+		$page = $this->StaticPage_Model->findByCode('PAYMENT');
+		$data['page'] = $page;
+		$this->StaticPage_Model->updateViewForPageWithCode('PAYMENT');
+		$this->load->view("/static/Dynamic_view", $data);
+	}
 }

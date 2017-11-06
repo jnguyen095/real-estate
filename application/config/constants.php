@@ -120,3 +120,10 @@ defined("PRODUCT_VIP_0")		OR define('PRODUCT_VIP_0', 0); // Highest priority
 defined("PRODUCT_VIP_1")		OR define('PRODUCT_VIP_1', 1); // 2nd priority
 defined("PRODUCT_VIP_2")		OR define('PRODUCT_VIP_2', 2); // 3th priority
 defined("PRODUCT_VIP_3")		OR define('PRODUCT_VIP_3', 3); // 4th priority
+
+// Packages cost
+defined("COST_STANDARD_PER_DAY")	OR define('COST_STANDARD_PER_DAY', 0); // Free product
+defined("COST_VIP_0_PER_DAY")		OR define('COST_VIP_0_PER_DAY', 10000); // Highest priority
+defined("COST_VIP_1_PER_DAY")		OR define('COST_VIP_1_PER_DAY', 5000); // 2nd priority
+defined("COST_VIP_2_PER_DAY")		OR define('COST_VIP_2_PER_DAY', 3000); // 3th priority
+defined("COST_VIP_3_PER_DAY")		OR define('COST_VIP_3_PER_DAY', 1000); // 4th priority
