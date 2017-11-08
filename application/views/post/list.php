@@ -86,7 +86,7 @@
 							?>
 							<tr>
 								<th scope="row"><?=$counter++?></th>
-								<td class="text-left"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html'?>" target="_blank" title="<?=$product->Title?>"><?=substr_with_ellipsis($product->Title, 60)?></a></td>
+								<td class="text-left"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html'?>" target="_blank" title="<?=$product->Title?>"><?=substr_at_middle($product->Title, 80)?></a></td>
 								<td><?=$product->View?></td>
 								<td>
 									<?php
