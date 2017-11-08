@@ -17,11 +17,11 @@ if(isset($topNews)) {
 		</div>
 		<div class="inews-l-content">
 			<div class="inews-l-content-hot">
-				<a href="<?=seo_url($topNews[0]->Title).'-n'.$topNews[0]->NewsID.'.html'?>">
+				<a href="<?=base_url(seo_url($topNews[0]->Title)).'-n'.$topNews[0]->NewsID.'.html'?>">
 					<img alt="<?=$topNews[0]->Title?>" src="<?=$topNews[0]->Thumb?>"/>
 				</a>
 				<h3>
-					<a href="<?=seo_url($topNews[0]->Title).'-n'.$topNews[0]->NewsID.'.html'?>"><?=$topNews[0]->Title?></a>
+					<a href="<?=base_url(seo_url($topNews[0]->Title)).'-n'.$topNews[0]->NewsID.'.html'?>"><?=$topNews[0]->Title?></a>
 				</h3>
 			</div>
 			<div class="clear"></div>
@@ -30,7 +30,7 @@ if(isset($topNews)) {
 				foreach ($topNews as $topNew) {
 					?>
 					<li>
-						<a href="<?=seo_url($topNew->Title).'-n'.$topNew->NewsID.'.html'?>"><?=$topNew->Title?></a>
+						<a href="<?=base_url(seo_url($topNew->Title)).'-n'.$topNew->NewsID.'.html'?>"><?=$topNew->Title?></a>
 					</li>
 					<?php
 				}
