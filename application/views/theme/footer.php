@@ -36,10 +36,11 @@
 			<li><a href="<?=base_url('/bao-gia-quang-cao.html')?>">Báo giá quảng cáo</a></li>
 			<li><a href="<?=base_url('/dieu-khoan-su-dung.html')?>">Điều khoản thỏa thuận</a></li>
 			<li><a href="<?=base_url('/quy-che-hoat-dong.html')?>">Quy chế hoạt động</a></li>
+			<li><a href="<?=base_url('/bao-gia-dich-vu.html')?>">Báo giá</a></li>
 			<li><a href="#">Câu hỏi thường gặp</a></li>
 			<li><a href="#">Hỗ trợ - góp ý</a></li>
 			<li><a href="<?=base_url('/tuyen-dung.html')?>">Tuyển dụng</a></li>
-			<li><a href="#">Rss</a></li>
+
 		</ul>
 	</div>
 	<div class="copyright text-center">
@@ -60,7 +61,8 @@
 		addSubscribleUrl: '<?= base_url('/ajax_controller/addSubscrible') ?>',
 		loadGeoFromAddrUrl: '<?= base_url('/ajax_controller/getGeoFromAddress') ?>',
 		loadCaptchaUrl: '<?= base_url('/ajax_controller/getCaptchaImg') ?>',
-		base_url: '<?=base_url()?>'
+		base_url: '<?=base_url()?>',
+		loadPrice4Package: '<?=base_url('/ajax_controller/loadPrice4Package')?>',
 	};
 </script>
 <script src="<?php echo base_url()?>js/mcustome.js"></script>
