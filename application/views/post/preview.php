@@ -19,7 +19,7 @@
 		<link rel="stylesheet" href="<?=base_url('/css/jquery.mCustomScrollbar.min.css')?>" />
 		<link rel="stylesheet" href="<?=base_url('/css/carousel-custom.css')?>" />
 		<script src="<?=base_url('/js/jquery.mCustomScrollbar.min.js')?>"></script>
-		<script src="<?= base_url('/js/createpost.min_v1.0.js') ?>"></script>
+		<script src="<?= base_url('/js/createpost.min_v1.1.js') ?>"></script>
 		<?php $this->load->view('/common/googleadsense')?>
 </head>
 </head>

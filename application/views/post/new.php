@@ -13,11 +13,11 @@
 		<meta charset = "utf-8">
 		<meta name="description" content="Tin Bất động sản, Rao tin miễn phí, tin bất động sản miễn phí">
 		<meta name="keywords" content="Tin Bất động sản, Rao tin miễn phí, tin bất động sản miễn phí">
-		<title>Tin Đất Đai | Đăng Tin Rao Miễn Phí | Tạo Tin Bất Động Sản</title>
-		<link rel="stylesheet" href="<?=base_url('/css/stepbar.css')?>">
+		<title>Tạo Tin Bất Động Sản | Đăng Tin Rao Miễn Phí</title>
 		<script src="<?= base_url('/ckeditor/ckeditor.js') ?>"></script>
 		<?php $this->load->view('common_header')?>
-		<script src="<?= base_url('/js/createpost.min_v1.0.js') ?>"></script>
+		<script src="<?= base_url('/js/createpost.min_v1.1.js') ?>"></script>
+		<script src="<?=base_url('/admin/js/bootstrap-datepicker.min.js')?>"></script>
 </head>
 </head>
 <body class="create-post">
@@ -35,7 +35,7 @@
 			<?php if($this->session->userdata('loginid') < 1) { ?>
 				<div class="alert alert-danger">
 					<b>Bạn vẫn có thể tiếp tục đăng tin miễn phí mà không cần đăng nhập.</b><br/>
-					Tuy nhiên, hãy <b><a href="<?=base_url('/dang-nhap.html')?>">đăng nhập</a></b> để quản lý tin rao tốt hơn: lượt xem, làm mới tin, xem phản hồi,..
+					Tuy nhiên, hãy <b><a href="<?=base_url('/dang-nhap.html')?>">đăng nhập</a></b> để đăng tin VIP và quản lý tin rao tốt hơn: lượt xem, làm mới tin, xem phản hồi,..
 				</div>
 				<?php
 			}
@@ -55,6 +55,43 @@
 					$attributes = array("enctype" => "multipart/form-data", "class" => "custom-input");
 					echo form_open("dang-tin", $attributes);
 				?>
+				<div class="block-panel">
+					<div class="block-header">LỊCH ĐĂNG TIN</div>
+					<div class="block-body">
+						<div class="form-group">
+							<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+								<label>Gói tin <span class="required">*</span></label>
+								<select id="sl_package" <?=$this->session->userdata('loginid') < 1 ? 'disabled' : '' ?> class="form-control" name="sl_package">
+									<option value="standard" <?=(isset($sl_package) && $sl_package == 'standard') ? ' selected': ''?>>Tin thường</option>
+									<option value="vip0" <?=(isset($sl_package) && $sl_package == 'vip0') ? ' selected': ''?>>Siêu Vip</option>
+									<option value="vip1" <?=(isset($sl_package) && $sl_package == 'vip1') ? ' selected': ''?>>Vip 1</option>
+									<option value="vip2" <?=(isset($sl_package) && $sl_package == 'vip2') ? ' selected': ''?>>Vip 2</option>
+									<option value="vip3" <?=(isset($sl_package) && $sl_package == 'vip3') ? ' selected': ''?>>Vip 3</option>
+								</select>
+								<span class="text-danger"><?php echo form_error('sl_package'); ?></span>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+								<label>Ngày bắt đầu <span class="required">*</span></label>
+								<input type="text" id="txt_fromdate" name="from_date" value="<?=isset($from_date) ? $from_date : ''?>" class="form-control from_date">
+								<span class="text-danger"><?php echo form_error('from_date'); ?></span>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+								<label>Ngày kết thúc <span class="required">*</span></label>
+								<input type="text" id="txt_todate" name="to_date" value="<?=isset($to_date) ? $to_date : ''?>" class="form-control to_date">
+								<span class="text-danger"><?php echo form_error('to_date'); ?></span>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+								<label>Chi phí đăng tin</label>
+								<div class="postCost">
+									<span class="price" id="packagePrice"><?=$postCost?></span> đ
+								</div>
+							</div>
+							<div class="clear-both"></div>
+						</div>
+					</div>
+				</div>
+
+
 				<div class="block-panel">
 					<div class="block-header">THÔNG TIN CƠ BẢN</div>
 					<div class="block-body">
@@ -122,7 +159,7 @@
 							<div class="no-padding-mobile col-lg-6 col-md-6 col-sm-6 col-xs-12">
 								<label>Thành phố <span class="required">*</span></label>
 								<select id="txtCity" class="form-control" name="txt_city">
-									<option value="-1">Chọn tỉnh/thành phố</option>
+									<option>Chọn tỉnh/thành phố</option>
 									<?php
 									if($cities != null && count($cities) > 0){
 										$str = '';
@@ -392,11 +429,27 @@
 			<div class="col-lg-3 col-sm-3 no-padding-mobile">
 				<div class="subscribe-panel col-md-12 no-padding">
 					<div class="well">
+						<div class="row text-center panel-title">CÁC GÓI TIN</div>
+						<div class="guidline">
+							<ul>
+								<li><span class="pullet">Siêu VIP: Hiễn thị trang chủ, có gắn ngôi sao, đứng đầu các trang tìm kiếm và các gợi ý</span></li>
+								<li><span class="pullet"><span class="vip1-color">VIP-1</span>: Hiễn thị đầu trang tìm kiếm, tiêu đề màu đỏ, sau tin siêu VIP</span></li>
+								<li><span class="pullet"><span class="vip2-color">VIP-2</span>: Tiêu đề màu cam, đứng sau tin Vip 1</span></li>
+								<li><span class="pullet"><span class="vip3-color">VIP-3</span>: Tiêu đề màu vàng, đứng sau tin Vip 2</span></li>
+								<li><span class="pullet"><span class="standard-color">Tin Thường</span>: Tiêu đề màu xanh, hiễn thị theo thứ tự giảm dần theo giờ đăng tin.</span></li>
+								<li><i class="label label-success">Các tin VIP chỉ dành cho thành viên đăng ký</i></li>
+								<li><a href="<?=base_url('/bao-gia-dich-vu.html')?>">Xem thêm thông tin thanh toán</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="subscribe-panel col-md-12 no-padding">
+					<div class="well">
 						<div class="row text-center panel-title">HƯỚNG DẪN ĐĂNG TIN</div>
 						<div class="guidline">
 							<ul>
 								<li><span class="pullet">Thông tin có (<span class="required">*</span>) là bắt buộc nhập</span></li>
-								<li><span class="pullet">Chọn loại tin rao phù hợp sẻ tiếp cận đúng người mua/bán</span></li>
 								<li><span class="pullet">Hình đại diện để hiễn thị trang danh sách và tìm kiếm</span></li>
 								<li><span class="pullet">Chọn "Upload thêm hình" để có nhiều thông tin, được hiễn thị trong trang chi tiết</span></li>
 								<li><span class="pullet">Chỉnh sửa thông tin liên hệ chỉ ảnh hưởng đến tin đăng hiện tại</span></li>
@@ -432,21 +485,48 @@
 			</div>
 
 		</div>
+
 	</div>
 	<script src="<?=base_url('/js/typeahead.bundle.min.js')?>"></script>
+	<script src="<?=base_url('/js/bootbox.min.js')?>"></script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=<?=GOOGLE_MAP_KEY?>&callback=defaultMap"></script>
 	<?php $this->load->view('/theme/footer')?>
 	<script>
 		$(document).ready(function(){
 			<?php
-			if(isset($lat) && isset($lng)) {
+			if(isset($lat) && $lat > 0 && isset($lng) && $lng > 0) {
 				?>
 				loadMap(<?=$lat?>, <?=$lng?>, '<?=$address?>');
 				<?php
 			}
 			?>
+
+			$('.from_date').datepicker({
+				format: 'dd/mm/yyyy',
+				autoclose: true,
+				startDate: '<?=$from_date?>'
+			}).on('changeDate', function (selected) {
+				var startDate = new Date(selected.date.valueOf());
+				$('.to_date').datepicker('setStartDate', startDate);
+			}).on('clearDate', function (selected) {
+				$('.to_date').datepicker('setStartDate', null);
+			});
+
+			$(".to_date").datepicker({
+				format: 'dd/mm/yyyy',
+				autoclose: true,
+				startDate: '<?=$from_date?>'
+			}).on('changeDate', function (selected) {
+				var endDate = new Date(selected.date.valueOf());
+				$('.from_date').datepicker('setEndDate', endDate);
+			}).on('clearDate', function (selected) {
+				$('.from_date').datepicker('setEndDate', null);
+			});
 		});
 	</script>
+
+	<div class="overlay" style="display: none"><img src="<?=base_url('/img/load.gif')?>"/></div>
 </div>
+
 </body>
 </html>

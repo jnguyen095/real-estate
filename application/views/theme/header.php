@@ -58,11 +58,13 @@
 							<?php
 							if($this->session->userdata('usergroup') != null && $this->session->userdata('usergroup') == 'ADMIN') {
 								?>
-								<li><a href="<?= base_url('/admin/dashboard.html') ?>">Quản trị</a></li>
+								<li><a href="<?= base_url('/admin/dashboard.html') ?>">Admin</a></li>
 								<?php
 							}
 							?>
 							<li><a href="<?= base_url('/quan-ly-tin-rao.html') ?>">Quản lý tin rao</a></li>
+							<li><a href="<?= base_url('/quan-ly-giao-dich.html') ?>">Giao dịch</a></li>
+							<li><a href="<?= base_url('/thong-tin-ca-nhan.html') ?>">Thông tin cá nhân</a></li>
 							<li><a href="<?=base_url('/dang-xuat.html')?>">Đăng xuất</a></li>
 						</ul>
 					</li>

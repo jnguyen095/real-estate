@@ -13,7 +13,7 @@
 		<meta charset = "utf-8">
 		<title>Tin Đất Đai | Quản Lý Tin Rao</title>
 		<?php $this->load->view('common_header')?>
-		<script src="<?= base_url('/js/createpost.min_v1.0.js') ?>"></script>
+		<script src="<?= base_url('/js/createpost.min_v1.1.js') ?>"></script>
 		<script src="<?=base_url('/js/bootbox.min.js')?>"></script>
 		<?php $this->load->view('/common/googleadsense')?>
 </head>
@@ -23,10 +23,7 @@
 <div class="container">
 	<?php $this->load->view('/theme/header')?>
 
-	<ul class="breadcrumb">
-		<li><a href="<?=base_url('/trang-chu.html')?>">Trang chủ</a> </li>
-		<li class="active">Quản lý tin rao</li>
-	</ul>
+	<?php $this->load->view('/common/user-menu')?>
 
 	<div class="row no-margin">
 		<div class="col-lg-12 col-sm-12">
@@ -63,6 +60,7 @@
 						<tr class="bg-success">
 							<th>#</th>
 							<th>Tiêu đề</th>
+							<th>Loại tin</th>
 							<th>Lượt xem</th>
 							<th>Ngày đăng</th>
 							<th class="mobile-hide">Ngày cập nhật <i class="glyphicon glyphicon-triangle-bottom"></i></th>
@@ -75,7 +73,7 @@
 					if(count($products) < 1) {
 						?>
 					<tr>
-						<td colspan="7">Chưa có tin rao nhà đất nào, vào đây <a href="<?=base_url('/dang-tin.html')?>" class="btn btn-info">Đăng Tin Rao Bất Động Sản</a> để tạo tin rao. </td>
+						<td colspan="8">Chưa có tin rao bất động sản nào, <a href="<?=base_url('/dang-tin.html')?>" class="btn btn-info">Đăng Tin Rao Bất Động Sản</a>. </td>
 					</tr>
 						<?php
 					}
@@ -87,6 +85,21 @@
 							<tr>
 								<th scope="row"><?=$counter++?></th>
 								<td class="text-left"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html'?>" target="_blank" title="<?=$product->Title?>"><?=substr_at_middle($product->Title, 80)?></a></td>
+								<td>
+									<?php
+									if($product->Vip == PRODUCT_STANDARD){
+										echo '<span class="standard-color">Tin thường</span>';
+									}else if($product->Vip == PRODUCT_VIP_0){
+										echo '<span class="vip0-color">Siêu vip</span>';
+									}else if($product->Vip == PRODUCT_VIP_1){
+										echo '<span class="vip1-color">Vip 1</span>';
+									}else if($product->Vip == PRODUCT_VIP_2){
+										echo '<span class="vip2-color">Vip 2</span>';
+									}else if($product->Vip == PRODUCT_VIP_3){
+										echo '<span class="vip3-color">Vip 3</span>';
+									}
+									?>
+								</td>
 								<td><?=$product->View?></td>
 								<td>
 									<?php

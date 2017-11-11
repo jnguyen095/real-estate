@@ -42,6 +42,7 @@
 				<div class="box-header">
 					<h3 class="box-title">Danh sách trang tĩnh</h3>
 				</div>
+				<div class="top-buttons"><a class="btn btn-primary" href="<?=base_url('/admin/static-page/add.html')?>">Thêm Mới</a> </div>
 				<!-- /.box-header -->
 				<div class="box-body">
 					<table id="example1" class="table table-bordered table-striped">
