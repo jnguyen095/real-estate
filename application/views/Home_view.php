@@ -23,8 +23,8 @@
 	<link rel="icon" sizes="48x48" href="<?=base_url('/img/ico.ico')?>">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v3.6.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.min_v1.9.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v3.7.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.min_v2.1.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.6.css">
 	<!-- jQuery library -->
 	<script src="<?php echo base_url()?>js/jquery.min.js"></script>
@@ -154,7 +154,7 @@
 						foreach ($nhadatban as $product){
 							?>
 							<div itemscope itemtype="http://schema.org/Product" class="row product-list">
-								<div class="col-md-3 col-sm-2 col-xs-3 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="width100pc" style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+								<div class="col-md-3 col-sm-2 col-xs-3 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="width100pc margin-left-2" style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
 								<div class="col-md-9 col-sm-10 col-xs-9 no-padding-right">
 									<div class="row pos-relative">
 										<div class="productTop">
@@ -188,7 +188,7 @@
 						foreach ($nhadatchothue as $product){
 							?>
 							<div itemscope itemtype="http://schema.org/Product" class="row product-list">
-								<div class="col-md-3 col-sm-2 col-xs-3 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="width100pc" style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
+								<div class="col-md-3 col-sm-2 col-xs-3 no-padding"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="width100pc margin-left-2" style="max-width: 120px" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
 								<div class="col-md-9 col-sm-10 col-xs-9 no-padding-right">
 									<div class="row pos-relative">
 										<div class="productTop">
