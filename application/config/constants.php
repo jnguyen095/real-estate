@@ -127,3 +127,7 @@ defined("COST_VIP_0_PER_DAY")		OR define('COST_VIP_0_PER_DAY', 10000); // Highes
 defined("COST_VIP_1_PER_DAY")		OR define('COST_VIP_1_PER_DAY', 5000); // 2nd priority
 defined("COST_VIP_2_PER_DAY")		OR define('COST_VIP_2_PER_DAY', 3000); // 3th priority
 defined("COST_VIP_3_PER_DAY")		OR define('COST_VIP_3_PER_DAY', 1000); // 4th priority
+
+// Payment Type
+defined("PAYMENT_DEPOSIT")		OR define('PAYMENT_DEPOSIT', 1);
+defined("PAYMENT_WITHDRAW")		OR define('PAYMENT_WITHDRAW', -1);
