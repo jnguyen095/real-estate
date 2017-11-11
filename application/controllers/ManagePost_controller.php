@@ -17,6 +17,7 @@ class ManagePost_controller extends CI_Controller
 		$this->load->model('Product_Model');
 		$this->load->model('Category_Model');
 		$this->load->model('City_Model');
+		$this->load->model('Transfer_Model');
 		$this->load->helper("seo_url");
 		$this->load->helper('date');
 		$this->load->helper('form');
@@ -77,6 +78,14 @@ class ManagePost_controller extends CI_Controller
 		$data['pagination'] = $this->pagination->create_links();
 
 		$this->load->view('post/list', $data);
+	}
+
+	public function transfer(){
+		$data = $this->Category_Model->getCategories();
+		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+		$userId = $this->session->userdata('loginid');
+		$data['histories'] = $this->Transfer_Model->findByUserId($userId);
+		$this->load->view('post/transfer', $data);
 	}
 
 	private function delete_directory($dirname) {

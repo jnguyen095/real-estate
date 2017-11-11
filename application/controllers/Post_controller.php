@@ -32,7 +32,36 @@ class Post_controller extends CI_Controller
 		$this->load->model('Brand_Model');
 		$this->load->model('Product_Model');
 		$this->load->model('Direction_Model');
+		$this->load->model('Transfer_Model');
 		$this->load->helper('security');
+		$this->load->library('email'); // load the library
+	}
+
+	public function sendMail()
+	{
+		// Email configuration
+		$config = Array(
+			'protocol' => 'smtp',
+			'smtp_host' => 'smtp.gmail.com.',
+			'smtp_port' => 465,
+			'smtp_user' => 'tindatdai@gmail.com', // change it to yours
+			'smtp_pass' => '12345678@Xx', // change it to yours
+			'mailtype' => 'html',
+			'charset' => 'iso-8859-1',
+			'wordwrap' => TRUE
+		);
+
+		$this->load->library('email', $config);
+		$this->email->from('tindatdai@gmail.com', "Tin Đất Đai");
+		$this->email->to("nhukhang095@gmail.com");
+		// $this->email->cc("testcc@domainname.com");
+		$this->email->subject("This is test subject line");
+		$this->email->message("Mail sent test message...");
+
+		$data['message'] = "Sorry Unable to send email...";
+		if ($this->email->send()) {
+			$data['message'] = "Mail sent...";
+		}
 	}
 
 	public function index()
@@ -50,7 +79,7 @@ class Post_controller extends CI_Controller
 		$this->allowed_img_types = $this->config->item('allowed_img_types');
 
 		if ($this->input->post('crudaction') == "add_new") {
-			$this->processSaveOrUpdatePost($data, 'add');
+			$this->processSaveNewPost($data, 'add');
 		} else {
 			$this->session->set_userdata("uuid", uniqid());
 			$phoneNumber = null;
@@ -61,6 +90,11 @@ class Post_controller extends CI_Controller
 				$data['contact_address'] = $user->Address;
 				$phoneNumber = $user->Phone;
 			}
+			$data['postCost'] = 0;
+			$data['from_date'] = date("d/m/Y");
+			$date = strtotime('+1 months');
+			$data['to_date'] = date("d/m/Y", $date);
+
 			$ipAddress = $this->input->ip_address();
 			$postToday = $this->Product_Model->findPostWithPackageToday($ipAddress, $phoneNumber, PRODUCT_STANDARD);
 			if($postToday > 4){
@@ -72,7 +106,6 @@ class Post_controller extends CI_Controller
 
 				$this->load->view('post/new', $data);
 			}
-
 		}
 	}
 
@@ -89,7 +122,7 @@ class Post_controller extends CI_Controller
 		$data['directions'] = $this->Direction_Model->findAll();
 
 		if ($this->input->post('crudaction') == "update_post") {
-			$this->processSaveOrUpdatePost($data, 'edit');
+			$this->processUpdatePost($data, 'edit');
 		}else{
 			$product = $this->Product_Model->findByIdFetchAll($productId);
 			$this->session->set_userdata("uuid", $product->code);
@@ -150,7 +183,193 @@ class Post_controller extends CI_Controller
 		$this->load->view('post/preview', $data);
 	}
 
-	private function processSaveOrUpdatePost($data, $type){
+	private function processSaveNewPost($data, $type){
+		try{
+			// get posted values
+			$data['title'] = $this->input->post("txt_title");
+			$data['categoryID'] = $this->input->post("sl_category");
+			$data['price'] = $this->input->post("txt_price");
+			$data['area'] = $this->input->post("txt_area");
+			$data['city'] = $this->input->post("txt_city");
+			$data['district'] = $this->input->post("txt_district");
+			$data['ward'] = $this->input->post("txt_ward");
+			$data['street'] = $this->input->post("txt_street");
+			$data['description'] = $this->input->post("description");
+			$data['unit'] = $this->input->post("txt_unit");
+			$data['brand'] = $this->input->post("txt_brand");
+			$data['direction'] = $this->input->post("txt_direction");
+			$data['width'] = $this->input->post("txt_width");
+			$data['long'] = $this->input->post("txt_long");
+			$data['room'] = $this->input->post("txt_room");
+			$data['floor'] = $this->input->post("txt_floor");
+			$data['toilet'] = $this->input->post("txt_toilet");
+			$data['productId'] = $this->input->post("productId");
+			$data['image'] = $this->input->post("image");
+			$data['contact_name'] = $this->input->post("txt_fullname");
+			$data['contact_phone'] = $this->input->post("txt_phone");
+			$data['contact_address'] = $this->input->post("txt_address");
+			$data['txt_email'] = $this->input->post("txt_email");
+			$data['txt_captcha'] = $this->input->post("txt_captcha");
+			$data['lng'] = $this->input->post("txt_lng");
+			$data['lat'] = $this->input->post("txt_lat");
+			$data['ipaddress'] = $this->input->ip_address();
+			$data['address'] = $this->buildAddress($data['street'], $data['ward'], $data['district'], $data['city']);
+			$data['sl_package'] = $this->input->post("sl_package");
+			$data['from_date'] = $this->input->post("from_date");
+			$data['to_date'] = $this->input->post("to_date");
+			$data['postCost'] = 0;
+
+			//set validations
+			$this->form_validation->set_rules("txt_title", "Tiêu đề", "trim|required");
+			$this->form_validation->set_rules("sl_category", "Danh mục", "required|numeric");
+			$this->form_validation->set_rules("txt_price", "Giá", "numeric");
+			$this->form_validation->set_rules("txt_area", "Diện tích", "numeric");
+			$this->form_validation->set_rules("txt_city", "Thành phố", "required|numeric");
+			$this->form_validation->set_rules("txt_district", "Quận", "required|numeric");
+			$this->form_validation->set_rules("txt_ward", "Phường", "numeric");
+			$this->form_validation->set_rules("txt_street", "Đường", "required");
+			$this->form_validation->set_rules("txt_fullname", "Người liên hệ", "required");
+			$this->form_validation->set_rules("txt_phone", "Số điện thoại", "required");
+			$this->form_validation->set_rules("sl_package", "Gói tin", "required");
+			$this->form_validation->set_rules("from_date", "Ngày bắt đầu", "callback_validateDate");
+			$this->form_validation->set_rules("to_date", "Ngày kết thúc", "required");
+			if($data['productId'] == null || $data['productId'] < 1){
+				$this->form_validation->set_rules("txt_captcha", "Mã xác thực", "callback_validateCaptcha");
+			}
+			$img = $this->uploadImage();
+			if($img != null){
+				$data['image'] = $img;
+			}
+			if($data['image'] == null){
+				$this->form_validation->set_rules("txt_userfile", "Hình đại diện", "required");
+			}
+
+			$this->form_validation->set_rules("description", "Mô tả", "required");
+			$this->form_validation->set_rules("txt_width", "Chiều rộng", "numeric");
+			$this->form_validation->set_rules("txt_long", "Chiều dài", "numeric");
+			$this->form_validation->set_rules("txt_room", "Số phòng", "numeric");
+			$this->form_validation->set_rules("txt_floor", "Số tầng", "numeric");
+			$this->form_validation->set_rules("txt_toilet", "Nhà vệ sinh", "numeric");
+
+			$cost = 0;
+			if(isset($data['from_date']) && $data['from_date'] != null && isset($data['to_date']) && $data['to_date'] != null) {
+				$dateOne = DateTime::createFromFormat("d/m/Y", $data['from_date']);
+				$dateTwo = DateTime::createFromFormat("d/m/Y", $data['to_date']);
+				$interval = $dateOne->diff($dateTwo);
+				$diffDay = $interval->days;
+				if($diffDay > 0){
+					if($data['sl_package'] == "vip0"){
+						$data['vip'] = PRODUCT_VIP_0;
+						$cost = $diffDay * COST_VIP_0_PER_DAY;
+					}else if($data['sl_package'] == "vip1"){
+						$data['vip'] = PRODUCT_VIP_1;
+						$cost = $diffDay * COST_VIP_1_PER_DAY;
+					}else if($data['sl_package'] == "vip2"){
+						$data['vip'] = PRODUCT_VIP_2;
+						$cost = $diffDay * COST_VIP_2_PER_DAY;
+					}else if($data['sl_package'] == "vip3"){
+						$data['vip'] = PRODUCT_VIP_3;
+						$cost = $diffDay * COST_VIP_3_PER_DAY;
+					}else{
+						$data['vip'] = PRODUCT_STANDARD;
+					}
+				}
+				$data['postCost'] = number_format($cost);
+			}
+
+			$validateResult = $this->form_validation->run();
+			if ($validateResult == FALSE) {
+				$this->form_validation->set_message('txt_captcha', 'Mã xác thực không khớp.');
+				//validation fails
+				if($data['city'] != null && $data['city'] > 0){
+					$data['districts'] = $this->District_Model->findByCityId($data['city']);
+				}
+				if($data['district'] != null && $data['district'] > 0){
+					$data['wards'] = $this->Ward_Model->findByDistrictId($data['district']);
+				}
+				$data['other_images'] = $this->loadOthersImages();
+				$data['error_message'] = 'Dữ liệu chưa hợp lệ, vui lòng kiểm tra các thông tin bên dưới.';
+				if($type == 'add'){
+					$captcha = $this->generatedCapcha();
+					$data['capchaImg'] = $captcha['image'];
+					$this->session->set_userdata('captcha', $captcha['word']);
+
+					$this->load->view('post/new', $data);
+				}else{
+					$this->load->view('post/edit', $data);
+				}
+			}else{
+				$data['CreatedByID'] = $this->session->userdata('loginid');
+				$data['code'] = $this->session->userdata('uuid');
+				$otherImgs = $this->input->post('otherImages');
+				$address = $this->buildAddress($data['street'], $data['ward'], $data['district'], $data['city']);
+				$data['address'] = $address;
+				$coordinators = $this->getLongitudeAndLatitudeFromAddress($address);
+				$data['longitude'] = $coordinators[0];
+				$data['latitude'] = $coordinators[1];
+				if($data['ward'] == -1){
+					$data['ward'] = null;
+				}
+
+				if($data['productId'] != null && $data['productId'] > 0){
+					$ok = $this->Product_Model->updatePost($data, $otherImgs);
+				}else{
+					$ok = $this->Product_Model->saveNewPost($data, $otherImgs);
+					if($ok){
+						// update payment history
+						if($data['vip'] < PRODUCT_STANDARD && $this->session->userdata('loginid') != null){
+							$loginId = $this->session->userdata('loginid');
+							$addData['ActorID'] = $loginId;
+							$addData['UserID'] = $loginId;
+							$addData['Type'] = PAYMENT_WITHDRAW;
+							$addData['Reason'] = "Đăng tin {$data['code']} gói " . $this->getPackageByCode($data['vip']);
+							$addData['Money'] = $cost;
+							$this->Transfer_Model->addNewRow($addData);
+						}
+					}
+				}
+
+				if($ok){
+					// Save successful
+					$this->session->unset_userdata('captcha');
+					redirect("dang-bai-thanh-cong-p".$ok);
+				}else{
+					// Save failure
+					//validation fails
+					if($data['city'] != null && $data['city'] > 0){
+						$data['districts'] = $this->District_Model->findByCityId($data['city']);
+					}
+					if($data['district'] != null && $data['district'] > 0){
+						$data['wards'] = $this->Ward_Model->findByDistrictId($data['district']);
+					}
+					$data['other_images'] = $this->loadOthersImages();
+					$data['error_message'] = 'Có lỗi xảy ra trong quá trình lưu trữ, vui lòng thử lại.';
+					if($type == 'add'){
+						$captcha = $this->generatedCapcha();
+						$data['capchaImg'] = $captcha['image'];
+						$this->session->set_userdata('captcha', $captcha['word']);
+
+						$this->load->view('post/new', $data);
+					}else{
+						$this->load->view('post/edit', $data);
+					}
+
+				}
+			}
+		}catch (Exception $e){
+			print_r($e);
+		}
+	}
+
+	private function getPackageByCode($code){
+		if($code == 0){
+			return "Siêu Vip";
+		}else if($code == 1 || $code == 2 || $code == 3){
+			return "Vip {$code}";
+		}
+	}
+
+	private function processUpdatePost($data, $type){
 		try{
 			// get posted values
 			$data['title'] = $this->input->post("txt_title");
@@ -182,7 +401,6 @@ class Post_controller extends CI_Controller
 			$data['ipaddress'] = $this->input->ip_address();
 			$data['address'] = $this->buildAddress($data['street'], $data['ward'], $data['district'], $data['city']);
 
-
 			//set validations
 			$this->form_validation->set_rules("txt_title", "Tiêu đề", "trim|required");
 			$this->form_validation->set_rules("sl_category", "Danh mục", "required|numeric");
@@ -194,9 +412,7 @@ class Post_controller extends CI_Controller
 			$this->form_validation->set_rules("txt_street", "Đường", "required");
 			$this->form_validation->set_rules("txt_fullname", "Người liên hệ", "required");
 			$this->form_validation->set_rules("txt_phone", "Số điện thoại", "required");
-			if($data['productId'] == null || $data['productId'] < 1){
-				$this->form_validation->set_rules("txt_captcha", "Mã xác thực", "callback_validateCaptcha");
-			}
+
 			$img = $this->uploadImage();
 			if($img != null){
 				$data['image'] = $img;
@@ -214,7 +430,6 @@ class Post_controller extends CI_Controller
 
 			$validateResult = $this->form_validation->run();
 			if ($validateResult == FALSE) {
-				$this->form_validation->set_message('txt_captcha', 'Mã xác thực không khớp.');
 				//validation fails
 				if($data['city'] != null && $data['city'] > 0){
 					$data['districts'] = $this->District_Model->findByCityId($data['city']);
@@ -281,6 +496,17 @@ class Post_controller extends CI_Controller
 			}
 		}catch (Exception $e){
 			print_r($e);
+		}
+	}
+
+	public function validateDate(){
+		$startDate = DateTime::createFromFormat("d/m/Y", $_POST['from_date']);
+		$endDate = DateTime::createFromFormat("d/m/Y", $_POST['to_date']);
+		if ($endDate < $startDate) {
+			$this->form_validation->set_message('validateDate', 'Ngày bắt đầu phải nhỏ hơn ngày kết thúc.');
+			return FALSE;
+		} else {
+			return TRUE;
 		}
 	}
 

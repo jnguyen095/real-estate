@@ -36,10 +36,18 @@ class Admin_controller extends CI_Controller
 		$data['userRegistByDate'] = $this->Dashboard_Model->countUserByDate(15);
 		$data['postRegistByDate'] = $this->Dashboard_Model->countPostByDate(15);
 		$data['captchaImgs'] = count(glob("img/captcha/*.jpg"));
+
+		$thumbs = ["https://file1.batdongsan.com.vn/images/no-photo.jpg", "https://dothi.net/Images/no-photo170.png"];
+		$data['thumbNoImages'] = $this->Dashboard_Model->countProductHasNoThumb($thumbs);
 		$this->load->view('admin/dashboard', $data);
 	}
 	public function updateStandardForPreviousPost(){
 		$this->Dashboard_Model->updateStandardForPreviousPost();
+		echo json_encode('success');
+	}
+	public function replaceThumbs(){
+		$thumbs = ["https://file1.batdongsan.com.vn/images/no-photo.jpg", "https://dothi.net/Images/no-photo170.png"];
+		$this->Dashboard_Model->updateProductHasNoThumb($thumbs, "/img/no_image.png");
 		echo json_encode('success');
 	}
 	public function deleteAllCaptcha(){
