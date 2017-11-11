@@ -158,6 +158,11 @@
 								<span id="captchaImgs" class="badge <?=$captchaImgs > 0 ? 'bg-red' : 'bg-green'?>"><?=$captchaImgs?></span>
 								<i class="fa fa-repeat"></i> Xóa Captcha rác
 							</a>
+
+							<a id="replaceThumbnails" data-thumb="<?=$thumbNoImages?>" class="btn btn-app">
+								<span id="thumbImgs" class="badge <?=$thumbNoImages > 0 ? 'bg-red' : 'bg-green'?>"><?=$thumbNoImages?></span>
+								<i class="fa fa-repeat"></i> Thay hình default
+							</a>
 							
 							<a id="deleteExpired" class="btn btn-app">
 								<i class="fa fa-trash"></i> Xóa Post hết hạn
@@ -489,6 +494,26 @@
 				});
 			}
 
+		});
+
+		$("#replaceThumbnails").click(function(){
+			if($(this).data('thumb') > 0){
+				bootbox.confirm("Thay hêt thumbnail?", function(r){
+					if(r){
+						jQuery.ajax({
+							type: "POST",
+							url: '<?=base_url("/admin/admin_controller/replaceThumbs")?>',
+							dataType: 'json',
+							data: {},
+							success: function(res){
+								if(res == 'success'){
+									bootbox.alert("Thay hình thành công");
+								}
+							}
+						});
+					}
+				});
+			}
 		});
 
 		var userdata = [];
