@@ -14,8 +14,52 @@ $(document).ready(function(){
 	$("#txtWard").change(function(){
 		getGeoFromAddress();
 	});
+	$("#sl_package").change(function(){
+		calculatePrice();
+	});
+	$("#txt_fromdate").change(function(){
+		calculatePrice();
+	})
+	$("#txt_todate").change(function(){
+		calculatePrice();
+	})
+
 
 });
+
+function calculatePrice(){
+	var package = $("#sl_package").val();
+	var fromDate = $("#txt_fromdate").val();
+	var toDate = $("#txt_todate").val();
+	$(".overlay").show();
+	jQuery.ajax({
+		type: "POST",
+		url: urls.loadPrice4Package,
+		dataType: 'json',
+		data: {package: package, from_date: fromDate, to_date: toDate},
+		success: function(data){
+				var status = data.status;
+				var value = data.val;
+			if(status == 'no_authenticated'){
+				$('#sl_package').val('standard');
+				bootbox.alert("Phải đăng nhập để sử dụng các gói tin VIP của Tin Đất Đai.", function(){
+				});
+			}else if(status == 'free_cost'){
+				$("#packagePrice").html(value);
+			}else if(status == 'not_enough_quota'){
+				$('#sl_package').val('standard');
+				$("#packagePrice").html(value);
+				bootbox.alert("Tài khoản không đủ để thanh toán, vui lòng nạp thêm tiền vào tài khoản.<br/><a href='"+urls.base_url+"bao-gia-dich-vu.html'>Hướng dẫn nạp tiền</a>", function(){
+				});
+			}else if(status == 'valid_payment'){
+					$("#packagePrice").html(value);
+			}else if(status == 'not_qualify_input'){
+				$("#packagePrice").html(value);
+			}
+			$(".overlay").hide();
+		}
+	});
+}
 
 function inactivePostHandler(){
 	$('.inactive-post').click(function(){
@@ -92,6 +136,7 @@ function autoComplete(){
 function loadWardByDistrictId(){
 	$("#txtDistrict").change(function(){
 		var districtId = $(this).val();
+		$(".overlay").show();
 		jQuery.ajax({
 			type: "POST",
 			url: urls.loadWardByDistrictId,
@@ -103,6 +148,7 @@ function loadWardByDistrictId(){
 					$("#txtWard").append("<option value='"+res[key].WardID+"'>"+res[key].WardName+"</option>");
 				}
 				getGeoFromAddress();
+				$(".overlay").hide();
 			}
 		});
 	});
@@ -110,6 +156,7 @@ function loadWardByDistrictId(){
 
 function loadDistrictByCityId(){
 	$("#txtCity").change(function(){
+		$(".overlay").show();
 		var cityId = $(this).val();
 		document.getElementById("txtWard").options.length = 1;
 		jQuery.ajax({
@@ -123,6 +170,7 @@ function loadDistrictByCityId(){
 					$("#txtDistrict").append("<option value='"+res[key].DistrictID+"'>"+res[key].DistrictName+"</option>");
 				}
 				getGeoFromAddress();
+				$(".overlay").hide();
 			}
 		});
 	});
