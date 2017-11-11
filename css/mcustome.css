@@ -401,6 +401,15 @@ a:focus, a{
 	padding-bottom: 20px;
 }
 
+.margin-left-2{
+	margin-left: 2px;
+}
+
+.product-thumbnail{
+	max-width: 120px;
+	max-height: 100px;
+}
+
 .news .news-sources{
 	margin-top: 20px;
 }
@@ -541,12 +550,20 @@ ul.nearme {
 	padding: 5px;
 }
 
+.postCost{
+	margin-top: 6px;
+}
+
 .border-right-gray{
 	border-right: solid 1px #ccc;
 }
 
 .brief-box {
 	padding: 0px !important;
+}
+
+.disabled.day{
+	background-color: #ebebeb;
 }
 
 .green-color{
@@ -1110,21 +1127,24 @@ span.pvip {
 .vip1:hover{
 	border: solid 1px #e41b23;
 }
-.vip1 a{
+.vip1 a, .vip1-color{
 	color:#e41b23;
 }
 .vip2:hover{
 	border: solid 1px #ff6600;
 }
-.vip2 a{
+.vip2 a, .vip2-color{
 	color: #ff6600;
 }
 
 .vip3:hover{
 	border: solid 1px #ffaf03;
 }
-.vip3 a{
+.vip3 a, .vip3-color{
 	color: #ffaf03;
+}
+.standard-color{
+	color: #337ab7;
 }
 .product-title h3 {
 	display: inline;
@@ -1404,3 +1424,40 @@ img.imgIcon {
 	display: inline-block;
 	width: 150px;
 }
+
+
+.overlay {
+	margin: auto;
+	position: absolute;
+	top: 50px; left: 50px;
+	bottom: 0px; right: 50px;
+	color: #FFF;
+	z-index:5;
+}
+.overlay img{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 10;
+}
+
+.user-menu li {
+	line-height: 43px;
+	float: left;
+	margin-right: 20px;
+}
+.user-menu li:hover {
+	background: #ebebeb;
+}
+.user-menu li img{
+	margin-right: 5px;
+}
+ul.user-menu{
+	margin-left: 20px;
+}
+.user-menu-bg{
+	background: #f5f5f5;
+	margin-bottom: 5px;
+}
+
+

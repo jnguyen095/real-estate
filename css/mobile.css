@@ -119,10 +119,15 @@
 	.product-title h3{
 		color: #555;
 	}
-
 }
 
 @media (max-width: 120px) {
+	.ipad-hide{
+		display: none !important;
+	}
+}
+
+@media (min-width: 992px){
 	.ipad-hide{
 		display: none !important;
 	}
