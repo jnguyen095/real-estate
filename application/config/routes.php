@@ -72,6 +72,8 @@ $route['dang-bai-thanh-cong-p(:num)'] = "Post_controller/done/$1";
 // Trang quan ly tin rao
 $route['quan-ly-tin-rao'] = "ManagePost_controller";
 $route['quan-ly-tin-rao.html/(:num)'] = "ManagePost_controller/index/$1";
+// Trang quan ly giao dich
+$route['quan-ly-giao-dich'] = "ManagePost_controller/transfer";
 // Trang thong tin ca nhan
 $route['thong-tin-ca-nhan'] = 'UserProfile_controller';
 
