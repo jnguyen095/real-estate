@@ -103,4 +103,14 @@ class Dashboard_Model extends CI_Model
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
+	public function countProductHasNoThumb($sources){
+		$this->db->where_in("Thumb", $sources);
+		$num_rows = $this->db->count_all_results('product');
+		return $num_rows;
+	}
+	public function updateProductHasNoThumb($sources, $default){
+		$data = array("Thumb" => $default);
+		$this->db->where_in("Thumb", $sources);
+		$this->db->update("product", $data);
+	}
 }
