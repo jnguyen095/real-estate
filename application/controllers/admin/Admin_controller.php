@@ -45,6 +45,11 @@ class Admin_controller extends CI_Controller
 		$this->Dashboard_Model->updateStandardForPreviousPost();
 		echo json_encode('success');
 	}
+	public function addRandomNumber2PostView(){
+		$max = $this->input->post('range');
+		$this->Dashboard_Model->addRandomNumber2PostView($max);
+		echo json_encode('success');
+	}
 	public function replaceThumbs(){
 		$thumbs = ["https://file1.batdongsan.com.vn/images/no-photo.jpg", "https://dothi.net/Images/no-photo170.png"];
 		$this->Dashboard_Model->updateProductHasNoThumb($thumbs, "/img/no_image.png");

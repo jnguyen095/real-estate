@@ -113,4 +113,10 @@ class Dashboard_Model extends CI_Model
 		$this->db->where_in("Thumb", $sources);
 		$this->db->update("product", $data);
 	}
+	public function addRandomNumber2PostView($max){
+		$this->output->enable_profiler(TRUE);
+		$this->db->set('View', 'View + '.ROUND(1+RAND()* $max), false);
+		$this->db->where("CreatedByID IS NOT NULL", NULL, false);
+		$this->db->update("product");
+	}
 }

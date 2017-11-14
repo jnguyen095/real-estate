@@ -163,6 +163,10 @@
 								<span id="thumbImgs" class="badge <?=$thumbNoImages > 0 ? 'bg-red' : 'bg-green'?>"><?=$thumbNoImages?></span>
 								<i class="fa fa-repeat"></i> Thay hình default
 							</a>
+
+							<a id="increasePostView" class="btn btn-app">
+								<i class="fa fa-repeat"></i> Tăng View
+							</a>
 							
 							<a id="deleteExpired" class="btn btn-app">
 								<i class="fa fa-trash"></i> Xóa Post hết hạn
@@ -514,6 +518,26 @@
 					}
 				});
 			}
+		});
+
+		$("#increasePostView").click(function(){
+			bootbox.prompt({
+				title: "Tăng View thêm trong khoảng bao nhiêu? Random từ 1 đến:",
+				inputType: 'number',
+				callback: function (result) {
+					jQuery.ajax({
+						type: "POST",
+						url: '<?=base_url("/admin/admin_controller/addRandomNumber2PostView")?>',
+						dataType: 'json',
+						data: {'range': result},
+						success: function(res){
+							if(res == 'success'){
+								bootbox.alert("Cập nhật thành công");
+							}
+						}
+					});
+				}
+			});
 		});
 
 		var userdata = [];

@@ -27,7 +27,7 @@
 
 	<ul class="breadcrumb">
 		<li><a href="<?=base_url('/trang-chu.html')?>">Trang chủ</a> </li>
-		<li class="active">Đăng tin</li>
+		<li class="active">Đăng tin  <?=ROUND(1+RAND()* 4)?></li>
 	</ul>
 
 	<div class="row no-margin">

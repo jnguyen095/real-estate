@@ -1,8 +1,14 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
+# force SSL
+RewriteCond %{HTTP_HOST}  \.
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTP_HOST} ^www\.tindatdai\.com$
+RewriteRule ^/?$ "https\:\/\/tindatdai\.com\/" [R=301,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php/$1 [L]
-RewriteCond %{HTTP_HOST} ^www\.tindatdai\.com$
-RewriteRule ^/?$ "http\:\/\/tindatdai\.com\/" [R=301,L]
+RewriteCond $1 !^(index\.php|images|robots\.txt)
+RewriteRule ^(.*)$ index.php?/$1 [L]
+
 </IfModule>
