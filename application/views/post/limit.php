@@ -37,7 +37,7 @@
 
 			<div class="col-lg-9 col-sm-9">
 				<div class="alert alert-danger">
-					<b>Mỗi ngày bạn chỉ được đăng 5 tin rao miễn phí!</b> Hãy đăng tin VIP để không giới hạn lần đăng trong ngày và tiếp cận khách hàng tốt hơn.
+					<b>Mỗi ngày bạn chỉ được đăng <?=MAX_POST_PER_DAY?> tin rao miễn phí!</b> Hãy đăng tin VIP để không giới hạn lần đăng trong ngày và tiếp cận khách hàng tốt hơn.
 				</div>
 			</div> <!-- end column 9 -->
 

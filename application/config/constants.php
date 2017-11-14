@@ -131,3 +131,6 @@ defined("COST_VIP_3_PER_DAY")		OR define('COST_VIP_3_PER_DAY', 1000); // 4th pri
 // Payment Type
 defined("PAYMENT_DEPOSIT")		OR define('PAYMENT_DEPOSIT', 1);
 defined("PAYMENT_WITHDRAW")		OR define('PAYMENT_WITHDRAW', -1);
+
+defined("MAX_POST_PER_DAY")		OR define('MAX_POST_PER_DAY', 3);
+

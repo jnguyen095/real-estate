@@ -97,7 +97,7 @@ class Post_controller extends CI_Controller
 
 			$ipAddress = $this->input->ip_address();
 			$postToday = $this->Product_Model->findPostWithPackageToday($ipAddress, $phoneNumber, PRODUCT_STANDARD);
-			if($postToday > 4){
+			if($postToday >= MAX_POST_PER_DAY){
 				$this->load->view('post/limit', $data);
 			}else{
 				$captcha = $this->generatedCapcha();
@@ -230,7 +230,7 @@ class Post_controller extends CI_Controller
 			$this->form_validation->set_rules("txt_street", "Đường", "required");
 			$this->form_validation->set_rules("txt_fullname", "Người liên hệ", "required");
 			$this->form_validation->set_rules("txt_phone", "Số điện thoại", "required");
-			$this->form_validation->set_rules("sl_package", "Gói tin", "required");
+			// $this->form_validation->set_rules("sl_package", "Gói tin", "required");
 			$this->form_validation->set_rules("from_date", "Ngày bắt đầu", "callback_validateDate");
 			$this->form_validation->set_rules("to_date", "Ngày kết thúc", "required");
 			if($data['productId'] == null || $data['productId'] < 1){
@@ -314,6 +314,22 @@ class Post_controller extends CI_Controller
 				if($data['productId'] != null && $data['productId'] > 0){
 					$ok = $this->Product_Model->updatePost($data, $otherImgs);
 				}else{
+					// validate post in day and cost
+					$postToday = $this->Product_Model->findPostWithPackageToday($data['ipaddress'], $data['contact_phone'], PRODUCT_STANDARD);
+					if($postToday >= MAX_POST_PER_DAY){
+						$this->load->view('post/limit', $data);
+						return;
+					}
+
+					if($this->session->userdata('loginid') != null && $cost > 0) {
+						$loginUser = $this->User_Model->getUserById($this->session->userdata('loginid'));
+						$availableMoney = $loginUser->AvailableMoney;
+						if($cost > $availableMoney){
+							$this->load->view('post/limit', $data);
+							return;
+						}
+					}
+
 					$ok = $this->Product_Model->saveNewPost($data, $otherImgs);
 					if($ok){
 						// update payment history
@@ -343,7 +359,7 @@ class Post_controller extends CI_Controller
 						$data['wards'] = $this->Ward_Model->findByDistrictId($data['district']);
 					}
 					$data['other_images'] = $this->loadOthersImages();
-					$data['error_message'] = 'Có lỗi xảy ra trong quá trình lưu trữ, vui lòng thử lại.';
+					$data['error_message'] = 'Có lỗi xảy ra trong quá trình lưu trữ, vui lòng kiểm tra lại dữ liệu.';
 					if($type == 'add'){
 						$captcha = $this->generatedCapcha();
 						$data['capchaImg'] = $captcha['image'];
