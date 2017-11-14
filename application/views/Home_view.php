@@ -19,7 +19,7 @@
 	<meta name="robots" content="follow" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>Tin Đất Đai | Bất Động Sản | Mua Bán Chung Cư, Nhà Đất</title>
+	<title>Bất Động Sản | Mua Bán Chung Cư, Nhà Đất</title>
 	<link rel="icon" sizes="48x48" href="<?=base_url('/img/ico.ico')?>">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
