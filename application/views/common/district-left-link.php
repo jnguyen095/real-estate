@@ -41,8 +41,19 @@ if(isset($districtWithCategory) && count($districtWithCategory) > 0){
 		<div class="block-body">
 			<ul class="city-link">
 				<?php
+				$counter = 1;
 				foreach ($topdistricthasproduct as $dt) {
-					echo '<li><a href="' . base_url() . seo_url($dt->DistrictName) . '-dt' . $dt->DistrictID . '.html">' . $dt->DistrictName . '</a></li>';
+					if ($counter < 11) {
+						echo '<li><a href="' . base_url() . seo_url($dt->DistrictName) . '-dt' . $dt->DistrictID . '.html">' . $dt->DistrictName . '</a></li>';
+					} else if ($counter == 11) {
+						echo '<div id="cdt1_left" class="collapse">';
+					} else {
+						echo '<li><a href="' . base_url() . seo_url($dt->DistrictName) . '-dt' . $dt->DistrictID . '.html">' . $dt->DistrictName . '</a></li>';
+					}
+					$counter++;
+				}
+				if($counter > 10){
+					echo '</div><a href="javascript:void(0);" class="toggleBtn toggleMore" data-status="open" data-toggle="collapse" data-target="#cdt1_left">Xem thêm</a>';
 				}
 				?>
 			</ul>

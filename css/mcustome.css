@@ -7,11 +7,15 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 body{
 	/*background-color: #e9ebee;*/
-	background: #ebebeb url('../img/background.jpg');
+	/*background: #ebebeb url('../img/background.jpg');*/
 	background-size:  100%;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	padding-top: 50px;
+}
+
+body > .container{
+	box-shadow: 0px 30px 20px rgba(0,0,0,.1);
 }
 
 .container{
@@ -1301,8 +1305,8 @@ img.imgIcon {
 #myBtn {
 	display: none; /* Hidden by default */
 	position: fixed; /* Fixed/sticky position */
-	bottom: 39px; /* Place the button at the bottom of the page */
-	right: 11px; /* Place the button 30px from the right */
+	bottom: 25px; /* Place the button at the bottom of the page */
+	right: 15px; /* Place the button 30px from the right */
 	z-index: 99; /* Make sure it does not overlap */
 	border: none; /* Remove borders */
 	outline: none; /* Remove outline */

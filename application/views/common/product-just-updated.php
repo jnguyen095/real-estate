@@ -11,7 +11,7 @@ if(isset($justUpdatedProducts)) {
 
 	<div class="inews-l brief mobile-hide">
 		<div class="inews-l-title">
-			<h3 class="title"><a href="/nha-mau-dep.html" title="Tin Bất Động Sản">MỚI CẬP NHẬT</a></h3>
+			<h3 class="title"><a href="/bat-dong-san-moi-cap-nhat.html" title="Tin Bất Động Sản">MỚI CẬP NHẬT</a></h3>
 			<div class="clear-both"></div>
 		</div>
 		<div class="inews-l-content">
