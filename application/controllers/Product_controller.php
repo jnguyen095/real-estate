@@ -59,7 +59,8 @@ class Product_controller extends CI_Controller
 		$data = $this->Category_Model->getCategories();
 		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
 		$product = $this->Product_Model->findByIdFetchAll($productId);
-		$data['category'] = $this->Category_Model->findById($product->CategoryID);
+		$category =  $this->Category_Model->findById($product->CategoryID);
+		$data['category'] = $category;
 		$data['product'] = $product;
 		$data['district'] = $this->District_Model->findById($product->DistrictID);
 		$data['cities'] = $this->City_Model->getAllActive();
@@ -84,6 +85,10 @@ class Product_controller extends CI_Controller
 		}
 		$this->Product_Model->updateViewForProductId($productId);
 		$this->load->helper('url');
+
+		//load the same parent category
+		$data['sameLevels'] = $this->Category_Model->findByParentId($category->ParentID, $category->CategoryID);
+
 		$this->load->view('product/Product_detail', $data);
 	}
 

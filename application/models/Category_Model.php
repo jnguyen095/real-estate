@@ -55,6 +55,7 @@ class Category_Model extends CI_Model
 		return $data;
 	}
 
+
 	public function findByParentId($parentId=null, $currentId=null){
 		//$this->output->enable_profiler(TRUE);
 		if($parentId != null){

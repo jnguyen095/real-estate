@@ -89,6 +89,10 @@ $route['(:any)-b(:num).html/(:num)'] = "Search_controller/searchByBranch/$2/$3";
 // Search by category and city
 $route['(:any)-cc(:num)-(:num)'] = "Search_controller/searchByCategoryAndCity/$2/$3";
 $route['(:any)-cc(:num)-(:num).html/(:num)'] = "Search_controller/searchByCategoryAndCity/$2/$3/$4";
+// Search by category and district
+$route['(:any)-c(:num)-d(:num)'] = "Search_controller/searchByCategoryAndDistrict/$2/$3";
+$route['(:any)-c(:num)-d(:num).html/(:num)'] = "Search_controller/searchByCategoryAndDistrict/$2/$3/$4";
+
 // Global search
 $route['tim-kiem'] = "Search_controller";
 $route['tim-kiem.html/(:num)'] = "Search_controller/index/$1";

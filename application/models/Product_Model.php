@@ -282,6 +282,29 @@ class Product_Model extends CI_Model
 		return $data;
 	}
 
+	public function findByCatIdAndDistrictId($catId, $districtId, $offset=0, $limit){
+		// $this->output->enable_profiler(TRUE);
+		$sql = 'select p.*, c.cityname as city, d.districtname as district from product p';
+		$sql .= ' inner join city c on p.cityid = c.cityid';
+		$sql .= ' inner join district d on p.districtid = d.districtid';
+		$sql .= ' where p.CategoryID = '.$catId.' and p.DistrictID = '.$districtId.' and p.status = '.ACTIVE;
+		$sql .= ' order by date(p.modifieddate) desc, p.vip asc';
+		$sql .= ' limit '.$offset. ','.$limit;
+
+		$countsql = 'select count(*) as total from product p';
+		$countsql .= ' inner join city c on p.cityid = c.cityid';
+		$countsql .= ' inner join district d on p.districtid = d.districtid';
+		$countsql .= ' where p.CategoryID = '.$catId.' and p.DistrictID = '.$districtId.' and p.status = '.ACTIVE;
+
+		$products = $this->db->query($sql);
+		$total = $this->db->query($countsql);
+
+		$data['products'] = $products->result();
+		$total = $total->row();
+		$data['total'] = $total->total;
+		return $data;
+	}
+
 	public function updatePost($data, $assets){
 		$productId = $data['productId'];
 

@@ -410,6 +410,16 @@ a:focus, a{
 	max-height: 100px;
 }
 
+.narrow-a{
+	background: url('../img/arrow-right.png') 0 2px no-repeat;
+	padding-left: 10px;
+}
+
+.bottom-detail-same-level{
+	margin-top: 5px !important;
+	margin-bottom: 5px !important;
+}
+
 .news .news-sources{
 	margin-top: 20px;
 }

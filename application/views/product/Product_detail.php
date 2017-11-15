@@ -253,7 +253,7 @@
 		<?php if(isset($similarProducts) && count($similarProducts) > 0){
 			?>
 			<hr/>
-			<h2 class="h2footer">&#187; Xem thêm <?=$category->CatName?> tại <?=$district->DistrictName?></h2>
+			<h2 class="h2footer"><a href="<?=base_url(seo_url($category->CatName.'-'.$district->DistrictName.'-c'.$category->CategoryID.'-d'.$district->DistrictID)).'.html'?>" style="color:#fff">&#187; Xem thêm <?=$category->CatName?> tại <?=$district->DistrictName?></a></h2>
 			<div class="row no-margin border-right-gray">
 			<?php
 			foreach ($similarProducts as $similarProduct){
@@ -311,6 +311,20 @@
 			<?php
 		}
 		?>
+
+
+		<?php if(isset($sameLevels) && count($sameLevels) > 0) {
+			echo "<div class='row no-margin bottom-detail-same-level'>";
+			foreach ($sameLevels as $sameLevel) {
+				?>
+				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 no-padding-right"><a href="<?=base_url(seo_url($sameLevel->CatName.'-'.$district->DistrictName.'-c'.$sameLevel->CategoryID.'-d'.$district->DistrictID)).'.html'?>" class="narrow-a"><?=$sameLevel->CatName . ' tại '. $district->DistrictName?></a></div>
+				<?php
+			}
+			echo "<div class='clear-both'></div>";
+			echo "</div>";
+		}
+		?>
+
 	</div>
 	<div class="col-md-3 no-margin-right no-padding-right no-padding-left-mobile">
 		<?php $this->load->view('/common/branch-left') ?>

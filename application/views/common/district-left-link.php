@@ -8,7 +8,33 @@
 
 ?>
 <?php
-if(isset($topdistricthasproduct) && count($topdistricthasproduct) > 0){
+if(isset($districtWithCategory) && count($districtWithCategory) > 0){
+	$counter = 1;
+	?>
+	<div class="block-panel">
+		<div class="block-header text-left"><?=$category->CatName?> tại quận:</div>
+		<div class="block-body">
+			<ul class="city-link">
+				<?php
+				foreach ($districtWithCategory as $dt) {
+					if($counter < 11) {
+						echo '<li><a href="' . base_url() . seo_url($category->CatName . '-' . $dt->DistrictName) . '-c' . $category->CategoryID . '-d' . $dt->DistrictID . '.html">' . $dt->DistrictName . '</a><span class="result-count">[' . $dt->Total . ']</span></li>';
+					}else if($counter == 11){
+						echo '<div id="cdt_left" class="collapse">';
+					}else{
+						echo '<li><a href="' . base_url() . seo_url($category->CatName . '-' . $dt->DistrictName) . '-c' . $category->CategoryID . '-d' . $dt->DistrictID . '.html">' . $dt->DistrictName . '</a><span class="result-count">[' . $dt->Total . ']</span></li>';
+					}
+					$counter++;
+				}
+				if($counter > 10){
+					echo '</div><a href="javascript:void(0);" class="toggleBtn toggleMore" data-status="open" data-toggle="collapse" data-target="#cdt_left">Xem thêm</a>';
+				}
+				?>
+			</ul>
+		</div>
+	</div>
+	<?php
+}else if(isset($topdistricthasproduct) && count($topdistricthasproduct) > 0){
 	?>
 	<div class="block-panel">
 		<div class="block-header text-left">NHÀ ĐẤT CÁC QUẬN</div>
