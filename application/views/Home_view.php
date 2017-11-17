@@ -43,18 +43,18 @@
 
 <div class="home-page row">
 	<div class="home-first-row">
-		<div class="col-md-3 col-sm-12">
+		<div class="col-md-3 col-sm-5 col-xs-12">
 			<?php $this->load->view('/common/Search_filter') ?>
 		</div>
-		<div class="col-md-6 mobile-hide">
+		<div class="col-md-6 col-sm-7 hidden-xs">
 			<div class="fix-height">
 				<div class="news-view">
-					<div class="col-md-5 col-sm-12 no-padding-left">
+					<div class="col-md-5 col-sm-5 no-padding-left">
 						<a href="<?=seo_url($topNews[0]->Title).'-n'.$topNews[0]->NewsID.'.html'?>">
 							<img class="width100pc" alt="<?=$topNews[0]->Title?>" src="<?=str_replace("132x100", "210x160", $topNews[0]->Thumb)?>"/>
 						</a>
 					</div>
-					<div class="col-md-7 col-sm-12 no-padding-right">
+					<div class="col-md-7 col-sm-7 no-padding-right">
 						<h2><a href="<?=seo_url($topNews[0]->Title).'-n'.$topNews[0]->NewsID.'.html'?>"><?=$topNews[0]->Title?></a></h2>
 						<div class="news-description"><?=$topNews[0]->Brief?></div>
 						<div class="news-date text-right"><?=date('d/m/Y', strtotime($topNews[0]->CreatedDate))?></div>
@@ -80,7 +80,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-3 mobile-hide">
+		<div class="col-md-3 hidden-sm hidden-xs">
 			<div id='carousel-custom' class='carousel slide hot-product fix-height-standard' data-interval="7000" data-ride='carousel'>
 				<img class="post-star" src="<?=base_url('/img/3d-yellow-star.png')?>"/>
 				<div class='carousel-outer'>
