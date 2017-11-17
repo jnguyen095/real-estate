@@ -17,6 +17,7 @@ class ProductManagement_controller extends CI_Controller
 
 		$this->load->library('session');
 		$this->load->model('Product_Model');
+		$this->load->helper('form');
 		$this->load->library('pagination');
 		$this->load->helper("bootstrap_pagination_admin");
 		$this->load->helper("seo_url");
@@ -24,6 +25,21 @@ class ProductManagement_controller extends CI_Controller
 
 	public function index()
 	{
+		$crudaction = $this->input->post("crudaction");
+		if($crudaction == DELETE){
+			$productId = $this->input->post("productId");
+			if($productId != null && $productId > 0) {
+				$product = $this->Product_Model->findById($productId);
+				$folder = $product->code;
+				$upath = 'attachments' . DIRECTORY_SEPARATOR .'u'. $product->CreatedByID . DIRECTORY_SEPARATOR. $folder;
+				// delete db first
+				$this->Product_Model->deleteById($productId);
+				if (file_exists($upath)){
+					$this->delete_directory($upath);
+				}
+				$data['message_response'] = 'Xóa tin rao thành công.';
+			}
+		}
 		$config = pagination($this);
 		$config['base_url'] = base_url('admin/product/list.html');
 		if(!$config['orderField']){
@@ -47,5 +63,23 @@ class ProductManagement_controller extends CI_Controller
 		$productId = $this->input->post('productId');
 		$this->Product_Model->pushPostUp($productId);
 		echo json_encode('success');
+	}
+
+	private function delete_directory($dirname) {
+		if (is_dir($dirname))
+			$dir_handle = opendir($dirname);
+		if (!$dir_handle)
+			return false;
+		while($file = readdir($dir_handle)) {
+			if ($file != "." && $file != "..") {
+				if (!is_dir($dirname."/".$file))
+					unlink($dirname."/".$file);
+				else
+					delete_directory($dirname.'/'.$file);
+			}
+		}
+		closedir($dir_handle);
+		rmdir($dirname);
+		return true;
 	}
 }

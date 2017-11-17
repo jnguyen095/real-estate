@@ -38,7 +38,17 @@
 		</section>
 
 		<!-- Main content -->
+		<?php
+		$attributes = array("id" => "frmPost");
+		echo form_open("admin/product/list", $attributes);
+		?>
 		<section class="content container-fluid">
+			<?php if(!empty($message_response)){
+				echo '<div class="alert alert-success">';
+				echo '<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>';
+				echo $message_response;
+				echo '</div>';
+			}?>
 			<div class="box">
 				<div class="box-header">
 					<h3 class="box-title">Danh sách bài đăng</h3>
@@ -114,8 +124,7 @@
 								<td><?=$product->IpAddress?></td>
 								<td>
 									<a onclick="pushPostUp('<?=$product->ProductID?>');" data-toggle="tooltip" title="Làm mới tin"><i class="glyphicon glyphicon-refresh"></i></a>&nbsp;|&nbsp;
-									<a data-toggle="tooltip" title="Sửa tin đăng"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;|&nbsp;
-									<a data-toggle="tooltip" title="Xóa tin đăng"><i class="glyphicon glyphicon-remove"></i></a>
+									<a class="remove-post" data-post="<?=$product->ProductID?>" data-toggle="tooltip" title="Xóa tin đăng"><i class="glyphicon glyphicon-remove"></i></a>
 								</td>
 							</tr>
 							<?php
@@ -131,6 +140,10 @@
 
 		</section>
 		<!-- /.content -->
+		<input type="hidden" id="crudaction" name="crudaction">
+		<input type="hidden" id="productId" name="productId">
+		<?php echo form_close(); ?>
+
 	</div>
 	<!-- /.content-wrapper -->
 
@@ -221,6 +234,22 @@
 			}
 		});
 	}
+
+	function deletePostHandler(){
+		$('.remove-post').click(function(){
+			var prId = $(this).data('post');
+			bootbox.confirm("Bạn đã chắc chắn xóa tin rao này chưa?", function(result){
+				if(result){
+					$("#productId").val(prId);
+					$("#crudaction").val("delete");
+					$("#frmPost").submit();
+				}
+			});
+		});
+	}
+	$(document).ready(function(){
+		deletePostHandler();
+	});
 </script>
 </body>
 </html>
