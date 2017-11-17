@@ -212,7 +212,7 @@
 										?>
 										<tr>
 											<td><?=$index++?></td>
-											<td><?=$user->FullName?></td>
+											<td><a href="<?=base_url('/admin/product/list.html?createdById='.$user->Us3rID)?>" data-toggle="tooltip" title="Xem tin rao"><?=$user->FullName?></a></td>
 											<td><?=$user->UserName?></td>
 											<td><?=date('d/m/Y H:i', strtotime($user->CreatedDate))?></td>
 											<td><?=date('d/m/Y H:i', strtotime($user->LastLogin))?></td>
@@ -263,7 +263,7 @@
 										?>
 										<tr>
 											<td><?=$index++?></td>
-											<td><?=$user->FullName?></td>
+											<td><a href="<?=base_url('/admin/product/list.html?createdById='.$user->Us3rID)?>" data-toggle="tooltip" title="Xem tin rao"><?=$user->FullName?></a></td>
 											<td><?=$user->UserName?></td>
 											<td><?=date('d/m/Y H:i', strtotime($user->CreatedDate))?></td>
 											<td><?=date('d/m/Y H:i', strtotime($user->LastLogin))?></td>
@@ -322,7 +322,7 @@
 											<td><?=$post->Title?></td>
 											<td><?=date('d/m/Y H:i', strtotime($post->PostDate))?></td>
 											<td><?=$post->View?></td>
-											<td><?=$post->FullName?></td>
+											<td><a href="<?=base_url('/admin/product/list.html?createdById='.$post->CreatedByID)?>" data-toggle="tooltip" title="Xem tin rao"><?=$post->FullName?></a></td>
 											<td><?=$post->IpAddress?></td>
 										</tr>
 										<?php
@@ -376,7 +376,7 @@
 											<td><?=date('d/m/Y H:i', strtotime($post->PostDate))?></td>
 											<td><?=date('d/m/Y H:i', strtotime($post->ModifiedDate))?></td>
 											<td><?=$post->View?></td>
-											<td><?=$post->FullName?></td>
+											<td><a href="<?=base_url('/admin/product/list.html?createdById='.$post->CreatedByID)?>" data-toggle="tooltip" title="Xem tin rao"><?=$post->FullName?></a></td>
 										</tr>
 										<?php
 									}
