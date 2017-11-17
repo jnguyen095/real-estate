@@ -18,6 +18,22 @@ class Cooperate_Model extends CI_Model
 		return $news;
 	}
 
+	public function deleteById($productId){
+		$this->db->delete('cooperate', array('CooperateID' => $productId));
+	}
+
+	public function pushPostUp($postId){
+		$this->db->set('ModifiedDate', 'NOW()', false);
+		$this->db->where('CooperateID', $postId);
+		$this->db->update('cooperate');
+	}
+
+	public function updateViewForProductIdManual($postId, $view){
+		$this->db->set('View', $view);
+		$this->db->where('CooperateID', $postId);
+		$this->db->update('cooperate');
+	}
+
 	public function findById($postId){
 		$this->db->where(array("CooperateID" => $postId));
 		$query = $this->db->get("cooperate");
@@ -119,5 +135,46 @@ class Cooperate_Model extends CI_Model
 		$this->db->insert('cooperate', $newdata);
 		$insert_id = $this->db->insert_id();
 		return $insert_id;
+	}
+
+	function findAndFilter($offset=0, $limit, $st = "", $fromDate, $toDate, $createdById, $orderField, $orderDirection){
+		// $this->output->enable_profiler(TRUE);
+		if($fromDate){
+			$ymd = DateTime::createFromFormat('d/m/Y', $fromDate)->format('Y-m-d');
+			$this->db->where('date(PostDate) >=', $ymd);
+		}
+		if($toDate){
+			$ymd = DateTime::createFromFormat('d/m/Y', $toDate)->format('Y-m-d');
+			$this->db->where('date(PostDate) <=', $ymd);
+		}
+		if($createdById != null && $createdById > -1){
+			$this->db->where('CreatedByID', $createdById);
+		}
+		//$query = $this->db->like('Title', $st)->limit($limit, $offset)->order_by($orderField, $orderDirection)->get('product');
+
+		$query = $this->db->select('p.*, u.FullName')
+			->from('cooperate p')
+			->join('us3r u', 'u.Us3rID = p.CreatedByID', 'left')
+			->like('Title', $st)
+			->limit($limit, $offset)
+			->order_by($orderField, $orderDirection)
+			->get();
+
+		$result['items'] = $query->result();
+
+		if($fromDate){
+			$ymd = DateTime::createFromFormat('d/m/Y', $fromDate)->format('Y-m-d');
+			$this->db->where('date(PostDate) >=', $ymd);
+		}
+		if($toDate){
+			$ymd = DateTime::createFromFormat('d/m/Y', $toDate)->format('Y-m-d');
+			$this->db->where('date(PostDate) <=', $ymd);
+		}
+		if($createdById != null && $createdById > -1){
+			$this->db->where('CreatedByID', $createdById);
+		}
+		$query = $this->db->like('Title', $st)->get('cooperate');
+		$result['total'] = $query->num_rows();
+		return $result;
 	}
 }
