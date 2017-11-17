@@ -21,6 +21,15 @@
 
 .txtView{
 	width: 50px;
+	padding: 0px 2px;
+}
+
+.txtView.process {
+	border: solid 1px #FF0000;
+}
+
+.txtView.success {
+	border: solid 1px #008000;
 }
 
 .admin-table th[data-action] > span {

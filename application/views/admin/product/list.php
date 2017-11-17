@@ -66,13 +66,13 @@
 							<div class="col-sm-3">
 								<label>Từ ngày</label>
 								<div class="form-group">
-									<input type="text" class="form-control datepicker" id="fromDate">
+									<input type="text" name="postFromDate" class="form-control datepicker" id="fromDate">
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<label>Đến ngày</label>
 								<div class="form-group">
-									<input type="text" class="form-control datepicker" id="toDate">
+									<input type="text" name="postToDate" class="form-control datepicker" id="toDate">
 								</div>
 							</div>
 						</div>
@@ -81,10 +81,14 @@
 						</div>
 					</div>
 
+					<div class="row no-margin">
+						<a class="btn btn-danger" id="deleteMulti">Xóa Nhiều</a>
+					</div>
+
 					<table class="admin-table table table-bordered table-striped">
 						<thead>
 							<tr>
-								<th></th>
+								<th><input name="checkAll" value="1" type="checkbox" ></th>
 								<th data-action="sort" data-title="Title" data-direction="ASC"><span>Tiêu đề</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th data-action="sort" data-title="Status" data-direction="ASC"><span>Status</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th data-action="sort" data-title="Vip" data-direction="ASC"><span>Loại tin</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
@@ -104,7 +108,7 @@
 						foreach ($products as $product) {
 							?>
 							<tr>
-								<td><?=$counter++?></td>
+								<td><input name="checkList[]" type="checkbox" value="<?=$product->ProductID?>"></td>
 								<td><a data-toggle="tooltip" title="<?=$product->Title?>" href="<?=base_url(seo_url($product->Title).'-p').$product->ProductID.'.html'?>"><?=substr_at_middle($product->Title, 60)?></a></td>
 								<td><?=$product->Status == 1 ? '<span class="label label-success">Show</span>' : '<span class="label label-danger">Hide</span>'?></td>
 								<td>
@@ -116,7 +120,18 @@
 										<option value="5" <?=$product->Vip == 5 ? ' selected' : ''?>>Thường</option>
 									</select>
 								</td>
-								<td><input class="txtView" type="text" value="<?=$product->View?>" onchange="updateView('<?=$product->ProductID?>', this.value);"/></td>
+								<td class="text-right">
+									<?php
+									if(isset($product->FullName)) {
+										?>
+										<input class="txtView" id="pr-<?=$product->ProductID?>" type="text" value="<?= $product->View?>"
+											   onchange="updateView('<?=$product->ProductID?>', this.value);"/>
+										<?php
+									}else{
+										echo $product->View;
+									}
+									?>
+								</td>
 								<td><?=date('d/m/Y H:i', strtotime($product->PostDate))?></td>
 								<td><?=date('d/m/Y', strtotime($product->ExpireDate))?></td>
 								<td id="modifiedDate_<?=$product->ProductID?>"><?=date('d/m/Y H:i', strtotime($product->ModifiedDate))?></td>
@@ -168,8 +183,8 @@
 <script type="text/javascript">
 	var sendRequest = function(){
 		var searchKey = $('#searchKey').val()||"";
-		var fromDate = $('#fromDate').val()|"";
-		var toDate = $('#toDate').val()|"";
+		var fromDate = $('#fromDate').val()||"";
+		var toDate = $('#toDate').val()||"";
 		window.location.href = '<?=base_url('admin/product/list.html')?>?query='+searchKey+ '&fromDate=' + fromDate + '&toDate=' + toDate + '&orderField='+curOrderField+'&orderDirection='+curOrderDirection;
 	}
 
@@ -195,6 +210,7 @@
 	}
 
 	function updateView(productId, val){
+		$("#pr-" + productId).addClass("process");
 		jQuery.ajax({
 			type: "POST",
 			url: '<?=base_url("/Ajax_controller/updateViewForProductIdManual")?>',
@@ -202,7 +218,8 @@
 			data: {productId: productId, view: val},
 			success: function(res){
 				if(res == 'success'){
-					bootbox.alert("Cập nhật thành công");
+					/*bootbox.alert("Cập nhật thành công");*/
+					$("#pr-" + productId).addClass("success");
 				}
 			}
 		});
@@ -235,6 +252,22 @@
 		});
 	}
 
+	function deleteMultiplePostHandler(){
+		$("#deleteMulti").click(function(){
+			var selectedItems = $("input[name='checkList[]']:checked").length;
+			if(selectedItems > 0) {
+				bootbox.confirm("Bạn đã chắc chắn xóa những tin rao này chưa?", function (result) {
+					if (result) {
+						$("#crudaction").val("delete-multiple");
+						$("#frmPost").submit();
+					}
+				});
+			}else{
+				bootbox.alert("Bạn chưa check chọn tin cần xóa!");
+			}
+		});
+	}
+
 	function deletePostHandler(){
 		$('.remove-post').click(function(){
 			var prId = $(this).data('post');
@@ -249,6 +282,7 @@
 	}
 	$(document).ready(function(){
 		deletePostHandler();
+		deleteMultiplePostHandler();
 	});
 </script>
 </body>

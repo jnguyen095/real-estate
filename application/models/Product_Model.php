@@ -597,12 +597,14 @@ class Product_Model extends CI_Model
 	}
 
 	function findAndFilter($offset=0, $limit, $st = "", $fromDate, $toDate, $createdById, $orderField, $orderDirection){
-		//$this->output->enable_profiler(TRUE);
+		// $this->output->enable_profiler(TRUE);
 		if($fromDate){
-			$this->db->where('PostDate >=', $fromDate);
+			$ymd = DateTime::createFromFormat('d/m/Y', $fromDate)->format('Y-m-d');
+			$this->db->where('date(PostDate) >=', $ymd);
 		}
 		if($toDate){
-			$this->db->where('PostDate <=', $toDate);
+			$ymd = DateTime::createFromFormat('d/m/Y', $toDate)->format('Y-m-d');
+			$this->db->where('date(PostDate) <=', $ymd);
 		}
 		if($createdById != null && $createdById > -1){
 			$this->db->where('CreatedByID', $createdById);
@@ -620,10 +622,12 @@ class Product_Model extends CI_Model
 		$result['items'] = $query->result();
 
 		if($fromDate){
-			$this->db->where('date(PostDate) >=', $fromDate);
+			$ymd = DateTime::createFromFormat('d/m/Y', $fromDate)->format('Y-m-d');
+			$this->db->where('date(PostDate) >=', $ymd);
 		}
 		if($toDate){
-			$this->db->where('date(PostDate) <=', $toDate);
+			$ymd = DateTime::createFromFormat('d/m/Y', $toDate)->format('Y-m-d');
+			$this->db->where('date(PostDate) <=', $ymd);
 		}
 		if($createdById != null && $createdById > -1){
 			$this->db->where('CreatedByID', $createdById);

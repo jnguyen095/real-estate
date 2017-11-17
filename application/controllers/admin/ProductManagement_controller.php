@@ -28,17 +28,14 @@ class ProductManagement_controller extends CI_Controller
 		$crudaction = $this->input->post("crudaction");
 		if($crudaction == DELETE){
 			$productId = $this->input->post("productId");
-			if($productId != null && $productId > 0) {
-				$product = $this->Product_Model->findById($productId);
-				$folder = $product->code;
-				$upath = 'attachments' . DIRECTORY_SEPARATOR .'u'. $product->CreatedByID . DIRECTORY_SEPARATOR. $folder;
-				// delete db first
-				$this->Product_Model->deleteById($productId);
-				if (file_exists($upath)){
-					$this->delete_directory($upath);
-				}
-				$data['message_response'] = 'Xóa tin rao thành công.';
+			$this->deleteProductById($productId);
+			$data['message_response'] = 'Xóa tin rao thành công.';
+		}else if($crudaction == "delete-multiple"){
+			$productIds = $this->input->post("checkList");
+			foreach ($productIds as $productId){
+				$this->deleteProductById($productId);
 			}
+			$data['message_response'] = 'Xóa tin rao thành công.';
 		}
 		$config = pagination($this);
 		$config['base_url'] = base_url('admin/product/list.html');
@@ -46,8 +43,8 @@ class ProductManagement_controller extends CI_Controller
 			$config['orderField'] = "ModifiedDate";
 			$config['orderDirection'] = "DESC";
 		}
-		$postFromDate = $this->input->get('postFromDate');
-		$postToDate = $this->input->get('postToDate');
+		$postFromDate = $this->input->get('fromDate');
+		$postToDate = $this->input->get('toDate');
 		$createdById = $this->input->get('createdById');
 		$results = $this->Product_Model->findAndFilter($config['page'], $config['per_page'], $config['searchFor'], $postFromDate, $postToDate, $createdById, $config['orderField'], $config['orderDirection']);
 		$data['products'] = $results['items'];
@@ -57,6 +54,19 @@ class ProductManagement_controller extends CI_Controller
 		$data['pagination'] = $this->pagination->create_links();
 
 		$this->load->view("admin/product/list", $data);
+	}
+
+	private function deleteProductById($productId){
+		if($productId != null && $productId > 0) {
+			$product = $this->Product_Model->findById($productId);
+			$folder = $product->code;
+			$upath = 'attachments' . DIRECTORY_SEPARATOR .'u'. $product->CreatedByID . DIRECTORY_SEPARATOR. $folder;
+			// delete db first
+			$this->Product_Model->deleteById($productId);
+			if (file_exists($upath)){
+				$this->delete_directory($upath);
+			}
+		}
 	}
 
 	public function pushPostUp(){

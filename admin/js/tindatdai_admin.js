@@ -7,8 +7,19 @@ $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
 	//Date picker
 	$('.datepicker').datepicker({
+		format: 'dd/mm/yyyy',
 		autoclose: true
-	})
+	});
+	$("input[name='checkAll']").change(function(){
+		if($(this).is(':checked')){
+			$("input[name='checkList[]']").prop( "checked", true );
+		} else {
+			$("input[name='checkList[]']").prop( "checked", false );
+		}
+
+	});
+
+
 });
 
 var getNamedParameter = function (key) {

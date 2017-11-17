@@ -40,7 +40,7 @@
 		<div class="product-title"><h1 itemprop="name" class="h1Class">Không tìm thấy</h1></div>
 		<div class="row no-margin">
 			<div class="alert alert-danger" role="alert">
-				<strong>Thật Tiếc!</strong> Tin bạn muốn xem đã hết hạn hoặc không còn
+				<strong>Thật Tiếc!</strong> Tin bạn muốn xem đã giao dịch thành công hoặc không còn tồn tại.
 			</div>
 		</div>
 	</div>
