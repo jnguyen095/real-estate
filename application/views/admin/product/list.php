@@ -29,7 +29,7 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 			<h1>
-				Quản lý bài đăng
+				Quản lý bài đăng <?=isset($user) ? 'của:<b> '.$user->FullName.' - '.$user->Phone.'</b>': ''?>
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>

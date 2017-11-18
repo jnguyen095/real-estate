@@ -17,6 +17,7 @@ class ProductManagement_controller extends CI_Controller
 
 		$this->load->library('session');
 		$this->load->model('Product_Model');
+		$this->load->model('User_Model');
 		$this->load->helper('form');
 		$this->load->library('pagination');
 		$this->load->helper("bootstrap_pagination_admin");
@@ -49,6 +50,10 @@ class ProductManagement_controller extends CI_Controller
 		$results = $this->Product_Model->findAndFilter($config['page'], $config['per_page'], $config['searchFor'], $postFromDate, $postToDate, $createdById, $config['orderField'], $config['orderDirection']);
 		$data['products'] = $results['items'];
 		$config['total_rows'] = $results['total'];
+		if($createdById != null){
+			$user = $this->User_Model->getUserById($createdById);
+			$data['user'] = $user;
+		}
 
 		$this->pagination->initialize($config);
 		$data['pagination'] = $this->pagination->create_links();
