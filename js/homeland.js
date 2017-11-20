@@ -13,6 +13,12 @@ $(document).ready(function(){
 	$("#myBtn").click(function(){
 		topFunction();
 	});
+	bindingChangeCaptchaEvent();
+	contactFormHandler();
+
+});
+
+function bindingChangeCaptchaEvent(){
 	$("#changeCaptcha").click(function (){
 		$("#captchaImg").html("<img src='/img/load.gif'/>");
 		jQuery.ajax({
@@ -24,7 +30,7 @@ $(document).ready(function(){
 			}
 		});
 	});
-});
+}
 
 function changeIconMoreLess($this){
 	if($this.data('status') == 'open'){
@@ -133,4 +139,49 @@ function topFunction() {
 		eventLabel: 'Go to Top'
 	});
 	$('html,body').animate({ scrollTop: 0 }, 'slow');
+}
+
+function contactFormHandler(){
+	$("#contactModalForm").click(function(){
+		$.ajax({
+			type:'POST',
+			url: urls.base_url + 'ajax_controller/contactFormHandler',
+			data: null,
+			success:function(msg) {
+				$("#modalFormDialog").html(msg);
+				var $modal = $('#modalFormDialog');
+				$modal.modal('show');
+				bindingChangeCaptchaEvent();
+
+			}
+		});
+	});
+}
+
+function submitContactForm(){
+		var dataString = $("#modalForm").serialize();
+		$.ajax({
+			type:'POST',
+			url: urls.base_url + 'ajax_controller/contactFormHandler',
+			data: dataString,
+			beforeSend: function () {
+				$('.submitBtn').attr("disabled","disabled");
+				$('.modal-body').css('opacity', '.5');
+			},
+			success:function(msg){
+				if(msg == "success"){
+					$('#fullName').val('');
+					$('#inputEmail').val('');
+					$('#inputPhone').val('');
+					$('#inputMessage').val('');
+					$('#txtCaptcha').val('');
+					$("#btnSendFeedBack").hide();
+					$('.statusMsg').html('<span style="color:green;">Gửi thành công, chúng tôi sẻ phản hồi ngay khi có thể.</p>');
+				}else{
+					$('.statusMsg').html('<span style="color:red;">'+msg+'</span>');
+				}
+				$('.submitBtn').removeAttr("disabled");
+				$('.modal-body').css('opacity', '');
+			}
+		});
 }

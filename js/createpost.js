@@ -19,13 +19,22 @@ $(document).ready(function(){
 	});
 	$("#txt_fromdate").change(function(){
 		calculatePrice();
-	})
+	});
 	$("#txt_todate").change(function(){
 		calculatePrice();
-	})
-
+	});
+	hiddenMapHandler();
 
 });
+
+function hiddenMapHandler(){
+	$("#chMapHidden").on("ifChecked", function(){
+		$("#map").show();
+	});
+	$("#chMapHidden").on("ifUnchecked", function(){
+		$("#map").hide();
+	});
+}
 
 function calculatePrice(){
 	var package = $("#sl_package").val();
