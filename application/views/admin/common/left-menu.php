@@ -44,6 +44,7 @@
 			<li><a href="<?=base_url('/admin/static-page/list.html')?>"><i class="fa fa-link"></i> <span>Trang tĩnh</span></a></li>
 			<li><a href="<?=base_url('/admin/product/list.html')?>"><i class="fa fa-link"></i> <span>Bài đăng</span></a></li>
 			<li><a href="<?=base_url('/admin/cooperate/list.html')?>"><i class="fa fa-link"></i> <span>Hợp tác</span></a></li>
+			<li><a href="<?=base_url('/admin/feedback/list.html')?>"><i class="fa fa-link"></i> <span>Phản hồi</span></a></li>
 			<li class="treeview">
 				<a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
 					<span class="pull-right-container">

@@ -72,7 +72,6 @@ class UserProfile_controller extends CI_Controller
 			$this->form_validation->set_rules("txt_oddpw", "Mật khẩu cũ", "trim|required");
 			$this->form_validation->set_rules("txt_newpw", "Mật khẩu mới", "trim|required");
 			$this->form_validation->set_rules("txt_newpwconfirm", "Xác nhận mật khẩu mới", "trim|required");
-			$this->form_validation->set_rules("txt_captcha", "Mã xác nhận", "required");
 			if ($this->form_validation->run() == FALSE)
 			{
 				$this->load->view('user/changePassword', $data);

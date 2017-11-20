@@ -15,7 +15,7 @@
 	<div class="row no-margin">
 		<div class="col-lg-12">
 			<div class="col-md-6 well login-panel no-background">
-				<div class=" col-xs-12">
+				<div class=" col-xs-12"><?=$error_response?>
 					<?php if(!empty($error_response)){
 						echo '<div class="alert alert-danger">';
 						echo $error_response;

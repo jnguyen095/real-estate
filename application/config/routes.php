@@ -76,6 +76,8 @@ $route['quan-ly-tin-rao.html/(:num)'] = "ManagePost_controller/index/$1";
 $route['quan-ly-giao-dich'] = "ManagePost_controller/transfer";
 // Trang thong tin ca nhan
 $route['thong-tin-ca-nhan'] = 'UserProfile_controller';
+// Trang doi mat khau
+$route['doi-mat-khau'] = 'UserProfile_controller/changePassword';
 
 // Search by city
 $route['(:any)-ct(:num)'] = "Search_controller/searchByCity/$2";
@@ -145,6 +147,8 @@ $route['admin/dashboard'] = "admin/Admin_controller";
 $route['admin/user/list'] = "admin/UserManagement_controller";
 $route['admin/product/list'] = "admin/ProductManagement_controller";
 $route['admin/cooperate/list'] = "admin/CooperateManagement_controller";
+$route['admin/feedback/list'] = "admin/FeedBack_controller";
+$route['admin/feedback/view-(:num)'] = "admin/FeedBack_controller/view/$1";
 $route['admin/static-page/list'] = "admin/StaticPage_controller";
 $route['admin/static-page/add'] = "admin/StaticPage_controller/add";
 $route['admin/static-page/add-(:num)'] = "admin/StaticPage_controller/add/$1";
