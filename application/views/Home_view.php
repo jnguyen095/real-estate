@@ -281,7 +281,7 @@
 	</div>
 </div>
 
-<script src="<?php echo base_url()?>js/homeland.min_v1.3.js"></script>
+<script src="<?php echo base_url()?>js/homeland.min_v1.5.js"></script>
 <?php $this->load->view('/theme/footer')?>
 </div>
 </body>
