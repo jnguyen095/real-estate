@@ -62,4 +62,39 @@ class UserProfile_controller extends CI_Controller
 		}
 		$this->load->view('user/profile', $data);
 	}
+
+	public function changePassword(){
+		$userId = $this->session->userdata('loginid');
+		$data = $this->Category_Model->getCategories();
+		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+		$crudaction = $this->input->post("crudaction");
+		if($crudaction == UPDATE){
+			$this->form_validation->set_rules("txt_oddpw", "Mật khẩu cũ", "trim|required");
+			$this->form_validation->set_rules("txt_newpw", "Mật khẩu mới", "trim|required");
+			$this->form_validation->set_rules("txt_newpwconfirm", "Xác nhận mật khẩu mới", "trim|required");
+			$this->form_validation->set_rules("txt_captcha", "Mã xác nhận", "required");
+			if ($this->form_validation->run() == FALSE)
+			{
+				$this->load->view('user/changePassword', $data);
+			}else{
+				$oddPw = $this->input->post("txt_oddpw");
+				$newPw = $this->input->post("txt_newpw");
+				$newPwConfirm = $this->input->post("txt_newpwconfirm");
+
+				$user = $this->User_Model->getUserById($userId);
+				$oddPwDb = $user->Password;
+				if($oddPwDb != md5($oddPw)){
+					$data['error_response'] = 'Mật khẩu đang sử dụng không đúng';
+				}else if($newPw != $newPwConfirm){
+					$data['error_response'] = 'Mật khẩu mới không khớp';
+				}else{
+					$this->User_Model->changePassword($userId, $newPw);
+					$data['message_response'] = 'Cập nhật thành công';
+				}
+				$this->load->view('user/changePassword', $data);
+			}
+		}else {
+			$this->load->view('user/changePassword', $data);
+		}
+	}
 }

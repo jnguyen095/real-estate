@@ -218,6 +218,7 @@ class Post_controller extends CI_Controller
 			$data['from_date'] = $this->input->post("from_date");
 			$data['to_date'] = $this->input->post("to_date");
 			$data['postCost'] = 0;
+			$data['displayMap'] = $this->input->post("displayMap");
 
 			//set validations
 			$this->form_validation->set_rules("txt_title", "Tiêu đề", "trim|required");
@@ -304,9 +305,14 @@ class Post_controller extends CI_Controller
 				$otherImgs = $this->input->post('otherImages');
 				$address = $this->buildAddress($data['street'], $data['ward'], $data['district'], $data['city']);
 				$data['address'] = $address;
-				$coordinators = $this->getLongitudeAndLatitudeFromAddress($address);
-				$data['longitude'] = $coordinators[0];
-				$data['latitude'] = $coordinators[1];
+				if($data['displayMap'] != null && $data['displayMap'] == 1) {
+					$coordinators = $this->getLongitudeAndLatitudeFromAddress($address);
+					$data['longitude'] = $coordinators[0];
+					$data['latitude'] = $coordinators[1];
+				}else{
+					$data['longitude'] = 0;
+					$data['latitude'] = 0;
+				}
 				if($data['ward'] == -1){
 					$data['ward'] = null;
 				}
@@ -416,6 +422,7 @@ class Post_controller extends CI_Controller
 			$data['lat'] = $this->input->post("txt_lat");
 			$data['ipaddress'] = $this->input->ip_address();
 			$data['address'] = $this->buildAddress($data['street'], $data['ward'], $data['district'], $data['city']);
+			$data['displayMap'] = $this->input->post("displayMap");
 
 			//set validations
 			$this->form_validation->set_rules("txt_title", "Tiêu đề", "trim|required");
@@ -470,9 +477,14 @@ class Post_controller extends CI_Controller
 				$otherImgs = $this->input->post('otherImages');
 				$address = $this->buildAddress($data['street'], $data['ward'], $data['district'], $data['city']);
 				$data['address'] = $address;
-				$coordinators = $this->getLongitudeAndLatitudeFromAddress($address);
-				$data['longitude'] = $coordinators[0];
-				$data['latitude'] = $coordinators[1];
+				if($data['displayMap'] != null && $data['displayMap'] == 1) {
+					$coordinators = $this->getLongitudeAndLatitudeFromAddress($address);
+					$data['longitude'] = $coordinators[0];
+					$data['latitude'] = $coordinators[1];
+				}else{
+					$data['longitude'] = 0;
+					$data['latitude'] = 0;
+				}
 				if($data['ward'] == -1){
 					$data['ward'] = null;
 				}

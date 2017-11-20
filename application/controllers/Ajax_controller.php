@@ -16,10 +16,13 @@ class Ajax_controller extends CI_Controller
 		$this->load->helper("seo_url");
 		$this->load->model('Street_Model');
 		$this->load->model('Product_Model');
+		$this->load->model('FeedBack_Model');
 		$this->load->model('User_Model');
 		$this->load->model('Subscrible_Model');
 		$this->load->helper('captcha');
 		$this->load->helper('date');
+		$this->load->library('form_validation');
+		$this->load->helper('form');
 	}
 
 	public function findStreetByName(){
@@ -91,6 +94,13 @@ class Ajax_controller extends CI_Controller
 	}
 
 	public function getCaptchaImg(){
+		$captcha = $this->generateCaptcha();
+		$data['capchaImg'] = $captcha['image'];
+		$this->session->set_userdata('captcha', $captcha['word']);
+		echo json_encode(array($data));
+	}
+
+	private function generateCaptcha(){
 		$config = array(
 			'img_id'		=> 'captcha',
 			'img_path'      => 'img/captcha/',
@@ -110,9 +120,7 @@ class Ajax_controller extends CI_Controller
 			)
 		);
 		$captcha = create_captcha($config);
-		$data['capchaImg'] = $captcha['image'];
-		$this->session->set_userdata('captcha', $captcha['word']);
-		echo json_encode(array($data));
+		return $captcha;
 	}
 
 	public function loadPrice4Package(){
@@ -171,4 +179,55 @@ class Ajax_controller extends CI_Controller
 			}
 		}
 	}
+
+	public function contactFormHandler(){
+		$crudaction = $this->input->post('crudaction');
+
+		if($crudaction == 'insert'){
+			$this->form_validation->set_error_delimiters('', '');
+			$this->form_validation->set_rules('fullName','Họ tên', 'required');
+			$this->form_validation->set_rules('phoneNumber','Số điện thoại', 'required');
+			$this->form_validation->set_rules('email','Email','valid_email');
+			$this->form_validation->set_rules('content','Nội dung','required');
+			$this->form_validation->set_rules("txt_captcha", "Mã xác thực", "callback_validateCaptcha");
+			if ($this->form_validation->run() == FALSE) {
+				echo validation_errors();
+			}else{
+				$fullName = $this->input->post('fullName');
+				$phoneNumber = $this->input->post('phoneNumber');
+				$email = $this->input->post('email');
+				$content = $this->input->post('content');
+				$ipAddress = $this->input->ip_address();
+				$data['fullName'] = $fullName;
+				$data['phoneNumber'] = $phoneNumber;
+				$data['email'] = $email;
+				$data['content'] = $content;
+				$data['ipAddress'] = $ipAddress;
+				$insert_id = $this->FeedBack_Model->addNewFeedBack($data);
+				if($insert_id != null && $insert_id > 0){
+					echo 'success';
+				}else{
+					echo 'failure';
+				}
+			}
+		}else{
+			$captcha = $this->generateCaptcha();
+			$data['capchaImg'] = $captcha['image'];
+			$this->session->set_userdata('captcha', $captcha['word']);
+			return $this->load->view('/contact/contact', $data);
+		}
+
+	}
+
+	public function validateCaptcha($str){
+		if($str != $this->session->userdata['captcha'])
+		{
+			$this->form_validation->set_message('validateCaptcha', '{field} không khớp');
+			return FALSE;
+		}else{
+			return TRUE;
+		}
+	}
+
+
 }
