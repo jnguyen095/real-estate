@@ -38,7 +38,7 @@
 			<li><a href="<?=base_url('/quy-che-hoat-dong.html')?>">Quy chế hoạt động</a></li>
 			<li><a href="<?=base_url('/bao-gia-dich-vu.html')?>">Báo giá</a></li>
 			<li><a href="#">Câu hỏi thường gặp</a></li>
-			<li><a href="#">Hỗ trợ - góp ý</a></li>
+			<li><a href="javascript:void(0);" id="contactModalForm">Liên hệ - góp ý</a></li>
 			<li><a href="<?=base_url('/tuyen-dung.html')?>">Tuyển dụng</a></li>
 
 		</ul>
@@ -47,6 +47,13 @@
 		<div>Copyright © 2017 tindatdai.com ® Ghi rõ nguồn "tindatdai.com" khi phát hành lại thông tin từ website này.</div>
 		<div>Hotline: 0982.647.619 | Email: tindatdai@gmail.com | <a rel="nofollow" href="skype:nhukhang095?chat" title="Chát với http://tindatdai.com"><img src="<?=base_url('/img/skype.png')?>" alt="Skype icon"/></a> </div>
 	</div>
+
+	<!-- Modal -->
+	<form id="modalForm" role="form">
+		<div class="modal fade" id="modalFormDialog" role="dialog">
+
+		</div>
+	</form>
 </div>
 <script>
 	var urls = {
@@ -62,7 +69,8 @@
 		loadGeoFromAddrUrl: '<?= base_url('/ajax_controller/getGeoFromAddress') ?>',
 		loadCaptchaUrl: '<?= base_url('/ajax_controller/getCaptchaImg') ?>',
 		base_url: '<?=base_url()?>',
-		loadPrice4Package: '<?=base_url('/ajax_controller/loadPrice4Package')?>',
+		loadPrice4Package: '<?=base_url('/ajax_controller/loadPrice4Package')?>'
+
 	};
 </script>
 <script src="<?php echo base_url()?>js/mcustome.js"></script>
