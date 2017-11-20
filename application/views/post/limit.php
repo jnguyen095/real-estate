@@ -17,7 +17,7 @@
 		<link rel="stylesheet" href="<?=base_url('/css/stepbar.css')?>">
 		<script src="<?= base_url('/ckeditor/ckeditor.js') ?>"></script>
 		<?php $this->load->view('common_header')?>
-		<script src="<?= base_url('/js/createpost.min_v1.1.js') ?>"></script>
+		<script src="<?= base_url('/js/createpost.min_v1.2.js') ?>"></script>
 </head>
 </head>
 <body class="create-post">
@@ -27,7 +27,7 @@
 
 	<ul class="breadcrumb">
 		<li><a href="<?=base_url('/trang-chu.html')?>">Trang chủ</a> </li>
-		<li class="active">Đăng tin  <?=ROUND(1+RAND()* 4)?></li>
+		<li class="active">Đăng tin</li>
 	</ul>
 
 	<div class="row no-margin">

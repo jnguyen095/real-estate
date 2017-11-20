@@ -17,7 +17,8 @@
 		<link rel="stylesheet" href="<?=base_url('/css/stepbar.css')?>">
 		<script src="<?= base_url('/ckeditor/ckeditor.js') ?>"></script>
 		<?php $this->load->view('common_header')?>
-		<script src="<?= base_url('/js/createpost.min_v1.1.js') ?>"></script>
+		<link rel="stylesheet" href="<?=base_url('/css/iCheck/all.css')?>">
+		<script src="<?= base_url('/js/createpost.min_v1.2.js') ?>"></script>
 		<?php $this->load->view('/common/googleadsense')?>
 </head>
 </head>
@@ -322,7 +323,11 @@
 				<div class="block-panel">
 					<div class="block-header">BẢN ĐỒ - VỊ TRÍ <span class="required">(Thay đổi vị trí bằng cách click lên bản đồ)</span></div>
 					<div class="block-body">
-						<div id="map"></div>
+						<div class="row margin-bottom-20">
+							<label class="radio-inline"><input id="chMapHidden" <?=(!isset($displayMap) || $displayMap == 1) ? 'checked="checked"' : ''?> type="radio" name="displayMap" value="1" class="minimal"/> Có hiện thị bản đồ</label>
+							<label class="radio-inline"><input <?=((isset($displayMap) && $displayMap == 0) || $lng == 0) ? 'checked="checked"' : ''?> type="radio" name="displayMap" value="0" class="minimal"/> Không hiện thị bản đồ</label>
+						</div>
+						<div id="map" style="display:<?=(((isset($displayMap) && $displayMap == 0) || $lng == 0) ? 'none' : 'block')?>"></div>
 					</div>
 				</div>
 
@@ -406,11 +411,23 @@
 		</div>
 	</div>
 	<script src="<?=base_url('/js/typeahead.bundle.min.js')?>"></script>
+	<script src="<?=base_url('/css/iCheck/icheck.min.js')?>"></script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=<?=GOOGLE_MAP_KEY?>&callback=defaultMap"></script>
 	<?php $this->load->view('/theme/footer')?>
 	<script>
 		$(document).ready(function(){
+			<?php
+			if(isset($lat) && $lat > 0 && isset($lng) && $lng > 0) {
+			?>
 			loadMap(<?=$lat?>, <?=$lng?>, '<?=$address?>');
+			<?php
+			}
+			?>
+
+			$('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+				checkboxClass: 'icheckbox_minimal-blue',
+				radioClass   : 'iradio_minimal-blue'
+			})
 		});
 	</script>
 </div>
