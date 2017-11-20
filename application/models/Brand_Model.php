@@ -56,4 +56,20 @@ class Brand_Model extends CI_Model
 		return $query->result();
 	}
 
+	function findAndFilter($offset=0, $limit, $st = "", $orderField, $orderDirection){
+		$query = $this->db->select('b.*')
+			->from('brand b')
+			->like('BrandName', $st)
+			->limit($limit, $offset)
+			->order_by($orderField, $orderDirection)
+			->get();
+
+		$result['items'] = $query->result();
+
+
+		$query = $this->db->like('BrandName', $st)->get('brand');
+		$result['total'] = $query->num_rows();
+		return $result;
+	}
+
 }

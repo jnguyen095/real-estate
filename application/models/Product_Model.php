@@ -343,9 +343,9 @@ class Product_Model extends CI_Model
 			'ContactAddress' => $data['contact_address'],
 			'ContactEmail' => $data['txt_email'],
 			'ContactName' => $data['contact_name'],
-			'Source' => null,
+			'Source' => null/*,
 			'Longitude' => $data['lng'],
-			'Latitude' => $data['lat']
+			'Latitude' => $data['lat']*/
 		);
 
 		if($data['brand'] != null && $data['brand'] > 0){
@@ -407,9 +407,9 @@ class Product_Model extends CI_Model
 			'ContactAddress' => $data['contact_address'],
 			'ContactEmail' => $data['txt_email'],
 			'ContactName' => $data['contact_name'],
-			'Source' => null,
+			'Source' => null/*,
 			'Longitude' => $data['lng'],
-			'Latitude' => $data['lat']
+			'Latitude' => $data['lat']*/
 		);
 		if($data['brand'] != null && $data['brand'] > 0){
 			$newdata['BrandID'] = $data['brand'];

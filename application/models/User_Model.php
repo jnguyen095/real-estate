@@ -82,4 +82,14 @@ class User_Model extends CI_Model
 		$result['total'] = $query->num_rows();
 		return $result;
 	}
+
+	function changePassword($userId, $newPw){
+		$newdata = array(
+			'Password' => md5($newPw),
+			'UpdatedDate' => date('Y-m-d H:i:s')
+		);
+		$this->db->where('Us3rID', $userId);
+		$this->db->update('us3r', $newdata);
+	}
+
 }
