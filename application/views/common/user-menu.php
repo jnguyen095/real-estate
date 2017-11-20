@@ -11,6 +11,7 @@
 		<li><a href="<?=base_url('/quan-ly-tin-rao.html')?>"><img src="<?=base_url('/img/icons/bullet-list.png')?>"><span class="mobile-hide"> Tin Rao</span></a> </li>
 		<li><a href="<?=base_url('/quan-ly-giao-dich.html')?>"><img src="<?=base_url('/img/icons/coin-icon.png')?>"><span class="mobile-hide"> Giao Dịch</span></a> </li>
 		<li><a href="<?=base_url('/thong-tin-ca-nhan.html')?>"><img src="<?=base_url('/img/icons/avatar.png')?>"><span class="mobile-hide"> Thông Tin Cá Nhân</span></a> </li>
+		<li><a href="<?=base_url('/doi-mat-khau.html')?>"><img src="<?=base_url('/img/icons/avatar.png')?>"><span class="mobile-hide"> Đổi Mật Khẩu</span></a> </li>
 		<li><a href="<?=base_url('/dang-xuat.html')?>"><img src="<?=base_url('/img/icons/logout.png')?>"><span class="mobile-hide"> Đăng Xuất</span></a> </li>
 	</ul>
 </div>
