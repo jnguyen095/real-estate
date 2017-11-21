@@ -98,7 +98,15 @@ class Post_controller extends CI_Controller
 			$ipAddress = $this->input->ip_address();
 			$postToday = $this->Product_Model->findPostWithPackageToday($ipAddress, $phoneNumber, PRODUCT_STANDARD);
 			if($postToday >= MAX_POST_PER_DAY){
-				$this->load->view('post/limit', $data);
+				if(isset($user) && $user->AvailableMoney > 0) {
+					$captcha = $this->generatedCapcha();
+					$data['capchaImg'] = $captcha['image'];
+					$this->session->set_userdata('captcha', $captcha['word']);
+
+					$this->load->view('post/new', $data);
+				}else{
+					$this->load->view('post/limit', $data);
+				}
 			}else{
 				$captcha = $this->generatedCapcha();
 				$data['capchaImg'] = $captcha['image'];
@@ -322,10 +330,12 @@ class Post_controller extends CI_Controller
 					$ok = $this->Product_Model->updatePost($data, $otherImgs);
 				}else{
 					// validate post per day and cost
-					$postToday = $this->Product_Model->findPostWithPackageToday($data['ipaddress'], $data['contact_phone'], PRODUCT_STANDARD);
-					if($postToday >= MAX_POST_PER_DAY){
-						$this->load->view('post/limit', $data);
-						return;
+					if($data['vip'] == PRODUCT_STANDARD) {
+						$postToday = $this->Product_Model->findPostWithPackageToday($data['ipaddress'], $data['contact_phone'], PRODUCT_STANDARD);
+						if($postToday >= MAX_POST_PER_DAY) {
+							$this->load->view('post/limit', $data);
+							return;
+						}
 					}
 
 					if($this->session->userdata('loginid') != null && $cost > 0) {
