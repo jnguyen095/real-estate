@@ -98,7 +98,7 @@
 						</tr>
 						<tr>
 							<td colspan="3" class="text-right">Số dư khả dụng:</td>
-							<td class="text-right"><strong class="label label-success"><?=number_format($sumDeposited - $sumSpent)?></strong></td>
+							<td class="text-right"><strong class="label label-success table-icons"><?=number_format($sumDeposited - $sumSpent)?></strong></td>
 							<td colspan="2"></td>
 						</tr>
 						<?php
