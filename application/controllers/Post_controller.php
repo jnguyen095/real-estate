@@ -253,6 +253,7 @@ class Post_controller extends CI_Controller
 			$this->form_validation->set_rules("txt_toilet", "Nhà vệ sinh", "numeric");
 
 			$cost = 0;
+			$diffDay = 0;
 			if(isset($data['from_date']) && $data['from_date'] != null && isset($data['to_date']) && $data['to_date'] != null) {
 				$dateOne = DateTime::createFromFormat("d/m/Y", $data['from_date']);
 				$dateTwo = DateTime::createFromFormat("d/m/Y", $data['to_date']);
@@ -344,7 +345,7 @@ class Post_controller extends CI_Controller
 							$addData['ActorID'] = $loginId;
 							$addData['UserID'] = $loginId;
 							$addData['Type'] = PAYMENT_WITHDRAW;
-							$addData['Reason'] = "Đăng tin {$data['code']} gói " . $this->getPackageByCode($data['vip']);
+							$addData['Reason'] = "Đăng tin {$data['code']} gói " . $this->getPackageByCode($data['vip']). ' - '.$diffDay. ' ngày.';
 							$addData['Money'] = $cost;
 							$this->Transfer_Model->addNewRow($addData);
 						}

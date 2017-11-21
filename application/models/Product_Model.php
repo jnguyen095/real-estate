@@ -370,6 +370,9 @@ class Product_Model extends CI_Model
 		$query = $this->db->get("unit");
 		$unit = $query->row();
 
+		$dateOne = DateTime::createFromFormat("d/m/Y", $data['from_date']);
+		$dateTwo = DateTime::createFromFormat("d/m/Y", $data['to_date']);
+
 		$newdata = array(
 			'code' => $data['code'],
 			'Title' => $data['title'],
@@ -378,9 +381,9 @@ class Product_Model extends CI_Model
 			'PriceString' => ($data['price'] != null && $data['price'] > 0) ? $data['price'].' '.$unit->Title : "Thỏa thuận",
 			'Area' => ($data['area'] != null && $data['area'] > 0) ? $data['area'].' m²' : "KXĐ",
 			'Thumb' => $data['image'],
-			'PostDate' => date('Y-m-d H:i:s'),
+			'PostDate' => $dateOne->format('Y-m-d H:i:s'), //date('Y-m-d H:i:s'),
 			'ModifiedDate' => date('Y-m-d H:i:s'),
-			'ExpireDate' => date('Y-m-d', strtotime('+1 month')),
+			'ExpireDate' => $dateTwo->format('Y-m-d H:i:s'),//date('Y-m-d', strtotime('+1 month')),
 			'CityID' => $data['city'],
 			'DistrictID' => $data['district'],
 			'WardID' => $data['ward'],
