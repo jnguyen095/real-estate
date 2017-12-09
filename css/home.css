@@ -215,6 +215,8 @@ img {
 .news-description{
 	color: #555;
 	margin-top: 5px;
+	max-height: 108px;
+	overflow: hidden;
 }
 .news-date{
 	font-style: italic;
