@@ -141,7 +141,7 @@
 									</td>
 									<td><?=$history->Reason?></td>
 									<td><?=$history->FullName?></td>
-									<td><a data-toggle="tooltip" title="Xóa" href="<?=base_url('/admin/transfer-user-'.$user->Us3rID.'.html?deleteId=').$history->PurchaseHistoryID?>"><i class="glyphicon glyphicon-trash"></i></a></td>
+									<td><a class="deleteTransfer" data-toggle="tooltip" title="Xóa giao dịch này" data-userid="<?=$user->Us3rID?>" data-historyid="<?=$history->PurchaseHistoryID?>"><i class="glyphicon glyphicon-trash"></i></a></td>
 								</tr>
 								<?php
 							}
@@ -158,6 +158,8 @@
 								<td colspan="3"></td>
 							</tr>
 						<?php
+						}else{
+							echo '<tr><td colspan="9" class="text-center">Chưa có giao dịch nào</td></tr>';
 						}
 						?>
 						</tbody>
@@ -199,9 +201,24 @@
 
 <script src="<?=base_url('/admin/js/tindatdai_admin.js')?>"></script>
 
+<script src="<?=base_url('/js/bootbox.min.js')?>"></script>
+
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
-
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".deleteTransfer").click(function(){
+			$this = $(this);
+			bootbox.confirm("Bạn đã chắc chắn xóa giao dịch này chưa?", function (result) {
+				if (result) {
+					var userId = $this.data('userid');
+					var historyId = $this.data('historyid');
+					location.href = '<?=base_url()?>' + '/admin/transfer-user-' + userId + '.html?deleteId=' + historyId;
+				}
+			});
+		});
+	});
+</script>
 </body>
 </html>

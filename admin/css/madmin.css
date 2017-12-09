@@ -41,3 +41,26 @@
 	padding: 10px;
 	border-radius: 8px;
 }
+
+.vip1:hover{
+	border: solid 1px #e41b23;
+}
+.vip1, .vip1-color{
+	color:#e41b23;
+}
+.vip2:hover{
+	border: solid 1px #ff6600;
+}
+.vip2, .vip2-color{
+	color: #ff6600;
+}
+
+.vip3:hover{
+	border: solid 1px #ffaf03;
+}
+.vip3, .vip3-color{
+	color: #ffaf03;
+}
+.vip5{
+	color: #337ab7;
+}

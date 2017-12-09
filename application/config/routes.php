@@ -154,4 +154,6 @@ $route['admin/static-page/add'] = "admin/StaticPage_controller/add";
 $route['admin/static-page/add-(:num)'] = "admin/StaticPage_controller/add/$1";
 $route['admin/transfer'] = "admin/Transfer_controller";
 $route['admin/transfer-user-(:num)'] = "admin/Transfer_controller/processUser/$1";
+$route['admin/purchase-history/list'] = "admin/PurchaseHistory_controller";
+
 

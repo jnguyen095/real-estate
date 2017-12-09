@@ -41,6 +41,7 @@
 			<!-- Optionally, you can add icons to the links -->
 			<li class="active"><a href="<?=base_url('/admin/dashboard.html')?>"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
 			<li><a href="<?=base_url('/admin/user/list.html')?>"><i class="fa fa-link"></i> <span>Người dùng</span></a></li>
+			<li><a href="<?=base_url('/admin/purchase-history/list.html')?>"><i class="fa fa-link"></i> <span>Giao dịch</span></a></li>
 			<li><a href="<?=base_url('/admin/static-page/list.html')?>"><i class="fa fa-link"></i> <span>Trang tĩnh</span></a></li>
 			<li><a href="<?=base_url('/admin/product/list.html')?>"><i class="fa fa-link"></i> <span>Bài đăng</span></a></li>
 			<li><a href="<?=base_url('/admin/cooperate/list.html')?>"><i class="fa fa-link"></i> <span>Hợp tác</span></a></li>

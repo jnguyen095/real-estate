@@ -77,7 +77,7 @@
 		display: none;
 	}
 	.breadcrumb.always > li{
-		display: block;
+		display: inline-block;
 	}
 
 	.quickSearch{

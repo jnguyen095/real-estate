@@ -11,7 +11,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Tin Đất Đai | Quản lý bài đăng</title>
+	<title>Tin Đất Đai | Quản lý giao dịch</title>
 	<?php $this->load->view('/admin/common/header-js') ?>
 	<link rel="stylesheet" href="<?=base_url('/admin/css/bootstrap-datepicker.min.css')?>">
 </head>
@@ -29,18 +29,18 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 			<h1>
-				Quản lý bài đăng <?=isset($user) ? 'của:<b> '.$user->FullName.' - '.$user->Phone.'</b>': ''?>
+				Quản lý giao dịch
 			</h1>
 			<ol class="breadcrumb">
 				<li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-				<li class="active">Quản lý bài đăng</li>
+				<li class="active">Quản lý giao dịch</li>
 			</ol>
 		</section>
 
 		<!-- Main content -->
 		<?php
 		$attributes = array("id" => "frmPost");
-		echo form_open("admin/product/list", $attributes);
+		echo form_open("admin/purchase-history/list", $attributes);
 		?>
 		<section class="content container-fluid">
 			<?php if(!empty($message_response)){
@@ -51,101 +51,70 @@
 			}?>
 			<div class="box">
 				<div class="box-header">
-					<h3 class="box-title">Danh sách bài đăng</h3>
+					<h3 class="box-title">Danh sách giao dịch</h3>
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
-					<div class="search-filter">
-						<div class="row">
-							<div class="col-sm-6">
-								<label>Tiêu đề</label>
-								<div class="form-group">
-									<input type="text" name="searchFor" placeholder="Tìm tiêu đề" class="form-control" id="searchKey">
-								</div>
-							</div>
-							<div class="col-sm-2">
-								<label>Số điện thoại</label>
-								<div class="form-group">
-									<input type="text" name="phoneNumber" class="form-control" id="phoneNumber">
-								</div>
-							</div>
-							<div class="col-sm-2">
-								<label>Từ ngày</label>
-								<div class="form-group">
-									<input type="text" name="postFromDate" class="form-control datepicker" id="fromDate">
-								</div>
-							</div>
-							<div class="col-sm-2">
-								<label>Đến ngày</label>
-								<div class="form-group">
-									<input type="text" name="postToDate" class="form-control datepicker" id="toDate">
-								</div>
-							</div>
-						</div>
-						<div class="text-center">
-							<a class="btn btn-primary" onclick="sendRequest()">Tìm kiếm</a>
-						</div>
-					</div>
 
-					<div class="row no-margin">
-						<a class="btn btn-danger" id="deleteMulti">Xóa Nhiều</a>
-					</div>
-
-					<table class="admin-table table table-bordered table-striped">
+					<table id="example1" class="table table-bordered table-striped">
 						<thead>
-							<tr>
-								<th><input name="checkAll" value="1" type="checkbox" ></th>
-								<th data-action="sort" data-title="Title" data-direction="ASC"><span>Tiêu đề</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="Status" data-direction="ASC"><span>Status</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="Vip" data-direction="ASC"><span>Loại tin</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="View" data-direction="ASC"><span>Lượt xem</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="PostDate" data-direction="ASC"><span>Ngày đăng</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="ExpireDate" data-direction="ASC"><span>Hết hạn</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="ModifiedDate" data-direction="ASC"><span>Cập nhật</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="CreatedByID" data-direction="ASC"><span>Người đăng</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="IpAddress" data-direction="ASC"><span>Ip Address</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th></th>
-							</tr>
+						<tr class="bg-success">
+							<th>STT</th>
+							<th>Ngày giao dịch <i class="glyphicon glyphicon-triangle-bottom"></i></th>
+							<th>Ghi nợ</th>
+							<th>Ghi có</th>
+							<th>Lý do</th>
+							<th>Người thực hiện</th>
+						</tr>
 						</thead>
 						<tbody>
-
 						<?php
-						$counter = 1;
-						foreach ($products as $product) {
+						if(isset($histories) && count($histories) > 0) {
+							$counter = 1;
+							$sumDeposited = 0;
+							$sumSpent = 0;
+							foreach ($histories as $history) {
+								?>
+								<tr>
+									<td><?=$counter++?></td>
+									<td class="text-left"><?=date('d/m/Y H:i', strtotime($history->TransferTime))?></td>
+									<td class="text-right"><?php
+										if($history->Type == -1){
+											$sumSpent += $history->Money;
+											echo number_format($history->Money);
+										}
+										?>
+									</td>
+									<td class="text-right"><?php
+										if($history->Type == 1){
+											$sumDeposited += $history->Money;
+											echo number_format($history->Money);
+										}
+										?>
+									</td>
+									<td class="text-left"><?=$history->Reason?></td>
+									<td><a href="<?=base_url('admin/transfer-user-'.$history->UserID.'.html')?>"><?=$history->FullName?></a></td>
+								</tr>
+								<?php
+							}
 							?>
 							<tr>
-								<td><input name="checkList[]" type="checkbox" value="<?=$product->ProductID?>"></td>
-								<td><a class="vip<?=$product->Vip?>" data-toggle="tooltip" title="<?=$product->Title?>" href="<?=base_url(seo_url($product->Title).'-p').$product->ProductID.'.html'?>"><?=substr_at_middle($product->Title, 60)?></a></td>
-								<td><?=$product->Status == 1 ? '<span class="label label-success">Show</span>' : '<span class="label label-danger">Hide</span>'?></td>
-								<td>
-									<select onchange="updateVip('<?=$product->ProductID?>', this.value);">
-										<option value="0" <?=$product->Vip == 0 ? ' selected' : ''?>>Vip 0</option>
-										<option value="1" <?=$product->Vip == 1 ? ' selected' : ''?>>Vip 1</option>
-										<option value="2" <?=$product->Vip == 2 ? ' selected' : ''?>>Vip 2</option>
-										<option value="3" <?=$product->Vip == 3 ? ' selected' : ''?>>Vip 3</option>
-										<option value="5" <?=$product->Vip == 5 ? ' selected' : ''?>>Thường</option>
-									</select>
-								</td>
-								<td class="text-right">
-									<?php
-									if(isset($product->FullName)) {
-										?>
-										<input class="txtView" id="pr-<?=$product->ProductID?>" type="text" value="<?= $product->View?>"
-											   onchange="updateView('<?=$product->ProductID?>', this.value);"/>
-										<?php
-									}else{
-										echo $product->View;
-									}
-									?>
-								</td>
-								<td><?=date('d/m/Y H:i', strtotime($product->PostDate))?></td>
-								<td><?=date('d/m/Y', strtotime($product->ExpireDate))?></td>
-								<td id="modifiedDate_<?=$product->ProductID?>"><?=date('d/m/Y H:i', strtotime($product->ModifiedDate))?></td>
-								<td><a href="<?=base_url('/admin/product/list.html?createdById='.$product->CreatedByID)?>"><?=$product->FullName?></a> </td>
-								<td><?=$product->IpAddress?></td>
-								<td>
-									<a onclick="pushPostUp('<?=$product->ProductID?>');" data-toggle="tooltip" title="Làm mới tin"><i class="glyphicon glyphicon-refresh"></i></a>&nbsp;|&nbsp;
-									<a class="remove-post" data-post="<?=$product->ProductID?>" data-toggle="tooltip" title="Xóa tin đăng"><i class="glyphicon glyphicon-remove"></i></a>
+								<td colspan="2"></td>
+								<td class="text-right"><strong><?=number_format($sumSpent)?></strong></td>
+								<td class="text-right"><strong><?=number_format($sumDeposited)?></strong></td>
+								<td colspan="2"></td>
+							</tr>
+							<tr>
+								<td colspan="3" class="text-right">Số dư khả dụng:</td>
+								<td class="text-right"><strong class="label label-success table-icons"><?=number_format($sumDeposited - $sumSpent)?></strong></td>
+								<td colspan="2"></td>
+							</tr>
+							<?php
+						}else{
+							?>
+							<tr>
+								<td colspan="6">
+									<span>Chưa có giao dịch nào, xem cách nạp thêm tiền <a href="<?=base_url('bao-gia-dich-vu.html')?>">tại đây</a></span>
 								</td>
 							</tr>
 							<?php

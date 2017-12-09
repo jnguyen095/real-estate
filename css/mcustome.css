@@ -681,12 +681,14 @@ ul.nearme {
 }
 
 .margin-bottom-20{
-	margin-bottom: 20px;
+	margin-bottom: 20px !important;
 }
 .login-panel{
 	margin-top: 15px !important;
 }
-
+.line-height-20{
+	line-height:20px;
+}
 .login-panel legend{
 	font-size: 18px;
 	margin-bottom: 10px;

@@ -641,6 +641,19 @@ class Product_Model extends CI_Model
 		return $result;
 	}
 
+	function findByPhoneNumber($offset=0, $limit, $phoneNumber){
+		$sql = "select p.*, u.FullName from product p left join us3r u on p.CreatedByID = u.Us3rID where p.productid in(select productid from productdetail where contactphone like '%{$phoneNumber}%' or contactmobile like  '%{$phoneNumber}%' )";
+		$sql .= " limit ".$offset.','.$limit;
+		$query = $this->db->query($sql);
+		$result['items'] = $query->result();
+
+		$countsql = "select count(*) as Total from product p where p.productid in(select productid from productdetail where contactphone like '%{$phoneNumber}%' or contactmobile like  '%{$phoneNumber}%' )";
+		$querycount = $this->db->query($countsql);
+		$result['total'] = $querycount->row()->Total;
+
+		return $result;
+	}
+
 	public function findUnderOneBillion($offset, $limit){
 		$sql = 'select p.*, c.cityname as city, d.districtname as district from product p';
 		$sql .= ' inner join city c on p.cityid = c.cityid';

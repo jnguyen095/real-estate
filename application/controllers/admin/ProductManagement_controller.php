@@ -46,10 +46,17 @@ class ProductManagement_controller extends CI_Controller
 		}
 		$postFromDate = $this->input->get('fromDate');
 		$postToDate = $this->input->get('toDate');
+		$phoneNumber = $this->input->get('phoneNumber');
 		$createdById = $this->input->get('createdById');
-		$results = $this->Product_Model->findAndFilter($config['page'], $config['per_page'], $config['searchFor'], $postFromDate, $postToDate, $createdById, $config['orderField'], $config['orderDirection']);
-		$data['products'] = $results['items'];
-		$config['total_rows'] = $results['total'];
+		if($phoneNumber != null && count($phoneNumber) > 0){
+			$results = $this->Product_Model->findByPhoneNumber($config['page'], $config['per_page'], $phoneNumber);
+			$data['products'] = $results['items'];
+			$config['total_rows'] = $results['total'];
+		}else {
+			$results = $this->Product_Model->findAndFilter($config['page'], $config['per_page'], $config['searchFor'], $postFromDate, $postToDate, $createdById, $config['orderField'], $config['orderDirection']);
+			$data['products'] = $results['items'];
+			$config['total_rows'] = $results['total'];
+		}
 		if($createdById != null){
 			$user = $this->User_Model->getUserById($createdById);
 			$data['user'] = $user;

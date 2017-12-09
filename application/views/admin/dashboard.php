@@ -135,10 +135,30 @@
 							</div>
 						</div>
 						<div class="box-body">
-							<span class="col-sm-12 text-center"><strong><?=$postCurrentDate?></strong></span>
+							<span class="col-sm-3 bg-red no-padding text-center"><strong><?=$postCurrentDate?></strong></span>
+							<span class="col-sm-3 bg-blue no-padding bg-blue">Create: <strong><?=$postCreateCurrentDate?></strong></span>
+							<span class="col-sm-3 bg-blue  no-padding bg-blue">Crawler: <strong><?=$postCrawlerCurrentDate?></strong></span>
+							<span class="col-sm-3 bg-blue no-padding bg-blue">Update: <strong><?=$countPostPushToday?></strong></span>
 						</div>
 					</div>
 				</div>
+
+				<div class="col-md-3 col-sm-6 col-xs-12">
+					<div class="box box-info box-solid">
+						<div class="box-header with-border">
+							<h3 class="box-title"><a href="<?=base_url('/admin/feedback/list.html')?>">Feedback</a></h3>
+
+							<div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+							</div>
+						</div>
+						<div class="box-body">
+							<span class="col-sm-6 bg-blue">All: <strong><?=$feedbackAll?></strong></span>
+							<span class="col-sm-6 bg-red">Today: <strong><?=$feedbackToday?></strong></span>
+						</div>
+					</div>
+				</div>
+
 
 			</div>
 
@@ -184,7 +204,7 @@
 					<!-- TABLE: LATEST ORDERS -->
 					<div class="box box-info">
 						<div class="box-header with-border">
-							<h3 class="box-title">Đăng nhập hôm nay <span class="label label-<?=count($loginToday) > 0 ? 'success' : 'default'?>"><?=count($loginToday)?></span> </h3>
+							<h3 class="box-title"><a href="<?=base_url('/admin/user/list.html')?>">Đăng nhập hôm nay</a> <span class="label label-<?=count($loginToday) > 0 ? 'success' : 'default'?>"><?=count($loginToday)?></span> </h3>
 
 							<div class="box-tools pull-right">
 								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -235,7 +255,7 @@
 					<!-- TABLE: LATEST ORDERS -->
 					<div class="box box-info">
 						<div class="box-header with-border">
-							<h3 class="box-title">User đăng ký hôm nay <span class="label label-<?=count($createdToday) > 0 ? 'success' : 'default'?>"><?=count($createdToday)?></span></h3>
+							<h3 class="box-title"><a href="<?=base_url('/admin/user/list.html')?>">User đăng ký hôm nay</a> <span class="label label-<?=count($createdToday) > 0 ? 'success' : 'default'?>"><?=count($createdToday)?></span></h3>
 
 							<div class="box-tools pull-right">
 								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -290,7 +310,7 @@
 					<!-- TABLE: LATEST ORDERS -->
 					<div class="box box-info">
 						<div class="box-header with-border">
-							<h3 class="box-title">Bài đăng hôm nay <span class="label label-<?=count($postToday) > 0 ? 'success' : 'default'?>"><?=count($postToday)?></span></h3>
+							<h3 class="box-title"><a href="<?=base_url('/admin/product/list.html')?>">Bài đăng hôm nay</a> <span class="label label-<?=count($postToday) > 0 ? 'success' : 'default'?>"><?=count($postToday)?></span></h3>
 
 							<div class="box-tools pull-right">
 								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -341,56 +361,7 @@
 					<!-- /.box -->
 
 
-					<div class="box box-info">
-						<div class="box-header with-border">
-							<h3 class="box-title">Bài cập nhật hôm nay <span class="label label-<?=count($postPushToday) > 0 ? 'success' : 'default'?>"><?=count($postPushToday)?></span></h3>
 
-							<div class="box-tools pull-right">
-								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-								</button>
-								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-							</div>
-						</div>
-						<!-- /.box-header -->
-						<div class="box-body">
-							<div class="table-responsive">
-								<table class="table no-margin">
-									<thead>
-									<tr>
-										<th>#</th>
-										<th>Tiêu Đề</th>
-										<th>Tạo Lúc</th>
-										<th>Cập nhật</th>
-										<th>Lượt View</th>
-										<th>Người Tạo</th>
-									</tr>
-									</thead>
-									<tbody>
-									<?php
-									$index = 1;
-									foreach ($postPushToday as $post) {
-										?>
-										<tr>
-											<td><?=$index++?></td>
-											<td><?=$post->Title?></td>
-											<td><?=date('d/m/Y H:i', strtotime($post->PostDate))?></td>
-											<td><?=date('d/m/Y H:i', strtotime($post->ModifiedDate))?></td>
-											<td><?=$post->View?></td>
-											<td><a href="<?=base_url('/admin/product/list.html?createdById='.$post->CreatedByID)?>" data-toggle="tooltip" title="Xem tin rao"><?=$post->FullName?></a></td>
-										</tr>
-										<?php
-									}
-									if(count($postPushToday) < 1){
-										echo '<td colspan="4" class="text-center">Không có dữ liệu</td>';
-									}
-									?>
-									</tbody>
-								</table>
-							</div>
-							<!-- /.table-responsive -->
-						</div>
-
-					</div>
 				</div>
 
 			</div>

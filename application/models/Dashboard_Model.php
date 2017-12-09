@@ -72,24 +72,58 @@ class Dashboard_Model extends CI_Model
 		$result = $this->db->query($query);
 		return $result->result();
 	}
-	public function getPostCurrentDate(){
+	public function countPostPushToday(){
+		$today = date('Y-m-d');
+		$query = "select count(*) as Total from product p where p.CreatedByID is not null and date(p.ModifiedDate) = '{$today}' and date(p.PostDate) != '{$today}'";
+		$result = $this->db->query($query);
+		$row = $result->row();
+		return $row->Total;
+	}
+	public function countFeedback($isToday){
+		$today = date('Y-m-d');
+		$query = "select count(*) as Total from feedback fb";
+		if(isset($isToday) && $isToday){
+			$query .= " where date(fb.CreatedDate) = '{$today}'";
+		}
+		$result = $this->db->query($query);
+		$row = $result->row();
+		return $row->Total;
+	}
+	public function getPostCurrentDate($type){
 		$today = date('Y-m-d');
 		$query = "select count(*) as Total from product p where date(p.ModifiedDate) = '{$today}'";
+		if(isset($type) && $type == 'CRAWLER'){
+			$query .= ' and p.CreatedByID is null';
+		}else if(isset($type) && $type == 'CREATE'){
+			$query .= " and date(p.PostDate) = '{$today}' and p.CreatedByID is not null";
+		}
 		$total = $this->db->query($query);
 		$row = $total->row();
 		return $row->Total;
 	}
 	public function updateStandardForPreviousPost(){
 		$today = date('Y-m-d');
-		$query = "update product set Vip = 5 where date(ModifiedDate) != '{$today}' and Vip != 5";
+		$query = "update product set Vip = 5 where date(ModifiedDate) != '{$today}' and Vip != 5 and CreatedByID is null";
 		$this->db->query($query);
 	}
 	public function countStandardForPreviousPost(){
 		$today = date('Y-m-d');
-		$query = "select count(*) as Total from product where date(ModifiedDate) != '{$today}' and Vip != 5";
+		$query = "select count(*) as Total from product where date(ModifiedDate) != '{$today}' and Vip != 5 and CreatedByID is null";
 		$total = $this->db->query($query);
 		$row = $total->row();
 		return $row->Total;
+	}
+	public function countPreviousPostVip(){
+		$today = date('Y-m-d');
+		$query = "select count(*) as Total from product where date(ModifiedDate) != '{$today}' and Vip != 5 and CreatedByID is not null";
+		$total = $this->db->query($query);
+		$row = $total->row();
+		return $row->Total;
+	}
+	public function renewPreviousPostVip(){
+		$today = date('Y-m-d');
+		$query = "update product ModifiedDate now() where and Vip != 5 and CreatedByID is not null and date(ExpireDate) <= '{$today}'";
+		$this->db->query($query);
 	}
 	function countUserByDate($limit){
 		$sql = "SELECT DATE(CreatedDate) AS ForDate,";
