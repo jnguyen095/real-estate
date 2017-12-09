@@ -41,9 +41,9 @@ class Brand_Model extends CI_Model
 
 	public function findTopBranchHasProductAndData($top){
 		$sql = 'select b.BrandID, b.BrandName, b.Thumb, b.Description from brand b left join product p on b.brandid = p.brandid';
-		$sql .= ' where b.Thumb is not null';
+		$sql .= ' where b.Thumb is not null and b.Hot = 1';
 		$sql .= ' group by b.BrandID';
-		$sql .= ' order by count(p.productid) desc';
+		$sql .= ' order by p.ModifiedDate desc';
 		$sql .= ' limit '. $top;
 		$query = $this->db->query($sql);
 		return $query->result();
@@ -57,10 +57,13 @@ class Brand_Model extends CI_Model
 	}
 
 	function findAndFilter($offset=0, $limit, $st = "", $orderField, $orderDirection){
-		$query = $this->db->select('b.*')
+
+		$query = $this->db->select('b.*, count(p.productid) as TotalProduct')
 			->from('brand b')
+			->join('product p', 'b.brandID = p.brandID', 'left')
 			->like('BrandName', $st)
 			->limit($limit, $offset)
+			->group_by("p.brandID")
 			->order_by($orderField, $orderDirection)
 			->get();
 
@@ -70,6 +73,13 @@ class Brand_Model extends CI_Model
 		$query = $this->db->like('BrandName', $st)->get('brand');
 		$result['total'] = $query->num_rows();
 		return $result;
+	}
+
+	function updateHotForBrand($brandId, $hot){
+		$this->db->set('Hot', $hot);
+		$this->db->set('ModifiedDate', 'NOW()', false);
+		$this->db->where('BrandID', $brandId);
+		$this->db->update('brand');
 	}
 
 }

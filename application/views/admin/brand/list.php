@@ -40,7 +40,7 @@
 		<!-- Main content -->
 		<?php
 		$attributes = array("id" => "frmPost");
-		echo form_open("admin/cooperate/list", $attributes);
+		echo form_open("admin/brand/list", $attributes);
 		?>
 		<section class="content container-fluid">
 			<?php if(!empty($message_response)){
@@ -77,14 +77,12 @@
 						<thead>
 							<tr>
 								<th><input name="checkAll" value="1" type="checkbox" ></th>
-								<th data-action="sort" data-title="BrandName" data-direction="ASC"><span>Tiêu đề</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="Thumb" data-direction="ASC"><span>Status</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="Hot" data-direction="ASC"><span>Lượt xem</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="PostDate" data-direction="ASC"><span>Ngày đăng</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="ExpireDate" data-direction="ASC"><span>Hết hạn</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="ModifiedDate" data-direction="ASC"><span>Cập nhật</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th>Người đăng</th>
-								<th data-action="sort" data-title="IpAddress" data-direction="ASC"><span>Ip Address</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+								<th data-action="sort" data-title="BrandName" data-direction="ASC"><span>Tên dự án</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+								<th>Số tin rao</th>
+								<th data-action="sort" data-title="Hot" data-direction="ASC"><span>Hot</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+								<th data-action="sort" data-title="Owner" data-direction="ASC"><span>Chủ đầu tư</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+								<th data-action="sort" data-title="Thumb" data-direction="ASC"><span>Ảnh</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+								<th data-action="sort" data-title="ModifiedDate" data-direction="ASC"><span>Ngày cập nhật</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th></th>
 							</tr>
 						</thead>
@@ -92,32 +90,23 @@
 
 						<?php
 						$counter = 1;
-						foreach ($products as $product) {
+						foreach ($brands as $brand) {
 							?>
 							<tr>
-								<td><input name="checkList[]" type="checkbox" value="<?=$product->CooperateID?>"></td>
-								<td><a data-toggle="tooltip" title="<?=$product->Title?>" href="<?=base_url(seo_url($product->Title).'-co').$product->CooperateID.'.html'?>"><?=substr_at_middle($product->Title, 60)?></a></td>
-								<td><?=$product->Status == 1 ? '<span class="label label-success">Show</span>' : '<span class="label label-danger">Hide</span>'?></td>
-								<td class="text-right">
-									<?php
-									if(isset($product->FullName)) {
-										?>
-										<input class="txtView" id="pr-<?=$product->CooperateID?>" type="text" value="<?= $product->View?>"
-											   onchange="updateView('<?=$product->CooperateID?>', this.value);"/>
-										<?php
-									}else{
-										echo $product->View;
-									}
-									?>
-								</td>
-								<td><?=date('d/m/Y H:i', strtotime($product->PostDate))?></td>
-								<td><?=date('d/m/Y', strtotime($product->ExpireDate))?></td>
-								<td id="modifiedDate_<?=$product->CooperateID?>"><?=date('d/m/Y H:i', strtotime($product->ModifiedDate))?></td>
-								<td><?=$product->FullName?></td>
-								<td><?=$product->IpAddress?></td>
+								<td><input name="checkList[]" type="checkbox" value="<?=$brand->BrandID?>"></td>
+								<td><a data-toggle="tooltip" title="<?=$brand->BrandName?>" href="<?=base_url(seo_url($brand->BrandName).'-b').$brand->BrandID.'.html'?>"><?=substr_at_middle($brand->BrandName, 80)?></a></td>
+								<td><?=$brand->TotalProduct?></td>
 								<td>
-									<a onclick="pushPostUp('<?=$product->CooperateID?>');" data-toggle="tooltip" title="Làm mới tin"><i class="glyphicon glyphicon-refresh"></i></a>&nbsp;|&nbsp;
-									<a class="remove-post" data-post="<?=$product->CooperateID?>" data-toggle="tooltip" title="Xóa tin đăng"><i class="glyphicon glyphicon-remove"></i></a>
+									<select id="selectid-<?=$brand->BrandID?>" onchange="updateHot('<?=$brand->BrandID?>')">
+										<option value="0" <?=($brand->Hot == null || !isset($brand->Hot) || $brand->Hot == 0) ? 'selected' : ''?> >Standard</option>
+										<option value="1" <?=$brand->Hot == 1? 'selected' : ''?> >Hot</option>
+									</select>
+								</td>
+								<td><?=$brand->Owner?></td>
+								<td><?=$brand->Thumb?></td>
+								<td><?=date('d/m/Y H:i', strtotime($brand->ModifiedDate))?></td>
+								<td>
+									<a href="<?=base_url('/admin/brand/view-'.$brand->BrandID.'.html')?>" data-toggle="tooltip" title="Xem chi tiết"><i class="glyphicon glyphicon-folder-open"></i></a>
 								</td>
 							</tr>
 							<?php
@@ -161,9 +150,7 @@
 <script type="text/javascript">
 	var sendRequest = function(){
 		var searchKey = $('#searchKey').val()||"";
-		var fromDate = $('#fromDate').val()||"";
-		var toDate = $('#toDate').val()||"";
-		window.location.href = '<?=base_url('admin/cooperate/list.html')?>?query='+searchKey+ '&fromDate=' + fromDate + '&toDate=' + toDate + '&orderField='+curOrderField+'&orderDirection='+curOrderDirection;
+		window.location.href = '<?=base_url('admin/brand/list.html')?>?query='+searchKey+ '&orderField='+curOrderField+'&orderDirection='+curOrderDirection;
 	}
 
 	var curOrderField, curOrderDirection;
@@ -175,8 +162,6 @@
 
 
 	$('#searchKey').val(decodeURIComponent(getNamedParameter('query')||""));
-	$('#fromDate').val(decodeURIComponent(getNamedParameter('fromDate')||""));
-	$('#toDate').val(decodeURIComponent(getNamedParameter('toDate')||""));
 
 	var curOrderField = getNamedParameter('orderField')||"";
 	var curOrderDirection = getNamedParameter('orderDirection')||"";
@@ -187,17 +172,17 @@
 		currentSort.attr('data-direction', "ASC").find('i.glyphicon').removeClass('glyphicon-triangle-top').addClass('glyphicon-triangle-bottom active');
 	}
 
-	function updateView(CooperateID, val){
-		$("#pr-" + CooperateID).addClass("process");
+	function updateHot(brandId){
+
+		var hot = $("#selectid-" + brandId + " option:selected").val();
 		jQuery.ajax({
 			type: "POST",
-			url: '<?=base_url("/admin/CooperateManagement_controller/updateViewManual")?>',
+			url: '<?=base_url("/admin/BrandManagement_controller/updateHot")?>',
 			dataType: 'json',
-			data: {CooperateID: CooperateID, view: val},
+			data: {BrandID: brandId, Hot: hot},
 			success: function(res){
 				if(res == 'success'){
-					/*bootbox.alert("Cập nhật thành công");*/
-					$("#pr-" + CooperateID).addClass("success");
+					bootbox.alert("Cập nhật thành công");
 				}
 			}
 		});

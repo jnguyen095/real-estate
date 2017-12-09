@@ -80,7 +80,7 @@
 						<div class="col-md-2"><?=$feedBack->Content?></div>
 					</div>
 					<div class="row no-margin">
-						<a class="btn btn-default" href="<?=base_url('/admin/feedback/list')?>">Trở lại</a>
+						<div class="col-md-2"><a class="btn btn-primary" href="<?=base_url('/admin/feedback/list')?>">Trở lại</a></div>
 					</div>
 				</div>
 

@@ -28,16 +28,29 @@ class BrandManagement_controller extends CI_Controller
 		$config = pagination($this);
 		$config['base_url'] = base_url('admin/brand/list.html');
 		if(!$config['orderField']){
-			$config['orderField'] = "BrandName";
-			$config['orderDirection'] = "ASC";
+			$config['orderField'] = "Hot";
+			$config['orderDirection'] = "DESC";
 		}
 		$results = $this->Brand_Model->findAndFilter($config['page'], $config['per_page'], $config['searchFor'], $config['orderField'], $config['orderDirection']);
-		$data['products'] = $results['items'];
+		$data['brands'] = $results['items'];
 		$config['total_rows'] = $results['total'];
 
 		$this->pagination->initialize($config);
 		$data['pagination'] = $this->pagination->create_links();
 
 		$this->load->view("admin/brand/list", $data);
+	}
+
+	public function detail($brandId){
+		$data['brand'] = $this->Brand_Model->findById($brandId);
+		$this->load->view("admin/brand/view", $data);
+	}
+
+
+	public function updateHot(){
+		$brandId = $this->input->post('BrandID');
+		$hot = $this->input->post('Hot');
+		$this->Brand_Model->updateHotForBrand($brandId, $hot);
+		echo json_encode('success');
 	}
 }

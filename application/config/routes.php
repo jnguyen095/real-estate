@@ -155,5 +155,7 @@ $route['admin/static-page/add-(:num)'] = "admin/StaticPage_controller/add/$1";
 $route['admin/transfer'] = "admin/Transfer_controller";
 $route['admin/transfer-user-(:num)'] = "admin/Transfer_controller/processUser/$1";
 $route['admin/purchase-history/list'] = "admin/PurchaseHistory_controller";
+$route['admin/brand/list'] = "admin/BrandManagement_controller";
+$route['admin/brand/view-(:num)'] = "admin/BrandManagement_controller/detail/$1";
 
 
