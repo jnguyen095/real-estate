@@ -242,12 +242,16 @@
 					?>
 					<div class="copy-source row color-gray no-margin no-padding">Nguồn: <?=$product->Source?></div>
 					<?php
+				}else if(isset($totalProductWithThisUser) && $totalProductWithThisUser > 2){
+					?>
+					<div class="copy-source row subscrible-success no-margin no-padding">
+						<a href="<?=base_url('/bat-dong-san-cua-').seo_url($product->ContactName).'-u'.$product->CreatedByID.'.html'?>">Xem tất cả <?=$totalProductWithThisUser?> tin cùng người đăng</a>
+					</div>
+					<?php
 				}
 				?>
 			</div>
 		</div>
-
-
 
 
 		<?php if(isset($similarProducts) && count($similarProducts) > 0){

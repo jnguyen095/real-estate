@@ -84,6 +84,10 @@ class Product_controller extends CI_Controller
 			$data['branch'] = $this->Brand_Model->findByIdHasImage($product->BrandID);
 		}
 		$this->Product_Model->updateViewForProductId($productId);
+		if($product->CreatedByID != null && $product->CreatedByID > 0){
+			$data['totalProductWithThisUser'] = $this->Product_Model->countProductWithUser($product->CreatedByID);
+		}
+
 		$this->load->helper('url');
 
 		//load the same parent category

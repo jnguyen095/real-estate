@@ -94,6 +94,9 @@ $route['(:any)-cc(:num)-(:num).html/(:num)'] = "Search_controller/searchByCatego
 // Search by category and district
 $route['(:any)-c(:num)-d(:num)'] = "Search_controller/searchByCategoryAndDistrict/$2/$3";
 $route['(:any)-c(:num)-d(:num).html/(:num)'] = "Search_controller/searchByCategoryAndDistrict/$2/$3/$4";
+// Search in the same user
+$route['(:any)-u(:num)'] = "Search_controller/searchBySameUser/$2";
+$route['(:any)-u(:num).html/(:num)'] = "Search_controller/searchBySameUser/$2/$3";
 
 // Global search
 $route['tim-kiem'] = "Search_controller";

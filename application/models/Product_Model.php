@@ -93,6 +93,13 @@ class Product_Model extends CI_Model
 		$this->db->update('product');
 	}
 
+	public function countProductWithUser($userId){
+		$sql = "select count(*) as Total from product p where p.CreatedByID = {$userId}";
+		$query = $this->db->query($sql);
+		$row = $query->row();
+		return $row->Total;
+	}
+
 	public function findByIdFetchAll($productId) {
 		$sql = 'select * from product p inner join productdetail pd on p.productid = pd.productid';
 		$sql .= ' where p.ProductID = '. $productId;
@@ -648,6 +655,23 @@ class Product_Model extends CI_Model
 		$result['items'] = $query->result();
 
 		$countsql = "select count(*) as Total from product p where p.productid in(select productid from productdetail where contactphone like '%{$phoneNumber}%' or contactmobile like  '%{$phoneNumber}%' )";
+		$querycount = $this->db->query($countsql);
+		$result['total'] = $querycount->row()->Total;
+
+		return $result;
+	}
+
+	function findUserId($offset=0, $limit, $userId){
+		$sql = "select p.*, c.cityname as city, d.districtname as district";
+		$sql .= " from product p";
+		$sql .= " inner join city c on p.cityid = c.cityid";
+		$sql .= " inner join district d on p.districtid = d.districtid";
+		$sql .= " where p.createdbyid = {$userId}";
+		$sql .= " limit {$offset},{$limit}";
+		$query = $this->db->query($sql);
+		$result['products'] = $query->result();
+
+		$countsql = "select count(*) as Total from product p where p.createdbyid = {$userId}";
 		$querycount = $this->db->query($countsql);
 		$result['total'] = $querycount->row()->Total;
 

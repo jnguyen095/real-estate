@@ -5,11 +5,13 @@
 	if(isset($category)){
 		$searchBy = $category->CatName;
 	} else if(isset($city)){
-		$searchBy = $city->CityName;
+		$searchBy = 'Nhà đất tại '.$city->CityName;
 	}else if(isset($cat_city)){
 		$searchBy = $cat_city;
 	}else if(isset($branch)){
 		$searchBy = $branch->BrandName;
+	}else if(isset($userAuthor)){
+		$searchBy = "Bất động sản của ".$userAuthor->FullName;
 	}else{
 		$searchBy = "Tìm kiếm";
 	}
@@ -66,6 +68,10 @@
 	}else if(isset($cat_city)){
 		?>
 		<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="active"><span itemprop="item"><span itemprop="name"><?php echo $cat_city ?></span></span><meta itemprop="position" content="2" /></li>
+		<?php
+	}else if(isset($userAuthor)){
+		?>
+		<li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem" class="active"><span itemprop="item"><span itemprop="name"><?php echo "Bất động sản của ".$userAuthor->FullName ?></span></span><meta itemprop="position" content="2" /></li>
 		<?php
 	}else{
 		?>

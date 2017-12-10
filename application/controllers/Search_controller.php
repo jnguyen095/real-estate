@@ -16,6 +16,7 @@ class Search_controller extends CI_Controller
 		$this->load->model('City_Model');
 		$this->load->model('Brand_Model');
 		$this->load->model('District_Model');
+		$this->load->model('User_Model');
 		$this->load->helper("seo_url");
 		$this->load->helper('text');
 		$this->load->helper("my_date");
@@ -225,6 +226,24 @@ class Search_controller extends CI_Controller
 		$data['scity'] = $city;
 		$data['category'] = $category;
 		$data['districtWithCategory'] = $this->District_Model->findByCatIdCityIdHasProduct($catId, $district->CityID);
+
+		$this->pagination->initialize($config);
+		$data['pagination'] = $this->pagination->create_links();
+		$this->load->helper('url');
+		$this->load->view('/search/Search_view', $data);
+	}
+
+	public function searchBySameUser($userId, $offset=0){
+		$data = $this->Category_Model->getCategories();
+		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+		$data['cities'] = $this->City_Model->getAllActive();
+		$data['userAuthor'] = $this->User_Model->getUserById($userId);
+		$search_data = $this->Product_Model->findUserId($offset, MAX_PAGE_ITEM, $userId);
+		$data = array_merge($data, $search_data);
+		$config = pagination();
+		$config['base_url'] = base_url(seo_url('/bat-dong-san-cua').'-'.seo_url($data['userAuthor']->FullName).'-u'.$data['userAuthor']->Us3rID.'.html');
+		$config['total_rows'] = $data['total'];
+		$config['per_page'] = MAX_PAGE_ITEM;
 
 		$this->pagination->initialize($config);
 		$data['pagination'] = $this->pagination->create_links();
