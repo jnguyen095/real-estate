@@ -135,10 +135,10 @@
 							</div>
 						</div>
 						<div class="box-body">
-							<span class="col-sm-3 bg-red no-padding text-center"><strong><?=$postCurrentDate?></strong></span>
-							<span class="col-sm-3 bg-blue no-padding bg-blue">Create: <strong><?=$postCreateCurrentDate?></strong></span>
-							<span class="col-sm-3 bg-blue  no-padding bg-blue">Crawler: <strong><?=$postCrawlerCurrentDate?></strong></span>
-							<span class="col-sm-3 bg-blue no-padding bg-blue">Update: <strong><?=$countPostPushToday?></strong></span>
+							<span class="col-sm-3 no-padding text-center"><strong><?=$postCurrentDate?></strong></span>
+							<span class="col-sm-3 no-padding">Create: <strong><?=$postCreateCurrentDate?></strong></span>
+							<span class="col-sm-3 no-padding">Crawler: <strong><?=$postCrawlerCurrentDate?></strong></span>
+							<span class="col-sm-3 no-padding">Update: <strong><?=$countPostPushToday?></strong></span>
 						</div>
 					</div>
 				</div>
@@ -153,8 +153,8 @@
 							</div>
 						</div>
 						<div class="box-body">
-							<span class="col-sm-6 bg-blue">All: <strong><?=$feedbackAll?></strong></span>
-							<span class="col-sm-6 bg-red">Today: <strong><?=$feedbackToday?></strong></span>
+							<span class="col-sm-6">All: <strong><?=$feedbackAll?></strong></span>
+							<span class="col-sm-6">Today: <strong><?=$feedbackToday?></strong></span>
 						</div>
 					</div>
 				</div>
