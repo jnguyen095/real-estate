@@ -355,7 +355,7 @@ class Post_controller extends CI_Controller
 							$addData['ActorID'] = $loginId;
 							$addData['UserID'] = $loginId;
 							$addData['Type'] = PAYMENT_WITHDRAW;
-							$addData['Reason'] = "Đăng tin {$data['code']} gói " . $this->getPackageByCode($data['vip']). ' - '.$diffDay. ' ngày.';
+							$addData['Reason'] = "Đăng tin {$ok} gói " . $this->getPackageByCode($data['vip']). ' - '.$diffDay. ' ngày.';
 							$addData['Money'] = $cost;
 							$this->Transfer_Model->addNewRow($addData);
 						}

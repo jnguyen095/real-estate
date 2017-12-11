@@ -57,7 +57,7 @@
 				<div class="box-body">
 					<div class="search-filter">
 						<div class="row">
-							<div class="col-sm-6">
+							<div class="col-sm-4">
 								<label>Tiêu đề</label>
 								<div class="form-group">
 									<input type="text" name="searchFor" placeholder="Tìm tiêu đề" class="form-control" id="searchKey">
@@ -79,6 +79,14 @@
 								<label>Đến ngày</label>
 								<div class="form-group">
 									<input type="text" name="postToDate" class="form-control datepicker" id="toDate">
+								</div>
+							</div>
+							<div class="col-sm-2">
+								<label>Tin chính chủ</label>
+								<div class="form-group">
+									<label><input id="chb-0" checked="checked" type="radio" name="hasAuthor" value="-1"> Tất cả</label>
+									<label><input id="chb-2" type="radio" name="hasAuthor" value="1"> Chính chủ</label>
+									<label><input id="chb-1" type="radio" name="hasAuthor" value="0"> Crawler</label>
 								</div>
 							</div>
 						</div>
@@ -191,8 +199,9 @@
 		var searchKey = $('#searchKey').val()||"";
 		var fromDate = $('#fromDate').val()||"";
 		var toDate = $('#toDate').val()||"";
+		var hasAuthor = $('input[name=hasAuthor]:checked').val();
 		var phoneNumber = $('#phoneNumber').val()||"";
-		window.location.href = '<?=base_url('admin/product/list.html')?>?query='+searchKey + '&phoneNumber=' + phoneNumber + '&fromDate=' + fromDate + '&toDate=' + toDate + '&orderField='+curOrderField+'&orderDirection='+curOrderDirection;
+		window.location.href = '<?=base_url('admin/product/list.html')?>?query='+searchKey + '&phoneNumber=' + phoneNumber + '&fromDate=' + fromDate + '&toDate=' + toDate + '&hasAuthor=' + hasAuthor + '&orderField='+curOrderField+'&orderDirection='+curOrderDirection;
 	}
 
 	var curOrderField, curOrderDirection;
@@ -207,6 +216,11 @@
 	$('#fromDate').val(decodeURIComponent(getNamedParameter('fromDate')||""));
 	$('#toDate').val(decodeURIComponent(getNamedParameter('toDate')||""));
 	$('#phoneNumber').val(decodeURIComponent(getNamedParameter('phoneNumber')||""));
+	if(decodeURIComponent(getNamedParameter('hasAuthor')) != null){
+		$("#chb-" + (parseInt(decodeURIComponent(getNamedParameter('hasAuthor'))) + 1)).prop( "checked", true );
+	}else{
+		$("#chb-0").prop( "checked", true );
+	}
 
 	var curOrderField = getNamedParameter('orderField')||"";
 	var curOrderDirection = getNamedParameter('orderDirection')||"";

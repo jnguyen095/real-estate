@@ -94,7 +94,7 @@ class Product_Model extends CI_Model
 	}
 
 	public function countProductWithUser($userId){
-		$sql = "select count(*) as Total from product p where p.CreatedByID = {$userId}";
+		$sql = "select count(*) as Total from product p where p.status = 1 and p.CreatedByID = {$userId}";
 		$query = $this->db->query($sql);
 		$row = $query->row();
 		return $row->Total;
@@ -607,7 +607,7 @@ class Product_Model extends CI_Model
 		return $where;
 	}
 
-	function findAndFilter($offset=0, $limit, $st = "", $fromDate, $toDate, $createdById, $orderField, $orderDirection){
+	function findAndFilter($offset=0, $limit, $st = "", $fromDate, $toDate, $createdById, $hasAuthor, $orderField, $orderDirection){
 		// $this->output->enable_profiler(TRUE);
 		if($fromDate){
 			$ymd = DateTime::createFromFormat('d/m/Y', $fromDate)->format('Y-m-d');
@@ -619,6 +619,11 @@ class Product_Model extends CI_Model
 		}
 		if($createdById != null && $createdById > -1){
 			$this->db->where('CreatedByID', $createdById);
+		}
+		if($hasAuthor != null && $hasAuthor == 1){
+			$this->db->where('CreatedByID IS NOT NULL', NULL, FALSE);
+		}else if($hasAuthor != null && $hasAuthor == 0){
+			$this->db->where('CreatedByID IS NULL', NULL, FALSE);
 		}
 		//$query = $this->db->like('Title', $st)->limit($limit, $offset)->order_by($orderField, $orderDirection)->get('product');
 
@@ -643,6 +648,11 @@ class Product_Model extends CI_Model
 		if($createdById != null && $createdById > -1){
 			$this->db->where('CreatedByID', $createdById);
 		}
+		if($hasAuthor != null && $hasAuthor == 1){
+			$this->db->where('CreatedByID IS NOT NULL', NULL, FALSE);
+		}else if($hasAuthor != null && $hasAuthor == 0){
+			$this->db->where('CreatedByID IS NULL', NULL, FALSE);
+		}
 		$query = $this->db->like('Title', $st)->get('product');
 		$result['total'] = $query->num_rows();
 		return $result;
@@ -666,12 +676,12 @@ class Product_Model extends CI_Model
 		$sql .= " from product p";
 		$sql .= " inner join city c on p.cityid = c.cityid";
 		$sql .= " inner join district d on p.districtid = d.districtid";
-		$sql .= " where p.createdbyid = {$userId}";
+		$sql .= " where p.status = 1 and p.createdbyid = {$userId}";
 		$sql .= " limit {$offset},{$limit}";
 		$query = $this->db->query($sql);
 		$result['products'] = $query->result();
 
-		$countsql = "select count(*) as Total from product p where p.createdbyid = {$userId}";
+		$countsql = "select count(*) as Total from product p where p.status = 1 and p.createdbyid = {$userId}";
 		$querycount = $this->db->query($countsql);
 		$result['total'] = $querycount->row()->Total;
 

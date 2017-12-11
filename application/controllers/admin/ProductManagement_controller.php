@@ -48,12 +48,13 @@ class ProductManagement_controller extends CI_Controller
 		$postToDate = $this->input->get('toDate');
 		$phoneNumber = $this->input->get('phoneNumber');
 		$createdById = $this->input->get('createdById');
+		$hasAuthor = $this->input->get('hasAuthor');
 		if($phoneNumber != null && count($phoneNumber) > 0){
 			$results = $this->Product_Model->findByPhoneNumber($config['page'], $config['per_page'], $phoneNumber);
 			$data['products'] = $results['items'];
 			$config['total_rows'] = $results['total'];
 		}else {
-			$results = $this->Product_Model->findAndFilter($config['page'], $config['per_page'], $config['searchFor'], $postFromDate, $postToDate, $createdById, $config['orderField'], $config['orderDirection']);
+			$results = $this->Product_Model->findAndFilter($config['page'], $config['per_page'], $config['searchFor'], $postFromDate, $postToDate, $createdById, $hasAuthor, $config['orderField'], $config['orderDirection']);
 			$data['products'] = $results['items'];
 			$config['total_rows'] = $results['total'];
 		}

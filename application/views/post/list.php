@@ -85,7 +85,7 @@
 							?>
 							<tr>
 								<th scope="row"><?=$counter++?></th>
-								<td><?=$product->code?></td>
+								<td><?=$product->ProductID?></td>
 								<td class="text-left"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html'?>" target="_blank" title="<?=$product->Title?>"><?=substr_at_middle($product->Title, 60)?></a></td>
 								<td>
 									<?php
