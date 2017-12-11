@@ -57,7 +57,7 @@
 				<div class="box-body">
 					<div class="search-filter">
 						<div class="row">
-							<div class="col-sm-4">
+							<div class="col-sm-6">
 								<label>Tiêu đề</label>
 								<div class="form-group">
 									<input type="text" name="searchFor" placeholder="Tìm tiêu đề" class="form-control" id="searchKey">
@@ -82,7 +82,13 @@
 								</div>
 							</div>
 							<div class="col-sm-2">
-								<label>Tin chính chủ</label>
+								<label>Mã tin(ID)</label>
+								<div class="form-group">
+									<input type="text" name="code" class="form-control" id="code">
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<label>Loại tin</label>
 								<div class="form-group">
 									<label><input id="chb-0" checked="checked" type="radio" name="hasAuthor" value="-1"> Tất cả</label>
 									<label><input id="chb-2" type="radio" name="hasAuthor" value="1"> Chính chủ</label>
@@ -199,9 +205,10 @@
 		var searchKey = $('#searchKey').val()||"";
 		var fromDate = $('#fromDate').val()||"";
 		var toDate = $('#toDate').val()||"";
+		var code = $('#code').val()||"";
 		var hasAuthor = $('input[name=hasAuthor]:checked').val();
 		var phoneNumber = $('#phoneNumber').val()||"";
-		window.location.href = '<?=base_url('admin/product/list.html')?>?query='+searchKey + '&phoneNumber=' + phoneNumber + '&fromDate=' + fromDate + '&toDate=' + toDate + '&hasAuthor=' + hasAuthor + '&orderField='+curOrderField+'&orderDirection='+curOrderDirection;
+		window.location.href = '<?=base_url('admin/product/list.html')?>?query='+searchKey + '&phoneNumber=' + phoneNumber + '&fromDate=' + fromDate + '&toDate=' + toDate + '&hasAuthor=' + hasAuthor + '&code=' + code + '&orderField='+curOrderField+'&orderDirection='+curOrderDirection;
 	}
 
 	var curOrderField, curOrderDirection;
@@ -215,6 +222,7 @@
 	$('#searchKey').val(decodeURIComponent(getNamedParameter('query')||""));
 	$('#fromDate').val(decodeURIComponent(getNamedParameter('fromDate')||""));
 	$('#toDate').val(decodeURIComponent(getNamedParameter('toDate')||""));
+	$('#code').val(decodeURIComponent(getNamedParameter('code')||""));
 	$('#phoneNumber').val(decodeURIComponent(getNamedParameter('phoneNumber')||""));
 	if(decodeURIComponent(getNamedParameter('hasAuthor')) != null){
 		$("#chb-" + (parseInt(decodeURIComponent(getNamedParameter('hasAuthor'))) + 1)).prop( "checked", true );

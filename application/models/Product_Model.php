@@ -607,7 +607,7 @@ class Product_Model extends CI_Model
 		return $where;
 	}
 
-	function findAndFilter($offset=0, $limit, $st = "", $fromDate, $toDate, $createdById, $hasAuthor, $orderField, $orderDirection){
+	function findAndFilter($offset=0, $limit, $st = "", $fromDate, $toDate, $createdById, $hasAuthor, $code, $orderField, $orderDirection){
 		// $this->output->enable_profiler(TRUE);
 		if($fromDate){
 			$ymd = DateTime::createFromFormat('d/m/Y', $fromDate)->format('Y-m-d');
@@ -619,6 +619,9 @@ class Product_Model extends CI_Model
 		}
 		if($createdById != null && $createdById > -1){
 			$this->db->where('CreatedByID', $createdById);
+		}
+		if($code != null && $code > -1){
+			$this->db->where('ProductID', $code);
 		}
 		if($hasAuthor != null && $hasAuthor == 1){
 			$this->db->where('CreatedByID IS NOT NULL', NULL, FALSE);
@@ -647,6 +650,9 @@ class Product_Model extends CI_Model
 		}
 		if($createdById != null && $createdById > -1){
 			$this->db->where('CreatedByID', $createdById);
+		}
+		if($code != null && $code > -1){
+			$this->db->where('ProductID', $code);
 		}
 		if($hasAuthor != null && $hasAuthor == 1){
 			$this->db->where('CreatedByID IS NOT NULL', NULL, FALSE);
