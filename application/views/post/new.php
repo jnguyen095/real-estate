@@ -11,9 +11,9 @@
 <head>
 	<head>
 		<meta charset = "utf-8">
-		<meta name="description" content="Tin Bất động sản, Rao tin miễn phí, tin bất động sản miễn phí">
-		<meta name="keywords" content="Tin Bất động sản, Rao tin miễn phí, tin bất động sản miễn phí">
-		<title>Tạo Tin Bất Động Sản | Đăng Tin Rao Miễn Phí</title>
+		<meta name="description" content="Đăng Tin Bán Nhà, Bán Đất, Đăng Tin Bất động sản, Rao tin miễn phí, tin bất động sản miễn phí, rao vặt, đăng tin bán nhà">
+		<meta name="keywords" content="đăng,tin,miễn,phí,bất,động,sản,rao,vặt,bán,mua,nhà,chung,cư,real,estate">
+		<title>Đăng Tin Bất Động Sản, Đăng Tin Rao Miễn Phí</title>
 		<script src="<?= base_url('/ckeditor/ckeditor.js') ?>"></script>
 		<?php $this->load->view('common_header')?>
 		<link rel="stylesheet" href="<?=base_url('/css/iCheck/all.css')?>">

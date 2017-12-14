@@ -241,7 +241,7 @@ class Search_controller extends CI_Controller
 		$search_data = $this->Product_Model->findUserId($offset, MAX_PAGE_ITEM, $userId);
 		$data = array_merge($data, $search_data);
 		$config = pagination();
-		$config['base_url'] = base_url(seo_url('/bat-dong-san-cua').'-'.seo_url($data['userAuthor']->FullName).'-u'.$data['userAuthor']->Us3rID.'.html');
+		$config['base_url'] = base_url(seo_url('bat-dong-san-cua').'-'.seo_url($data['userAuthor']->FullName).'-u'.$data['userAuthor']->Us3rID.'.html');
 		$config['total_rows'] = $data['total'];
 		$config['per_page'] = MAX_PAGE_ITEM;
 

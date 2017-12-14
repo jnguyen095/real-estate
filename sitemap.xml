@@ -1,81 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
-		<loc>http://tindatdai.com/</loc>
-		<lastmod>2017-08-30</lastmod>
+		<loc>https://tindatdai.com/</loc>
+		<lastmod>2017-12-12</lastmod>
 		<changefreq>weekly</changefreq>
 		<priority>0.9</priority>
 	</url>
 	<url>
-		<loc>http://tindatdai.com/nha-da-t-ba-n-c257.html</loc>
+		<loc>https://tindatdai.com/nha-dat-ban-c257.html</loc>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>http://tindatdai.com/nha-da-t-ba-n-c257.html</loc>
+		<loc>https://tindatdai.com/ban-can-ho-chung-cu-c258.html</loc>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>http://tindatdai.com/nha-dat-cho-thue-c267.html</loc>
+		<loc>https://tindatdai.com/ban-nha-rieng-c259.html</loc>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>http://tindatdai.com/nha-dat-cho-thue-c267.html</loc>
+		<loc>https://tindatdai.com/ban-nha-biet-thu-lien-ke-c260.html</loc>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>http://tindatdai.com/du-an-c276.html</loc>
+		<loc>https://tindatdai.com/ban-dat-nen-du-an-c262.html</loc>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>http://tindatdai.com/du-an-c276.html</loc>
+		<loc>https://tindatdai.com/ban-kho-nha-xuong-c265.html</loc>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>http://tindatdai.com/can-mua-can-thue-c287.html</loc>
+		<loc>https://tindatdai.com/ban-dat-c263.html</loc>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>http://tindatdai.com/can-mua-can-thue-c287.html</loc>
+		<loc>https://tindatdai.com/ban-loai-bat-dong-san-khac-c266.html</loc>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>http://tindatdai.com/tin-tu-c-c290.html</loc>
+		<loc>https://tindatdai.com/ban-nha-biet-thu-lien-ke-c260.html</loc>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>http://tindatdai.com/tin-tu-c-c290.html</loc>
+		<loc>https://tindatdai.com/ban-trang-trai-khu-nghi-duong-c264.html</loc>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>http://tindatdai.com/xay-dung-kien-truc-c299.html</loc>
+		<loc>https://tindatdai.com/nha-dat-cho-thue-c267.html</loc>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>http://tindatdai.com/xay-dung-kien-truc-c299.html</loc>
+		<loc>https://tindatdai.com/cho-thue-can-ho-chung-cu-c268.html</loc>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>http://tindatdai.com/noi-ngoai-that-c302.html</loc>
+		<loc>https://tindatdai.com/cho-thue-nha-tro-phong-tro-c271.html</loc>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>http://tindatdai.com/noi-ngoai-that-c302.html</loc>
+		<loc>https://tindatdai.com/cho-thue-kho-nha-xuong-dat-c274.html</loc>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>http://tindatdai.com/phong-thuy-c308.html</loc>
+		<loc>https://tindatdai.com/cho-thue-nha-rieng-c269.html</loc>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>http://tindatdai.com/phong-thuy-c308.html</loc>
+		<loc>https://tindatdai.com/cho-thue-van-phong-c272.html</loc>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>http://tindatdai.com/danh-ba-c314.html</loc>
+		<loc>https://tindatdai.com/cho-thue-loai-bat-dong-san-khac-c275.html</loc>
 		<priority>0.5</priority>
 	</url>
 	<url>
-		<loc>http://tindatdai.com/danh-ba-c314.html</loc>
+		<loc>https://tindatdai.com/cho-thue-nha-mat-pho-c270.html</loc>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://tindatdai.com/cho-thue-cua-hang-ki-ot-c273.html</loc>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://tindatdai.com/tin-tuc.html</loc>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://tindatdai.com/nha-mau-dep.html</loc>
+		<priority>0.5</priority>
+	</url>
+	<url>
+		<loc>https://tindatdai.com/hop-tac.html</loc>
 		<priority>0.5</priority>
 	</url>
 </urlset>
