@@ -7,3 +7,4 @@ Disallow: /login_controller/loadOthersImages/
 Disallow: /login_controller/removeSecondaryImage/
 Disallow: /ajax_controller/
 Disallow: /admin/
+Sitemap: https://tindatdai.com/sitemap.xml

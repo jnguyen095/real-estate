@@ -83,6 +83,12 @@ class Product_controller extends CI_Controller
 		if($product->BrandID != null){
 			$data['branch'] = $this->Brand_Model->findByIdHasImage($product->BrandID);
 		}
+
+		$googleBoot = false;
+		if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), "googlebot"))
+		{
+			$googleBoot = true;
+		}
 		$this->Product_Model->updateViewForProductId($productId);
 		if($product->CreatedByID != null && $product->CreatedByID > 0){
 			$data['totalProductWithThisUser'] = $this->Product_Model->countProductWithUser($product->CreatedByID);
