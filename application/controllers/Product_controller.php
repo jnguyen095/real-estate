@@ -53,53 +53,55 @@ class Product_controller extends CI_Controller
 
 	public function detailItem($productId) {
 		$product = $this->Product_Model->findByIdFetchAll($productId);
-		if(!isset($product) || $product->ProductID == null){
-			redirect("/khong-tim-thay");
-		}
 		$data = $this->Category_Model->getCategories();
-		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
-		$product = $this->Product_Model->findByIdFetchAll($productId);
-		$category =  $this->Category_Model->findById($product->CategoryID);
-		$data['category'] = $category;
-		$data['product'] = $product;
-		$data['district'] = $this->District_Model->findById($product->DistrictID);
 		$data['cities'] = $this->City_Model->getAllActive();
-		$data['sampleHouses'] = $this->SampleHouse_Model->findTopNewExceptCurrent(0, 5);
-		if($product->DistrictID != null) {
-			$similarPros = $this->Product_Model->findByCatIdAndDistrictIdFetchAddressNotCurrent($product->CategoryID, $product->DistrictID, 10, $productId);
-			if(count($similarPros)%2 != 0){
-				unset($similarPros[0]);
-			}
-			$data['similarProducts'] = $similarPros;
-			if(count($similarPros) < 1){
-				$similarCityPros = $this->Product_Model->findByCatIdAndCityIdFetchAddressNotCurrent($product->CategoryID, $product->CityID, 10, $productId);
-				if(count($similarCityPros)%2 != 0){
-					unset($similarCityPros[0]);
+		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+
+		if(!isset($product) || $product->ProductID == null){
+			// redirect("/khong-tim-thay");
+			$this->load->view('Notfound_view', $data);
+		}else {
+			$product = $this->Product_Model->findByIdFetchAll($productId);
+			$category = $this->Category_Model->findById($product->CategoryID);
+			$data['category'] = $category;
+			$data['product'] = $product;
+			$data['district'] = $this->District_Model->findById($product->DistrictID);
+			$data['sampleHouses'] = $this->SampleHouse_Model->findTopNewExceptCurrent(0, 5);
+			if ($product->DistrictID != null) {
+				$similarPros = $this->Product_Model->findByCatIdAndDistrictIdFetchAddressNotCurrent($product->CategoryID, $product->DistrictID, 10, $productId);
+				if (count($similarPros) % 2 != 0) {
+					unset($similarPros[0]);
 				}
-				$data['similarCityProducts'] = $similarCityPros;
-				$data['city'] = $this->City_Model->findById($product->CityID);
+				$data['similarProducts'] = $similarPros;
+				if (count($similarPros) < 1) {
+					$similarCityPros = $this->Product_Model->findByCatIdAndCityIdFetchAddressNotCurrent($product->CategoryID, $product->CityID, 10, $productId);
+					if (count($similarCityPros) % 2 != 0) {
+						unset($similarCityPros[0]);
+					}
+					$data['similarCityProducts'] = $similarCityPros;
+					$data['city'] = $this->City_Model->findById($product->CityID);
+				}
 			}
-		}
-		if($product->BrandID != null){
-			$data['branch'] = $this->Brand_Model->findByIdHasImage($product->BrandID);
-		}
+			if ($product->BrandID != null) {
+				$data['branch'] = $this->Brand_Model->findByIdHasImage($product->BrandID);
+			}
 
-		$googleBoot = false;
-		if(strstr(strtolower($_SERVER['HTTP_USER_AGENT']), "googlebot"))
-		{
-			$googleBoot = true;
+			$googleBoot = false;
+			if (strstr(strtolower($_SERVER['HTTP_USER_AGENT']), "googlebot")) {
+				$googleBoot = true;
+			}
+			$this->Product_Model->updateViewForProductId($productId);
+			if ($product->CreatedByID != null && $product->CreatedByID > 0) {
+				$data['totalProductWithThisUser'] = $this->Product_Model->countProductWithUser($product->CreatedByID);
+			}
+
+			$this->load->helper('url');
+
+			//load the same parent category
+			$data['sameLevels'] = $this->Category_Model->findByParentId($category->ParentID, $category->CategoryID);
+
+			$this->load->view('product/Product_detail', $data);
 		}
-		$this->Product_Model->updateViewForProductId($productId);
-		if($product->CreatedByID != null && $product->CreatedByID > 0){
-			$data['totalProductWithThisUser'] = $this->Product_Model->countProductWithUser($product->CreatedByID);
-		}
-
-		$this->load->helper('url');
-
-		//load the same parent category
-		$data['sameLevels'] = $this->Category_Model->findByParentId($category->ParentID, $category->CategoryID);
-
-		$this->load->view('product/Product_detail', $data);
 	}
 
 	public function justUpdateItems($offset=0) {
