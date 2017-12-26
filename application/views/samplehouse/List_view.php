@@ -29,27 +29,28 @@
 			<?php
 				if(isset($sampleHouses) && count($sampleHouses) > 0){
 					foreach ($sampleHouses as $sampleHouse) {
-						echo '<div class="row product-list">';
-						echo '<div class="row product-title"><a href="' . base_url() . seo_url($sampleHouse->Title) . '-s' . $sampleHouse->SampleHouseID . '.html"><h3>' . $sampleHouse->Title . '</h3></a> </div>';
+						?>
+						<div class="col-sm-6 col-xs-12 product-list sample-house">
+							<div class="row product-title">
+								<a href="<?=base_url() . seo_url($sampleHouse->Title) . '-s' . $sampleHouse->SampleHouseID?>.html"><h3><?=$sampleHouse->Title?></h3></a>
+							</div>
 
-						echo '<div class="row product-content">';
-						echo '<div class="col-md-2 col-xs-5 no-padding"><a href="' . base_url() . seo_url($sampleHouse->Title) . '-s' . $sampleHouse->SampleHouseID . '.html"><img style="max-width: 120px" src="' . $sampleHouse->Thumb . '" alt="'.$sampleHouse->Title.'"/></a></div>';
-						echo '<div class="col-md-10 col-xs-7">';
-						echo '<div class="row pos-relative">';
-
-						echo '<div class="productTop">';
-						echo '<div class="col-md-12 col-xs-12 color bold relative-time no-padding text-left">' . date('d/m/Y', strtotime($sampleHouse->CreatedDate)) . '</div>';
-						echo '<div class="clear-both"></div>';
-						echo '</div>';
-
-						echo '<div class="col-md-12 col-xs-12 product-brief no-padding mobile-hide">';
-						echo '<div class="no-margin no-padding col-md-12 col-xs-12">' . $sampleHouse->Brief . '</div>';
-						echo '</div>';
-
-						echo '</div>';
-						echo '</div>';
-						echo '</div>';
-						echo '</div>';
+							<div class="row product-content">
+								<div class="col-lg-7 col-sm-8 col-xs-9">
+									<a href="<?=base_url() . seo_url($sampleHouse->Title) . '-s' . $sampleHouse->SampleHouseID?>.html">
+										<img src="<?=middleImageReplace($sampleHouse->Thumb)?>" alt="<?=$sampleHouse->Title?>"/>
+									</a>
+								</div>
+								<div class="col-lg-5 sample-house-brief col-sm-4 col-xs-3 no-padding-left hidden-xs">
+									<div class="row pos-relative ">
+										<div class="col-md-12 col-xs-12 green-color bold relative-time no-padding text-left"><?=date('d/m/Y', strtotime($sampleHouse->CreatedDate))?></div>
+										<div class="hidden-sm"><?=$sampleHouse->Brief?></div>
+									</div>
+								</div>
+								<div class="clear-both"></div>
+							</div>
+						</div>
+					<?php
 					}
 				}
 			?>
