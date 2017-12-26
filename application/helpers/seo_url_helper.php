@@ -112,3 +112,14 @@ if ( ! function_exists('getCurrentURL')) {
 		return $currentURL;
 	}
 }
+
+
+if ( ! function_exists('middleImageReplace')) {
+	function middleImageReplace($url)
+	{
+		$url = str_replace("132x100", "210x160", $url);
+		$url = str_replace("width=410", "width=210", $url);
+		$url = str_replace("height=245", "height=160", $url);
+		return $url;
+	}
+}
