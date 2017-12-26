@@ -42,7 +42,7 @@ class Admin_controller extends CI_Controller
 		$data['feedbackAll'] = $this->Dashboard_Model->countFeedback(!$today);
 		$data['feedbackToday'] = $this->Dashboard_Model->countFeedback($today);
 
-		$thumbs = ["https://file1.batdongsan.com.vn/images/no-photo.jpg", "https://dothi.net/Images/no-photo170.png"];
+		$thumbs = ["https://file1.batdongsan.com.vn/images/no-photo.jpg", "https://dothi.net/Images/no-photo170.png" , "https://nhadat.cafeland.vn/images/ico/cafeland.jpg"];
 		$data['thumbNoImages'] = $this->Dashboard_Model->countProductHasNoThumb($thumbs);
 		$this->load->view('admin/dashboard', $data);
 	}
@@ -56,7 +56,7 @@ class Admin_controller extends CI_Controller
 		echo json_encode('success');
 	}
 	public function replaceThumbs(){
-		$thumbs = ["https://file1.batdongsan.com.vn/images/no-photo.jpg", "https://dothi.net/Images/no-photo170.png"];
+		$thumbs = ["https://file1.batdongsan.com.vn/images/no-photo.jpg", "https://dothi.net/Images/no-photo170.png", "https://nhadat.cafeland.vn/images/ico/cafeland.jpg"];
 		$this->Dashboard_Model->updateProductHasNoThumb($thumbs, "/img/no_image.png");
 		echo json_encode('success');
 	}
