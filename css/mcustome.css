@@ -70,8 +70,23 @@ body > .container{
 	margin-bottom: 10px;
 }
 
+.product-list.sample-house{
+	height: 245px;
+	margin-left: -1px;
+	margin-bottom: -1px;
+}
+
 .home-group .product-list{
 	height: 94px;
+	overflow: hidden;
+}
+
+.product-list.sample-house .product-title{
+	height: 53px;
+}
+
+.product-list.sample-house .sample-house-brief{
+	height: 156px;
 	overflow: hidden;
 }
 
