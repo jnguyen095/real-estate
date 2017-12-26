@@ -40,7 +40,7 @@
 				echo '</div>';
 			}?>
 
-			<h1 class="h2title">CHỈNH SỦA TIN BẤT ĐỘNG SẢN</h1>
+			<h1 class="h2title">CHỈNH SỬA TIN BẤT ĐỘNG SẢN</h1>
 			<hr/>
 
 			<div class="col-lg-9 col-sm-9">
