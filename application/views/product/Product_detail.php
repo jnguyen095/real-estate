@@ -134,7 +134,7 @@
 		<div class="h2title">Chi Tiết</div>
 
 		<div id="prDetail" class="product-detail content" itemprop="description">
-			<?php echo $product->Detail?>
+			<?php echo preg_replace('#<a.*?>([^>]*)</a>#i', '$1', $product->Detail);?>
 		</div>
 
 		<div class="row">
