@@ -34,11 +34,27 @@ class Post_controller extends CI_Controller
 		$this->load->model('Direction_Model');
 		$this->load->model('Transfer_Model');
 		$this->load->helper('security');
-		$this->load->library('email'); // load the library
+		// $this->load->library('phpmailer'); // load the library
 	}
 
 	public function sendMail()
 	{
+		$this->load->library("My_PHPMailer");
+		$objMail = $this->phpmailer_library->load();
+
+		/*$subject = 'Testing Email';
+		$name = 'iCoreThink Technologies';
+		$email = 'contact@icorethink.com';
+		$body = "This is body text for test email to combine CodeIgniter and PHPmailer";
+		$this->phpmailer->AddAddress($email);
+		$this->PHPMailer->IsMail();
+		$this->PHPMailer->From = 'info@icorethink.com';
+		$this->PHPMailer->FromName = 'iCoreThink Technologies';
+		$this->PHPMailer->IsHTML(true);
+		$this->PHPMailer->Subject = $subject;
+		$this->PHPMailer->Body = $body;
+		$this->PHPMailer->Send();*/
+		/*
 		// Email configuration
 		$config = Array(
 			'protocol' => 'smtp',
@@ -61,7 +77,7 @@ class Post_controller extends CI_Controller
 		$data['message'] = "Sorry Unable to send email...";
 		if ($this->email->send()) {
 			$data['message'] = "Mail sent...";
-		}
+		}*/
 	}
 
 	public function index()

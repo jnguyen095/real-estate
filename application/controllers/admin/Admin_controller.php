@@ -29,6 +29,7 @@ class Admin_controller extends CI_Controller
 		$data['postToday'] = $this->Dashboard_Model->getPostToday();
 		$data['countPostPushToday'] = $this->Dashboard_Model->countPostPushToday();
 		$data['postVipPreviousDate'] = $this->Dashboard_Model->countStandardForPreviousPost();
+		$data['postVipPreviousDateAuthor'] = $this->Dashboard_Model->countPreviousPostVip();
 		$data['postCurrentDate'] = $this->Dashboard_Model->getPostCurrentDate('ALL');
 		$data['postCrawlerCurrentDate'] = $this->Dashboard_Model->getPostCurrentDate('CRAWLER');
 		$data['postCreateCurrentDate'] = $this->Dashboard_Model->getPostCurrentDate('CREATE');
@@ -50,9 +51,14 @@ class Admin_controller extends CI_Controller
 		$this->Dashboard_Model->updateStandardForPreviousPost();
 		echo json_encode('success');
 	}
-	public function addRandomNumber2PostView(){
-		$max = $this->input->post('range');
-		$this->Dashboard_Model->addRandomNumber2PostView($max);
+	public function retainCrawlerVip(){
+		$crawlerPost = !true;
+		$this->Dashboard_Model->retainPreviousVip($crawlerPost);
+		echo json_encode('success');
+	}
+	public function retainOwnerVip(){
+		$owner = true;
+		$this->Dashboard_Model->retainPreviousVip($owner);
 		echo json_encode('success');
 	}
 	public function replaceThumbs(){

@@ -153,4 +153,16 @@ class Dashboard_Model extends CI_Model
 		$this->db->where("CreatedByID IS NOT NULL", NULL, false);
 		$this->db->update("product");
 	}
+	public function retainPreviousVip($justAuthor){
+		if($justAuthor){
+			$today = date('Y-m-d');
+			$query = "update product set ModifiedDate = now() where Vip != 5 and CreatedByID is not null and date(ModifiedDate) <= '{$today}'";
+			$this->db->query($query);
+		}else{
+			$today = date('Y-m-d');
+			$query = "update product set ModifiedDate = now() where Vip != 5 and CreatedByID is null and date(ModifiedDate) <= '{$today}'";
+			$this->db->query($query);
+		}
+
+	}
 }

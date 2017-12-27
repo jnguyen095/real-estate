@@ -171,23 +171,29 @@
 						<div class="box-body">
 							<a id="updateVip" data-vip="<?=$postVipPreviousDate?>" class="btn btn-app">
 								<span id="previousVipPost" class="badge <?=$postVipPreviousDate > 0 ? 'bg-red' : 'bg-green'?>"><?=$postVipPreviousDate?></span>	
-								<i class="fa fa-repeat"></i> Xóa VIP ngày cũ
+								<i class="fa fa-remove"></i> Delete Crawler Vip
 							</a>
 
 							<a id="deleteCaptchaImgs" data-captcha="<?=$captchaImgs?>" class="btn btn-app">
 								<span id="captchaImgs" class="badge <?=$captchaImgs > 0 ? 'bg-red' : 'bg-green'?>"><?=$captchaImgs?></span>
-								<i class="fa fa-repeat"></i> Xóa Captcha rác
+								<i class="fa fa-remove"></i> Delete Captcha Img
 							</a>
 
 							<a id="replaceThumbnails" data-thumb="<?=$thumbNoImages?>" class="btn btn-app">
 								<span id="thumbImgs" class="badge <?=$thumbNoImages > 0 ? 'bg-red' : 'bg-green'?>"><?=$thumbNoImages?></span>
-								<i class="fa fa-repeat"></i> Thay hình default
+								<i class="fa fa-copy"></i> Replace Default Img
 							</a>
 
-							<a id="increasePostView" class="btn btn-app">
-								<i class="fa fa-repeat"></i> Tăng View
+							<a id="retainCrawlerVip" data-vip="<?=$postVipPreviousDate?>" class="btn btn-app">
+								<span id="previousCrawlerVipPost" class="badge <?=$postVipPreviousDate > 0 ? 'bg-red' : 'bg-green'?>"><?=$postVipPreviousDate?></span>
+								<i class="fa fa-exchange"></i> Retain Crawler Vip
 							</a>
-							
+
+							<a id="retainAuthorVip" data-vip="<?=$postVipPreviousDateAuthor?>" class="btn btn-app">
+								<span id="previousCrawlerVipPost" class="badge <?=$postVipPreviousDateAuthor > 0 ? 'bg-red' : 'bg-green'?>"><?=$postVipPreviousDateAuthor?></span>
+								<i class="fa fa-exchange"></i> Retain Author Vip
+							</a>
+
 							<a id="deleteExpired" class="btn btn-app">
 								<i class="fa fa-trash"></i> Xóa Post hết hạn
 							</a>
@@ -432,7 +438,7 @@
 	$(document).ready(function(){
 		$("#updateVip").click(function(){
 			if($(this).data('vip') > 0){
-				bootbox.confirm("Chuyển VIP những ngày trước sang Standard?", function(r){
+				bootbox.confirm("Chuyển crawler VIP những ngày trước sang Standard?", function(r){
 				if(r){
 					jQuery.ajax({
 						type: "POST",
@@ -462,7 +468,8 @@
 							data: {},
 							success: function(res){
 								if(res == 'success'){
-									bootbox.alert("Xóa thành công");
+									$("#captchaImgs").removeClass('bg-red').addClass('bg-green').html('0');
+									// bootbox.alert("Xóa thành công");
 								}
 							}
 						});
@@ -483,7 +490,50 @@
 							data: {},
 							success: function(res){
 								if(res == 'success'){
-									bootbox.alert("Thay hình thành công");
+									$("#thumbImgs").removeClass('bg-red').addClass('bg-green').html('0');
+									// bootbox.alert("Thay hình thành công");
+								}
+							}
+						});
+					}
+				});
+			}
+		});
+
+		$("#retainCrawlerVip").click(function(){
+			if($(this).data('vip') > 0){
+				bootbox.confirm("Giữ lại tin Crawler Vip ngày trước?", function(r){
+					if(r){
+						jQuery.ajax({
+							type: "POST",
+							url: '<?=base_url("/admin/admin_controller/retainCrawlerVip")?>',
+							dataType: 'json',
+							data: {},
+							success: function(res){
+								if(res == 'success'){
+									$("#previousCrawlerVipPost").removeClass('bg-red').addClass('bg-green').html('0');
+									// bootbox.alert("Update thành công");
+								}
+							}
+						});
+					}
+				});
+			}
+		});
+
+		$("#retainAuthorVip").click(function(){
+			if($(this).data('vip') > 0){
+				bootbox.confirm("Giữ lại tin Vip chính chủ ngày trước?", function(r){
+					if(r){
+						jQuery.ajax({
+							type: "POST",
+							url: '<?=base_url("/admin/admin_controller/retainOwnerVip")?>',
+							dataType: 'json',
+							data: {},
+							success: function(res){
+								if(res == 'success'){
+									$("#previousCrawlerVipPost").removeClass('bg-red').addClass('bg-green').html('0');
+									// bootbox.alert("Update thành công");
 								}
 							}
 						});
