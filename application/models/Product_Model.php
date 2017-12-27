@@ -432,7 +432,16 @@ class Product_Model extends CI_Model
 		$insert_id = $this->db->insert_id();
 		$this->saveProductAssets($insert_id, $assets);
 		$this->saveProductDetail($insert_id, $newdatadetail);
+		if($data['vip'] == PRODUCT_STANDARD && $data['CreatedByID'] != null){
+			$this->increaseStandardPost($data['CreatedByID']);
+		}
 		return $insert_id;
+	}
+
+	private function increaseStandardPost($userId){
+		$this->db->set('StandardPost', 'StandardPost + 1', false);
+		$this->db->where('Us3rID', $userId);
+		$this->db->update('us3r');
 	}
 
 	public function changeStatusPost($productId, $status){

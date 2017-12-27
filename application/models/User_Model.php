@@ -44,7 +44,8 @@ class User_Model extends CI_Model
 			'UserGroupID' => 2,
 			'AvailableMoney' => 0,
 			'DepositedMoney' => 0,
-			'SpentMoney' => 0
+			'SpentMoney' => 0,
+			'StandardPost' => 0
 		);
 		$this->db->insert('us3r', $newdata);
 	}

@@ -34,50 +34,6 @@ class Post_controller extends CI_Controller
 		$this->load->model('Direction_Model');
 		$this->load->model('Transfer_Model');
 		$this->load->helper('security');
-		// $this->load->library('phpmailer'); // load the library
-	}
-
-	public function sendMail()
-	{
-		$this->load->library("My_PHPMailer");
-		$objMail = $this->phpmailer_library->load();
-
-		/*$subject = 'Testing Email';
-		$name = 'iCoreThink Technologies';
-		$email = 'contact@icorethink.com';
-		$body = "This is body text for test email to combine CodeIgniter and PHPmailer";
-		$this->phpmailer->AddAddress($email);
-		$this->PHPMailer->IsMail();
-		$this->PHPMailer->From = 'info@icorethink.com';
-		$this->PHPMailer->FromName = 'iCoreThink Technologies';
-		$this->PHPMailer->IsHTML(true);
-		$this->PHPMailer->Subject = $subject;
-		$this->PHPMailer->Body = $body;
-		$this->PHPMailer->Send();*/
-		/*
-		// Email configuration
-		$config = Array(
-			'protocol' => 'smtp',
-			'smtp_host' => 'smtp.gmail.com.',
-			'smtp_port' => 465,
-			'smtp_user' => 'tindatdai@gmail.com', // change it to yours
-			'smtp_pass' => '12345678@Xx', // change it to yours
-			'mailtype' => 'html',
-			'charset' => 'iso-8859-1',
-			'wordwrap' => TRUE
-		);
-
-		$this->load->library('email', $config);
-		$this->email->from('tindatdai@gmail.com', "Tin Đất Đai");
-		$this->email->to("nhukhang095@gmail.com");
-		// $this->email->cc("testcc@domainname.com");
-		$this->email->subject("This is test subject line");
-		$this->email->message("Mail sent test message...");
-
-		$data['message'] = "Sorry Unable to send email...";
-		if ($this->email->send()) {
-			$data['message'] = "Mail sent...";
-		}*/
 	}
 
 	public function index()
