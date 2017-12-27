@@ -28,9 +28,7 @@
 		<div class="search-result-panel col-md-12"><?=$sampleHouseDetail->Title?></div>
 		<div class="news-date"><?=date('d/m/Y h:i', strtotime($sampleHouseDetail->CreatedDate))?></div>
 		<div class="product-panel col-md-12  no-margin no-padding">
-			<?php
-				echo $sampleHouseDetail->Description;
-			?>
+			<?php echo preg_replace('#<a.*?>([^>]*)</a>#i', '$1', $sampleHouseDetail->Description);?>
 			<div class="news-sources">
 				<div class="float-left">
 			<?php
