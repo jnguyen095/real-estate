@@ -25,8 +25,22 @@ class Product_controller extends CI_Controller
 	}
 
 	public function listItem($catId, $offset=0) {
-		$data = $this->Category_Model->getCategories();
-		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+		// begin file cached
+		$this->load->driver('cache');
+		$categories = $this->cache->file->get('category');
+		$footerMenus = $this->cache->file->get('footer');
+		if(!$categories){
+			$categories = $this->Category_Model->getCategories();
+			$this->cache->file->save('category', $categories, 1440);
+		}
+		if(!$footerMenus) {
+			$footerMenus = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+			$this->cache->file->save('footer', $footerMenus, 1440);
+		}
+		$data = $categories;
+		$data['footerMenus'] = $footerMenus;
+		// end file cached
+
 		$search_data = $this->Product_Model->findByCatIdFetchAddress($catId, $offset, MAX_PAGE_ITEM);
 
 
@@ -53,9 +67,28 @@ class Product_controller extends CI_Controller
 
 	public function detailItem($productId) {
 		$product = $this->Product_Model->findByIdFetchAll($productId);
-		$data = $this->Category_Model->getCategories();
-		$data['cities'] = $this->City_Model->getAllActive();
-		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+		// begin file cached
+		$this->load->driver('cache');
+		$categories = $this->cache->file->get('category');
+		$footerMenus = $this->cache->file->get('footer');
+		if(!$categories){
+			$categories = $this->Category_Model->getCategories();
+			$this->cache->file->save('category', $categories, 1440);
+		}
+		if(!$footerMenus) {
+			$footerMenus = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+			$this->cache->file->save('footer', $footerMenus, 1440);
+		}
+		$data = $categories;
+		$data['footerMenus'] = $footerMenus;
+		// end file cached
+
+		$cities = $this->cache->file->get('cities');
+		if(!$cities){
+			$cities = $this->City_Model->getAllActive();
+			$this->cache->file->save('cities', $cities, 1440);
+		}
+		$data['cities'] = $cities;
 
 		if(!isset($product) || $product->ProductID == null){
 			// redirect("/khong-tim-thay");
@@ -86,10 +119,6 @@ class Product_controller extends CI_Controller
 				$data['branch'] = $this->Brand_Model->findByIdHasImage($product->BrandID);
 			}
 
-			$googleBoot = false;
-			if (strstr(strtolower($_SERVER['HTTP_USER_AGENT']), "googlebot")) {
-				$googleBoot = true;
-			}
 			$this->Product_Model->updateViewForProductId($productId);
 			if ($product->CreatedByID != null && $product->CreatedByID > 0) {
 				$data['totalProductWithThisUser'] = $this->Product_Model->countProductWithUser($product->CreatedByID);
@@ -105,8 +134,21 @@ class Product_controller extends CI_Controller
 	}
 
 	public function justUpdateItems($offset=0) {
-		$data = $this->Category_Model->getCategories();
-		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+		// begin file cached
+		$this->load->driver('cache');
+		$categories = $this->cache->file->get('category');
+		$footerMenus = $this->cache->file->get('footer');
+		if(!$categories){
+			$categories = $this->Category_Model->getCategories();
+			$this->cache->file->save('category', $categories, 1440);
+		}
+		if(!$footerMenus) {
+			$footerMenus = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+			$this->cache->file->save('footer', $footerMenus, 1440);
+		}
+		$data = $categories;
+		$data['footerMenus'] = $footerMenus;
+		// end file cached
 
 		$totalProduct = $this->Product_Model->countAllProduct();
 		$justUpdateItems = $this->Product_Model->findJustUpdate($offset, MAX_PAGE_ITEM);
@@ -129,8 +171,21 @@ class Product_controller extends CI_Controller
 	}
 
 	public function underOneBillion($offset=0){
-		$data = $this->Category_Model->getCategories();
-		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+		// begin file cached
+		$this->load->driver('cache');
+		$categories = $this->cache->file->get('category');
+		$footerMenus = $this->cache->file->get('footer');
+		if(!$categories){
+			$categories = $this->Category_Model->getCategories();
+			$this->cache->file->save('category', $categories, 1440);
+		}
+		if(!$footerMenus) {
+			$footerMenus = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+			$this->cache->file->save('footer', $footerMenus, 1440);
+		}
+		$data = $categories;
+		$data['footerMenus'] = $footerMenus;
+		// end file cached
 
 		$totalProduct = $this->Product_Model->countProductUnderOneBillion();
 		$underOneBillionItems = $this->Product_Model->findUnderOneBillion($offset, MAX_PAGE_ITEM);
