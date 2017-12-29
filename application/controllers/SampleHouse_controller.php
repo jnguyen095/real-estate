@@ -22,9 +22,28 @@ class SampleHouse_controller extends CI_Controller
 	}
 
 	public function index($offset=0){
-		$data = $this->Category_Model->getCategories();
-		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
-		$data['cities'] = $this->City_Model->getAllActive();
+		// begin file cached
+		$this->load->driver('cache');
+		$categories = $this->cache->file->get('category');
+		$footerMenus = $this->cache->file->get('footer');
+		if(!$categories){
+			$categories = $this->Category_Model->getCategories();
+			$this->cache->file->save('category', $categories, 1440);
+		}
+		if(!$footerMenus) {
+			$footerMenus = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+			$this->cache->file->save('footer', $footerMenus, 1440);
+		}
+		$data = $categories;
+		$data['footerMenus'] = $footerMenus;
+		// end file cached
+
+		$cities = $this->cache->file->get('cities');
+		if(!$cities){
+			$cities = $this->City_Model->getAllActive();
+			$this->cache->file->save('cities', $cities, 1440);
+		}
+		$data['cities'] = $cities;
 
 
 		$search_data = $this->SampleHouse_Model->searchByProperties($offset, MAX_PAGE_ITEM);
@@ -42,9 +61,30 @@ class SampleHouse_controller extends CI_Controller
 	}
 
 	public function detail($sampleHouseId){
-		$data = $this->Category_Model->getCategories();
-		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
-		$data['cities'] = $this->City_Model->getAllActive();
+		// begin file cached
+		$this->load->driver('cache');
+		$categories = $this->cache->file->get('category');
+		$footerMenus = $this->cache->file->get('footer');
+		if(!$categories){
+			$categories = $this->Category_Model->getCategories();
+			$this->cache->file->save('category', $categories, 1440);
+		}
+		if(!$footerMenus) {
+			$footerMenus = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+			$this->cache->file->save('footer', $footerMenus, 1440);
+		}
+		$data = $categories;
+		$data['footerMenus'] = $footerMenus;
+		// end file cached
+
+		$cities = $this->cache->file->get('cities');
+		if(!$cities){
+			$cities = $this->City_Model->getAllActive();
+			$this->cache->file->save('cities', $cities, 1440);
+		}
+		$data['cities'] = $cities;
+
+
 		$data['topNews'] = $this->News_Model->findTopNewExceptCurrent(0, 5);
 
 		$data['sampleHouseDetail'] = $this->SampleHouse_Model->findById($sampleHouseId);
