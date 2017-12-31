@@ -36,18 +36,30 @@
 			</ol>
 		</section>
 
+		<?php
+		$attributes = array("id" => "frmSitemap");
+		echo form_open("admin/sitemap/list", $attributes);
+		?>
 		<!-- Main content -->
 		<section class="content container-fluid">
 			<div class="box">
 				<div class="box-header">
 					<h3 class="box-title">Danh sách Sitemap</h3>
 				</div>
-				<div class="top-buttons">
-					<a class="btn btn-info" href="<?=base_url('/admin/sitemap/push.html')?>">Pust lên Search Engine</a>
-					<a class="btn btn-primary" href="<?=base_url('/admin/sitemap.html')?>">Tạo sitemap mới</a>
-				</div>
+
 				<!-- /.box-header -->
 				<div class="box-body">
+					<?php if(!empty($message_response)){
+						echo '<div class="alert alert-success">';
+						echo '<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>';
+						echo $message_response;
+						echo '</div>';
+					}?>
+					<div class="top-buttons">
+						<a class="btn btn-info" href="<?=base_url('/admin/sitemap/push.html')?>">Pust lên Search Engine</a>
+						<a class="btn btn-primary" href="<?=base_url('/admin/sitemap.html')?>">Tạo sitemap mới</a>
+					</div>
+
 					<table id="example1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
@@ -67,10 +79,11 @@
 									<td><?=$sitemap->SitemapIndexID?></td>
 									<td><?=date('d/m/Y H:m:s', strtotime($sitemap->LastModified)) ?></td>
 									<td><?=number_format($sitemap->TotalItem)?></td>
-									<td><?=$sitemap->Ping == 1 ? '<span class="bg-green-active">Yes</span>': '<span class="bg-danger">No</span>'?></td>
+									<td><?=$sitemap->Ping != null ? date('d/m/Y H:m:s', strtotime($sitemap->Ping)) : ''?></td>
 									<td>
-										<a href="<?=base_url('/admin/sitemap/view-'.$sitemap->SitemapIndexID.'.html')?>"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;|&nbsp;
-										<a href="<?=base_url('/admin/sitemap/sitemap-'.$sitemap->SitemapIndexID.'.html')?>"><i class="glyphicon glyphicon-bookmark"></i></a>
+										<a data-toggle="tooltip" title="Xem dạng xml" href="<?=base_url('/admin/sitemap/view-'.$sitemap->SitemapIndexID.'.html')?>"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;|&nbsp;
+										<a data-toggle="tooltip" title="Xem danh sách" href="<?=base_url('/admin/sitemap/sitemap-'.$sitemap->SitemapIndexID.'.html')?>"><i class="glyphicon glyphicon-bookmark"></i></a>&nbsp;|&nbsp;
+										<a class="delete-button" data-sitemap="<?=$sitemap->SitemapIndexID?>" data-toggle="tooltip" title="Xóa sitemap" href="#"><i class="glyphicon glyphicon-remove"></i></a>
 									</td>
 								</tr>
 								<?php
@@ -84,6 +97,10 @@
 
 		</section>
 		<!-- /.content -->
+
+		<input type="hidden" id="crudaction" name="crudaction">
+		<input type="hidden" id="sitemapId" name="sitemapId">
+		<?php echo form_close(); ?>
 	</div>
 	<!-- /.content-wrapper -->
 
@@ -105,9 +122,26 @@
 <script src="<?=base_url('/admin/js/bootstrap.min.js')?>"></script>
 <!-- AdminLTE App -->
 <script src="<?=base_url('/admin/js/adminlte.min.js')?>"></script>
+<script src="<?=base_url('/js/bootbox.min.js')?>"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".delete-button").click(function(){
+			$sitemapId = $(this).data('sitemap');
+			if($sitemapId != null && $sitemapId != undefined){
+				bootbox.confirm("Bạn đã chắc chắn khi xóa sitemap này chưa?", function(r) {
+					if (r) {
+						$('#crudaction').val('delete');
+						$('#sitemapId').val($sitemapId);
+						$("#frmSitemap").submit();
+					}
+				});
+			}
+		});
+	});
+</script>
 </body>
 </html>
