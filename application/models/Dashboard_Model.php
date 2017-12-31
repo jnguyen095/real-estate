@@ -159,9 +159,24 @@ class Dashboard_Model extends CI_Model
 			$query = "update product set ModifiedDate = now() where Vip != 5 and CreatedByID is not null and date(ModifiedDate) <= '{$today}'";
 			$this->db->query($query);
 		}else{
-			$today = date('Y-m-d');
-			$query = "update product set ModifiedDate = now() where Vip != 5 and CreatedByID is null and date(ModifiedDate) <= '{$today}'";
+			$yesterday = date('Y-m-d', strtotime("-1 days"));
+			$query = "update product set ModifiedDate = now() where Vip != 5 and CreatedByID is null and date(PostDate) = '{$yesterday}'";
 			$this->db->query($query);
+		}
+
+	}
+	public function countExpiredPost($postType){
+		$today = date('Y-m-d');
+		if($postType == 'Author'){
+			$query = "select count(*) as Total from product where date(ExpireDate) < '{$today}' and Vip > 4 and CreatedByID is not null";
+			$total = $this->db->query($query);
+			$row = $total->row();
+			return $row->Total;
+		}else if($postType == 'Crawler'){
+			$query = "select count(*) as Total from product where date(ExpireDate) < '{$today}' and CreatedByID is null";
+			$total = $this->db->query($query);
+			$row = $total->row();
+			return $row->Total;
 		}
 
 	}
