@@ -103,7 +103,9 @@ $route['tim-kiem'] = "Search_controller";
 $route['tim-kiem.html/(:num)'] = "Search_controller/index/$1";
 
 // Sitemap
-$route['sitemap'] = "Sitemap_controller";
+$route['sitemap\.xml'] = "Sitemap_controller";
+$route['sitemap_(:num)\.xml'] = "Sitemap_controller/viewItems/$1";
+
 
 // tin tuc
 $route['tin-tuc'] = "News_controller";
@@ -160,5 +162,11 @@ $route['admin/transfer-user-(:num)'] = "admin/Transfer_controller/processUser/$1
 $route['admin/purchase-history/list'] = "admin/PurchaseHistory_controller";
 $route['admin/brand/list'] = "admin/BrandManagement_controller";
 $route['admin/brand/view-(:num)'] = "admin/BrandManagement_controller/detail/$1";
+$route['admin/sitemap'] = "admin/SitemapIndex_controller";
+$route['admin/sitemap/list'] = "admin/SitemapIndex_controller/listItems";
+$route['admin/sitemap/view-(:num)'] = "admin/SitemapIndex_controller/viewItems/$1";
+$route['admin/sitemap/sitemap-(:num)'] = "admin/SitemapIndex_controller/xmlView/$1";
+$route['admin/sitemap/export-(:num)'] = "admin/SitemapIndex_controller/exportSitemapFile/$1";
+$route['admin/sitemap/push'] = "Sitemap_controller/publish2SearchEngine";
 
 
