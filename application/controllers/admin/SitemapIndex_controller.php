@@ -66,7 +66,7 @@ class SitemapIndex_controller extends CI_Controller
 
 	function listItems($offset=0){
 		$crudaction =  $this->input->post("crudaction");
-		$result = $this->SitemapIndex_Model->searchByProperties($offset, MAX_PAGE_ITEM);
+		$result = array();
 		if($crudaction != null && $crudaction == DELETE){
 			$sitemapId = $this->input->post("sitemapId");
 			if($sitemapId != null && $sitemapId > 0){
@@ -74,7 +74,8 @@ class SitemapIndex_controller extends CI_Controller
 				$result['message_response'] = 'Xóa thành công.';
 			}
 		}
-
+		$searchResults = $this->SitemapIndex_Model->searchByProperties($offset, MAX_PAGE_ITEM);
+		$result = array_merge($searchResults, $result);
 		$this->load->view("admin/sitemap/list", $result);
 	}
 
