@@ -40,4 +40,9 @@ class SitemapIndex_Model extends CI_Model
 		return $this->db->update('sitemapindex');
 	}
 
+	public function deleteByIndexId($id){
+		$this->db->delete('sitemapindex', array('SitemapIndexID' => $id));
+		$this->db->delete('sitemap', array('SitemapIndexID' => $id));
+	}
+
 }
