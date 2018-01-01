@@ -163,6 +163,7 @@ $route['admin/purchase-history/list'] = "admin/PurchaseHistory_controller";
 $route['admin/brand/list'] = "admin/BrandManagement_controller";
 $route['admin/brand/view-(:num)'] = "admin/BrandManagement_controller/detail/$1";
 $route['admin/sitemap'] = "admin/SitemapIndex_controller";
+$route['admin/sitemap.html/(:num)'] = "admin/SitemapIndex_controller/index/$1";
 $route['admin/sitemap/list'] = "admin/SitemapIndex_controller/listItems";
 $route['admin/sitemap/view-(:num)'] = "admin/SitemapIndex_controller/viewItems/$1";
 $route['admin/sitemap/sitemap-(:num)'] = "admin/SitemapIndex_controller/xmlView/$1";

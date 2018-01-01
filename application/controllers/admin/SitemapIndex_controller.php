@@ -26,8 +26,7 @@ class SitemapIndex_controller extends CI_Controller
 		$this->load->helper("bootstrap_pagination_admin");
 	}
 
-	public function index(){
-		$lookbackDays = 1;
+	public function index($lookbackDays = 1){
 		$products = $this->Sitemap_Model->findProductNotIndexYet($lookbackDays);
 		if(count($products) > 0){
 
@@ -81,6 +80,14 @@ class SitemapIndex_controller extends CI_Controller
 
 	function viewItems($sitemapIndexId){
 		$config = pagination($this);
+		$crudaction =  $this->input->post("crudaction");
+		if($crudaction != null && $crudaction == DELETE){
+			$productId = $this->input->post("productId");
+			if($productId != null && $productId > 0){
+				$this->Sitemap_Model->deleteByProductId($productId);
+				$data['message_response'] = 'Xóa thành công.';
+			}
+		}
 		$config['base_url'] = base_url('admin/sitemap/view-'.$sitemapIndexId.'.html');
 		$results = $this->Sitemap_Model->findBySitemapIndexId($sitemapIndexId, $config['page'], $config['per_page']);
 		$data['products'] = $results['items'];
