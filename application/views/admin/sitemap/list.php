@@ -58,6 +58,7 @@
 					<div class="top-buttons">
 						<a class="btn btn-info" href="<?=base_url('/admin/sitemap/push.html')?>">Pust lên Search Engine</a>
 						<a class="btn btn-primary" href="<?=base_url('/admin/sitemap.html')?>">Tạo sitemap mới</a>
+						<in
 					</div>
 
 					<table id="example1" class="table table-bordered table-striped">
