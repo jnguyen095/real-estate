@@ -194,10 +194,14 @@
 								<i class="fa fa-exchange"></i> Retain Author Vip
 							</a>
 
-							<a id="deleteExpired" class="btn btn-app">
-								<i class="fa fa-trash"></i> Xóa Post hết hạn
+							<a id="authorPostExpired" class="btn btn-app">
+								<span id="authorPostExpiredCount" class="badge <?=$expiredPostAuthor > 0 ? 'bg-red' : 'bg-green'?>"><?=number_format($expiredPostAuthor)?></span>
+								<i class="fa fa-trash"></i> Post Author hết hạn
 							</a>
-
+							<a id="crawlerPostExpired" class="btn btn-app">
+								<span id="crawlerPostExpiredCount" class="badge <?=$expiredPostCrawler > 0 ? 'bg-red' : 'bg-green'?>"><?=number_format($expiredPostCrawler)?></span>
+								<i class="fa fa-trash"></i> Post Crawler hết hạn
+							</a>
 
 						</div>
 						<!-- /.box-body -->
@@ -346,7 +350,7 @@
 										?>
 										<tr>
 											<td><?=$index++?></td>
-											<td><?=$post->Title?></td>
+											<td class="vip<?=$post->Vip?>"><?=($post->Vip < PRODUCT_STANDARD ? '[vip'.$post->Vip.'] ' : '').$post->Title?></td>
 											<td><?=date('d/m/Y H:i', strtotime($post->PostDate))?></td>
 											<td><?=$post->View?></td>
 											<td><a href="<?=base_url('/admin/product/list.html?createdById='.$post->CreatedByID)?>" data-toggle="tooltip" title="Xem tin rao"><?=$post->FullName?></a></td>
