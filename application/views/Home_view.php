@@ -18,6 +18,7 @@
 	<meta name="revisit-after" content="1 days" />
 	<meta name="robots" content="follow" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="propeller" content="2b4bab35a986b337059592e18b0dd23e">
 
 	<title>Bất Động Sản | Mua Bán Chung Cư, Nhà Đất</title>
 	<link rel="icon" sizes="48x48" href="<?=base_url('/img/ico.ico')?>">
@@ -141,7 +142,6 @@
 		<?php
 	}
 	?>
-	
 
 
 	<div class="nha-dat-ban">
