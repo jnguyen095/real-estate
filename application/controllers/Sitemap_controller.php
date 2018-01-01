@@ -21,27 +21,9 @@ class Sitemap_controller extends CI_Controller
 	public function index()
 	{
 		header("Content-type: text/xml");
-		$currentDate = date('Y-m-d');
-		/*// create new instance
-		$url = array();
-
-		$data = $this->Category_Model->getCategories();
-		$categories = $data['categories'];
-		$child = $data['child'];
-		foreach($categories as $r) {
-			array_push($url, base_url() . seo_url($r->CatName).'-c'.$r->CategoryID. '.html');
-			if (count($child[$r->CategoryID]) > 0) {
-				array_push($url, base_url() . seo_url($r->CatName) . '-c' . $r->CategoryID . '.html');
-			}
-		}
-		$sitemap['categorylist'] = $url;
-		$sitemap['currentDate'] = $currentDate;
-		*/
 		$sitemapindex = $this->SitemapIndex_Model->findAll();
 		$data['items'] = $sitemapindex;
 		$this->load->view('/sitemap/sitemap_index', $data);
-		// first load the library
-
 	}
 
 	function viewItems($sitemapIndexId){
