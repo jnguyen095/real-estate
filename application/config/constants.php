@@ -133,4 +133,6 @@ defined("PAYMENT_DEPOSIT")		OR define('PAYMENT_DEPOSIT', 1);
 defined("PAYMENT_WITHDRAW")		OR define('PAYMENT_WITHDRAW', -1);
 
 defined("MAX_POST_PER_DAY")		OR define('MAX_POST_PER_DAY', 1);
+defined("MAX_REFRESH_STANDARD_POST")		OR define('MAX_REFRESH_STANDARD_POST', 3);
+defined("MAX_FREE_POST")		OR define('MAX_FREE_POST', 2);
 
