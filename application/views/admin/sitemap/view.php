@@ -39,7 +39,7 @@
 
 		<!-- Main content -->
 		<?php
-		$attributes = array("id" => "frmPost");
+		$attributes = array("id" => "frmProductSitemap");
 		echo form_open("admin/sitemap/view-".$sitemapIndexID, $attributes);
 		?>
 		<section class="content container-fluid">
@@ -63,6 +63,7 @@
 							<td>Ngày đăng</td>
 							<td>Tiêu đề</td>
 							<td>View</td>
+							<td>#</td>
 						</tr>
 						</thead>
 						<tbody>
@@ -76,6 +77,7 @@
 								<td><?=date('d/m/Y', strtotime($product->LastModified))?></td>
 								<td><a data-toggle="tooltip" title="<?=$product->Title?>" href="<?=base_url(seo_url($product->Title).'-p').$product->ProductID.'.html'?>"><?=substr_at_middle($product->Title, 60)?></a></td>
 								<td><?=$product->View?></td>
+								<td><a class="delete-button" data-productid="<?=$product->ProductID?>" data-toggle="tooltip" title="Xóa khỏi sitemap" href="#"><i class="glyphicon glyphicon-remove"></i></a></td>
 							</tr>
 							<?php
 						}
@@ -91,7 +93,7 @@
 		</section>
 		<!-- /.content -->
 		<input type="hidden" id="crudaction" name="crudaction">
-		<input type="hidden" id="CooperateID" name="productId">
+		<input type="hidden" id="productId" name="productId">
 		<?php echo form_close(); ?>
 
 	</div>
@@ -115,6 +117,21 @@
 <script src="<?=base_url('/admin/js/bootstrap-datepicker.min.js')?>"></script>
 <script src="<?=base_url('/admin/js/tindatdai_admin.js')?>"></script>
 
-
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".delete-button").click(function(){
+			$productId = $(this).data('productid');
+			if($productId != null && $productId != undefined){
+				bootbox.confirm("Bạn đã chắc chắn khi xóa tin này khỏi sitemap chưa?", function(r) {
+					if (r) {
+						$('#crudaction').val('delete');
+						$('#productId').val($productId);
+						$("#frmProductSitemap").submit();
+					}
+				});
+			}
+		});
+	});
+</script>
 </body>
 </html>
