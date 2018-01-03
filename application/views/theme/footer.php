@@ -44,7 +44,7 @@
 		</ul>
 	</div>
 	<div class="copyright text-center">
-		<div>Copyright © 2017 tindatdai.com ® Ghi rõ nguồn "tindatdai.com" khi phát hành lại thông tin từ website này.</div>
+		<div>Copyright © 2018 tindatdai.com ® Ghi rõ nguồn "tindatdai.com" khi phát hành lại thông tin từ website này.</div>
 		<div>Hotline: 0982.647.619 | Email: tindatdai@gmail.com | <a rel="nofollow" href="skype:nhukhang095?chat" title="Chát với http://tindatdai.com"><img src="<?=base_url('/img/skype.png')?>" alt="Skype icon"/></a> </div>
 	</div>
 
