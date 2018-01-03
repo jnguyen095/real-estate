@@ -76,7 +76,7 @@
 					<?php
 				}
 				?>
-				<li><a href="<?=base_url('/dang-tin.html')?>">Đăng tin miễn phí</a></li>
+				<li><a href="<?=base_url('/dang-tin.html')?>">Đăng tin</a></li>
 			</ul>
 		</div>
 		<!--/.nav-collapse -->
