@@ -157,7 +157,7 @@
 							<tr>
 								<td colspan="3" class="text-right">Số dư khả dụng:</td>
 								<td class="text-right"><strong class="label label-success"><?=number_format($sumDeposited - $sumSpent)?></strong></td>
-								<td colspan="3"></td>
+								<td colspan="4"></td>
 							</tr>
 						<?php
 						}else{
