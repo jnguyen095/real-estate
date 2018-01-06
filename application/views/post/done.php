@@ -36,36 +36,31 @@
 
 			<!-- content -->
 			<div class="col-md-12 no-margin no-padding text-center">
-				<?php
-				if($result == 1) {
-					?>
-					<div class="alert alert-success">
-						<strong class="title">Đăng tin thành công!</strong> <?=$product->Title?>
-					</div>
+				<div class="alert alert-success">
+					<strong class="title">Đăng tin thành công!</strong> <?=$product->Title?>
+				</div>
 
-					<div class="post-success">
-						<div>Link đến tin rao: <a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html'?>"><?=base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html'?></a></div>
-						<div>
-							<i>
-								<ol>
-									<li>Hãy share tin rao lên mạng xã hội facebook hoặc google+ để tiếp cận nhiều khách hàng hơn 40%</li>
-									<li>Làm mới tin rao để bài viết xuất hiện đầu danh sách tin rao</li>
-								</ol>
+				<div class="post-success">
+					<div>Link đến tin rao: <a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html'?>"><?=base_url().seo_url($product->Title).'-p'.$product->ProductID.'.html'?></a></div>
+					<div>
+						<i>
+							<ol>
+								<li>Hãy share tin rao lên mạng xã hội facebook hoặc google+ để tiếp cận nhiều khách hàng hơn 40%</li>
+								<li>Làm mới tin rao để bài viết xuất hiện đầu danh sách tin rao</li>
+							</ol>
 
-							</i>
-						</div>
-						<div class="margin-top-20"><a href="<?=base_url('/dang-tin.html')?>">&raquo;Đăng tin mới</a>
-							<?php if($this->session->userdata('loginid') > 0) { ?>
-								&nbsp;&nbsp;<a href="<?= base_url('/quan-ly-tin-rao.html') ?>">&raquo;Đến trang quản lý
-									tin rao</a>
-								<?php
-							}
-							?>
-						</div>
+						</i>
 					</div>
-					<?php
-				}
-				?>
+					<div class="margin-top-20"><a href="<?=base_url('/dang-tin.html')?>">&raquo;Đăng tin mới</a>
+						<?php if($this->session->userdata('loginid') > 0) { ?>
+							&nbsp;&nbsp;<a href="<?= base_url('/quan-ly-tin-rao.html') ?>">&raquo;Đến trang quản lý
+								tin rao</a>
+							<?php
+						}
+						?>
+					</div>
+				</div>
+
 			</div>
 			<!-- end content -->
 

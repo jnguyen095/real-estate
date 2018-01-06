@@ -18,7 +18,7 @@
 		<script src="<?= base_url('/ckeditor/ckeditor.js') ?>"></script>
 		<?php $this->load->view('common_header')?>
 		<link rel="stylesheet" href="<?=base_url('/css/iCheck/all.css')?>">
-		<script src="<?= base_url('/js/createpost.min_v1.2.js') ?>"></script>
+		<script src="<?= base_url('/js/createpost.min_v1.3.js') ?>"></script>
 		<?php $this->load->view('/common/googleadsense')?>
 </head>
 </head>
@@ -105,7 +105,7 @@
 							</div>
 							<div class="no-padding-mobile col-lg-2 col-md-4 col-xs-12">
 								<label>Diện tích(m²)</label>
-								<input type="text" id="txt_area" name="txt_area" class="form-control" value="<?=isset($area) ? $area : ''?>">
+								<input type="text" id="txt_area" name="txt_area" class="form-control" value="<?=(isset($area) && $area != 'KXĐ') ? $area : ''?>">
 								<span class="text-danger"><?php echo form_error('txt_area'); ?></span>
 							</div>
 

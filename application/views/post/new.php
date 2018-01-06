@@ -17,7 +17,7 @@
 		<script src="<?= base_url('/ckeditor/ckeditor.js') ?>"></script>
 		<?php $this->load->view('common_header')?>
 		<link rel="stylesheet" href="<?=base_url('/css/iCheck/all.css')?>">
-		<script src="<?= base_url('/js/createpost.min_v1.2.js') ?>"></script>
+		<script src="<?= base_url('/js/createpost.min_v1.3.js') ?>"></script>
 		<script src="<?=base_url('/admin/js/bootstrap-datepicker.min.js')?>"></script>
 </head>
 </head>
@@ -35,18 +35,23 @@
 		<div class="col-lg-12 col-sm-12 no-padding">
 			<?php if($this->session->userdata('loginid') < 1) { ?>
 				<div class="alert alert-danger">
-					<b>Bạn vẫn có thể tiếp tục đăng tin miễn phí mà không cần đăng nhập.</b><br/>
-					Tuy nhiên, hãy <b><a href="<?=base_url('/dang-nhap.html')?>">đăng nhập</a></b> để đăng tin VIP và quản lý tin rao tốt hơn: lượt xem, làm mới tin, xem phản hồi,..
+					<b>Vui lòng <a href="<?=base_url('/dang-nhap.html')?>">đăng nhập</a> trước khi đăng tin.</a></b><br/>
+					Nếu chưa có tài khoản hãy <a href="<?=base_url('/dang-ky.html')?>">đăng ký tài khoản</a>.
 				</div>
 				<?php
 			}
 			?>
-			<?php if(!empty($error_message)){
-				echo '<div class="alert alert-danger">';
-				echo '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>';
-				echo $error_message;
-				echo '</div>';
-			}?>
+			<?php if(!empty($limit_message)){?>
+				<div class="alert alert-info">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<?=$limit_message?>
+				</div>
+			<?php } else if(!empty($error_message)){?>
+				<div class="alert alert-danger">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<?=$error_message?>
+				</div>
+			<?php }?>
 
 			<h1 class="h2title">ĐĂNG TIN RAO BẤT ĐỘNG SẢN</h1>
 			<hr/>
@@ -62,18 +67,18 @@
 						<div class="form-group">
 							<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
 								<label>Gói tin <span class="required">*</span></label>
-								<select id="sl_package" <?=$this->session->userdata('loginid') < 1 ? 'disabled' : '' ?> class="form-control" name="sl_package">
+								<select id="sl_package" class="form-control" name="sl_package">
 									<option value="standard" <?=(isset($sl_package) && $sl_package == 'standard') ? ' selected': ''?>>Tin thường</option>
-									<option value="vip0" <?=(isset($sl_package) && $sl_package == 'vip0') ? ' selected': ''?>>Siêu Vip</option>
-									<option value="vip1" <?=(isset($sl_package) && $sl_package == 'vip1') ? ' selected': ''?>>Vip 1</option>
-									<option value="vip2" <?=(isset($sl_package) && $sl_package == 'vip2') ? ' selected': ''?>>Vip 2</option>
 									<option value="vip3" <?=(isset($sl_package) && $sl_package == 'vip3') ? ' selected': ''?>>Vip 3</option>
+									<option value="vip2" <?=(isset($sl_package) && $sl_package == 'vip2') ? ' selected': ''?>>Vip 2</option>
+									<option value="vip1" <?=(isset($sl_package) && $sl_package == 'vip1') ? ' selected': ''?>>Vip 1</option>
+									<option value="vip0" <?=(isset($sl_package) && $sl_package == 'vip0') ? ' selected': ''?>>Siêu Vip</option>
 								</select>
 								<span class="text-danger"><?php echo form_error('sl_package'); ?></span>
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
 								<label>Ngày bắt đầu <span class="required">*</span></label>
-								<input type="text" id="txt_fromdate" name="from_date" value="<?=isset($from_date) ? $from_date : ''?>" class="form-control from_date">
+								<input type="text" id="txt_fromdate" name="from_date" data-fromdate="" value="<?=isset($from_date) ? $from_date : ''?>" class="form-control from_date">
 								<span class="text-danger"><?php echo form_error('from_date'); ?></span>
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
@@ -401,7 +406,13 @@
 					<input type="hidden" name="crudaction" value="add_new">
 					<input type="hidden" name="txt_lng">
 					<input type="hidden" name="txt_lat">
-					<button type="submit" class="btn btn-info">Đăng Bài</button>
+					<a class="btn btn-info" href="<?=base_url('/trang-chu.html')?>">Trở lại</a>
+					<?php if($this->session->userdata('loginid') < 1) { ?>
+						<span data-toggle="tooltip" title="Bạn chưa đăng nhập!" class="btn btn-default disabled">Đăng Bài</span>
+					<?php }else{?>
+						<button type="submit" class="btn btn-primary">Đăng Bài</button>
+					<?php }?>
+
 				</div>
 				<?php echo form_close(); ?>
 
@@ -443,7 +454,6 @@
 								<li><span class="pullet"><span class="vip2-color">VIP-2</span>: Tiêu đề màu cam, đứng sau tin Vip 1</span></li>
 								<li><span class="pullet"><span class="vip3-color">VIP-3</span>: Tiêu đề màu vàng, đứng sau tin Vip 2</span></li>
 								<li><span class="pullet"><span class="standard-color">Tin Thường</span>: Tiêu đề màu xanh, hiễn thị theo thứ tự giảm dần theo giờ đăng tin.</span></li>
-								<li><i class="label label-success">Các tin VIP chỉ dành cho thành viên đăng ký</i></li>
 								<li><a href="<?=base_url('/bao-gia-dich-vu.html')?>">Xem thêm thông tin thanh toán</a></li>
 							</ul>
 						</div>
@@ -534,6 +544,8 @@
 				checkboxClass: 'icheckbox_minimal-blue',
 				radioClass   : 'iradio_minimal-blue'
 			})
+
+
 		});
 	</script>
 

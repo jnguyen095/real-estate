@@ -127,15 +127,17 @@
 									?>
 								</td>
 								<td class="mobile-hide"><?php
-									if($product->Status == 1){
+									if($product->Status == ACTIVE){
 										echo '<span class="active">Hoạt động</span>';
-									}else{
+									}else if($product->Status == PAYMENT_DELAY){
+										echo '<a href="'.base_url('/quan-ly-giao-dich.html').'" class="paymentDelay" data-toggle="tooltip" title="'.number_format($product->Money).' '.$product->Reason.'"">Chờ thanh toán</a>';
+									}else {
 										echo '<span class="inactive">Tạm ngưng</span>';
 									}
 									?></td>
 								<td class="table-icons">
 									<a href="<?=base_url('chinh-sua-p'.$product->ProductID.'.html')?>" data-toggle="tooltip" title="Chỉnh sửa tin rao"><span class="glyphicon glyphicon-edit"></span></a> |
-									<?php if($product->Status == 1){?>
+									<?php if($product->Status == ACTIVE){?>
 										<?php if($product->Vip == PRODUCT_STANDARD){?>
 											<a href="#" class="<?=(MAX_REFRESH_STANDARD_POST - $product->RefreshCount > 0 ? 'refresh-post' : '')?>" data-post="<?=$product->ProductID?>" data-toggle="tooltip" title="<?=(MAX_REFRESH_STANDARD_POST - $product->RefreshCount) > 0 ? 'Làm mới tin rao': 'Đã hết lượt up tin.'?>">
 												<span class="glyphicon glyphicon-circle-arrow-up"><div class="numberCircle <?=(MAX_REFRESH_STANDARD_POST - $product->RefreshCount > 0 ? 'available' : 'disabled')?>"><?=(MAX_REFRESH_STANDARD_POST - $product->RefreshCount)?></div></span>
@@ -146,7 +148,7 @@
 											</a> |
 										<?php }?>
 									<a href="#" class="inactive-post" data-post="<?=$product->ProductID?>" data-toggle="tooltip" title="Tạm ngưng, không hiển thị ra ngoài"><span class="glyphicon glyphicon-ban-circle"></span></a> |
-									<?php }else {?>
+									<?php }else if($product->Status == INACTIVE) {?>
 									<a href="#" class="active-post" data-post="<?=$product->ProductID?>" data-toggle="tooltip" title="Mở hoạt động"><span class="glyphicon glyphicon-ok-circle"></span></a> |
 									<?php }?>
 									<a href="#" class="remove-post" data-post="<?=$product->ProductID?>" data-toggle="tooltip" title="Xóa tin rao"><span class="glyphicon glyphicon-remove"></span></a>
@@ -161,10 +163,7 @@
 					<?php if (isset($pagination)) echo $pagination; ?>
 				</div>
 
-				<ul class="text-left">
-					<li>Bạn có <?=MAX_FREE_POST?> tin rao miễn phí, mỗi tin có 3 lượt up tin!</li>
-					<li>Các tin rao VIP không bị giới hạn.</li>
-				</ul>
+
 			</div>
 			<!-- end content -->
 			<input type="hidden" id="crudaction" name="crudaction">
