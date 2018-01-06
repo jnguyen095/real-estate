@@ -76,7 +76,7 @@
 					<?php
 				}
 				?>
-				<li><a href="<?=base_url('/dang-tin.html')?>">Đăng tin</a></li>
+				<li><a href="<?=base_url('/dang-tin.html')?>">Đăng Tin</a></li>
 			</ul>
 		</div>
 		<!--/.nav-collapse -->
