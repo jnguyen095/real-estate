@@ -38,13 +38,34 @@ class Post_controller extends CI_Controller
 
 	public function index()
 	{
-		$data = $this->Category_Model->getCategories();
-		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
-		$data['cities'] = $this->City_Model->getAllActive();
+		// begin file cached
+		$this->load->driver('cache');
+		$categories = $this->cache->file->get('category');
+		$footerMenus = $this->cache->file->get('footer');
+		if(!$categories){
+			$categories = $this->Category_Model->getCategories();
+			$this->cache->file->save('category', $categories, 1440);
+		}
+		if(!$footerMenus) {
+			$footerMenus = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+			$this->cache->file->save('footer', $footerMenus, 1440);
+		}
+		$data = $categories;
+		$data['footerMenus'] = $footerMenus;
+		$cities = $this->cache->file->get('cities');
+		if(!$cities){
+			$cities = $this->City_Model->getAllActive();
+			$this->cache->file->save('cities', $cities, 1440);
+		}
+		$data['cities'] = $cities;
+		// end file cached
+
+
 		if($this->session->userdata('loginid') != null) {
 			$user = $this->User_Model->getUserById($this->session->userdata('loginid'));
 			$data['user'] = $user;
 		}
+
 		$data['units'] = $this->Unit_Model->findAll();
 		$data['brands'] = $this->Brand_Model->findAll();
 		$data['directions'] = $this->Direction_Model->findAll();
@@ -54,6 +75,7 @@ class Post_controller extends CI_Controller
 			$this->processSaveNewPost($data, 'add');
 		} else {
 			$this->session->set_userdata("uuid", uniqid());
+			$ipAddress = $this->input->ip_address();
 			$phoneNumber = null;
 			if($this->session->userdata('loginid') != null && isset($user)) {
 				$data['contact_name'] = $user->FullName;
@@ -61,16 +83,28 @@ class Post_controller extends CI_Controller
 				$data['txt_email'] = $user->Email;
 				$data['contact_address'] = $user->Address;
 				$phoneNumber = $user->Phone;
+
+				$isValid = $this->Product_Model->isValidPost($this->session->userdata('loginid'), $ipAddress, $phoneNumber);
+				if(!$isValid){
+					$data['error_message'] = 'Bạn đã sử dụng hết gói tin thường, vui lòng chọn gói tin khác.';
+				}
+				$data['isValid'] = $isValid;
 			}
 			$data['postCost'] = 0;
 			$data['from_date'] = date("d/m/Y");
 			$date = strtotime('+1 months');
 			$data['to_date'] = date("d/m/Y", $date);
 
-			$ipAddress = $this->input->ip_address();
-			$postToday = $this->Product_Model->findPostWithPackageToday($ipAddress, $phoneNumber, PRODUCT_STANDARD);
-			if($postToday >= MAX_POST_PER_DAY){
-				if(isset($user) && $user->AvailableMoney > 0) {
+			// print_r($isValid ? 'Yes' : 'No');
+			//$postToday = $this->Product_Model->findPostWithPackageToday($ipAddress, $phoneNumber, PRODUCT_STANDARD);
+			/*if($postToday >= MAX_POST_PER_DAY){
+				$this->session->set_userdata('limited', true);
+				if(isset($user) && $user->AvailableMoney >= COST_VIP_3_PER_DAY) {
+					$estimateDays = $user->AvailableMoney / COST_VIP_3_PER_DAY;
+					$strEstimate = '+'.intval($estimateDays).' day';
+					$date = strtotime($strEstimate);
+					$data['to_date'] = date("d/m/Y", $date);
+
 					$captcha = $this->generatedCapcha();
 					$data['capchaImg'] = $captcha['image'];
 					$this->session->set_userdata('captcha', $captcha['word']);
@@ -79,7 +113,7 @@ class Post_controller extends CI_Controller
 				}else{
 					$this->load->view('post/limit', $data);
 				}
-			}else{
+			}else*/{
 				$captcha = $this->generatedCapcha();
 				$data['capchaImg'] = $captcha['image'];
 				$this->session->set_userdata('captcha', $captcha['word']);
@@ -145,10 +179,10 @@ class Post_controller extends CI_Controller
 	public function done($productId){
 		$data = $this->Category_Model->getCategories();
 		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
-		$success = $this->Product_Model->changeStatusPost($productId, ACTIVE);
+		// $success = $this->Product_Model->changeStatusPost($productId, ACTIVE);
 		$product = $this->Product_Model->findByIdFetchAll($productId);
 		$data['product'] = $product;
-		$data['result'] = $success;
+		// $data['result'] = $success;
 		$this->load->view('post/done', $data);
 	}
 
@@ -301,25 +335,26 @@ class Post_controller extends CI_Controller
 				if($data['productId'] != null && $data['productId'] > 0){
 					$ok = $this->Product_Model->updatePost($data, $otherImgs);
 				}else{
-					// validate post per day and cost
-					if($data['vip'] == PRODUCT_STANDARD) {
-						$postToday = $this->Product_Model->findPostWithPackageToday($data['ipaddress'], $data['contact_phone'], PRODUCT_STANDARD);
-						if($postToday >= MAX_POST_PER_DAY) {
-							$this->load->view('post/limit', $data);
-							return;
-						}
-					}
-
+					$data['status'] = ACTIVE;
 					if($this->session->userdata('loginid') != null && $cost > 0) {
 						$loginUser = $this->User_Model->getUserById($this->session->userdata('loginid'));
 						$availableMoney = $loginUser->AvailableMoney;
 						if($cost > $availableMoney){
-							$this->load->view('post/limit', $data);
-							return;
+							$data['status'] = PAYMENT_DELAY;
 						}
 					}
+					$ok = false;
+					if($data['vip'] == PRODUCT_STANDARD){
+						$ok = $this->Product_Model->isValidPost($this->session->userdata('loginid'), $data['ipaddress'], $data['contact_phone']);
+						if($ok){
+							$ok = $this->Product_Model->saveNewPost($data, $otherImgs);
+						}else{
+							$data['limit_message'] = 'Bạn đã sử dụng hết gói tin thường, vui lòng chọn gói tin khác.';
+						}
+					}else{
+						$ok = $this->Product_Model->saveNewPost($data, $otherImgs);
+					}
 
-					$ok = $this->Product_Model->saveNewPost($data, $otherImgs);
 					if($ok){
 						// update payment history
 						if($data['vip'] < PRODUCT_STANDARD && $this->session->userdata('loginid') != null){
@@ -329,6 +364,8 @@ class Post_controller extends CI_Controller
 							$addData['Type'] = PAYMENT_WITHDRAW;
 							$addData['Reason'] = "Đăng tin mã: {$ok} gói " . $this->getPackageByCode($data['vip']). ' - '.$diffDay. ' ngày.';
 							$addData['Money'] = $cost;
+							$addData['Status'] = $data['status'];
+							$addData['ProductID'] = $ok;
 							$this->Transfer_Model->addNewRow($addData);
 						}
 					}
@@ -373,6 +410,7 @@ class Post_controller extends CI_Controller
 			return "Vip {$code}";
 		}
 	}
+
 
 	private function processUpdatePost($data, $type){
 		try{
