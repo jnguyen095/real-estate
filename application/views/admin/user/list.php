@@ -62,6 +62,7 @@
 								<th data-action="sort" data-title="Email" data-direction="ASC"><span>Email</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th data-action="sort" data-title="AvailableMoney" data-direction="ASC"><span>Tài Khoản</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th><span>Bài Đăng</span></th>
+								<th><span>Miễn Phí</span></th>
 								<th data-action="sort" data-title="CreatedDate" data-direction="ASC"><span>Ngày Tạo</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th data-action="sort" data-title="LastLogin" data-direction="ASC"><span>Đăng Nhập</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
 								<th></th>
@@ -80,6 +81,7 @@
 								<td><?=$user->Email?></td>
 								<td class="text-right"><?=number_format($user->AvailableMoney)?></td>
 								<td class="text-center"><?=$user->Total?></td>
+								<td class="text-center"><?=$user->StandardPost?></td>
 								<td><?=date('d/m/Y H:i', strtotime($user->CreatedDate))?></td>
 								<td><?=date('d/m/Y H:i', strtotime($user->LastLogin))?></td>
 								<td>

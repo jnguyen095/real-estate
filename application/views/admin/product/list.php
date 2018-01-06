@@ -87,12 +87,21 @@
 									<input type="text" name="code" class="form-control" id="code">
 								</div>
 							</div>
-							<div class="col-sm-4">
+							<div class="col-sm-3">
 								<label>Loại tin</label>
 								<div class="form-group">
 									<label><input id="chb-0" checked="checked" type="radio" name="hasAuthor" value="-1"> Tất cả</label>
 									<label><input id="chb-2" type="radio" name="hasAuthor" value="1"> Chính chủ</label>
 									<label><input id="chb-1" type="radio" name="hasAuthor" value="0"> Crawler</label>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<label>Tình trạng</label>
+								<div class="form-group">
+									<label><input id="st_0" checked="checked" type="radio" name="status" value="-1"> Tất cả</label>
+									<label><input id="st-1" type="radio" name="status" value="1"> Hoạt động</label>
+									<label><input id="st-0" type="radio" name="status" value="0"> Tạm dừng</label>
+									<label><input id="st-2" type="radio" name="status" value="2"> Chờ thanh toán</label>
 								</div>
 							</div>
 						</div>
@@ -130,7 +139,17 @@
 							<tr>
 								<td><input name="checkList[]" type="checkbox" value="<?=$product->ProductID?>"></td>
 								<td><a class="vip<?=$product->Vip?>" data-toggle="tooltip" title="<?=$product->Title?>" href="<?=base_url(seo_url($product->Title).'-p').$product->ProductID.'.html'?>"><?=substr_at_middle($product->Title, 60)?></a></td>
-								<td><?=$product->Status == 1 ? '<span class="label label-success">Show</span>' : '<span class="label label-danger">Hide</span>'?></td>
+								<td>
+									<?php
+										if($product->Status == ACTIVE){
+											echo '<span class="label label-success">Show</span>';
+										}else if($product->Status == PAYMENT_DELAY){
+											echo '<span class="label label-info">Payment</span>';
+										} else{
+											echo '<span class="label label-danger">Hide</span>';
+										}
+									?>
+								</td>
 								<td>
 									<select onchange="updateVip('<?=$product->ProductID?>', this.value);">
 										<option value="0" <?=$product->Vip == 0 ? ' selected' : ''?>>Vip 0</option>
@@ -207,8 +226,9 @@
 		var toDate = $('#toDate').val()||"";
 		var code = $('#code').val()||"";
 		var hasAuthor = $('input[name=hasAuthor]:checked').val();
+		var status = $('input[name=status]:checked').val();
 		var phoneNumber = $('#phoneNumber').val()||"";
-		window.location.href = '<?=base_url('admin/product/list.html')?>?query='+searchKey + '&phoneNumber=' + phoneNumber + '&fromDate=' + fromDate + '&toDate=' + toDate + '&hasAuthor=' + hasAuthor + '&code=' + code + '&orderField='+curOrderField+'&orderDirection='+curOrderDirection;
+		window.location.href = '<?=base_url('admin/product/list.html')?>?query='+searchKey + '&phoneNumber=' + phoneNumber + '&fromDate=' + fromDate + '&toDate=' + toDate + '&hasAuthor=' + hasAuthor + '&code=' + code + '&status=' + status + '&orderField='+curOrderField+'&orderDirection='+curOrderDirection;
 	}
 
 	var curOrderField, curOrderDirection;
@@ -228,6 +248,12 @@
 		$("#chb-" + (parseInt(decodeURIComponent(getNamedParameter('hasAuthor'))) + 1)).prop( "checked", true );
 	}else{
 		$("#chb-0").prop( "checked", true );
+	}
+
+	if(decodeURIComponent(getNamedParameter('status')) != null){
+		$("#st-" + (parseInt(decodeURIComponent(getNamedParameter('status'))))).prop( "checked", true );
+	}else{
+		$("#st_0").prop( "checked", true );
 	}
 
 	var curOrderField = getNamedParameter('orderField')||"";

@@ -110,7 +110,8 @@
 							<th>Ghi nợ</th>
 							<th>Ghi có</th>
 							<th>Lý do</th>
-							<th>Người thực hiện</th>
+							<th>Status</th>
+							<th>Thực hiện</th>
 							<th>Actions</th>
 						</tr>
 						</thead>
@@ -126,20 +127,21 @@
 									<td><?=$counter++?></td>
 									<td><?=date('d/m/Y H:i', strtotime($history->TransferTime))?></td>
 									<td class="text-right"><?php
-										if($history->Type == -1){
+										if($history->Type == -1 && $history->Status == ACTIVE){
 											$sumSpent += $history->Money;
 											echo number_format($history->Money);
 										}
 										?>
 									</td>
 									<td class="text-right"><?php
-										if($history->Type == 1){
+										if($history->Type == 1 && $history->Status == ACTIVE){
 											$sumDeposited += $history->Money;
 											echo number_format($history->Money);
 										}
 										?>
 									</td>
 									<td><?=$history->Reason?></td>
+									<td><?=$history->Status == ACTIVE ? '<span class="success">Thành Công</span>' : '<span class="paymentDelay">Treo</span>'?></td>
 									<td><?=$history->FullName?></td>
 									<td><a class="deleteTransfer" data-toggle="tooltip" title="Xóa giao dịch này" data-userid="<?=$user->Us3rID?>" data-historyid="<?=$history->PurchaseHistoryID?>"><i class="glyphicon glyphicon-trash"></i></a></td>
 								</tr>
