@@ -56,9 +56,12 @@ function calculatePrice(){
 			}else if(status == 'free_cost'){
 				$("#packagePrice").html(value);
 			}else if(status == 'not_enough_quota'){
-				$('#sl_package').val('standard');
 				$("#packagePrice").html(value);
-				bootbox.alert("Tài khoản không đủ để thanh toán, vui lòng nạp thêm tiền vào tài khoản.<br/><a href='"+urls.base_url+"bao-gia-dich-vu.html'>Hướng dẫn nạp tiền</a>", function(){
+				bootbox.confirm("Tài khoản không đủ để thanh toán, bạn có muốn tiếp tục và tiến hành thanh toán sau không?", function(r){
+					if(!r){
+						$('#sl_package').val('standard');
+						$("#packagePrice").html(0);
+					}
 				});
 			}else if(status == 'valid_payment'){
 					$("#packagePrice").html(value);
