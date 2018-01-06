@@ -10,7 +10,7 @@
 	<meta name="area" content="Nhà đất và bất động sản" />
 	<meta name="placename" content="Việt Nam" />
 	<meta name="author" content="tindatdai.com" />
-	<meta name="copyright" content="©2017 tindatdai.com" />
+	<meta name="copyright" content="©2018 tindatdai.com" />
 	<meta name="owner" content="tindatdai.com" />
 	<meta name="distribution" content="Global" />
 	<meta name="description" content="Thông tin mua bán bất động sản, đăng tin miễn phí. Mua bán nhà đất, cho thuê nhà đất, văn phòng, căn hộ, biệt thự, chung cư, tin tức bất động sản, thiết kế đẹp, nhà mẫu, tin thị trường">
@@ -18,13 +18,12 @@
 	<meta name="revisit-after" content="1 days" />
 	<meta name="robots" content="follow" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="propeller" content="2b4bab35a986b337059592e18b0dd23e">
 
-	<title>Bất Động Sản | Mua Bán Chung Cư, Nhà Đất</title>
+	<title>Bất Động Sản, Mua Bán Chung Cư, Nhà Đất</title>
 	<link rel="icon" sizes="48x48" href="<?=base_url('/img/ico.ico')?>">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url()?>css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v4.1.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>css/mcustome.min_v4.2.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/mobile.min_v2.1.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>css/home.min_v1.7.css">
 	<!-- jQuery library -->
