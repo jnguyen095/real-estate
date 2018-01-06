@@ -59,6 +59,7 @@ class Transfer_controller extends CI_Controller
 				$addData['Type'] = $data['sl_type'];
 				$addData['Reason'] = $data['txt_reason'];
 				$addData['Money'] = $data['txt_money'];
+				$addData['Status'] = ACTIVE;
 				$this->Transfer_Model->addNewRow($addData);
 				$data['message_response'] = "Thực hiện thành công.";
 				$data['sl_type'] = "";
