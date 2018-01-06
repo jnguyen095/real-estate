@@ -43,6 +43,14 @@
 </ul>
 <div class="row no-margin">
 	<div itemscope itemtype="http://schema.org/Product" class="col-md-9 no-margin no-padding product-detail">
+		<?php
+		if($product->Status == PAYMENT_DELAY){
+			?>
+			<div class="alert alert-danger">
+				<b>Tin chưa thanh toán!</b> vui lòng thanh toán trước khi tin được hiển thị.
+			</div>
+		<?php }?>
+
 		<div class="product-title">
 			<h1 class="h1Class" itemprop="name"><?php echo $product->Title?></h1>
 		</div>
