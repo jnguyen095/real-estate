@@ -90,6 +90,7 @@ defined('CAT_TYPE_SALE')		OR define('CAT_TYPE_SALE', 1); // sale category
 defined('ACTIVE')				OR define('ACTIVE', 1); // active
 defined('HOT_PRODUCT')			OR define('HOT_PRODUCT', 1); // active
 defined('INACTIVE')				OR define('INACTIVE', 0); // inactive
+defined('PAYMENT_DELAY')		OR define('PAYMENT_DELAY', 2); // payment delay
 defined('UPDATE')				OR define('UPDATE', 'update'); // crudaction: update
 defined('DELETE')				OR define('DELETE', 'delete'); // crudaction: delete
 defined('REFRESH')				OR define('REFRESH', 'refresh'); // crudaction: refresh
