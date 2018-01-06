@@ -42,6 +42,8 @@ class Admin_controller extends CI_Controller
 		$today = true;
 		$data['feedbackAll'] = $this->Dashboard_Model->countFeedback(!$today);
 		$data['feedbackToday'] = $this->Dashboard_Model->countFeedback($today);
+		$data['expiredPostAuthor'] = $this->Dashboard_Model->countExpiredPost('Author');
+		$data['expiredPostCrawler'] = $this->Dashboard_Model->countExpiredPost('Crawler');
 
 		$thumbs = ["https://file1.batdongsan.com.vn/images/no-photo.jpg", "https://dothi.net/Images/no-photo170.png" , "https://nhadat.cafeland.vn/images/ico/cafeland.jpg"];
 		$data['thumbNoImages'] = $this->Dashboard_Model->countProductHasNoThumb($thumbs);
