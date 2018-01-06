@@ -141,40 +141,33 @@ class Ajax_controller extends CI_Controller
 			}else{
 				$loginUser = $this->User_Model->getUserById($loginId);
 				$availableMoney = $loginUser->AvailableMoney;
-				if($availableMoney == 0){
-					$result["status"] = "not_enough_quota";
-					$result["val"] = 0;
+
+				if(isset($from_date) && $from_date != null && isset($to_date) && $to_date != null){
+					$dateOne = DateTime::createFromFormat("d/m/Y", $from_date);
+					$dateTwo = DateTime::createFromFormat("d/m/Y", $to_date);
+					$interval = $dateOne->diff($dateTwo);
+					$diffDay = $interval->days;
+					$cost = 0;
+					if($package == "vip0"){
+						$cost = $diffDay * COST_VIP_0_PER_DAY;
+					}else if($package == "vip1"){
+						$cost = $diffDay * COST_VIP_1_PER_DAY;
+					}else if($package == "vip2"){
+						$cost = $diffDay * COST_VIP_2_PER_DAY;
+					}else if($package == "vip3"){
+						$cost = $diffDay * COST_VIP_3_PER_DAY;
+					}
+					$result["val"] = number_format($cost);
+					if($availableMoney >= $cost){
+						$result["status"] = "valid_payment";
+					}else{
+						$result["status"] = "not_enough_quota";
+					}
 					echo json_encode($result);
 				}else{
-					if(isset($from_date) && $from_date != null && isset($to_date) && $to_date != null){
-						$dateOne = DateTime::createFromFormat("d/m/Y", $from_date);
-						$dateTwo = DateTime::createFromFormat("d/m/Y", $to_date);
-						$interval = $dateOne->diff($dateTwo);
-						$diffDay = $interval->days;
-						$cost = 0;
-						if($package == "vip0"){
-							$cost = $diffDay * COST_VIP_0_PER_DAY;
-						}else if($package == "vip1"){
-							$cost = $diffDay * COST_VIP_1_PER_DAY;
-						}else if($package == "vip2"){
-							$cost = $diffDay * COST_VIP_2_PER_DAY;
-						}else if($package == "vip3"){
-							$cost = $diffDay * COST_VIP_3_PER_DAY;
-						}
-						if($availableMoney >= $cost){
-							$result["status"] = "valid_payment";
-							$result["val"] = number_format($cost);
-							echo json_encode($result);
-						}else{
-							$result["status"] = "not_enough_quota";
-							$result["val"] = 0;
-							echo json_encode($result);
-						}
-					}else{
-						$result["status"] = "not_qualify_input";
-						$result["val"] = 0;
-						echo json_encode($result);
-					}
+					$result["status"] = "not_qualify_input";
+					$result["val"] = 0;
+					echo json_encode($result);
 				}
 			}
 		}
