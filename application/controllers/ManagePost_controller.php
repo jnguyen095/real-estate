@@ -23,12 +23,27 @@ class ManagePost_controller extends CI_Controller
 		$this->load->helper('form');
 		$this->load->helper("bootstrap_pagination");
 		$this->load->library('pagination');
+		$this->load->model('User_Model');
 	}
 
 	public function index($page = 0)
 	{
-		$data = $this->Category_Model->getCategories();
-		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+		// begin file cached
+		$this->load->driver('cache');
+		$categories = $this->cache->file->get('category');
+		$footerMenus = $this->cache->file->get('footer');
+		if(!$categories){
+			$categories = $this->Category_Model->getCategories();
+			$this->cache->file->save('category', $categories, 1440);
+		}
+		if(!$footerMenus) {
+			$footerMenus = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+			$this->cache->file->save('footer', $footerMenus, 1440);
+		}
+		$data = $categories;
+		$data['footerMenus'] = $footerMenus;
+		// end file cached
+
 		$userId = $this->session->userdata('loginid');
 
 		$crudaction = $this->input->post("crudaction");
@@ -81,8 +96,42 @@ class ManagePost_controller extends CI_Controller
 	}
 
 	public function transfer(){
-		$data = $this->Category_Model->getCategories();
-		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+		// begin file cached
+		$this->load->driver('cache');
+		$categories = $this->cache->file->get('category');
+		$footerMenus = $this->cache->file->get('footer');
+		if(!$categories){
+			$categories = $this->Category_Model->getCategories();
+			$this->cache->file->save('category', $categories, 1440);
+		}
+		if(!$footerMenus) {
+			$footerMenus = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+			$this->cache->file->save('footer', $footerMenus, 1440);
+		}
+		$data = $categories;
+		$data['footerMenus'] = $footerMenus;
+		// end file cached
+
+		$userId = $this->session->userdata('loginid');
+
+		$crudaction = $this->input->post("crudaction");
+		if($crudaction == UPDATE){
+			$processId = $this->input->post("processId");
+			if($processId != null && $processId > 0){
+				$process = $this->Transfer_Model->findById($processId);
+				$loginUser = $this->User_Model->getUserById($userId);
+				if($loginUser->AvailableMoney >= $process->Money){
+					$this->Product_Model->changeStatusPost($process->ProductID, ACTIVE);
+					$this->Transfer_Model->changeStatusProcess($processId, ACTIVE);
+					$this->Transfer_Model->updateMeny4User($userId, PAYMENT_WITHDRAW, $process->Money);
+
+					$data['message_response'] = 'Thanh toán thành công, tin rao đang hiển thị.';
+				}else{
+					$data['error_message'] = 'Số tiền không đủ thanh toán, vui lòng nạp thêm tiền, <a href="'.base_url('/bao-gia-dich-vu.html').'">hướng dẫn nạp tiền</a>.';
+				}
+			}
+		}
+
 		$userId = $this->session->userdata('loginid');
 		$data['histories'] = $this->Transfer_Model->findByUserId($userId);
 		$this->load->view('post/transfer', $data);
