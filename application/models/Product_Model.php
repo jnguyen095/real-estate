@@ -34,11 +34,53 @@ class Product_Model extends CI_Model
 		return $totalByIps > $totalByPhone ? $totalByIps : $totalByPhone;
 	}
 
+	public function isValidPost($loginId, $ipAddress, $phoneNumber){
+		// Check in User table with StandardPost
+		// $this->output->enable_profiler(TRUE);
+		$this->db->select("StandardPost");
+		$this->db->where(array("Us3rID" => $loginId));
+		$totalPost = (int)$this->db->get("us3r")->row()->StandardPost;
+		if($totalPost >= MAX_FREE_POST){
+			return false;
+		}else{
+			// Check in Product table with IpAddress
+			$this->db->where(array("IpAddress" => $ipAddress, "Vip" => PRODUCT_STANDARD));
+			$totalByIps = $this->db->count_all_results('product');
+			if($totalByIps >= MAX_FREE_POST){
+				return false;
+			}else{
+				// Check in Product table with contactPhong
+				if($phoneNumber != null && count($phoneNumber) > 0){
+					$standardPostVip = PRODUCT_STANDARD;
+					$sql = 'select count(*) as Total from product p inner join productdetail pd on p.productid = pd.productid';
+					$sql .= " where p.vip = {$standardPostVip} and pd.contactphone = {$phoneNumber}";
+					$query = $this->db->query($sql);
+					$row = $query->row();
+					$totalByPhone = $row->Total;
+					if($totalByPhone >= MAX_FREE_POST){
+						return false;
+					}
+				}
+
+			}
+		}
+		return true;
+	}
+
 	public function findByUserId($userId, $page) {
-		$this->db->order_by('ModifiedDate', 'desc');
+		/*$this->db->order_by('ModifiedDate', 'desc');
 		$this->db->where(array("CreatedByID" => $userId));
 
 		$query = $this->db->get("product", 10, $page);
+		$data['products'] = $query->result();
+		*/
+		$query = $this->db->select('p.*, pc.Money, pc.Reason')
+			->from('product p')
+			->join('purchasehistory pc', 'p.ProductID = pc.ProductID', 'left')
+			->where('p.CreatedByID', $userId)
+			->limit(10, $page)
+			->order_by("ModifiedDate", "desc")
+			->get();
 		$data['products'] = $query->result();
 
 		$this->db->where(array("CreatedByID" => $userId));
@@ -72,6 +114,7 @@ class Product_Model extends CI_Model
 	public function updateViewForProductId($productId){
 		$this->db->set('View', 'View + 1', false);
 		$this->db->where('ProductID', $productId);
+		$this->db->where('Status', ACTIVE);
 		$this->db->update('product');
 	}
 
@@ -89,6 +132,7 @@ class Product_Model extends CI_Model
 
 	public function pushPostUp($productId){
 		$this->db->set('ModifiedDate', 'NOW()', false);
+		$this->db->set('RefreshCount', 'RefreshCount + 1', false);
 		$this->db->where('ProductID', $productId);
 		$this->db->update('product');
 	}
@@ -332,7 +376,7 @@ class Product_Model extends CI_Model
 			'WardID' => $data['ward'],
 			'Street' => $data['street'],
 			'CategoryID' => $data['categoryID'],
-			'Status' => ACTIVE,
+			// 'Status' => ACTIVE,
 			'UnitID' => $data['unit'],
 			'Address' => $data['address']
 		);
@@ -350,9 +394,7 @@ class Product_Model extends CI_Model
 			'ContactAddress' => $data['contact_address'],
 			'ContactEmail' => $data['txt_email'],
 			'ContactName' => $data['contact_name'],
-			'Source' => null/*,
-			'Longitude' => $data['lng'],
-			'Latitude' => $data['lat']*/
+			'Source' => null
 		);
 
 		if($data['brand'] != null && $data['brand'] > 0){
@@ -372,6 +414,7 @@ class Product_Model extends CI_Model
 	}
 
 	public function saveNewPost($data, $assets){
+		$this->output->enable_profiler(TRUE);
 		// Get Unit
 		$this->db->where("UnitID", $data['unit']);
 		$query = $this->db->get("unit");
@@ -397,7 +440,7 @@ class Product_Model extends CI_Model
 			'WardID' => $data['ward'],
 			'Street' => $data['street'],
 			'CategoryID' => $data['categoryID'],
-			'Status' => ACTIVE,
+			'Status' => $data['status'],
 			'View' => 0,
 			'CreatedByID' => $data['CreatedByID'],
 			'UnitID' => $data['unit'],
@@ -418,9 +461,7 @@ class Product_Model extends CI_Model
 			'ContactAddress' => $data['contact_address'],
 			'ContactEmail' => $data['txt_email'],
 			'ContactName' => $data['contact_name'],
-			'Source' => null/*,
-			'Longitude' => $data['lng'],
-			'Latitude' => $data['lat']*/
+			'Source' => null
 		);
 		if($data['brand'] != null && $data['brand'] > 0){
 			$newdata['BrandID'] = $data['brand'];
@@ -460,6 +501,8 @@ class Product_Model extends CI_Model
 	public function deleteById($productId){
 		$this->db->delete('productasset', array('ProductID' => $productId));
 		$this->db->delete('productdetail', array('ProductID' => $productId));
+		$this->db->delete('sitemap', array('ProductID' => $productId));
+		$this->db->delete('purchasehistory', array('ProductID' => $productId));
 		$this->db->delete('product', array('ProductID' => $productId));
 	}
 
@@ -616,7 +659,7 @@ class Product_Model extends CI_Model
 		return $where;
 	}
 
-	function findAndFilter($offset=0, $limit, $st = "", $fromDate, $toDate, $createdById, $hasAuthor, $code, $orderField, $orderDirection){
+	function findAndFilter($offset=0, $limit, $st = "", $fromDate, $toDate, $createdById, $hasAuthor, $code, $status, $orderField, $orderDirection){
 		// $this->output->enable_profiler(TRUE);
 		if($fromDate){
 			$ymd = DateTime::createFromFormat('d/m/Y', $fromDate)->format('Y-m-d');
@@ -636,6 +679,10 @@ class Product_Model extends CI_Model
 			$this->db->where('CreatedByID IS NOT NULL', NULL, FALSE);
 		}else if($hasAuthor != null && $hasAuthor == 0){
 			$this->db->where('CreatedByID IS NULL', NULL, FALSE);
+		}
+
+		if($status != null && $status > -1){
+			$this->db->where('p.Status', $status);
 		}
 		//$query = $this->db->like('Title', $st)->limit($limit, $offset)->order_by($orderField, $orderDirection)->get('product');
 
@@ -667,6 +714,9 @@ class Product_Model extends CI_Model
 			$this->db->where('CreatedByID IS NOT NULL', NULL, FALSE);
 		}else if($hasAuthor != null && $hasAuthor == 0){
 			$this->db->where('CreatedByID IS NULL', NULL, FALSE);
+		}
+		if($status != null && $status > -1){
+			$this->db->where('Status', $status);
 		}
 		$query = $this->db->like('Title', $st)->get('product');
 		$result['total'] = $query->num_rows();
@@ -741,4 +791,7 @@ class Product_Model extends CI_Model
 		$total = $total->row();
 		return $total->Total;
 	}
+
+
+
 }

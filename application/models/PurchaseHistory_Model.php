@@ -17,6 +17,7 @@ class PurchaseHistory_Model extends CI_Model
 		$query = $this->db->select('pc.*, u.FullName')
 			->from('purchasehistory pc')
 			->join('us3r u', 'u.Us3rID = pc.ActorID', 'left')
+			->where('pc.Status', ACTIVE)
 			->limit($limit, $offset)
 			->order_by($orderField, $orderDirection)
 			->get();

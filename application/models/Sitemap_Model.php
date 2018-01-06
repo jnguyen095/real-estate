@@ -19,7 +19,8 @@ class Sitemap_Model extends CI_Model
 	public function findProductNotIndexYet($lookbackDays){
 		// $this->output->enable_profiler(TRUE);
 		$previousDays = date('Y-m-d', strtotime("-{$lookbackDays} days"));
-		$sql = "select p.* from product p where p.productid not in(select distinct(sm.productid) from sitemap sm) and date(p.postdate) >= '{$previousDays}'";
+		$active = ACTIVE;
+		$sql = "select p.* from product p where p.status = {$active} and p.productid not in(select distinct(sm.productid) from sitemap sm) and date(p.postdate) >= '{$previousDays}'";
 		$query = $this->db->query($sql);
 		return $query->result();
 	}
