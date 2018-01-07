@@ -337,6 +337,7 @@
 										<tr>
 											<th>#</th>
 											<th>Tiêu Đề</th>
+											<th>Loại Tin</th>
 											<th>Tạo Lúc</th>
 											<th>Lượt View</th>
 											<th>Người Tạo</th>
@@ -350,7 +351,22 @@
 										?>
 										<tr>
 											<td><?=$index++?></td>
-											<td class="vip<?=$post->Vip?>"><?=($post->Vip < PRODUCT_STANDARD ? '[vip'.$post->Vip.'] ' : '').$post->Title?></td>
+											<td><?=$post->Title?></td>
+											<td class="vip<?=$post->Vip?>">
+												<?php
+												if($post->Vip == PRODUCT_STANDARD){
+													echo 'Tin thường';
+												}else if($post->Vip == PRODUCT_VIP_0){
+													echo 'SIÊU VIP';
+												}else if($post->Vip == PRODUCT_VIP_1){
+													echo 'Vip 1';
+												}else if($post->Vip == PRODUCT_VIP_2){
+													echo 'Vip 2';
+												}else if($post->Vip == PRODUCT_VIP_3){
+													echo 'Vip 3';
+												}
+												?>
+											</td>
 											<td><?=date('d/m/Y H:i', strtotime($post->PostDate))?></td>
 											<td><?=$post->View?></td>
 											<td><a href="<?=base_url('/admin/product/list.html?createdById='.$post->CreatedByID)?>" data-toggle="tooltip" title="Xem tin rao"><?=$post->FullName?></a></td>
@@ -359,7 +375,7 @@
 										<?php
 									}
 									if(count($postToday) < 1){
-										echo '<td colspan="4" class="text-center">Không có dữ liệu</td>';
+										echo '<td colspan="5" class="text-center">Không có dữ liệu</td>';
 									}
 									?>
 									</tbody>
