@@ -28,8 +28,22 @@ class Register_controller extends CI_Controller
 
 	public function index()
 	{
-		$data = $this->Category_Model->getCategories();
-		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+		// begin file cached
+		$this->load->driver('cache');
+		$categories = $this->cache->file->get('category');
+		$footerMenus = $this->cache->file->get('footer');
+		if(!$categories){
+			$categories = $this->Category_Model->getCategories();
+			$this->cache->file->save('category', $categories, 1440);
+		}
+		if(!$footerMenus) {
+			$footerMenus = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+			$this->cache->file->save('footer', $footerMenus, 1440);
+		}
+		$data = $categories;
+		$data['footerMenus'] = $footerMenus;
+		// end file cached
+
 		if($this->input->post('crudaction') == "register"){
 			$this->form_validation->set_message('txt_fullname', 'Họ tên không được để trống');
 
