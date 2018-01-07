@@ -174,7 +174,18 @@
 					foreach ($products as $product) {
 						?>
 						<div itemscope itemtype="http://schema.org/Product" class="row product-list vip<?=$product->Vip?>">
-							<div class="row product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><?=($product->Vip < 5 ? '<span class="pvip">v'.$product->Vip.'</span>' :  '')?><h3 itemprop="name"><?=$product->Title?></h3></a> </div>
+							<div class="row product-title">
+								<a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html">
+									<?php if($product->Vip < PRODUCT_STANDARD){?>
+										<?php if($product->Vip == PRODUCT_VIP_0){?>
+											<span class="pvip glyphicon glyphicon-star"></span>
+										<?php } else{ ?>
+											<span class="pvip"><?='v'.$product->Vip?></span>
+										<?php } ?>
+									<?php } ?>
+									<h3 itemprop="name"><?=$product->Title?></h3>
+								</a>
+							</div>
 							<div class="row product-content">
 								<div class="col-md-2 col-xs-3 no-padding"><a itemprop="url" href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html"><img itemprop="image" class="width100pc product-thumbnail" src="<?=$product->Thumb?>" alt="<?=$product->Title?>"/></a></div>
 								<div class="col-md-10 col-xs-9">

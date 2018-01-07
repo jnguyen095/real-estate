@@ -27,9 +27,28 @@ class Search_controller extends CI_Controller
 	}
 
 	public function index($offset=0){
-		$data = $this->Category_Model->getCategories();
-		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
-		$data['cities'] = $this->City_Model->getAllActive();
+		// begin file cached
+		$this->load->driver('cache');
+		$categories = $this->cache->file->get('category');
+		$footerMenus = $this->cache->file->get('footer');
+		if(!$categories){
+			$categories = $this->Category_Model->getCategories();
+			$this->cache->file->save('category', $categories, 1440);
+		}
+		if(!$footerMenus) {
+			$footerMenus = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+			$this->cache->file->save('footer', $footerMenus, 1440);
+		}
+		$data = $categories;
+		$data['footerMenus'] = $footerMenus;
+
+		$cities = $this->cache->file->get('cities');
+		if(!$cities){
+			$cities = $this->City_Model->getAllActive();
+			$this->cache->file->save('cities', $cities, 1440);
+		}
+		$data['cities'] = $cities;
+		// end file cached
 
 		$keyword = $this->input->post("keyword");
 		$query = $this->input->get("query");
@@ -115,10 +134,30 @@ class Search_controller extends CI_Controller
 	}
 
 	public function searchByCity($cityId, $offset=0) {
-		$data = $this->Category_Model->getCategories();
+		// begin file cached
+		$this->load->driver('cache');
+		$categories = $this->cache->file->get('category');
+		$footerMenus = $this->cache->file->get('footer');
+		if(!$categories){
+			$categories = $this->Category_Model->getCategories();
+			$this->cache->file->save('category', $categories, 1440);
+		}
+		if(!$footerMenus) {
+			$footerMenus = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+			$this->cache->file->save('footer', $footerMenus, 1440);
+		}
+		$data = $categories;
+		$data['footerMenus'] = $footerMenus;
+
+		$cities = $this->cache->file->get('cities');
+		if(!$cities){
+			$cities = $this->City_Model->getAllActive();
+			$this->cache->file->save('cities', $cities, 1440);
+		}
+		$data['cities'] = $cities;
+		// end file cached
+
 		$data['city'] = $this->City_Model->findById($cityId);
-		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
-		$data['cities'] = $this->City_Model->getAllActive();
 		$data['cmCityId'] = $cityId;
 		$districts = $this->District_Model->findByCityId($cityId);
 		$data['districts'] = $districts;
@@ -137,12 +176,32 @@ class Search_controller extends CI_Controller
 	}
 
 	public function searchByDistrict($districtId, $offset=0) {
-		$data = $this->Category_Model->getCategories();
+		// begin file cached
+		$this->load->driver('cache');
+		$categories = $this->cache->file->get('category');
+		$footerMenus = $this->cache->file->get('footer');
+		if(!$categories){
+			$categories = $this->Category_Model->getCategories();
+			$this->cache->file->save('category', $categories, 1440);
+		}
+		if(!$footerMenus) {
+			$footerMenus = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+			$this->cache->file->save('footer', $footerMenus, 1440);
+		}
+		$data = $categories;
+		$data['footerMenus'] = $footerMenus;
+
+		$cities = $this->cache->file->get('cities');
+		if(!$cities){
+			$cities = $this->City_Model->getAllActive();
+			$this->cache->file->save('cities', $cities, 1440);
+		}
+		$data['cities'] = $cities;
+		// end file cached
+
 		$district = $this->District_Model->findById($districtId);
 		$data['district'] = $district;
 		$data['city'] = $this->City_Model->findById($district->CityID);
-		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
-		$data['cities'] = $this->City_Model->getAllActive();
 		$data['cmCityId'] = $district->CityID;
 		$data['cmDistrictId'] = $districtId;
 		$districts = $this->District_Model->findByCityId($district->CityID);
@@ -162,10 +221,30 @@ class Search_controller extends CI_Controller
 	}
 
 	public function searchByBranch($branchId, $offset=0) {
-		$data = $this->Category_Model->getCategories();
+		// begin file cached
+		$this->load->driver('cache');
+		$categories = $this->cache->file->get('category');
+		$footerMenus = $this->cache->file->get('footer');
+		if(!$categories){
+			$categories = $this->Category_Model->getCategories();
+			$this->cache->file->save('category', $categories, 1440);
+		}
+		if(!$footerMenus) {
+			$footerMenus = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+			$this->cache->file->save('footer', $footerMenus, 1440);
+		}
+		$data = $categories;
+		$data['footerMenus'] = $footerMenus;
+
+		$cities = $this->cache->file->get('cities');
+		if(!$cities){
+			$cities = $this->City_Model->getAllActive();
+			$this->cache->file->save('cities', $cities, 1440);
+		}
+		$data['cities'] = $cities;
+		// end file cached
+
 		$data['branch'] = $this->Brand_Model->findById($branchId);
-		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
-		$data['cities'] = $this->City_Model->getAllActive();
 		$search_data = $this->Product_Model->findByBranchIdFetchAddress($branchId, $offset, MAX_PAGE_ITEM);
 		$data = array_merge($data, $search_data);
 		$config = pagination();
@@ -181,12 +260,33 @@ class Search_controller extends CI_Controller
 	}
 
 	public function searchByCategoryAndCity($catId, $cityId, $offset=0){
-		$data = $this->Category_Model->getCategories();
-		$city = $this->City_Model->findById($cityId);
+		// begin file cached
+		$this->load->driver('cache');
+		$categories = $this->cache->file->get('category');
+		$footerMenus = $this->cache->file->get('footer');
+		if(!$categories){
+			$categories = $this->Category_Model->getCategories();
+			$this->cache->file->save('category', $categories, 1440);
+		}
+		if(!$footerMenus) {
+			$footerMenus = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+			$this->cache->file->save('footer', $footerMenus, 1440);
+		}
+		$data = $categories;
+		$data['footerMenus'] = $footerMenus;
+
+		$cities = $this->cache->file->get('cities');
+		if(!$cities){
+			$cities = $this->City_Model->getAllActive();
+			$this->cache->file->save('cities', $cities, 1440);
+		}
+		$data['cities'] = $cities;
+		// end file cached
+
 		$category = $this->Category_Model->findByNotChildId($catId);
+		$city = $this->City_Model->findById($cityId);
 		$data['cat_city'] = $category->CatName.' tại '.$city->CityName;
-		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
-		$data['cities'] = $this->City_Model->getAllActive();
+
 		$search_data = $this->Product_Model->findByCatIdAndCityIdFetchAddress($catId, $cityId, $offset, MAX_PAGE_ITEM);
 		$data = array_merge($data, $search_data);
 		$config = pagination();
@@ -206,12 +306,32 @@ class Search_controller extends CI_Controller
 	}
 
 	public function searchByCategoryAndDistrict($catId, $districtId, $offset=0){
-		$data = $this->Category_Model->getCategories();
+		// begin file cached
+		$this->load->driver('cache');
+		$categories = $this->cache->file->get('category');
+		$footerMenus = $this->cache->file->get('footer');
+		if(!$categories){
+			$categories = $this->Category_Model->getCategories();
+			$this->cache->file->save('category', $categories, 1440);
+		}
+		if(!$footerMenus) {
+			$footerMenus = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+			$this->cache->file->save('footer', $footerMenus, 1440);
+		}
+		$data = $categories;
+		$data['footerMenus'] = $footerMenus;
+
+		$cities = $this->cache->file->get('cities');
+		if(!$cities){
+			$cities = $this->City_Model->getAllActive();
+			$this->cache->file->save('cities', $cities, 1440);
+		}
+		$data['cities'] = $cities;
+		// end file cached
+
+		$category = $this->Category_Model->findByNotChildId($catId);
 		$district = $this->District_Model->findById($districtId);
 		$city = $this->City_Model->findById($district->CityID);
-		$category = $this->Category_Model->findByNotChildId($catId);
-		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
-		$data['cities'] = $this->City_Model->getAllActive();
 		$search_data = $this->Product_Model->findByCatIdAndDistrictId($catId, $districtId, $offset, MAX_PAGE_ITEM);
 		$data = array_merge($data, $search_data);
 		$config = pagination();
@@ -234,9 +354,30 @@ class Search_controller extends CI_Controller
 	}
 
 	public function searchBySameUser($userId, $offset=0){
-		$data = $this->Category_Model->getCategories();
-		$data['footerMenus'] = $this->City_Model->findByTopProductOfCategoryGroupByCity();
-		$data['cities'] = $this->City_Model->getAllActive();
+		// begin file cached
+		$this->load->driver('cache');
+		$categories = $this->cache->file->get('category');
+		$footerMenus = $this->cache->file->get('footer');
+		if(!$categories){
+			$categories = $this->Category_Model->getCategories();
+			$this->cache->file->save('category', $categories, 1440);
+		}
+		if(!$footerMenus) {
+			$footerMenus = $this->City_Model->findByTopProductOfCategoryGroupByCity();
+			$this->cache->file->save('footer', $footerMenus, 1440);
+		}
+		$data = $categories;
+		$data['footerMenus'] = $footerMenus;
+
+		$cities = $this->cache->file->get('cities');
+		if(!$cities){
+			$cities = $this->City_Model->getAllActive();
+			$this->cache->file->save('cities', $cities, 1440);
+		}
+		$data['cities'] = $cities;
+		// end file cached
+
+
 		$data['userAuthor'] = $this->User_Model->getUserById($userId);
 		$search_data = $this->Product_Model->findUserId($offset, MAX_PAGE_ITEM, $userId);
 		$data = array_merge($data, $search_data);

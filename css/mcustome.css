@@ -1167,7 +1167,9 @@ span.pvip {
 }
 
 .vip0 span.pvip {
-	background: url(/img/3d-yellow-star.png);
+	font-size: 14px;
+	color: #ff0000;
+	border: solid 1px #ff0000;
 }
 
 .vip1:hover{
