@@ -36,7 +36,7 @@ class SitemapIndex_Model extends CI_Model
 	}
 
 	public function updatePingDate(){
-		$this->db->set('Ping', date('Y-m-d H:i:s'));
+		$this->db->set('Ping', 'NOW()', false);
 		return $this->db->update('sitemapindex');
 	}
 
