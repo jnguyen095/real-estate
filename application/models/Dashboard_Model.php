@@ -108,21 +108,21 @@ class Dashboard_Model extends CI_Model
 	}
 	public function countStandardForPreviousPost(){
 		$today = date('Y-m-d');
-		$query = "select count(*) as Total from product where date(ModifiedDate) != '{$today}' and Vip != 5 and CreatedByID is null";
+		$query = "select count(*) as Total from product where date(ModifiedDate) != '{$today}' and Status = 1 and Vip != 5 and CreatedByID is null";
 		$total = $this->db->query($query);
 		$row = $total->row();
 		return $row->Total;
 	}
 	public function countPreviousPostVip(){
 		$today = date('Y-m-d');
-		$query = "select count(*) as Total from product where date(ModifiedDate) != '{$today}' and Vip != 5 and CreatedByID is not null";
+		$query = "select count(*) as Total from product where date(ModifiedDate) != '{$today}' and Status = 1 and Vip != 5 and CreatedByID is not null";
 		$total = $this->db->query($query);
 		$row = $total->row();
 		return $row->Total;
 	}
 	public function renewPreviousPostVip(){
 		$today = date('Y-m-d');
-		$query = "update product ModifiedDate now() where and Vip != 5 and CreatedByID is not null and date(ExpireDate) <= '{$today}'";
+		$query = "update product ModifiedDate now() where Status = 1 and Vip != 5 and CreatedByID is not null and date(ExpireDate) <= '{$today}'";
 		$this->db->query($query);
 	}
 	function countUserByDate($limit){
@@ -156,11 +156,11 @@ class Dashboard_Model extends CI_Model
 	public function retainPreviousVip($justAuthor){
 		if($justAuthor){
 			$today = date('Y-m-d');
-			$query = "update product set ModifiedDate = now() where Vip != 5 and CreatedByID is not null and date(ModifiedDate) <= '{$today}'";
+			$query = "update product set ModifiedDate = now() where Status = 1 and Vip != 5 and CreatedByID is not null and date(ModifiedDate) <= '{$today}'";
 			$this->db->query($query);
 		}else{
 			$yesterday = date('Y-m-d', strtotime("-1 days"));
-			$query = "update product set ModifiedDate = now() where Vip != 5 and CreatedByID is null and date(PostDate) = '{$yesterday}'";
+			$query = "update product set ModifiedDate = now() where Status = 1 and Vip != 5 and CreatedByID is null and date(PostDate) = '{$yesterday}'";
 			$this->db->query($query);
 		}
 
