@@ -26,10 +26,16 @@
 <div class="container">
 	<?php $this->load->view('/theme/header')?>
 
+	<?php
+	if($this->session->userdata('loginid') < 1) {
+	?>
 	<ul class="breadcrumb">
 		<li><a href="<?=base_url('/trang-chu.html')?>">Trang chủ</a> </li>
 		<li class="active">Đăng tin</li>
 	</ul>
+	<?php }else{ ?>
+		<?php $this->load->view('/common/user-menu')?>
+	<?php }?>
 
 	<div class="row no-margin">
 		<div class="col-lg-12 col-sm-12 no-padding">

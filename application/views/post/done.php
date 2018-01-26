@@ -24,10 +24,7 @@
 <div class="container">
 	<?php $this->load->view('/theme/header')?>
 
-	<ul class="breadcrumb">
-		<li><a href="<?=base_url('/trang-chu.html')?>">Trang chủ</a> </li>
-		<li class="active">Đăng tin</li>
-	</ul>
+	<?php $this->load->view('/common/user-menu')?>
 
 	<div class="row no-margin">
 		<div class="col-lg-12 col-sm-12">
