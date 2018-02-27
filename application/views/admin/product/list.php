@@ -114,80 +114,82 @@
 						<a class="btn btn-danger" id="deleteMulti">Xóa Nhiều</a>
 					</div>
 
-					<table class="admin-table table table-bordered table-striped">
-						<thead>
-							<tr>
-								<th><input name="checkAll" value="1" type="checkbox" ></th>
-								<th data-action="sort" data-title="Title" data-direction="ASC"><span>Tiêu đề</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="Status" data-direction="ASC"><span>Status</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="Vip" data-direction="ASC"><span>Loại tin</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="View" data-direction="ASC"><span>Lượt xem</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="PostDate" data-direction="ASC"><span>Ngày đăng</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="ExpireDate" data-direction="ASC"><span>Hết hạn</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="ModifiedDate" data-direction="ASC"><span>Cập nhật</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="CreatedByID" data-direction="ASC"><span>Người đăng</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="IpAddress" data-direction="ASC"><span>Ip Address</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
+					<div class="table-responsive">
+						<table class="admin-table table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th><input name="checkAll" value="1" type="checkbox" ></th>
+									<th data-action="sort" data-title="Title" data-direction="ASC"><span>Tiêu đề</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+									<th data-action="sort" data-title="Status" data-direction="ASC"><span>Status</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+									<th data-action="sort" data-title="Vip" data-direction="ASC"><span>Loại tin</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+									<th data-action="sort" data-title="View" data-direction="ASC"><span>Lượt xem</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+									<th data-action="sort" data-title="PostDate" data-direction="ASC"><span>Ngày đăng</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+									<th data-action="sort" data-title="ExpireDate" data-direction="ASC"><span>Hết hạn</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+									<th data-action="sort" data-title="ModifiedDate" data-direction="ASC"><span>Cập nhật</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+									<th data-action="sort" data-title="CreatedByID" data-direction="ASC"><span>Người đăng</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+									<th data-action="sort" data-title="IpAddress" data-direction="ASC"><span>Ip Address</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
 
-						<?php
-						$counter = 1;
-						foreach ($products as $product) {
-							?>
-							<tr>
-								<td><input name="checkList[]" type="checkbox" value="<?=$product->ProductID?>"></td>
-								<td><a class="vip<?=$product->Vip?>" data-toggle="tooltip" title="<?=$product->Title?>" href="<?=base_url(seo_url($product->Title).'-p').$product->ProductID.'.html'?>"><?=substr_at_middle($product->Title, 60)?></a></td>
-								<td>
-									<?php
-										if($product->Status == ACTIVE){
-											echo '<span class="label label-success">Show</span>';
-										}else if($product->Status == PAYMENT_DELAY){
-											echo '<span class="label label-info">Payment</span>';
-										} else{
-											echo '<span class="label label-danger">Hide</span>';
-										}
-									?>
-								</td>
-								<td>
-									<select onchange="updateVip('<?=$product->ProductID?>', this.value);">
-										<option value="0" <?=$product->Vip == 0 ? ' selected' : ''?>>Vip 0</option>
-										<option value="1" <?=$product->Vip == 1 ? ' selected' : ''?>>Vip 1</option>
-										<option value="2" <?=$product->Vip == 2 ? ' selected' : ''?>>Vip 2</option>
-										<option value="3" <?=$product->Vip == 3 ? ' selected' : ''?>>Vip 3</option>
-										<option value="5" <?=$product->Vip == 5 ? ' selected' : ''?>>Thường</option>
-									</select>
-								</td>
-								<td class="text-right">
-									<?php
-									if(isset($product->FullName)) {
-										?>
-										<input class="txtView" id="pr-<?=$product->ProductID?>" type="text" value="<?= $product->View?>"
-											   onchange="updateView('<?=$product->ProductID?>', this.value);"/>
-										<?php
-									}else{
-										echo $product->View;
-									}
-									?>
-								</td>
-								<td><?=date('d/m/Y H:i', strtotime($product->PostDate))?></td>
-								<td><?=date('d/m/Y', strtotime($product->ExpireDate))?></td>
-								<td id="modifiedDate_<?=$product->ProductID?>"><?=date('d/m/Y H:i', strtotime($product->ModifiedDate))?></td>
-								<td><a href="<?=base_url('/admin/product/list.html?createdById='.$product->CreatedByID)?>"><?=$product->FullName?></a> </td>
-								<td><?=$product->IpAddress?></td>
-								<td>
-									<a onclick="pushPostUp('<?=$product->ProductID?>');" data-toggle="tooltip" title="Làm mới tin"><i class="glyphicon glyphicon-refresh"></i></a>&nbsp;|&nbsp;
-									<a class="remove-post" data-post="<?=$product->ProductID?>" data-toggle="tooltip" title="Xóa tin đăng"><i class="glyphicon glyphicon-remove"></i></a>
-								</td>
-							</tr>
 							<?php
-						}
-						?>
-						</tbody>
-					</table>
-					<div class="text-center">
-						<?php echo $pagination; ?>
+							$counter = 1;
+							foreach ($products as $product) {
+								?>
+								<tr>
+									<td><input name="checkList[]" type="checkbox" value="<?=$product->ProductID?>"></td>
+									<td><a class="vip<?=$product->Vip?>" data-toggle="tooltip" title="<?=$product->Title?>" href="<?=base_url(seo_url($product->Title).'-p').$product->ProductID.'.html'?>"><?=substr_at_middle($product->Title, 60)?></a></td>
+									<td>
+										<?php
+											if($product->Status == ACTIVE){
+												echo '<span class="label label-success">Show</span>';
+											}else if($product->Status == PAYMENT_DELAY){
+												echo '<span class="label label-info">Payment</span>';
+											} else{
+												echo '<span class="label label-danger">Hide</span>';
+											}
+										?>
+									</td>
+									<td>
+										<select onchange="updateVip('<?=$product->ProductID?>', this.value);">
+											<option value="0" <?=$product->Vip == 0 ? ' selected' : ''?>>Vip 0</option>
+											<option value="1" <?=$product->Vip == 1 ? ' selected' : ''?>>Vip 1</option>
+											<option value="2" <?=$product->Vip == 2 ? ' selected' : ''?>>Vip 2</option>
+											<option value="3" <?=$product->Vip == 3 ? ' selected' : ''?>>Vip 3</option>
+											<option value="5" <?=$product->Vip == 5 ? ' selected' : ''?>>Thường</option>
+										</select>
+									</td>
+									<td class="text-right">
+										<?php
+										if(isset($product->FullName)) {
+											?>
+											<input class="txtView" id="pr-<?=$product->ProductID?>" type="text" value="<?= $product->View?>"
+												   onchange="updateView('<?=$product->ProductID?>', this.value);"/>
+											<?php
+										}else{
+											echo $product->View;
+										}
+										?>
+									</td>
+									<td><?=date('d/m/Y H:i', strtotime($product->PostDate))?></td>
+									<td><?=date('d/m/Y', strtotime($product->ExpireDate))?></td>
+									<td id="modifiedDate_<?=$product->ProductID?>"><?=date('d/m/Y H:i', strtotime($product->ModifiedDate))?></td>
+									<td><a href="<?=base_url('/admin/product/list.html?createdById='.$product->CreatedByID)?>"><?=$product->FullName?></a> </td>
+									<td><?=$product->IpAddress?></td>
+									<td>
+										<a onclick="pushPostUp('<?=$product->ProductID?>');" data-toggle="tooltip" title="Làm mới tin"><i class="glyphicon glyphicon-refresh"></i></a>&nbsp;|&nbsp;
+										<a class="remove-post" data-post="<?=$product->ProductID?>" data-toggle="tooltip" title="Xóa tin đăng"><i class="glyphicon glyphicon-remove"></i></a>
+									</td>
+								</tr>
+								<?php
+							}
+							?>
+							</tbody>
+						</table>
+						<div class="text-center">
+							<?php echo $pagination; ?>
+						</div>
 					</div>
 				</div>
 			</div>

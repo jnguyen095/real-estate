@@ -7,10 +7,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 body{
 	/*background-color: #e9ebee;*/
-	background: #ebebeb url('../img/bg1.jpg');
+	background: #ebebeb url('../img/wall_bg.jpg');
 	background-size:  100%;
 	background-attachment: fixed;
-	background-repeat: no-repeat;
 	padding-top: 50px;
 }
 

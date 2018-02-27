@@ -52,52 +52,54 @@
 						</div>
 					</div>
 
-					<table class="admin-table table table-bordered table-striped">
-						<thead>
-							<tr>
-								<th></th>
-								<th data-action="sort" data-title="FullName" data-direction="ASC"><span>Họ Tên</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="UserName" data-direction="ASC"><span>Username</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="Phone" data-direction="ASC"><span>Điện Thoại</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="Email" data-direction="ASC"><span>Email</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="AvailableMoney" data-direction="ASC"><span>Tài Khoản</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th><span>Bài Đăng</span></th>
-								<th><span>Miễn Phí</span></th>
-								<th data-action="sort" data-title="CreatedDate" data-direction="ASC"><span>Ngày Tạo</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th data-action="sort" data-title="LastLogin" data-direction="ASC"><span>Đăng Nhập</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-						<?php
-						$counter = 1;
-						foreach ($users as $user) {
-							?>
-							<tr>
-								<td><?=$counter++?></td>
-								<td><a data-toggle="tooltip" title="<?=$user->Address?>"><?=$user->FullName?></a></td>
-								<td><?=$user->UserName?></td>
-								<td><?=$user->Phone?></td>
-								<td><?=$user->Email?></td>
-								<td class="text-right"><?=number_format($user->AvailableMoney)?></td>
-								<td class="text-center"><?=$user->Total?></td>
-								<td class="text-center"><?=$user->StandardPost?></td>
-								<td><?=date('d/m/Y H:i', strtotime($user->CreatedDate))?></td>
-								<td><?=date('d/m/Y H:i', strtotime($user->LastLogin))?></td>
-								<td>
-									<a href="<?=base_url('/admin/product/list.html?createdById='.$user->Us3rID)?>" data-toggle="tooltip" title="Xem tin rao"><i class="glyphicon glyphicon-folder-open"></i></a>&nbsp;|&nbsp;
-									<a href="<?=base_url('/admin/transfer-user-'.$user->Us3rID.'.html')?>" data-toggle="tooltip" title="Xử lý giao dịch"><i class="glyphicon glyphicon-random"></i></a>&nbsp;|&nbsp;
-									<a data-toggle="tooltip" title="Chỉnh sửa"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;|&nbsp;
-									<a data-toggle="tooltip" title="Xóa Người dùng"><i class="glyphicon glyphicon-remove"></i></a>
-								</td>
-							</tr>
+					<div class="table-responsive">
+						<table class="admin-table table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th></th>
+									<th data-action="sort" data-title="FullName" data-direction="ASC"><span>Họ Tên</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+									<th data-action="sort" data-title="UserName" data-direction="ASC"><span>Username</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+									<th data-action="sort" data-title="Phone" data-direction="ASC"><span>Điện Thoại</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+									<th data-action="sort" data-title="Email" data-direction="ASC"><span>Email</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+									<th data-action="sort" data-title="AvailableMoney" data-direction="ASC"><span>Tài Khoản</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+									<th><span>Bài Đăng</span></th>
+									<th><span>Miễn Phí</span></th>
+									<th data-action="sort" data-title="CreatedDate" data-direction="ASC"><span>Ngày Tạo</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+									<th data-action="sort" data-title="LastLogin" data-direction="ASC"><span>Đăng Nhập</span><i class="glyphicon glyphicon-triangle-bottom"></i></th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
 							<?php
-						}
-						?>
-						</tbody>
-					</table>
-					<div class="text-center">
-						<?php echo $pagination; ?>
+							$counter = 1;
+							foreach ($users as $user) {
+								?>
+								<tr>
+									<td><?=$counter++?></td>
+									<td><a data-toggle="tooltip" title="<?=$user->Address?>"><?=$user->FullName?></a></td>
+									<td><?=$user->UserName?></td>
+									<td><?=$user->Phone?></td>
+									<td><?=$user->Email?></td>
+									<td class="text-right"><?=number_format($user->AvailableMoney)?></td>
+									<td class="text-center"><?=$user->Total?></td>
+									<td class="text-center"><?=$user->StandardPost?></td>
+									<td><?=date('d/m/Y H:i', strtotime($user->CreatedDate))?></td>
+									<td><?=date('d/m/Y H:i', strtotime($user->LastLogin))?></td>
+									<td>
+										<a href="<?=base_url('/admin/product/list.html?createdById='.$user->Us3rID)?>" data-toggle="tooltip" title="Xem tin rao"><i class="glyphicon glyphicon-folder-open"></i></a>&nbsp;|&nbsp;
+										<a href="<?=base_url('/admin/transfer-user-'.$user->Us3rID.'.html')?>" data-toggle="tooltip" title="Xử lý giao dịch"><i class="glyphicon glyphicon-random"></i></a>&nbsp;|&nbsp;
+										<a data-toggle="tooltip" title="Chỉnh sửa"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;|&nbsp;
+										<a data-toggle="tooltip" title="Xóa Người dùng"><i class="glyphicon glyphicon-remove"></i></a>
+									</td>
+								</tr>
+								<?php
+							}
+							?>
+							</tbody>
+						</table>
+						<div class="text-center">
+							<?php echo $pagination; ?>
+						</div>
 					</div>
 				</div>
 			</div>
