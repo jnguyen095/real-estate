@@ -347,6 +347,8 @@ class Search_controller extends CI_Controller
 		$data['category'] = $category;
 		$data['districtWithCategory'] = $this->District_Model->findByCatIdCityIdHasProduct($catId, $district->CityID);
 
+		$data['cat_city_dic'] = $category->CatName.' tại quận '.$district->DistrictName.', '.$city->CityName;
+
 		$this->pagination->initialize($config);
 		$data['pagination'] = $this->pagination->create_links();
 		$this->load->helper('url');
