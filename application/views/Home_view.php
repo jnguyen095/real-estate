@@ -163,7 +163,7 @@
 													<span class="price"><?=$product->PriceString?></span>, <?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?>
 												</div>
 												<div>
-													<div class="float-left color"><?=$product->district.', '.$product->city?></div>
+													<div class="float-left color"><a href="<?=base_url(seo_url($product->district.' '.$product->city)).'-dt'.$product->DistrictID.'.html'?>"><?=$product->district.', '.$product->city?></a></div>
 													<div class="float-right postdate"><?=date('d/m/Y', strtotime($product->ModifiedDate))?></div>
 													<div class="clear-both"></div>
 												</div>
@@ -197,7 +197,7 @@
 													<span class="price"><?=$product->PriceString?></span>, <?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?>
 												</div>
 												<div>
-													<div class="float-left color"><?=$product->district.', '.$product->city?></div>
+													<div class="float-left color"><a href="<?=base_url(seo_url($product->district.' '.$product->city)).'-dt'.$product->DistrictID.'.html'?>"><?=$product->district.', '.$product->city?></a></div>
 													<div class="float-right postdate"><?=date('d/m/Y', strtotime($product->ModifiedDate))?></div>
 													<div class="clear-both"></div>
 												</div>
@@ -231,7 +231,7 @@
 							<div class="col-md-10 col-sm-11 col-xs-10 no-padding-right">
 								<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=substr_at_middle($product->Title, 80)?></h3></a> </div>
 								<div class="product-info">
-									<div><span class="price"><?=$product->PriceString?></span> <span class="color"><?=$product->district.', '.$product->city?></span></div>
+									<div><span class="price"><?=$product->PriceString?></span> <span class="color"><a href="<?=base_url(seo_url($product->district.' '.$product->city)).'-dt'.$product->DistrictID.'.html'?>"><?=$product->district.', '.$product->city?></a></span></div>
 								</div>
 							</div>
 						</div>
@@ -251,7 +251,7 @@
 							<div class="col-md-10 col-sm-11 col-xs-10 no-padding-right">
 								<div class="product-title"><a href="<?=base_url().seo_url($product->Title).'-p'.$product->ProductID?>.html" title="<?=$product->Title?>"><h3 itemprop="name"><?=substr_at_middle($product->Title, 80)?></h3></a> </div>
 								<div class="product-info">
-									<div><span class="price"><?=$product->PriceString?></span> <span class="color"><?=$product->district.', '.$product->city?></span></div>
+									<div><span class="price"><?=$product->PriceString?></span> <span class="color"><a href="<?=base_url(seo_url($product->district.' '.$product->city)).'-dt'.$product->DistrictID.'.html'?>"><?=$product->district.', '.$product->city?></a></span></div>
 								</div>
 							</div>
 						</div>

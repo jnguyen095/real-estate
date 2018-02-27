@@ -5,7 +5,11 @@
 	if(isset($category) && !isset($cat_city) && !isset($cat_city_dic)){
 		$searchBy = $category->CatName;
 	} else if(isset($city)){
-		$searchBy = 'Nhà đất tại '.$city->CityName;
+		if(isset($district)){
+			$searchBy = 'Nhà đất tại quận '.$district->DistrictName.', '. $city->CityName;
+		}else{
+			$searchBy = 'Nhà đất tại '.$city->CityName;
+		}
 	}else if(isset($cat_city)){
 		$searchBy = $cat_city;
 	}else if(isset($cat_city_dic)){
@@ -163,7 +167,6 @@
 					 }else{
 						 $str .= ' tại '.$scity->CityName;
 					 }
-
 				 }
 				 echo $str;
 			 }
@@ -193,7 +196,7 @@
 								<div class="col-md-10 col-xs-9">
 									<div class="row pos-relative">
 										<div class="productTop">
-											<div class="col-md-10 col-xs-12 no-padding"><span><span class="mobile-hide">Giá: </span><span class="color bold price"><?=$product->PriceString?></span><span class="margin-left-10"><span class="mobile-hide">Diện tích: </span><span class="color bold"><?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></span></span><span class="margin-left-10"><span class="mobile-hide">Quận/Huyện: </span><span class="color bold  mobile-block"><?=$product->district.', '.$product->city?></span></div>
+											<div class="col-md-10 col-xs-12 no-padding"><span><span class="mobile-hide">Giá: </span><span class="color bold price"><?=$product->PriceString?></span><span class="margin-left-10"><span class="mobile-hide">Diện tích: </span><span class="color bold"><?=is_numeric($product->Area) ? $product->Area.' m²' : $product->Area?></span></span><span class="margin-left-10"><span class="mobile-hide">Quận/Huyện: </span><span class="color bold  mobile-block"><a href="<?=base_url(seo_url($product->district.' '.$product->city)).'-dt'.$product->DistrictID.'.html'?>"><?=$product->district.', '.$product->city?></a></span></div>
 											<div class="col-md-2 color bold mobile-block relative-time no-padding text-right"><?=date('d/m/Y', strtotime($product->ModifiedDate))?></div>
 											<div class="clear-both"></div>
 										</div>

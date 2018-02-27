@@ -26,7 +26,7 @@ if(isset($districtWithCategory) && count($districtWithCategory) > 0){
 					}
 					$counter++;
 				}
-				if($counter > 10){
+				if($counter > 11){
 					echo '</div><a href="javascript:void(0);" class="toggleBtn toggleMore" data-status="open" data-toggle="collapse" data-target="#cdt_left">Xem thêm</a>';
 				}
 				?>
@@ -52,7 +52,7 @@ if(isset($districtWithCategory) && count($districtWithCategory) > 0){
 					}
 					$counter++;
 				}
-				if($counter > 10){
+				if($counter > 11){
 					echo '</div><a href="javascript:void(0);" class="toggleBtn toggleMore" data-status="open" data-toggle="collapse" data-target="#cdt1_left">Xem thêm</a>';
 				}
 				?>
