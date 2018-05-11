@@ -19,6 +19,7 @@ issues, as well as missing features.
 Demo site
 *********
 
+-  `Link demo <https:tindatdai.com>`_
 -  `Link demo <https://nnkhang.000webhostapp.com>`_
 
 ***************
