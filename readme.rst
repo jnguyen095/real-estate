@@ -20,6 +20,7 @@ Demo site
 *********
 
 -  `Link demo <https://nnkhang.000webhostapp.com>`_
+-  `Link production <https://tindatdai.com>`_
 
 ***************
 Technologies
