@@ -246,7 +246,7 @@
 											<td><a href="<?=base_url('/admin/product/list.html?createdById='.$user->Us3rID)?>" data-toggle="tooltip" title="Xem tin rao"><?=$user->FullName?></a></td>
 											<td><?=$user->UserName?></td>
 											<td><?=date('d/m/Y H:i', strtotime($user->CreatedDate))?></td>
-											<td><?=date('d/m/Y H:i', strtotime($user->LastLogin))?></td>
+											<td><?=date('H:i', strtotime($user->LastLogin))?></td>
 										</tr>
 										<?php
 									}
@@ -283,8 +283,7 @@
 										<th>#</th>
 										<th>Họ Tên</th>
 										<th>Username</th>
-										<th>Ngày Tạo</th>
-										<th>Đăng Nhập</th>
+										<th>Tạo lúc</th>
 									</tr>
 									</thead>
 									<tbody>
@@ -296,8 +295,7 @@
 											<td><?=$index++?></td>
 											<td><a href="<?=base_url('/admin/product/list.html?createdById='.$user->Us3rID)?>" data-toggle="tooltip" title="Xem tin rao"><?=$user->FullName?></a></td>
 											<td><?=$user->UserName?></td>
-											<td><?=date('d/m/Y H:i', strtotime($user->CreatedDate))?></td>
-											<td><?=date('d/m/Y H:i', strtotime($user->LastLogin))?></td>
+											<td><?=date('H:i', strtotime($user->CreatedDate))?></td>
 										</tr>
 										<?php
 									}
