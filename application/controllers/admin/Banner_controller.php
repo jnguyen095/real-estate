@@ -114,6 +114,7 @@ class Banner_controller extends CI_Controller
 
 			$config['upload_path'] = $upath;
 			$config['allowed_types'] = $this->allowed_img_types;
+			$config['remove_spaces'] = true;
 			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
 			if (!$this->upload->do_upload('txt_image')) {

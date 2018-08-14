@@ -634,7 +634,9 @@ class Post_controller extends CI_Controller
 
 			$config['upload_path'] = $upath;
 			$config['allowed_types'] = $this->allowed_img_types;
+			$config['remove_spaces'] = true;
 			$this->load->library('upload', $config);
+
 			$this->upload->initialize($config);
 			if (!$this->upload->do_upload('txt_userfile')) {
 				log_message('error', 'Image Upload Error: ' . $this->upload->display_errors());
@@ -685,7 +687,8 @@ class Post_controller extends CI_Controller
 
 				$this->upload->initialize(array(
 					'upload_path' => $upath,
-					'allowed_types' => $this->config->item('allowed_img_types')
+					'allowed_types' => $this->config->item('allowed_img_types'),
+					'remove_spaces' => true
 				));
 				if(!$this->upload->do_upload('others')){
 					$error = array('error' => $this->upload->display_errors(), 'upload_path' => $upath, 'allowed_types' => $this->allowed_img_types);
