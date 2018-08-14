@@ -31,12 +31,10 @@
 	<!-- Latest compiled JavaScript -->
 	<script src="<?php echo base_url()?>js/bootstrap.min.js"></script>
 	<?php $this->load->view('/common/googleadsense')?>
-	<?php $this->load->view('/common/facebook-pixel-tracking')?>
 </head>
 
 <body>
 <?php $this->load->view('/common/analyticstracking')?>
-
 <?php $this->load->view('/theme/header')?>
 <div class="container">
 
@@ -217,7 +215,19 @@
 			</div>
 
 			<div class="row no-margin">
-				<img class="middleHorizontalBanner" src="<?=base_url('/img/banner_leaf.jpg')?>" alt="Middle horizontal banner">
+				<?php
+				if(isset($BANNER_HOME_1) && strlen($BANNER_HOME_1->Image) > 0){
+					?>
+					<a href="<?=base_url('/redirect-adv-'.$BANNER_HOME_1->BannerID.'.html')?>">
+						<img class="middleHorizontalBanner" src="<?=base_url('/img/banner/'.$BANNER_HOME_1->Image)?>" alt="Middle horizontal banner">
+					</a>
+					<?php
+				}else{
+					?>
+					<img class="middleHorizontalBanner" src="<?=base_url('/img/banner_leaf.jpg')?>" alt="Middle horizontal banner">
+					<?php
+				}
+				?>
 			</div>
 
 			<div class="row home-group">
@@ -264,7 +274,19 @@
 			</div>
 
 			<div class="text-center mobile-hide">
-				<a href="<?=base_url('/dang-tin.html')?>"><img src="<?=base_url('/img/bottom_banner.jpg')?>" alt="bottom banner"/></a>
+				<?php
+				if(isset($BANNER_HOME_2) && strlen($BANNER_HOME_2->Image) > 0){
+					?>
+					<a href="<?=base_url('/redirect-adv-' . $BANNER_HOME_2->BannerID .'.html')?>">
+						<img class="middleHorizontalBanner" src="<?=base_url('/img/banner/'.$BANNER_HOME_2->Image)?>" alt="Middle horizontal banner">
+					</a>
+					<?php
+				}else{
+					?>
+					<a href="<?=base_url('/dang-tin.html')?>"><img src="<?=base_url('/img/bottom_banner.jpg')?>" alt="bottom banner"/></a>
+					<?php
+				}
+				?>
 			</div>
 		</div>
 
@@ -272,8 +294,22 @@
 		<div class="col-md-3">
 			<?php $this->load->view('/common/sample_house_plot')?>
 			<?php $this->load->view('/common/city-left-link')?>
-			<img class="width100pc margin-bottom-20 mobile-hide" src="<?=base_url('/img/hoatraotay.jpg')?>" alt="Hoa Trao Tay"/>
+			<?php
+			if(isset($BANNER_HOME_4) && strlen($BANNER_HOME_4->Image) > 0){
+				?>
+				<a href="<?=base_url('/redirect-adv-' . $BANNER_HOME_4->BannerID .'.html')?>">
+					<img class="width100pc margin-bottom-20 mobile-hide" src="<?=base_url('/img/banner/'.$BANNER_HOME_4->Image)?>" alt="Middle horizontal banner">
+				</a>
+				<?php
+			}else{
+				?>
+				<img class="width100pc margin-bottom-20 mobile-hide" src="<?=base_url('/img/hoatraotay.jpg')?>" alt="Hoa Trao Tay"/>
+				<?php
+			}
+			?>
+
 			<?php $this->load->view('/common/branch-left-link')?>
+			<?php $this->load->view('/common/fan-page')?>
 		</div>
 		<!-- end left side -->
 

@@ -17,7 +17,9 @@ class ProductManagement_controller extends CI_Controller
 
 		$this->load->library('session');
 		$this->load->model('Product_Model');
+		$this->load->model('Category_Model');
 		$this->load->model('User_Model');
+		$this->load->model('Unit_Model');
 		$this->load->helper('form');
 		$this->load->library('pagination');
 		$this->load->helper("bootstrap_pagination_admin");
@@ -69,6 +71,17 @@ class ProductManagement_controller extends CI_Controller
 		$data['pagination'] = $this->pagination->create_links();
 
 		$this->load->view("admin/product/list", $data);
+	}
+
+	public function edit(){
+		$productId = $this->input->get("postId");
+		$categories = $this->Category_Model->getCategories();
+
+		$product = $this->Product_Model->findById($productId);
+		$data = $categories;
+		$data['product'] = $product;
+		$data['units'] = $this->Unit_Model->findAll();
+		$this->load->view("admin/product/edit", $data);
 	}
 
 	private function deleteProductById($productId){

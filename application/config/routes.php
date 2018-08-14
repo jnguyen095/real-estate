@@ -146,11 +146,15 @@ $route['tuyen-dung'] = "StaticPage_controller/carer";
 $route['bao-gia-dich-vu'] = "StaticPage_controller/payment";
 $route['khong-tim-thay'] = "Notfound_controller";
 
+//Advertise handle
+$route['redirect-adv-(:num)'] = "Advertise_controller/index/$1";
+
 
 /* ADMINISTRATOR */
 $route['admin/dashboard'] = "admin/Admin_controller";
 $route['admin/user/list'] = "admin/UserManagement_controller";
 $route['admin/product/list'] = "admin/ProductManagement_controller";
+$route['admin/product/edit'] = "admin/ProductManagement_controller/edit";
 $route['admin/cooperate/list'] = "admin/CooperateManagement_controller";
 $route['admin/feedback/list'] = "admin/FeedBack_controller";
 $route['admin/feedback/view-(:num)'] = "admin/FeedBack_controller/view/$1";
@@ -169,5 +173,7 @@ $route['admin/sitemap/view-(:num)'] = "admin/SitemapIndex_controller/viewItems/$
 $route['admin/sitemap/sitemap-(:num)'] = "admin/SitemapIndex_controller/xmlView/$1";
 $route['admin/sitemap/export-(:num)'] = "admin/SitemapIndex_controller/exportSitemapFile/$1";
 $route['admin/sitemap/push'] = "Sitemap_controller/publish2SearchEngine";
-
-
+$route['admin/banner/list'] = "admin/Banner_controller";
+$route['admin/banner/add'] = "admin/Banner_controller/add";
+$route['admin/banner/add-(:num)'] = "admin/Banner_controller/add/$1";
+$route['admin/banner/analytic-(:num)'] = "admin/Banner_controller/analytic/$1";

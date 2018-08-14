@@ -21,6 +21,7 @@ class Home_controller extends CI_Controller
 		$this->load->model('News_Model');
 		$this->load->model('Cooperate_Model');
 		$this->load->model('SampleHouse_Model');
+		$this->load->model('Banner_Model');
 		$this->load->helper('form');
 	}
 
@@ -28,6 +29,9 @@ class Home_controller extends CI_Controller
 		$this->load->driver('cache');
 		$categories = $this->cache->file->get('category');
 		$footerMenus = $this->cache->file->get('footer');
+		$BANNER_HOME_1 = $this->cache->file->get('BANNER_HOME_1');
+		$BANNER_HOME_2 = $this->cache->file->get('BANNER_HOME_2');
+		$BANNER_HOME_4 = $this->cache->file->get('BANNER_HOME_4');
 		if(!$categories){
 			$categories = $this->Category_Model->getCategories();
 			$this->cache->file->save('category', $categories, 1440);
@@ -35,6 +39,18 @@ class Home_controller extends CI_Controller
 		if(!$footerMenus) {
 			$footerMenus = $this->City_Model->findByTopProductOfCategoryGroupByCity();
 			$this->cache->file->save('footer', $footerMenus, 1440);
+		}
+		if(!$BANNER_HOME_1){
+			$BANNER_HOME_1 = $this->Banner_Model->loadByCode('BANNER_HOME_1');
+			$this->cache->file->save('BANNER_HOME_1', $BANNER_HOME_1, 1440);
+		}
+		if(!$BANNER_HOME_2){
+			$BANNER_HOME_2 = $this->Banner_Model->loadByCode('BANNER_HOME_2');
+			$this->cache->file->save('BANNER_HOME_1', $BANNER_HOME_2, 1440);
+		}
+		if(!$BANNER_HOME_4){
+			$BANNER_HOME_4 = $this->Banner_Model->loadByCode('BANNER_HOME_4');
+			$this->cache->file->save('BANNER_HOME_4', $BANNER_HOME_4, 1440);
 		}
 		$data = $categories;
 		$data['footerMenus'] = $footerMenus;
@@ -56,6 +72,9 @@ class Home_controller extends CI_Controller
 		$data['underOneBillion'] = $this->Product_Model->findUnderOneBillion(0, 8);
 		$data['justUpdates'] = $this->Product_Model->findJustUpdate(0, 8);
 		$data['cooperates'] = $this->Cooperate_Model->findTopLatest(3);
+		$data['BANNER_HOME_1'] = $BANNER_HOME_1;
+		$data['BANNER_HOME_2'] = $BANNER_HOME_2;
+		$data['BANNER_HOME_4'] = $BANNER_HOME_4;
 		$this->load->helper('url');
 		$this->load->view('Home_view', $data);
 	}

@@ -178,6 +178,7 @@
 									<td><a href="<?=base_url('/admin/product/list.html?createdById='.$product->CreatedByID)?>"><?=$product->FullName?></a> </td>
 									<td><?=$product->IpAddress?></td>
 									<td>
+										<a href="<?=base_url('/admin/product/edit.html?postId='.$product->ProductID)?>" data-toggle="tooltip" title="Chỉnh sửa"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;|&nbsp;
 										<a onclick="pushPostUp('<?=$product->ProductID?>');" data-toggle="tooltip" title="Làm mới tin"><i class="glyphicon glyphicon-refresh"></i></a>&nbsp;|&nbsp;
 										<a class="remove-post" data-post="<?=$product->ProductID?>" data-toggle="tooltip" title="Xóa tin đăng"><i class="glyphicon glyphicon-remove"></i></a>
 									</td>
