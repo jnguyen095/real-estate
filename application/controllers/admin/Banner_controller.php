@@ -28,6 +28,12 @@ class Banner_controller extends CI_Controller
 
 	public function index()
 	{
+		$crudaction = $this->input->post("crudaction");
+		if($crudaction == DELETE){
+			$bannerId = $this->input->post("bannerId");
+			$this->deleteBanner($bannerId);
+			$data['message_response'] = 'Xóa banner thành công.';
+		}
 		$config = pagination($this);
 		$config['base_url'] = base_url('admin/banner/list.html');
 		if(!$config['orderField']){
@@ -137,5 +143,18 @@ class Banner_controller extends CI_Controller
 		$data['pagination'] = $this->pagination->create_links();
 		$this->load->view("admin/banner/analytic", $data);
 
+	}
+
+	private function deleteBanner($bannerId){
+		if($bannerId != null && $bannerId > 0) {
+			$banner = $this->Banner_Model->findById($bannerId);
+			$imgFile = $banner->Image;
+			$upath = 'img' . DIRECTORY_SEPARATOR .'banner'. DIRECTORY_SEPARATOR.$imgFile;
+			// delete db first
+			$this->Banner_Model->deleteById($bannerId);
+			if (file_exists($upath)){
+				unlink($upath);
+			}
+		}
 	}
 }

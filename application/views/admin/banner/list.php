@@ -42,6 +42,18 @@
 				<div class="box-header">
 					<h3 class="box-title">Danh sách banner</h3>
 				</div>
+
+				<?php if(!empty($message_response)){
+					echo '<div class="alert alert-success">';
+					echo '<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">&times;</a>';
+					echo $message_response;
+					echo '</div>';
+				}?>
+
+				<?php
+				$attributes = array("id" => "frmBanner");
+				echo form_open("admin/banner/list", $attributes);
+				?>
 				<!-- /.box-header -->
 				<div class="box-body">
 					<div class="top-buttons"><a class="btn btn-primary" href="<?=base_url('/admin/banner/add.html')?>">Thêm Mới</a> </div>
@@ -78,7 +90,8 @@
 									<td><?=date('d/m/Y', strtotime($banner->ToDate)) ?></td>
 									<td>
 										<a href="<?=base_url('/admin/banner/add-'.$banner->BannerID.'.html')?>" data-toggle="tooltip" title="Chỉnh sửa"><i class="	glyphicon glyphicon-edit"></i></a>&nbsp;|&nbsp;
-										<a href="<?=base_url('/admin/banner/analytic-'.$banner->BannerID.'.html')?>" data-toggle="tooltip" title="Xem thống kê"><i class="glyphicon glyphicon-list-alt"></i></a>
+										<a href="<?=base_url('/admin/banner/analytic-'.$banner->BannerID.'.html')?>" data-toggle="tooltip" title="Xem thống kê"><i class="glyphicon glyphicon-list-alt"></i></a>&nbsp;|&nbsp;
+										<a href="#" class="remove-post" data-post="<?=$banner->BannerID?>" data-toggle="tooltip" title="Xóa banner"><span class="glyphicon glyphicon-remove"></span></a>
 									</td>
 								</tr>
 								<?php
@@ -91,6 +104,9 @@
 						<?php echo $pagination; ?>
 					</div>
 				</div>
+				<input type="hidden" id="crudaction" name="crudaction">
+				<input type="hidden" id="bannerId" name="bannerId">
+				<?php echo form_close(); ?>
 			</div>
 
 		</section>
@@ -116,9 +132,24 @@
 <script src="<?=base_url('/admin/js/bootstrap.min.js')?>"></script>
 <!-- AdminLTE App -->
 <script src="<?=base_url('/admin/js/adminlte.min.js')?>"></script>
+<script src="<?=base_url('/js/bootbox.min.js')?>"></script>
 
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
+<script type="text/javascript">
+	$(document).ready(function(){
+		deletePostHandler();
+	});
+	function deletePostHandler(){
+		$('.remove-post').click(function(){
+			var prId = $(this).data('post');
+			bootbox.confirm("Bạn đã chắc chắn xóa banner này chưa?", function(result){
+				if(result){
+					$("#bannerId").val(prId);
+					$("#crudaction").val("delete");
+					$("#frmBanner").submit();
+				}
+			});
+		});
+	}
+</script>
 </body>
 </html>

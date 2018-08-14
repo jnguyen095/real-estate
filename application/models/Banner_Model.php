@@ -118,4 +118,9 @@ class Banner_Model extends CI_Model
 
 		return $data;
 	}
+
+	function deleteById($bannerId){
+		$this->db->delete('bannerdetail', array('BannerID' => $bannerId));
+		$this->db->delete('banner', array('BannerID' => $bannerId));
+	}
 }
