@@ -555,7 +555,7 @@
 		});
 	</script>
 
-	<div class="overlay" style="display: none"><img src="<?=base_url('/img/load.gif')?>"/></div>
+	<div class="overlay" style="display: none"><img src="<?=base_url('/img/spinner.gif')?>"/></div>
 </div>
 
 </body>
