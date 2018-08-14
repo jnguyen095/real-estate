@@ -148,6 +148,7 @@ class Banner_controller extends CI_Controller
 	private function deleteBanner($bannerId){
 		if($bannerId != null && $bannerId > 0) {
 			$banner = $this->Banner_Model->findById($bannerId);
+			$this->output->delete_cache($banner->Code);
 			$imgFile = $banner->Image;
 			$upath = 'img' . DIRECTORY_SEPARATOR .'banner'. DIRECTORY_SEPARATOR.$imgFile;
 			// delete db first

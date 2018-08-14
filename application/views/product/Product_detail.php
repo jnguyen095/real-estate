@@ -345,7 +345,19 @@
 		<div class="clear-both"></div>
 		<?php $this->load->view('/Subscrible') ?>
 		<div class="clear-both"></div>
-		<img class="width100pc margin-bottom-20 mobile-hide" src="<?=base_url('/img/hoatraotay.jpg')?>" alt="Hoa Trao Tay"/>
+		<?php
+		if(isset($BANNER_DETAIL_1) && strlen($BANNER_DETAIL_1->Image) > 0){
+			?>
+			<a href="<?=base_url('/redirect-adv-' . $BANNER_DETAIL_1->BannerID .'.html')?>">
+				<img class="width100pc margin-bottom-20 mobile-hide" src="<?=base_url('/img/banner/'.$BANNER_DETAIL_1->Image)?>" alt="Middle horizontal banner">
+			</a>
+			<?php
+		}else{
+			?>
+			<img class="width100pc margin-bottom-20 mobile-hide" src="<?=base_url('/img/hoatraotay.jpg')?>" alt="Hoa Trao Tay"/>
+			<?php
+		}
+		?>
 	</div>
 
 </div>

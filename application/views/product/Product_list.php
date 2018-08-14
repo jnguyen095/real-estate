@@ -100,7 +100,19 @@
 		</div>
 	</div>
 	<div class="col-md-3 no-margin-right no-padding-right no-padding-left-mobile">
-		<img class="width100pc margin-bottom-20 mobile-hide" src="<?=base_url('/img/some.jpg')?>" alt="Hoa Trao Tay"/>
+		<?php
+		if(isset($BANNER_CAT_1) && strlen($BANNER_CAT_1->Image) > 0){
+			?>
+			<a href="<?=base_url('/redirect-adv-' . $BANNER_CAT_1->BannerID .'.html')?>">
+				<img class="width100pc margin-bottom-20 mobile-hide" src="<?=base_url('/img/banner/'.$BANNER_CAT_1->Image)?>" alt="Middle horizontal banner">
+			</a>
+			<?php
+		}else{
+			?>
+			<img class="width100pc margin-bottom-20 mobile-hide" src="<?=base_url('/img/some.jpg')?>" alt="Hoa Trao Tay"/>
+			<?php
+		}
+		?>
 		<?php $this->load->view('/common/city-cat-left-link')?>
 		<?php $this->load->view('/common/news_plot')?>
 		<div class="clear-both"></div>

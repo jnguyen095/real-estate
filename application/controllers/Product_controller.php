@@ -17,6 +17,7 @@ class Product_controller extends CI_Controller
 		$this->load->model('News_Model');
 		$this->load->model('SampleHouse_Model');
 		$this->load->model('Brand_Model');
+		$this->load->model('Banner_Model');
 		$this->load->helper("seo_url");
 		$this->load->helper("my_date");
 		$this->load->helper("bootstrap_pagination");
@@ -60,6 +61,13 @@ class Product_controller extends CI_Controller
 		$data['cities'] = $this->City_Model->getAllActive();
 		$data['topNews'] = $this->News_Model->findTopNewExceptCurrent(0, 5);
 		$data['cityWithCats'] = $this->City_Model->findCityByCategoryId($catId);
+
+		$BANNER_CAT_1 = $this->cache->file->get('BANNER_CAT_1');
+		if(!$BANNER_CAT_1){
+			$BANNER_CAT_1 = $this->Banner_Model->loadByCode('BANNER_CAT_1');
+			$this->cache->file->save('BANNER_CAT_1', $BANNER_CAT_1, 1440);
+		}
+		$data['BANNER_CAT_1'] = $BANNER_CAT_1;
 
 		$this->load->helper('url');
 		$this->load->view('product/Product_list', $data);
@@ -128,6 +136,13 @@ class Product_controller extends CI_Controller
 
 			//load the same parent category
 			$data['sameLevels'] = $this->Category_Model->findByParentId($category->ParentID, $category->CategoryID);
+
+			$BANNER_DETAIL_1 = $this->cache->file->get('BANNER_DETAIL_1');
+			if(!$BANNER_DETAIL_1){
+				$BANNER_DETAIL_1 = $this->Banner_Model->loadByCode('BANNER_DETAIL_1');
+				$this->cache->file->save('BANNER_DETAIL_1', $BANNER_DETAIL_1, 1440);
+			}
+			$data['BANNER_DETAIL_1'] = $BANNER_DETAIL_1;
 
 			$this->load->view('product/Product_detail', $data);
 		}
